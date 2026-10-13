@@ -54,7 +54,7 @@ export default function Projects() {
                   padding: "clamp(20px, 4vw, 28px)",
                   display: "flex",
                   flexDirection: "column",
-                  gap: "16px",
+                  gap: "20px",
                   backgroundColor: "rgb(0, 0, 0)",
                   position: "relative",
                   zIndex: 25,
