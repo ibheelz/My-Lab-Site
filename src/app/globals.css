@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 1.06s step-end infinite;
+}
+
+html {
+  font-family: inherit;
+  scroll-padding-top: 75px;
+}
+
+body {
+  background-color: rgb(7, 9, 7);
+  color: rgb(255, 255, 255);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* ── Responsive section padding ── */
+.section-hero  { padding: 75px 20px 0; }
+.section-pad   { padding: 30px 20px; }
+.section-blog  { padding: 30px 20px 80px; }
+
+@media (min-width: 810px) {
+  .section-hero  { padding: 95px 30px 0; }
+  .section-pad   { padding: 40px 30px; }
+  .section-blog  { padding: 40px 30px 140px; }
+}
+
+@media (min-width: 1200px) {
+  .section-hero  { padding: 120px 40px 0; }
+  .section-pad   { padding: 40px; }
+  .section-blog  { padding: 40px 40px 200px; }
+}
+
+/* ── Portfolio info row (stacks on mobile) ── */
+.info-row { flex-direction: column-reverse; }
+@media (min-width: 810px) {
+  .info-row { flex-direction: row; }
+}
+
+/* ── Featured project card inner (stacks on tablet and below) ── */
+.project-card-inner { flex-direction: column; }
+@media (min-width: 1200px) {
+  .project-card-inner { flex-direction: row; }
+}
+
+/* ── Blog grid columns ── */
+.blog-grid { grid-template-columns: 1fr; gap: 20px; }
+@media (min-width: 810px) {
+  .blog-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+}
+@media (min-width: 1200px) {
+  .blog-grid { grid-template-columns: repeat(3, 1fr); gap: 40px; }
+}
+
+/* ── ASCII art font scaling ── */
+.ascii-pre {
+  font-size: 7px !important;
+  letter-spacing: 1px !important;
+}
+@media (min-width: 810px) {
+  .ascii-pre {
+    font-size: 10px !important;
+    letter-spacing: 2px !important;
+  }
+}
+@media (min-width: 1200px) {
+  .ascii-pre {
+    font-size: 13px !important;
+    letter-spacing: 2.5px !important;
+  }
+}
+
+/* ── Header nav: hide on mobile ── */
+.header-nav { display: none; }
+@media (min-width: 810px) {
+  .header-nav { display: flex; }
+}
