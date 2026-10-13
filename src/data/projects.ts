@@ -25,12 +25,4 @@ export const projects: Project[] = [
     tags: ["Node.js", "Networking", "Dashboards"],
     githubUrl: "https://github.com/abiola",
   },
-  {
-    slug: "it-asset-tracker",
-    title: "IT Asset Tracker",
-    description: "Inventory management system for tracking hardware, software licenses, and equipment assignments.",
-    tags: ["Next.js", "TypeScript", "PostgreSQL"],
-    liveUrl: "#",
-    githubUrl: "https://github.com/abiola",
-  },
 ];

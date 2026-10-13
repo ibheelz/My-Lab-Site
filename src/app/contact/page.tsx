@@ -25,7 +25,7 @@ const INPUT_STYLE = {
 };
 
 const directLinks = [
-  { label: "$ email",    value: "abiola@email.com",            href: "mailto:abiola@email.com" },
+  { label: "$ email",    value: "abiola@abioladeyeye.com",      href: "mailto:abiola@abioladeyeye.com" },
   { label: "$ location", value: "Lagos, Nigeria",               href: null },
   { label: "$ status",   value: "Open to Work",                 href: null },
 ];
@@ -63,7 +63,7 @@ export default function Contact() {
       <div className="w-full max-w-[1200px] flex flex-col gap-[60px] desktop:gap-[80px]">
 
         {/* Terminal breadcrumb */}
-        <p className="hidden tablet:block" style={{ fontSize: "16px", lineHeight: "1.6em", color: BLUE, margin: 0 }}>
+        <p className="hidden tablet:block" style={{ fontSize: "16px", lineHeight: "1.6em", color: NEON, margin: 0 }}>
           abiola@portfolio:~$ contact
         </p>
 
