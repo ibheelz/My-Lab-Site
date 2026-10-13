@@ -7,12 +7,12 @@ import SecondaryButton, { GitHubIcon } from "@/components/SecondaryButton";
 import BlogCard from "@/components/BlogCard";
 import { posts } from "@/data/blog";
 import { projects } from "@/data/projects";
+import { TAG_COLORS } from "@/data/colors";
 
 const CYAN      = "rgb(0, 255, 255)";
 const BLUE      = "rgb(168, 215, 231)";
 const NEON_GREEN = "rgb(0, 255, 106)";
 const SURFACE   = "rgb(29, 32, 37)";
-const YELLOW    = "rgb(250, 204, 21)";
 
 const featured    = projects.find((p) => p.featured) ?? projects[0];
 const latestPosts = posts.slice(0, 3);
@@ -116,7 +116,7 @@ export default function Home() {
                 </h3>
                 <div className="flex gap-[10px] flex-wrap">
                   {featured.tags.slice(0, 2).map((tag, i) => (
-                    <CategoryPill key={tag} label={tag} color={i === 0 ? CYAN : YELLOW} />
+                    <CategoryPill key={tag} label={tag} color={TAG_COLORS[i]} />
                   ))}
                 </div>
                 <p style={{ fontSize: "14px", lineHeight: "1.8em", color: BLUE, margin: 0 }}>
@@ -160,7 +160,7 @@ export default function Home() {
 
           {/* Articles grid */}
           <div className="grid grid-cols-1 gap-5 tablet:grid-cols-2 tablet:gap-8 desktop:grid-cols-3 desktop:gap-10">
-            {latestPosts.map((post) => (
+            {latestPosts.map((post, i) => (
               <BlogCard
                 key={post.slug}
                 slug={post.slug}
@@ -169,6 +169,7 @@ export default function Home() {
                 category={post.category}
                 readTime={post.readTime}
                 thumbnail={post.thumbnail}
+                categoryColor={TAG_COLORS[i % TAG_COLORS.length]}
               />
             ))}
           </div>

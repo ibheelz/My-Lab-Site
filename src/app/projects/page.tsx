@@ -4,15 +4,18 @@ import Link from "next/link";
 import TypewriterText from "@/components/TypewriterText";
 import CategoryPill from "@/components/CategoryPill";
 import { projects } from "@/data/projects";
+import { TAG_COLORS } from "@/data/colors";
 
 const CYAN = "rgb(0, 255, 255)";
 const BLUE = "rgb(168, 215, 231)";
 const NEON = "rgb(0, 255, 106)";
-const YELLOW = "rgb(250, 204, 21)";
-
-const COLORS = [CYAN, YELLOW, BLUE];
 
 export default function Projects() {
+  let colorIdx = 0;
+  const projectTagColors = projects.map((project) =>
+    project.tags.slice(0, 2).map(() => TAG_COLORS[colorIdx++ % TAG_COLORS.length])
+  );
+
   return (
     <section className="w-full flex justify-center px-5 pt-10 pb-16 tablet:px-8 tablet:pt-14 tablet:pb-20 desktop:px-10 desktop:pt-20 desktop:pb-28">
       <div className="w-full max-w-[1200px] flex flex-col gap-[60px] desktop:gap-[80px]">
@@ -101,7 +104,7 @@ export default function Projects() {
                   </h3>
                   <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
                     {project.tags.slice(0, 2).map((tag, ti) => (
-                      <CategoryPill key={tag} label={tag} color={COLORS[ti % COLORS.length]} />
+                      <CategoryPill key={tag} label={tag} color={projectTagColors[i][ti]} />
                     ))}
                   </div>
                 </div>

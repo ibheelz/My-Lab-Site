@@ -2,22 +2,14 @@
 /* eslint-disable @next/next/no-img-element */
 
 import Link from "next/link";
-
-const PALETTE = [
-  "rgb(0, 255, 255)",
-  "rgb(250, 204, 21)",
-  "rgb(168, 85, 247)",
-  "rgb(249, 115, 22)",
-  "rgb(236, 72, 153)",
-  "rgb(99, 179, 237)",
-];
+import { TAG_COLORS } from "@/data/colors";
 
 function pillColor(category: string): string {
   let hash = 0;
   for (let i = 0; i < category.length; i++) {
     hash = (hash * 31 + category.charCodeAt(i)) >>> 0;
   }
-  return PALETTE[hash % PALETTE.length];
+  return TAG_COLORS[hash % TAG_COLORS.length];
 }
 
 function toRgba(rgb: string, alpha: number): string {
@@ -31,10 +23,11 @@ interface BlogCardProps {
   category: string;
   readTime: number;
   thumbnail?: string;
+  categoryColor?: string;
 }
 
-export default function BlogCard({ slug, title, description, category, readTime, thumbnail }: BlogCardProps) {
-  const color = pillColor(category);
+export default function BlogCard({ slug, title, description, category, readTime, thumbnail, categoryColor }: BlogCardProps) {
+  const color = categoryColor ?? pillColor(category);
 
   return (
     <div

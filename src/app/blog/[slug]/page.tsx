@@ -5,19 +5,12 @@ import TypewriterText from "@/components/TypewriterText";
 import CategoryPill from "@/components/CategoryPill";
 import BlogImage from "@/components/BlogImage";
 import FaqItem from "@/components/FaqItem";
+import { TAG_COLORS } from "@/data/colors";
 
-const TAG_PALETTE = [
-  "rgb(0, 255, 255)",
-  "rgb(250, 204, 21)",
-  "rgb(168, 85, 247)",
-  "rgb(249, 115, 22)",
-  "rgb(236, 72, 153)",
-  "rgb(99, 179, 237)",
-];
 function tagColor(tag: string): string {
   let hash = 0;
   for (let i = 0; i < tag.length; i++) hash = (hash * 31 + tag.charCodeAt(i)) >>> 0;
-  return TAG_PALETTE[hash % TAG_PALETTE.length];
+  return TAG_COLORS[hash % TAG_COLORS.length];
 }
 
 const CYAN      = "rgb(0, 255, 255)";

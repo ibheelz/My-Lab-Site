@@ -1,6 +1,7 @@
 import TypewriterText from "@/components/TypewriterText";
 import BlogCard from "@/components/BlogCard";
 import { posts } from "@/data/blog";
+import { TAG_COLORS } from "@/data/colors";
 
 const CYAN = "rgb(0, 255, 255)";
 const BLUE = "rgb(168, 215, 231)";
@@ -33,7 +34,7 @@ export default function Blog() {
 
         {/* Posts grid: 1 col mobile → 2 col tablet → 3 col desktop */}
         <div className="grid grid-cols-1 gap-5 tablet:grid-cols-2 tablet:gap-8 desktop:grid-cols-3 desktop:gap-10">
-          {posts.map((post) => (
+          {posts.map((post, i) => (
             <BlogCard
               key={post.slug}
               slug={post.slug}
@@ -42,6 +43,7 @@ export default function Blog() {
               category={post.category}
               readTime={post.readTime}
               thumbnail={post.thumbnail}
+              categoryColor={TAG_COLORS[i % TAG_COLORS.length]}
             />
           ))}
         </div>
