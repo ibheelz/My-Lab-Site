@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="w-full flex justify-center px-5 pt-[60px] pb-4 tablet:px-8 tablet:pt-[75px] tablet:pb-6 desktop:px-10 desktop:pt-[90px] desktop:pb-8">
+      <section className="w-full flex justify-center px-5 pt-10 pb-4 tablet:px-8 tablet:pt-14 tablet:pb-6 desktop:px-10 desktop:pt-20 desktop:pb-8">
         <div className="w-full max-w-[1200px] flex flex-col gap-8 tablet:gap-10">
 
           {/* ASCII art */}
@@ -134,7 +134,7 @@ export default function Home() {
       </section>
 
       {/* ── Blog ── */}
-      <section className="w-full flex justify-center px-5 pt-8 pb-20 tablet:px-8 tablet:pt-10 tablet:pb-24 desktop:px-10 desktop:pt-12 desktop:pb-32">
+      <section className="w-full flex justify-center px-5 pt-8 pb-16 tablet:px-8 tablet:pt-10 tablet:pb-20 desktop:px-10 desktop:pt-12 desktop:pb-28">
         <div className="w-full max-w-[1200px] flex flex-col gap-8 desktop:gap-20">
 
           {/* Header */}

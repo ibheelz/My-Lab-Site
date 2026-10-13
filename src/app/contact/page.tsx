@@ -59,7 +59,7 @@ export default function Contact() {
   });
 
   return (
-    <section className="w-full flex justify-center px-5 pt-[75px] pb-24 tablet:px-8 tablet:pt-[95px] tablet:pb-36 desktop:px-10 desktop:pt-[120px] desktop:pb-[200px]">
+    <section className="w-full flex justify-center px-5 pt-10 pb-16 tablet:px-8 tablet:pt-14 tablet:pb-20 desktop:px-10 desktop:pt-20 desktop:pb-28">
       <div className="w-full max-w-[1200px] flex flex-col gap-[60px] desktop:gap-[80px]">
 
         {/* Terminal breadcrumb */}
