@@ -1,6 +1,4 @@
-import AsciiArtHero from "@/components/AsciiArtHero";
 import TypewriterText from "@/components/TypewriterText";
-import ProfilePicture from "@/components/ProfilePicture";
 import CategoryPill from "@/components/CategoryPill";
 import PrimaryButton, { MonitorIcon } from "@/components/PrimaryButton";
 import SecondaryButton, { GitHubIcon } from "@/components/SecondaryButton";
@@ -20,64 +18,9 @@ const latestPosts = posts.slice(0, 3);
 export default function Home() {
   return (
     <>
-      {/* ── Hero ── */}
-      <section className="w-full flex justify-center px-5 pt-10 pb-4 tablet:px-8 tablet:pt-14 tablet:pb-6 desktop:px-10 desktop:pt-20 desktop:pb-8">
-        <div className="w-full max-w-[1200px] flex flex-col gap-8 tablet:gap-10">
-
-          {/* ASCII art */}
-          <div className="tablet:hidden">
-            <AsciiArtHero text="ABIOLA" subtitle="Information Technology Portfolio" />
-          </div>
-          <div className="hidden tablet:block">
-            <AsciiArtHero text="ABIOLA ADEYEYE" subtitle="Information Technology Portfolio" />
-          </div>
-
-          {/* Portfolio information */}
-          <div className="flex flex-col-reverse gap-6 tablet:flex-row tablet:gap-8 tablet:items-start">
-
-            {/* Left: typewriter info */}
-            <div className="flex-1 flex flex-col gap-5">
-              {/* h1 — 36px / 1.1em */}
-              <TypewriterText
-                text="Portfolio Information:"
-                tag="h1"
-                className="text-lg leading-[1.6]"
-                color={CYAN}
-                cursorColor={CYAN}
-                cursorThickness={5}
-                typingSpeed={0.02}
-                showCursor
-                hideCursorWhenDone={false}
-              />
-              {/* h5 — 16px / 1.4em */}
-              <div className="flex flex-col gap-2.5">
-                <TypewriterText text="Name: Abiola Adeyeye"            tag="h5" className="text-base leading-[1.4]" color={BLUE} cursorColor={BLUE} cursorThickness={2} typingSpeed={0.04} delayStart={1}   showCursor hideCursorWhenDone />
-                <TypewriterText text="Based in: Lagos, Nigeria"         tag="h5" className="text-base leading-[1.4]" color={BLUE} cursorColor={BLUE} cursorThickness={2} typingSpeed={0.04} delayStart={1.2} showCursor hideCursorWhenDone />
-                <TypewriterText text="Profession: IT Support Specialist" tag="h5" className="text-base leading-[1.4]" color={BLUE} cursorColor={BLUE} cursorThickness={2} typingSpeed={0.04} delayStart={1.4} showCursor hideCursorWhenDone />
-                <TypewriterText text="Availability: Open to Work"       tag="h5" className="text-base leading-[1.4]" color={BLUE} cursorColor={BLUE} cursorThickness={2} typingSpeed={0.04} delayStart={1.7} showCursor hideCursorWhenDone />
-              </div>
-            </div>
-
-            {/* Right: profile picture */}
-            <ProfilePicture />
-          </div>
-        </div>
-      </section>
-
-      {/* ── Introduction + Featured Project ── */}
+      {/* ── Featured Project ── */}
       <section className="w-full flex justify-center px-5 pt-6 pb-8 tablet:px-8 tablet:pt-8 tablet:pb-10 desktop:px-10 desktop:pt-10 desktop:pb-12">
-        <div className="w-full max-w-[1200px] flex flex-col gap-10 desktop:gap-20">
-
-          {/* Intro text — Body L (18px) + Body M (16px) */}
-          <div className="flex flex-col gap-2.5 max-w-[800px]">
-            <p style={{ fontSize: "18px", lineHeight: "1.6em", fontWeight: 500, color: NEON_GREEN, margin: 0 }}>
-              Welcome to Abiola&apos;s IT Support Lab!
-            </p>
-            <p style={{ fontSize: "16px", lineHeight: "1.6em", color: BLUE, margin: 0 }}>
-              IT Support Specialist based in Lagos, Nigeria. Keeping systems running, solving
-              technical problems, and helping people get the most out of their technology.
-            </p>
-          </div>
+        <div className="w-full max-w-[1200px] flex flex-col gap-4">
 
           {/* Featured Project heading — outside the card */}
           <p style={{ fontSize: "18px", lineHeight: "1.6em", color: CYAN, margin: 0 }}>
@@ -139,7 +82,6 @@ export default function Home() {
 
           {/* Header */}
           <div className="flex flex-col gap-4">
-            {/* h1 — 36px / 1.1em */}
             <TypewriterText
               text="Latest Blog Posts"
               tag="h1"
@@ -151,7 +93,6 @@ export default function Home() {
               showCursor
               hideCursorWhenDone={false}
             />
-            {/* Body M — 16px */}
             <p style={{ fontSize: "16px", lineHeight: "1.6em", color: BLUE, margin: 0 }}>
               Guides, troubleshooting notes, and IT walkthroughs. Practical documentation from
               real support scenarios, homelab experiments, and system administration.
