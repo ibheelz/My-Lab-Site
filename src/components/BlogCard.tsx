@@ -62,7 +62,7 @@ export default function BlogCard({ slug, title, description, category, readTime,
       </div>
 
       {/* Title */}
-      <h3 style={{ color: "rgb(0, 255, 106)", fontSize: "16px", lineHeight: "1.4em", fontWeight: 400, margin: 0 }}>
+      <h3 style={{ color: "rgb(0, 255, 106)", fontSize: "18px", lineHeight: "1.4em", fontWeight: 400, margin: 0 }}>
         {title}
       </h3>
 
