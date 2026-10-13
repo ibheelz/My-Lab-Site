@@ -18,7 +18,7 @@ export default function Projects() {
       <div className="w-full max-w-[1200px] flex flex-col gap-[60px] desktop:gap-[80px]">
 
         {/* Terminal breadcrumb */}
-        <p className="hidden tablet:block" style={{ fontSize: "16px", lineHeight: "1.6em", color: BLUE, margin: 0 }}>
+        <p className="hidden tablet:block" style={{ fontSize: "16px", lineHeight: "1.6em", color: NEON, margin: 0 }}>
           abiola@portfolio:~$ projects
         </p>
 
@@ -67,7 +67,7 @@ export default function Projects() {
                     alt={project.title}
                     style={{
                       width: "100%",
-                      aspectRatio: "16 / 9",
+                      aspectRatio: "4 / 3",
                       objectFit: "cover",
                       borderRadius: "8px",
                       border: "1px solid rgb(50, 55, 60)",
@@ -78,7 +78,7 @@ export default function Projects() {
                   <div
                     style={{
                       width: "100%",
-                      aspectRatio: "16 / 9",
+                      aspectRatio: "4 / 3",
                       backgroundColor: "rgb(29, 32, 37)",
                       borderRadius: "8px",
                       display: "flex",
