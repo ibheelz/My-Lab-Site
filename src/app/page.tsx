@@ -116,7 +116,7 @@ export default function Home() {
                 </h3>
                 <div className="flex gap-[10px] flex-wrap">
                   {featured.tags.slice(0, 2).map((tag, i) => (
-                    <CategoryPill key={tag} label={tag} color={i === 0 ? NEON_GREEN : YELLOW} />
+                    <CategoryPill key={tag} label={tag} color={i === 0 ? CYAN : YELLOW} />
                   ))}
                 </div>
                 <p style={{ fontSize: "14px", lineHeight: "1.8em", color: BLUE, margin: 0 }}>

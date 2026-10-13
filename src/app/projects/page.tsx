@@ -10,7 +10,7 @@ const BLUE = "rgb(168, 215, 231)";
 const NEON = "rgb(0, 255, 106)";
 const YELLOW = "rgb(250, 204, 21)";
 
-const COLORS = [NEON, YELLOW, CYAN];
+const COLORS = [CYAN, YELLOW, BLUE];
 
 export default function Projects() {
   return (

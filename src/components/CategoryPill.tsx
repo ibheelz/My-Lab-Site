@@ -3,20 +3,24 @@ interface CategoryPillProps {
   color?: string;
 }
 
+function toRgba(rgb: string, alpha: number): string {
+  return rgb.replace("rgb(", "rgba(").replace(")", `, ${alpha})`);
+}
+
 export default function CategoryPill({
   label,
-  color = "rgb(0, 255, 106)",
+  color = "rgb(0, 255, 255)",
 }: CategoryPillProps) {
   return (
     <span
       style={{
         display: "inline-block",
-        border: `1px solid ${color}`,
+        backgroundColor: toRgba(color, 0.2),
         color,
         padding: "2px 10px",
-        borderRadius: "9999px",
-        fontSize: "13px",
-        fontWeight: 500,
+        borderRadius: "10px",
+        fontSize: "12px",
+        fontWeight: 300,
       }}
     >
       {label}
