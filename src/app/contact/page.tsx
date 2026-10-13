@@ -36,6 +36,23 @@ const socialLinks = [
   { label: "$ twitter",  value: "twitter.com/ibheelz",          href: "https://twitter.com/ibheelz" },
 ];
 
+const LABEL_STYLE = {
+  fontSize: "14px",
+  lineHeight: "1.8em",
+  color: BLUE,
+  whiteSpace: "nowrap" as const,
+  minWidth: "80px",
+};
+
+const VALUE_STYLE = {
+  fontSize: "14px",
+  lineHeight: "1.8em",
+  color: "rgb(255, 255, 255)",
+  textDecoration: "none",
+  wordBreak: "break-word" as const,
+  flex: 1,
+};
+
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [focused, setFocused] = useState<string | null>(null);
@@ -60,17 +77,17 @@ export default function Contact() {
 
   return (
     <section className="w-full flex justify-center px-5 pt-10 pb-16 tablet:px-8 tablet:pt-14 tablet:pb-20 desktop:px-10 desktop:pt-20 desktop:pb-28">
-      <div className="w-full max-w-[1200px] flex flex-col gap-[60px] desktop:gap-[80px]">
+      <div className="w-full max-w-[1200px] flex flex-col gap-10 tablet:gap-[60px] desktop:gap-[80px]">
 
         {/* Terminal breadcrumb */}
         <p className="hidden tablet:block" style={{ fontSize: "16px", lineHeight: "1.6em", color: NEON, margin: 0 }}>
           abiola@portfolio:~$ contact
         </p>
 
-        <div className="flex flex-col gap-[60px] desktop:gap-[80px]">
+        <div className="flex flex-col gap-10 tablet:gap-[60px] desktop:gap-[80px]">
 
           {/* Page header */}
-          <div className="flex flex-col gap-[20px] desktop:gap-[30px]">
+          <div className="flex flex-col gap-4 desktop:gap-[30px]">
             <TypewriterText
               text="Contact Information"
               tag="h3"
@@ -88,17 +105,17 @@ export default function Contact() {
           </div>
 
           {/* 2-column: contact info left, form right */}
-          <div className="flex flex-col gap-[60px] desktop:flex-row desktop:gap-[60px] desktop:items-start">
+          <div className="flex flex-col gap-10 tablet:gap-12 desktop:flex-row desktop:gap-[60px] desktop:items-start">
 
             {/* Left: Direct Contact + Social */}
-            <div className="flex-1 flex flex-col gap-[50px] desktop:gap-[60px]">
+            <div className="flex-1 flex flex-col gap-10 desktop:gap-[60px]">
 
               {/* Direct Contact */}
-              <div className="flex flex-col gap-[24px]">
+              <div className="flex flex-col gap-5">
                 <TypewriterText
                   text="Direct Contact"
                   tag="h4"
-                  className="text-xl"
+                  className="text-lg tablet:text-xl"
                   color={NEON}
                   cursorColor={NEON}
                   cursorThickness={2}
@@ -106,23 +123,21 @@ export default function Contact() {
                   showCursor
                   hideCursorWhenDone
                 />
-                <div className="flex flex-col gap-[20px] tablet:gap-[28px]" style={{ paddingLeft: "clamp(0px, 4vw, 60px)" }}>
+                <div className="flex flex-col gap-4 tablet:gap-6">
                   {directLinks.map(({ label, value, href }) => (
                     <div key={label} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
-                      <span style={{ fontSize: "14px", lineHeight: "1.8em", color: BLUE, whiteSpace: "nowrap", minWidth: "90px" }}>
-                        {label}
-                      </span>
+                      <span style={LABEL_STYLE}>{label}</span>
                       {href ? (
                         <a
                           href={href}
-                          style={{ fontSize: "14px", lineHeight: "1.8em", color: "rgb(255, 255, 255)", textDecoration: "none" }}
+                          style={VALUE_STYLE}
                           onMouseEnter={(e) => (e.currentTarget.style.color = NEON)}
                           onMouseLeave={(e) => (e.currentTarget.style.color = "rgb(255, 255, 255)")}
                         >
                           {value}
                         </a>
                       ) : (
-                        <span style={{ fontSize: "14px", lineHeight: "1.8em", color: "rgb(255, 255, 255)" }}>{value}</span>
+                        <span style={VALUE_STYLE}>{value}</span>
                       )}
                     </div>
                   ))}
@@ -130,11 +145,11 @@ export default function Contact() {
               </div>
 
               {/* Social Links */}
-              <div className="flex flex-col gap-[24px]">
+              <div className="flex flex-col gap-5">
                 <TypewriterText
                   text="Social Links"
                   tag="h4"
-                  className="text-xl"
+                  className="text-lg tablet:text-xl"
                   color={NEON}
                   cursorColor={NEON}
                   cursorThickness={2}
@@ -142,17 +157,15 @@ export default function Contact() {
                   showCursor
                   hideCursorWhenDone
                 />
-                <div className="flex flex-col gap-[20px] tablet:gap-[28px]" style={{ paddingLeft: "clamp(0px, 4vw, 60px)" }}>
+                <div className="flex flex-col gap-4 tablet:gap-6">
                   {socialLinks.map(({ label, value, href }) => (
                     <div key={label} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
-                      <span style={{ fontSize: "14px", lineHeight: "1.8em", color: BLUE, whiteSpace: "nowrap", minWidth: "90px" }}>
-                        {label}
-                      </span>
+                      <span style={LABEL_STYLE}>{label}</span>
                       <Link
                         href={href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        style={{ fontSize: "14px", lineHeight: "1.8em", color: "rgb(255, 255, 255)", textDecoration: "none" }}
+                        style={VALUE_STYLE}
                         onMouseEnter={(e) => (e.currentTarget.style.color = NEON)}
                         onMouseLeave={(e) => (e.currentTarget.style.color = "rgb(255, 255, 255)")}
                       >
@@ -165,11 +178,11 @@ export default function Contact() {
             </div>
 
             {/* Right: Form */}
-            <div className="flex-1 flex flex-col gap-[28px]">
+            <div className="flex-1 flex flex-col gap-6">
               <TypewriterText
                 text="Say hello!"
                 tag="h4"
-                className="text-xl"
+                className="text-lg tablet:text-xl"
                 color={NEON}
                 cursorColor={NEON}
                 cursorThickness={2}
@@ -183,7 +196,7 @@ export default function Contact() {
                   style={{
                     border: `1px dashed ${NEON}`,
                     borderRadius: "8px",
-                    padding: "clamp(24px, 5vw, 40px)",
+                    padding: "clamp(20px, 5vw, 40px)",
                     display: "flex",
                     flexDirection: "column",
                     gap: "16px",
@@ -206,7 +219,7 @@ export default function Contact() {
                   style={{
                     border: `1px dashed ${NEON}`,
                     borderRadius: "8px",
-                    padding: "clamp(24px, 5vw, 40px)",
+                    padding: "clamp(20px, 5vw, 40px)",
                     display: "flex",
                     flexDirection: "column",
                     gap: "20px",
