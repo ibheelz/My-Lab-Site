@@ -1,8 +1,8 @@
+"use client";
 /* eslint-disable @next/next/no-img-element */
+import Link from "next/link";
 import TypewriterText from "@/components/TypewriterText";
 import CategoryPill from "@/components/CategoryPill";
-import PrimaryButton from "@/components/PrimaryButton";
-import SecondaryButton, { GitHubIcon } from "@/components/SecondaryButton";
 import { projects } from "@/data/projects";
 
 const CYAN = "rgb(0, 255, 255)";
@@ -50,7 +50,7 @@ export default function Projects() {
                 key={project.slug}
                 style={{
                   border: `1px solid ${project.featured ? NEON : "rgb(60, 60, 60)"}`,
-                  borderRadius: "8px",
+                  borderRadius: "10px",
                   padding: "clamp(20px, 4vw, 28px)",
                   display: "flex",
                   flexDirection: "column",
@@ -69,7 +69,7 @@ export default function Projects() {
                       width: "100%",
                       aspectRatio: "16 / 9",
                       objectFit: "cover",
-                      borderRadius: "6px",
+                      borderRadius: "8px",
                       border: "1px solid rgb(50, 55, 60)",
                       display: "block",
                     }}
@@ -80,7 +80,7 @@ export default function Projects() {
                       width: "100%",
                       aspectRatio: "16 / 9",
                       backgroundColor: "rgb(29, 32, 37)",
-                      borderRadius: "6px",
+                      borderRadius: "8px",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -111,15 +111,40 @@ export default function Projects() {
                   {project.description}
                 </p>
 
-                {/* Buttons */}
-                <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
-                  {project.liveUrl && (
-                    <PrimaryButton label="Live Demo" href={project.liveUrl} newTab />
-                  )}
-                  {project.githubUrl && (
-                    <SecondaryButton label="Code" href={project.githubUrl} newTab icon={<GitHubIcon />} />
-                  )}
-                </div>
+                {/* View Project button — full width */}
+                <Link
+                  href={project.liveUrl ?? project.githubUrl ?? "#"}
+                  target={project.liveUrl || project.githubUrl ? "_blank" : undefined}
+                  rel={project.liveUrl || project.githubUrl ? "noopener noreferrer" : undefined}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: "8px 20px",
+                    backgroundColor: "transparent",
+                    color: NEON,
+                    fontSize: "14px",
+                    fontWeight: 300,
+                    borderRadius: "10px",
+                    border: `1px solid ${NEON}`,
+                    cursor: "pointer",
+                    textDecoration: "none",
+                    alignSelf: "stretch",
+                    transition: "background-color 0.2s, color 0.2s",
+                  }}
+                  onMouseEnter={(e) => {
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.backgroundColor = NEON;
+                    el.style.color = "rgb(0, 0, 0)";
+                  }}
+                  onMouseLeave={(e) => {
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.backgroundColor = "transparent";
+                    el.style.color = NEON;
+                  }}
+                >
+                  View Project
+                </Link>
               </div>
             ))}
           </div>
