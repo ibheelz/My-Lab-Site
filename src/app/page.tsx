@@ -41,7 +41,7 @@ export default function Home() {
               <TypewriterText
                 text="Portfolio Information:"
                 tag="h1"
-                className="text-base leading-[1.6]"
+                className="text-lg leading-[1.6]"
                 color={CYAN}
                 cursorColor={CYAN}
                 cursorThickness={5}
@@ -80,7 +80,7 @@ export default function Home() {
           </div>
 
           {/* Featured Project heading — outside the card */}
-          <p style={{ fontSize: "16px", lineHeight: "1.6em", color: CYAN, margin: 0 }}>
+          <p style={{ fontSize: "18px", lineHeight: "1.6em", color: CYAN, margin: 0 }}>
             Featured Project:
           </p>
 
@@ -143,7 +143,7 @@ export default function Home() {
             <TypewriterText
               text="Latest Blog Posts"
               tag="h1"
-              className="text-base leading-[1.6]"
+              className="text-lg leading-[1.6]"
               color={CYAN}
               cursorColor={CYAN}
               cursorThickness={5}

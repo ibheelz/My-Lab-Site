@@ -17,7 +17,7 @@ export default function Blog() {
           <TypewriterText
             text="Blog"
             tag="h1"
-            className="text-base leading-[1.6]"
+            className="text-lg leading-[1.6]"
             color={CYAN}
             cursorColor={CYAN}
             cursorThickness={5}
