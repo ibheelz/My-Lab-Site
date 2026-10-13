@@ -614,13 +614,6 @@ export const posts: BlogPost[] = [
         ],
       },
 
-      // ── What is next ──────────────────────────────────────────────────────
-      { type: "h2", content: "What Is Next" },
-      {
-        type: "p",
-        content:
-          "The next lab will join a Windows 11 workstation (ZCPC01) to the zenithcreative.com domain, apply a Group Policy Object to the Staff OU to enforce a desktop wallpaper and password policy across the domain, and bring up a second domain controller for redundancy.",
-      },
     ],
   },
 
