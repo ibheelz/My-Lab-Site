@@ -17,7 +17,7 @@ export default function Blog() {
           <TypewriterText
             text="Blog"
             tag="h1"
-            className="text-lg leading-[1.6]"
+            className="text-xl tablet:text-2xl"
             color={CYAN}
             cursorColor={CYAN}
             cursorThickness={5}
@@ -43,7 +43,7 @@ export default function Blog() {
               category={post.category}
               readTime={post.readTime}
               thumbnail={post.thumbnail}
-              categoryColor={TAG_COLORS[i % TAG_COLORS.length]}
+              categoryColor={post.color ?? TAG_COLORS[i % TAG_COLORS.length]}
             />
           ))}
         </div>

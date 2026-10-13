@@ -23,9 +23,17 @@ export default function Home() {
         <div className="w-full max-w-[1200px] flex flex-col gap-4">
 
           {/* Featured Project heading — outside the card */}
-          <p style={{ fontSize: "18px", lineHeight: "1.6em", color: CYAN, margin: 0 }}>
-            Featured Project:
-          </p>
+          <TypewriterText
+            text="Featured Project"
+            tag="h2"
+            className="text-xl tablet:text-2xl"
+            color={CYAN}
+            cursorColor={CYAN}
+            cursorThickness={5}
+            typingSpeed={0.02}
+            showCursor
+            hideCursorWhenDone={false}
+          />
 
           {/* Featured project card */}
           <div
@@ -85,7 +93,7 @@ export default function Home() {
             <TypewriterText
               text="Latest Blog Posts"
               tag="h1"
-              className="text-lg leading-[1.6]"
+              className="text-xl tablet:text-2xl"
               color={CYAN}
               cursorColor={CYAN}
               cursorThickness={5}
@@ -110,7 +118,7 @@ export default function Home() {
                 category={post.category}
                 readTime={post.readTime}
                 thumbnail={post.thumbnail}
-                categoryColor={TAG_COLORS[i % TAG_COLORS.length]}
+                categoryColor={post.color ?? TAG_COLORS[i % TAG_COLORS.length]}
               />
             ))}
           </div>

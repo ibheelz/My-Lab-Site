@@ -80,17 +80,13 @@ export default function Contact() {
     <section className="w-full flex justify-center px-5 pt-10 pb-16 tablet:px-8 tablet:pt-14 tablet:pb-20 desktop:px-10 desktop:pt-20 desktop:pb-28">
       <div className="w-full max-w-[1200px] flex flex-col gap-10 tablet:gap-14 desktop:gap-[80px]">
 
-        {/* Terminal breadcrumb — desktop/tablet only */}
-        <p className="hidden tablet:block text-base" style={{ color: NEON, margin: 0 }}>
-          abiola@portfolio:~$ contact
-        </p>
 
         {/* Page header */}
         <div className="flex flex-col gap-3">
           <TypewriterText
             text="Contact Information"
             tag="h3"
-            className="text-2xl tablet:text-3xl"
+            className="text-xl tablet:text-2xl"
             color={CYAN}
             cursorColor={CYAN}
             cursorThickness={5}

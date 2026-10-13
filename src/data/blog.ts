@@ -2,7 +2,8 @@ export interface BlogPost {
   slug: string;
   title: string;
   description: string;
-  category: "Hardware" | "Software" | "Network" | "Guides";
+  category: "Hardware" | "Software" | "Network" | "Guides" | "Windows Lab";
+  color?: string;
   readTime: number;
   date: string;
   thumbnail?: string;
@@ -22,12 +23,13 @@ export interface BlogSection {
 export const posts: BlogPost[] = [
   {
     slug: "zcdc01-windows-domain-from-scratch",
-    title: "Practical Assessment: Building a Windows Domain From Scratch",
+    title: "Setting up a Windows Active Directory Domain Services",
     description: "Zenith Creative is a 15 person design studio in Lagos. They have just bought their first server and need a domain set up before staff start on Monday. You are the IT technician. Build it.",
-    category: "Guides",
+    category: "Windows Lab",
+    color: "rgb(192, 132, 252)",
     readTime: 14,
-    date: "2026-10-13",
-    thumbnail: "/images/blog/zcdc01/07-ou-tree.png",
+    date: "2026-10-10",
+    thumbnail: "/images/blog/active-directory-cover.png",
     tags: ["IT Support", "Active Directory", "Windows Server", "PowerShell", "Home Lab"],
     sections: [
 

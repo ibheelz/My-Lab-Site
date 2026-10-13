@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { posts } from "@/data/blog";
@@ -32,24 +33,17 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
   const post = posts.find((p) => p.slug === params.slug);
   if (!post) notFound();
 
-  const formattedDate = new Date(post.date).toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+  const d = new Date(post.date);
+  const day = d.getDate();
+  const ordinal = day % 10 === 1 && day !== 11 ? "st" : day % 10 === 2 && day !== 12 ? "nd" : day % 10 === 3 && day !== 13 ? "rd" : "th";
+  const month = d.toLocaleDateString("en-GB", { month: "long" });
+  const year = d.getFullYear();
+  const formattedDate = `${day}${ordinal} ${month} ${year}`;
 
   return (
     <section className="w-full flex justify-center px-5 pt-10 pb-16 tablet:px-8 tablet:pt-14 tablet:pb-20 desktop:px-10 desktop:pt-20 desktop:pb-28">
       <div className="w-full max-w-[800px] flex flex-col gap-10 tablet:gap-14">
 
-        {/* Terminal breadcrumb */}
-        <p className="hidden tablet:block" style={{ color: BLUE, fontSize: "14px", margin: 0 }}>
-          <Link href="/blog" style={{ color: NEON, textDecoration: "none" }}>
-            abiola@portfolio:~$
-          </Link>
-          <span style={{ color: MUTED }}> blog /</span>
-          <span style={{ color: BLUE }}> {post.slug}</span>
-        </p>
 
         {/* Post header */}
         <div className="flex flex-col gap-6">
@@ -65,15 +59,32 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
             hideCursorWhenDone={false}
           />
 
+          <span style={{ color: "rgb(255, 255, 255)", fontSize: "13px", whiteSpace: "nowrap" }}>
+            {post.readTime} min read &nbsp;·&nbsp; {formattedDate}
+          </span>
+
+          {/* Cover image */}
+          {post.thumbnail && (
+            <img
+              src={post.thumbnail}
+              alt={post.title}
+              style={{
+                width: "100%",
+                borderRadius: "10px",
+                border: `1px solid ${BORDER}`,
+                display: "block",
+                position: "relative",
+                zIndex: 25,
+              }}
+            />
+          )}
+
           {/* Meta row */}
           <div className="flex flex-wrap items-center gap-3">
             <CategoryPill label={post.category} color={CYAN} />
             {post.tags?.map((tag) => (
               <CategoryPill key={tag} label={tag} color={tagColor(tag)} />
             ))}
-            <span style={{ color: MUTED, fontSize: "13px" }}>{post.readTime} min read</span>
-            <span style={{ color: MUTED, fontSize: "13px" }}>·</span>
-            <span style={{ color: MUTED, fontSize: "13px" }}>{formattedDate}</span>
           </div>
 
           {/* Description */}
