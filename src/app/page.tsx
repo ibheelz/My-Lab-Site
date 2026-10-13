@@ -111,7 +111,7 @@ export default function Home() {
             {/* Right: details */}
             <div className="flex-1 flex flex-col gap-[30px]">
               <div className="flex flex-col gap-[10px]">
-                <h3 style={{ fontSize: "24px", lineHeight: "1.4em", color: NEON_GREEN, margin: 0 }}>
+                <h3 style={{ fontSize: "16px", lineHeight: "1.4em", color: NEON_GREEN, margin: 0 }}>
                   {featured.title}
                 </h3>
                 <div className="flex gap-[10px] flex-wrap">
