@@ -55,6 +55,9 @@ export default function Projects() {
                   display: "flex",
                   flexDirection: "column",
                   gap: "16px",
+                  backgroundColor: "rgb(0, 0, 0)",
+                  position: "relative",
+                  zIndex: 25,
                 }}
               >
                 {/* Image / placeholder */}
