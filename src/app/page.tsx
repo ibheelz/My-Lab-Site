@@ -21,47 +21,52 @@ export default function Home() {
     <>
       {/* ── Hero ── */}
       <section className="w-full flex justify-center px-5 pt-10 pb-6 tablet:px-8 tablet:pt-14 tablet:pb-8 desktop:px-10 desktop:pt-20 desktop:pb-10">
-        <div className="w-full max-w-[1200px] flex flex-row items-stretch gap-[120px]">
+        <div className="w-full max-w-[1200px] flex flex-col gap-8 tablet:flex-row tablet:items-stretch tablet:gap-[120px]">
           <img
             src="/hero-ascii.svg"
             alt="ibheelz"
+            className="mx-auto translate-x-[10px] tablet:translate-x-0 tablet:mx-0"
             style={{
-              width: "clamp(260px, 45%, 420px)",
+              width: "100%",
+              maxWidth: "420px",
               display: "block",
               flexShrink: 0,
             }}
           />
           {/* Right: name ASCII art */}
-          <div className="hidden tablet:flex flex-1">
+          <div className="flex flex-1">
             <div
+              className="items-start"
               style={{
                 width: "100%",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "flex-end",
-                paddingBottom: "100px",
-                alignItems: "flex-start",
+                paddingBottom: "clamp(24px, 8vw, 100px)",
                 overflow: "hidden",
               }}
             >
-            <pre
-              style={{
-                fontFamily: "'Courier New', Courier, monospace",
-                fontSize: "clamp(6px, 0.9vw, 11px)",
-                lineHeight: 1.25,
-                color: "#00ff6a",
-                margin: 0,
-                whiteSpace: "pre",
-              }}
-            >{`  ______   _______   ______   ______   __         ______
- /      \\ /       \\ /      | /      \\ /  |       /      \\
-/$$$$$$  |$$$$$$$  |$$$$$$/ /$$$$$$  |$$ |      /$$$$$$  |
-$$ |__$$ |$$ |__$$ |  $$ |  $$ |  $$ |$$ |      $$ |__$$ |
-$$    $$ |$$    $$<   $$ |  $$ |  $$ |$$ |      $$    $$ |
-$$$$$$$$ |$$$$$$$  |  $$ |  $$ |  $$ |$$ |      $$$$$$$$ |
-$$ |  $$ |$$ |__$$ | _$$ |_ $$ \\__$$ |$$ |_____ $$ |  $$ |
-$$ |  $$ |$$    $$/ / $$   |$$    $$/ $$       |$$ |  $$ |
-$$/   $$/ $$$$$$$/  $$$$$$/  $$$$$$/  $$$$$$$$/ $$/   $$/
+            {/* ASCII name — centered on mobile */}
+            <div className="w-full flex justify-center tablet:justify-start mb-8 tablet:mb-10">
+              <pre
+                style={{
+                  fontFamily: "'Courier New', Courier, monospace",
+                  fontSize: "clamp(6px, 0.85vw, 10px)",
+                  lineHeight: 1.25,
+                  color: "#00ff6a",
+                  margin: 0,
+                  whiteSpace: "pre",
+                  overflow: "hidden",
+                }}
+              >{`          ______   _______   ______   ______   __         ______
+         /      \\ /       \\ /      | /      \\ /  |       /      \\
+        /$$$$$$  |$$$$$$$  |$$$$$$/ /$$$$$$  |$$ |      /$$$$$$  |
+        $$ |__$$ |$$ |__$$ |  $$ |  $$ |  $$ |$$ |      $$ |__$$ |
+        $$    $$ |$$    $$<   $$ |  $$ |  $$ |$$ |      $$    $$ |
+        $$$$$$$$ |$$$$$$$  |  $$ |  $$ |  $$ |$$ |      $$$$$$$$ |
+        $$ |  $$ |$$ |__$$ | _$$ |_ $$ \\__$$ |$$ |_____ $$ |  $$ |
+        $$ |  $$ |$$    $$/ / $$   |$$    $$/ $$       |$$ |  $$ |
+        $$/   $$/ $$$$$$$/  $$$$$$/  $$$$$$/  $$$$$$$$/ $$/   $$/
 
   ______   _______   ________  __      __  ________  __      __  ________
  /      \\ /       \\ /        |/  \\    /  |/        |/  \\    /  |/        |
@@ -72,8 +77,11 @@ $$$$$$$$ |$$ |  $$ |$$$$$/       $$$$/    $$$$$/       $$$$/    $$$$$/
 $$ |  $$ |$$ |__$$ |$$ |_____     $$ |    $$ |_____     $$ |    $$ |_____
 $$ |  $$ |$$    $$/ $$       |    $$ |    $$       |    $$ |    $$       |
 $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}</pre>
+            </div>
 
-            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginTop: "40px" }}>
+            {/* About me — always left-aligned */}
+            <div>
+            <div className="hidden tablet:flex" style={{ alignItems: "center", gap: "10px", marginTop: "0" }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={CYAN} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                 <circle cx="12" cy="7" r="4" />
@@ -100,7 +108,7 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}</pre
               Everything here comes from real scenarios, not textbooks.
             </p>
 
-            <div style={{ display: "flex", alignItems: "center", gap: "20px", marginTop: "20px", flexWrap: "wrap" }}>
+            <div className="justify-center tablet:justify-start" style={{ display: "flex", alignItems: "center", gap: "20px", marginTop: "20px", flexWrap: "wrap" }}>
               {/* Windows */}
               <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", color: NEON_GREEN, fontSize: "13px" }}>
                 <svg width="22" height="22" viewBox="0 0 24 24" fill={NEON_GREEN}>
@@ -123,6 +131,7 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}</pre
                 Linux
               </span>
             </div>
+            </div>{/* end About me */}
             </div>
           </div>
         </div>
