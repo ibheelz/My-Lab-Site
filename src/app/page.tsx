@@ -19,6 +19,115 @@ const latestPosts = posts.slice(0, 3);
 export default function Home() {
   return (
     <>
+      {/* ── Hero ── */}
+      <section className="w-full flex justify-center px-5 pt-10 pb-6 tablet:px-8 tablet:pt-14 tablet:pb-8 desktop:px-10 desktop:pt-20 desktop:pb-10">
+        <div className="w-full max-w-[1200px] flex flex-row items-stretch gap-[120px]">
+          <img
+            src="/hero-ascii.svg"
+            alt="ibheelz"
+            style={{
+              width: "clamp(260px, 45%, 420px)",
+              display: "block",
+              flexShrink: 0,
+            }}
+          />
+          {/* Right: name ASCII art */}
+          <div className="hidden tablet:flex flex-1">
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-end",
+                paddingBottom: "100px",
+                alignItems: "flex-start",
+                overflow: "hidden",
+              }}
+            >
+            <pre
+              style={{
+                fontFamily: "'Courier New', Courier, monospace",
+                fontSize: "clamp(6px, 0.9vw, 11px)",
+                lineHeight: 1.25,
+                color: "#00ff6a",
+                margin: 0,
+                whiteSpace: "pre",
+              }}
+            >{`  ______   _______   ______   ______   __         ______
+ /      \\ /       \\ /      | /      \\ /  |       /      \\
+/$$$$$$  |$$$$$$$  |$$$$$$/ /$$$$$$  |$$ |      /$$$$$$  |
+$$ |__$$ |$$ |__$$ |  $$ |  $$ |  $$ |$$ |      $$ |__$$ |
+$$    $$ |$$    $$<   $$ |  $$ |  $$ |$$ |      $$    $$ |
+$$$$$$$$ |$$$$$$$  |  $$ |  $$ |  $$ |$$ |      $$$$$$$$ |
+$$ |  $$ |$$ |__$$ | _$$ |_ $$ \\__$$ |$$ |_____ $$ |  $$ |
+$$ |  $$ |$$    $$/ / $$   |$$    $$/ $$       |$$ |  $$ |
+$$/   $$/ $$$$$$$/  $$$$$$/  $$$$$$/  $$$$$$$$/ $$/   $$/
+
+  ______   _______   ________  __      __  ________  __      __  ________
+ /      \\ /       \\ /        |/  \\    /  |/        |/  \\    /  |/        |
+/$$$$$$  |$$$$$$$  |$$$$$$$$/ $$  \\  /$$/ $$$$$$$$/ $$  \\  /$$/ $$$$$$$$/
+$$ |__$$ |$$ |  $$ |$$ |__     $$  \\/$$/  $$ |__     $$  \\/$$/  $$ |__
+$$    $$ |$$ |  $$ |$$    |     $$  $$/   $$    |     $$  $$/   $$    |
+$$$$$$$$ |$$ |  $$ |$$$$$/       $$$$/    $$$$$/       $$$$/    $$$$$/
+$$ |  $$ |$$ |__$$ |$$ |_____     $$ |    $$ |_____     $$ |    $$ |_____
+$$ |  $$ |$$    $$/ $$       |    $$ |    $$       |    $$ |    $$       |
+$$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}</pre>
+
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginTop: "40px" }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={CYAN} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+              <TypewriterText
+                text="About me"
+                tag="h2"
+                className="text-xl tablet:text-2xl"
+                color={CYAN}
+                cursorColor={CYAN}
+                cursorThickness={5}
+                typingSpeed={0.02}
+                showCursor
+                hideCursorWhenDone={false}
+              />
+            </div>
+            <p style={{ fontSize: "14px", lineHeight: "1.9em", color: BLUE, margin: "16px 0 0" }}>
+              IT support engineer with a deep curiosity for how systems work under the hood.
+              I run a homelab to get hands-on with the technologies I work with daily —
+              Active Directory, virtualisation, networking, and system administration.
+            </p>
+            <p style={{ fontSize: "14px", lineHeight: "1.9em", color: BLUE, margin: "16px 0 0" }}>
+              This site is where I document what I build, break, and figure out.
+              Everything here comes from real scenarios, not textbooks.
+            </p>
+
+            <div style={{ display: "flex", alignItems: "center", gap: "20px", marginTop: "20px", flexWrap: "wrap" }}>
+              {/* Windows */}
+              <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", color: NEON_GREEN, fontSize: "13px" }}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill={NEON_GREEN}>
+                  <path d="M0 3.449L9.75 2.1v9.451H0zm10.949-1.349L24 0v11.4H10.949zM0 12.6h9.75v9.451L0 20.699zm10.949 0H24V24l-13.051-1.851z"/>
+                </svg>
+                Windows
+              </span>
+              {/* macOS */}
+              <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", color: NEON_GREEN, fontSize: "13px" }}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill={NEON_GREEN}>
+                  <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/>
+                </svg>
+                macOS
+              </span>
+              {/* Linux */}
+              <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", color: NEON_GREEN, fontSize: "13px" }}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill={NEON_GREEN}>
+                  <path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.09-2.346 2.625-2.127 4.667.173 1.6.678 2.93 1.768 3.855.356.3.732.512 1.13.678-.28 2.09-.538 4.18-.777 6.28H8.04l1.106 1.06h.638c.284 0 .567 0 .84-.01.282-.008.565-.016.848-.016.524 0 1.047.008 1.57.016.523.008 1.046.01 1.57.01h.638l1.106-1.06h-.757c-.24-2.1-.5-4.19-.776-6.28.398-.166.774-.378 1.13-.678 1.09-.925 1.595-2.255 1.768-3.855.22-2.042-1.24-3.577-2.127-4.667-.75-1.067-.975-1.928-1.05-3.02-.066-1.49 1.055-5.965-3.17-6.298-.165-.013-.326-.021-.48-.021zm.06 2.604c1.83 0 1.83 1.394 1.83 2.083 0 .69-.41 1.25-1.83 1.25-1.42 0-1.83-.56-1.83-1.25 0-.69 0-2.083 1.83-2.083z"/>
+                </svg>
+                Linux
+              </span>
+            </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Featured Project ── */}
       <section className="w-full flex justify-center px-5 pt-6 pb-8 tablet:px-8 tablet:pt-8 tablet:pb-10 desktop:px-10 desktop:pt-10 desktop:pb-12">
         <ScrollReveal className="w-full max-w-[1200px] flex flex-col gap-4">
