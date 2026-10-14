@@ -7,6 +7,7 @@ import CategoryPill from "@/components/CategoryPill";
 import BlogImage from "@/components/BlogImage";
 import FaqItem from "@/components/FaqItem";
 import { TAG_COLORS } from "@/data/colors";
+import ScrollReveal from "@/components/ScrollReveal";
 
 function tagColor(tag: string): string {
   let hash = 0;
@@ -46,6 +47,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
 
 
         {/* Post header */}
+        <ScrollReveal>
         <div className="flex flex-col gap-6">
           <TypewriterText
             text={post.title}
@@ -99,11 +101,13 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
             {post.description}
           </p>
         </div>
+        </ScrollReveal>
 
         {/* Divider */}
         <div style={{ height: "1px", backgroundColor: BORDER }} />
 
         {/* Article body */}
+        <ScrollReveal delay={100}>
         <article className="flex flex-col gap-6">
           {post.sections?.map((section, i) => {
             switch (section.type) {
@@ -295,6 +299,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
             }
           })}
         </article>
+        </ScrollReveal>
 
         {/* Divider */}
         <div style={{ height: "1px", backgroundColor: BORDER }} />

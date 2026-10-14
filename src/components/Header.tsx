@@ -115,45 +115,52 @@ export default function Header() {
       </header>
 
       {/* Mobile dropdown */}
-      {open && (
-        <div
-          className="fixed top-[55px] left-0 right-0 z-40 tablet:hidden"
-          style={{ backgroundColor: BG, backdropFilter: "blur(10px)", borderBottom: `1px solid ${NEON}` }}
-        >
-          <nav className="flex flex-col px-5 py-4 gap-0">
-            {navLinks.map(({ label, href, Icon }) => {
-              const active = href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
-              const inactiveColor = "rgba(168, 215, 231, 0.5)";
-              return (
-                <Link
-                  key={href}
-                  href={href}
-                  onClick={() => setOpen(false)}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "10px",
-                    fontSize: "15px",
-                    color: active ? NEON : inactiveColor,
-                    padding: "12px 0",
-                    borderBottom: "1px solid rgb(40,40,40)",
-                    textDecoration: "none",
-                  }}
-                  onMouseEnter={active ? undefined : (e) => {
-                    (e.currentTarget as HTMLElement).style.color = BLUE;
-                  }}
-                  onMouseLeave={active ? undefined : (e) => {
-                    (e.currentTarget as HTMLElement).style.color = inactiveColor;
-                  }}
-                >
-                  <Icon />
-                  {label}
-                </Link>
-              );
-            })}
-          </nav>
-        </div>
-      )}
+      <div
+        className="fixed top-[55px] left-0 right-0 z-40 tablet:hidden overflow-hidden"
+        style={{
+          backgroundColor: BG,
+          backdropFilter: "blur(10px)",
+          borderBottom: open ? `1px solid ${NEON}` : "none",
+          maxHeight: open ? "320px" : "0px",
+          opacity: open ? 1 : 0,
+          transition: "max-height 0.3s ease, opacity 0.25s ease, border-bottom 0.3s ease",
+          pointerEvents: open ? "auto" : "none",
+        }}
+      >
+        <nav className="flex flex-col px-5 py-4 gap-0">
+          {navLinks.map(({ label, href, Icon }) => {
+            const active = href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
+            const inactiveColor = "rgba(168, 215, 231, 0.5)";
+            return (
+              <Link
+                key={href}
+                href={href}
+                onClick={() => setOpen(false)}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  fontSize: "15px",
+                  color: active ? NEON : inactiveColor,
+                  padding: "12px 0",
+                  borderBottom: "1px solid rgb(40,40,40)",
+                  textDecoration: "none",
+                  transition: "color 0.2s",
+                }}
+                onMouseEnter={active ? undefined : (e) => {
+                  (e.currentTarget as HTMLElement).style.color = BLUE;
+                }}
+                onMouseLeave={active ? undefined : (e) => {
+                  (e.currentTarget as HTMLElement).style.color = inactiveColor;
+                }}
+              >
+                <Icon />
+                {label}
+              </Link>
+            );
+          })}
+        </nav>
+      </div>
     </>
   );
 }

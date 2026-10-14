@@ -1,4 +1,5 @@
 import TypewriterText from "@/components/TypewriterText";
+import ScrollReveal from "@/components/ScrollReveal";
 import CategoryPill from "@/components/CategoryPill";
 import PrimaryButton, { MonitorIcon } from "@/components/PrimaryButton";
 import SecondaryButton, { GitHubIcon } from "@/components/SecondaryButton";
@@ -20,7 +21,7 @@ export default function Home() {
     <>
       {/* ── Featured Project ── */}
       <section className="w-full flex justify-center px-5 pt-6 pb-8 tablet:px-8 tablet:pt-8 tablet:pb-10 desktop:px-10 desktop:pt-10 desktop:pb-12">
-        <div className="w-full max-w-[1200px] flex flex-col gap-4">
+        <ScrollReveal className="w-full max-w-[1200px] flex flex-col gap-4">
 
           {/* Featured Project heading — outside the card */}
           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
@@ -86,12 +87,12 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* ── Blog ── */}
       <section className="w-full flex justify-center px-5 pt-8 pb-16 tablet:px-8 tablet:pt-10 tablet:pb-20 desktop:px-10 desktop:pt-12 desktop:pb-28">
-        <div className="w-full max-w-[1200px] flex flex-col gap-8 desktop:gap-20">
+        <ScrollReveal delay={100} className="w-full max-w-[1200px] flex flex-col gap-8 desktop:gap-20">
 
           {/* Header */}
           <div className="flex flex-col gap-4">
@@ -133,7 +134,7 @@ export default function Home() {
               />
             ))}
           </div>
-        </div>
+        </ScrollReveal>
       </section>
     </>
   );

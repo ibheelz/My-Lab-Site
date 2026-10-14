@@ -3,6 +3,7 @@
 import Link from "next/link";
 import TypewriterText from "@/components/TypewriterText";
 import CategoryPill from "@/components/CategoryPill";
+import ScrollReveal from "@/components/ScrollReveal";
 import { projects } from "@/data/projects";
 import { TAG_COLORS } from "@/data/colors";
 
@@ -24,6 +25,7 @@ export default function Projects() {
         <div className="flex flex-col gap-[40px] desktop:gap-[60px]">
 
           {/* Page header */}
+          <ScrollReveal>
           <div className="flex flex-col gap-[20px] desktop:gap-[30px]">
             <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={CYAN} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
@@ -46,8 +48,10 @@ export default function Projects() {
               problems and document solutions.
             </p>
           </div>
+          </ScrollReveal>
 
           {/* 2-column project grid */}
+          <ScrollReveal delay={150}>
           <div className="grid grid-cols-1 gap-6 tablet:grid-cols-2 tablet:gap-10">
             {projects.map((project, i) => (
               <div
@@ -157,6 +161,7 @@ export default function Projects() {
               </div>
             ))}
           </div>
+          </ScrollReveal>
 
         </div>
       </div>

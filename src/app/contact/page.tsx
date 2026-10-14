@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import TypewriterText from "@/components/TypewriterText";
 import PrimaryButton from "@/components/PrimaryButton";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const CYAN   = "rgb(0, 255, 255)";
 const BLUE   = "rgb(168, 215, 231)";
@@ -82,6 +83,7 @@ export default function Contact() {
 
 
         {/* Page header */}
+        <ScrollReveal>
         <div className="flex flex-col gap-3">
           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={CYAN} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
@@ -104,8 +106,10 @@ export default function Contact() {
             Have a project, open role, or question? Get in touch.
           </p>
         </div>
+        </ScrollReveal>
 
         {/* Body: info left + form right */}
+        <ScrollReveal delay={150}>
         <div className="grid grid-cols-1 gap-10 tablet:gap-12 desktop:grid-cols-2 desktop:gap-16 desktop:items-start">
 
           {/* Left column: Direct Contact + Social Links */}
@@ -221,6 +225,7 @@ export default function Contact() {
           </div>
 
         </div>
+        </ScrollReveal>
       </div>
     </section>
   );

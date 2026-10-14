@@ -1,5 +1,6 @@
 import TypewriterText from "@/components/TypewriterText";
 import BlogCard from "@/components/BlogCard";
+import ScrollReveal from "@/components/ScrollReveal";
 import { posts } from "@/data/blog";
 import { TAG_COLORS } from "@/data/colors";
 
@@ -9,7 +10,7 @@ const BLUE = "rgb(168, 215, 231)";
 export default function Blog() {
   return (
     <section className="w-full flex justify-center px-5 pt-10 pb-16 tablet:px-8 tablet:pt-14 tablet:pb-20 desktop:px-10 desktop:pt-20 desktop:pb-28">
-      <div className="w-full max-w-[1200px] flex flex-col gap-8 desktop:gap-20">
+      <ScrollReveal className="w-full max-w-[1200px] flex flex-col gap-8 desktop:gap-20">
 
         {/* Header */}
         <div className="flex flex-col gap-4">
@@ -53,7 +54,7 @@ export default function Blog() {
             />
           ))}
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }
