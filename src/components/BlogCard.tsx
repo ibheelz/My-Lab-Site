@@ -58,7 +58,13 @@ export default function BlogCard({ slug, title, description, category, readTime,
         >
           {category}
         </span>
-        <span style={{ color: "rgb(168, 215, 231)", fontSize: "12px", fontWeight: 300 }}>{readTime} Minute Read</span>
+        <span style={{ color: "rgb(168, 215, 231)", fontSize: "12px", fontWeight: 300, display: "inline-flex", alignItems: "center", gap: "4px" }}>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 6 12 12 16 14" />
+          </svg>
+          {readTime} Min Read
+        </span>
       </div>
 
       {/* Title */}

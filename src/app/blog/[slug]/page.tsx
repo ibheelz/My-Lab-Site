@@ -59,8 +59,12 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
             hideCursorWhenDone={false}
           />
 
-          <span style={{ color: "rgb(255, 255, 255)", fontSize: "13px", whiteSpace: "nowrap" }}>
-            {post.readTime} min read &nbsp;·&nbsp; {formattedDate}
+          <span style={{ color: "rgb(255, 255, 255)", fontSize: "13px", whiteSpace: "nowrap", display: "inline-flex", alignItems: "center", gap: "5px" }}>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            {post.readTime} Min Read &nbsp;·&nbsp; {formattedDate}
           </span>
 
           {/* Cover image */}

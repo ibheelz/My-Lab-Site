@@ -14,17 +14,23 @@ export default function Blog() {
         {/* Header */}
         <div className="flex flex-col gap-4">
           {/* h1 — 36px / 1.1em */}
-          <TypewriterText
-            text="Blog"
-            tag="h1"
-            className="text-xl tablet:text-2xl"
-            color={CYAN}
-            cursorColor={CYAN}
-            cursorThickness={5}
-            typingSpeed={0.02}
-            showCursor
-            hideCursorWhenDone={false}
-          />
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={CYAN} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+              <path d="M12 20h9" />
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+            </svg>
+            <TypewriterText
+              text="Blog"
+              tag="h1"
+              className="text-xl tablet:text-2xl"
+              color={CYAN}
+              cursorColor={CYAN}
+              cursorThickness={5}
+              typingSpeed={0.02}
+              showCursor
+              hideCursorWhenDone={false}
+            />
+          </div>
           {/* Body M — 16px */}
           <p style={{ fontSize: "16px", lineHeight: "1.6em", color: BLUE, margin: 0 }}>
             Guides, troubleshooting notes, and IT walkthroughs. Practical documentation from

@@ -25,17 +25,22 @@ export default function Projects() {
 
           {/* Page header */}
           <div className="flex flex-col gap-[20px] desktop:gap-[30px]">
-            <TypewriterText
-              text="Selected Projects"
-              tag="h3"
-              className="text-xl tablet:text-2xl"
-              color={CYAN}
-              cursorColor={CYAN}
-              cursorThickness={5}
-              typingSpeed={0.02}
-              showCursor
-              hideCursorWhenDone={false}
-            />
+            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={CYAN} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+              </svg>
+              <TypewriterText
+                text="Selected Projects"
+                tag="h3"
+                className="text-xl tablet:text-2xl"
+                color={CYAN}
+                cursorColor={CYAN}
+                cursorThickness={5}
+                typingSpeed={0.02}
+                showCursor
+                hideCursorWhenDone={false}
+              />
+            </div>
             <p className="text-sm tablet:text-base leading-relaxed" style={{ color: BLUE, margin: 0 }}>
               Homelab projects, support tools, and automation scripts. Built to solve real IT
               problems and document solutions.

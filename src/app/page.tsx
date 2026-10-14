@@ -23,17 +23,22 @@ export default function Home() {
         <div className="w-full max-w-[1200px] flex flex-col gap-4">
 
           {/* Featured Project heading — outside the card */}
-          <TypewriterText
-            text="Featured Project"
-            tag="h2"
-            className="text-xl tablet:text-2xl"
-            color={CYAN}
-            cursorColor={CYAN}
-            cursorThickness={5}
-            typingSpeed={0.02}
-            showCursor
-            hideCursorWhenDone={false}
-          />
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={CYAN} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+            </svg>
+            <TypewriterText
+              text="Featured Project"
+              tag="h2"
+              className="text-xl tablet:text-2xl"
+              color={CYAN}
+              cursorColor={CYAN}
+              cursorThickness={5}
+              typingSpeed={0.02}
+              showCursor
+              hideCursorWhenDone={false}
+            />
+          </div>
 
           {/* Featured project card */}
           <div
@@ -90,6 +95,11 @@ export default function Home() {
 
           {/* Header */}
           <div className="flex flex-col gap-4">
+            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={CYAN} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+            </svg>
             <TypewriterText
               text="Latest Blog Posts"
               tag="h1"
@@ -101,6 +111,7 @@ export default function Home() {
               showCursor
               hideCursorWhenDone={false}
             />
+            </div>
             <p style={{ fontSize: "16px", lineHeight: "1.6em", color: BLUE, margin: 0 }}>
               Guides, troubleshooting notes, and IT walkthroughs. Practical documentation from
               real support scenarios, homelab experiments, and system administration.

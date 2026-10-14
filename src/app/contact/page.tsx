@@ -83,17 +83,23 @@ export default function Contact() {
 
         {/* Page header */}
         <div className="flex flex-col gap-3">
-          <TypewriterText
-            text="Contact Information"
-            tag="h3"
-            className="text-xl tablet:text-2xl"
-            color={CYAN}
-            cursorColor={CYAN}
-            cursorThickness={5}
-            typingSpeed={0.02}
-            showCursor
-            hideCursorWhenDone={false}
-          />
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={CYAN} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+            <TypewriterText
+              text="Contact Information"
+              tag="h3"
+              className="text-xl tablet:text-2xl"
+              color={CYAN}
+              cursorColor={CYAN}
+              cursorThickness={5}
+              typingSpeed={0.02}
+              showCursor
+              hideCursorWhenDone={false}
+            />
+          </div>
           <p className="text-sm tablet:text-base leading-relaxed" style={{ color: BLUE, margin: 0 }}>
             Have a project, open role, or question? Get in touch.
           </p>
