@@ -48,7 +48,9 @@ export default function Home() {
             >
             {/* ASCII name — centered on mobile */}
             <div className="w-full flex justify-center tablet:justify-start mb-8 tablet:mb-10">
+              {/* Mobile: ABIOLA indented/centered */}
               <pre
+                className="block tablet:hidden"
                 style={{
                   fontFamily: "'Courier New', Courier, monospace",
                   fontSize: "clamp(6px, 0.85vw, 10px)",
@@ -67,6 +69,38 @@ export default function Home() {
         $$ |  $$ |$$ |__$$ | _$$ |_ $$ \\__$$ |$$ |_____ $$ |  $$ |
         $$ |  $$ |$$    $$/ / $$   |$$    $$/ $$       |$$ |  $$ |
         $$/   $$/ $$$$$$$/  $$$$$$/  $$$$$$/  $$$$$$$$/ $$/   $$/
+
+  ______   _______   ________  __      __  ________  __      __  ________
+ /      \\ /       \\ /        |/  \\    /  |/        |/  \\    /  |/        |
+/$$$$$$  |$$$$$$$  |$$$$$$$$/ $$  \\  /$$/ $$$$$$$$/ $$  \\  /$$/ $$$$$$$$/
+$$ |__$$ |$$ |  $$ |$$ |__     $$  \\/$$/  $$ |__     $$  \\/$$/  $$ |__
+$$    $$ |$$ |  $$ |$$    |     $$  $$/   $$    |     $$  $$/   $$    |
+$$$$$$$$ |$$ |  $$ |$$$$$/       $$$$/    $$$$$/       $$$$/    $$$$$/
+$$ |  $$ |$$ |__$$ |$$ |_____     $$ |    $$ |_____     $$ |    $$ |_____
+$$ |  $$ |$$    $$/ $$       |    $$ |    $$       |    $$ |    $$       |
+$$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}</pre>
+
+              {/* Tablet+: ABIOLA left-aligned, no indent */}
+              <pre
+                className="hidden tablet:block"
+                style={{
+                  fontFamily: "'Courier New', Courier, monospace",
+                  fontSize: "clamp(6px, 0.85vw, 10px)",
+                  lineHeight: 1.25,
+                  color: "#00ff6a",
+                  margin: 0,
+                  whiteSpace: "pre",
+                  overflow: "hidden",
+                }}
+              >{`  ______   _______   ______   ______   __         ______
+ /      \\ /       \\ /      | /      \\ /  |       /      \\
+/$$$$$$  |$$$$$$$  |$$$$$$/ /$$$$$$  |$$ |      /$$$$$$  |
+$$ |__$$ |$$ |__$$ |  $$ |  $$ |  $$ |$$ |      $$ |__$$ |
+$$    $$ |$$    $$<   $$ |  $$ |  $$ |$$ |      $$    $$ |
+$$$$$$$$ |$$$$$$$  |  $$ |  $$ |  $$ |$$ |      $$$$$$$$ |
+$$ |  $$ |$$ |__$$ | _$$ |_ $$ \\__$$ |$$ |_____ $$ |  $$ |
+$$ |  $$ |$$    $$/ / $$   |$$    $$/ $$       |$$ |  $$ |
+$$/   $$/ $$$$$$$/  $$$$$$/  $$$$$$/  $$$$$$$$/ $$/   $$/
 
   ______   _______   ________  __      __  ________  __      __  ________
  /      \\ /       \\ /        |/  \\    /  |/        |/  \\    /  |/        |
@@ -108,7 +142,7 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}</pre
               Everything here comes from real scenarios, not textbooks.
             </p>
 
-            <div className="justify-center tablet:justify-start" style={{ display: "flex", alignItems: "center", gap: "20px", marginTop: "20px", flexWrap: "wrap" }}>
+            <div className="justify-center tablet:justify-start mt-5 desktop:mt-[40px]" style={{ display: "flex", alignItems: "center", gap: "20px", flexWrap: "wrap" }}>
               {/* Windows */}
               <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", color: NEON_GREEN, fontSize: "13px" }}>
                 <svg width="22" height="22" viewBox="0 0 24 24" fill={NEON_GREEN}>
