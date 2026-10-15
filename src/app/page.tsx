@@ -223,11 +223,11 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}
 
           {/* Featured project card */}
           <div
-            className="flex flex-col gap-8 desktop:flex-row desktop:gap-10"
+            className="flex flex-col gap-6 desktop:flex-row desktop:gap-8"
             style={{
               border: `1px solid ${NEON_GREEN}`,
               borderRadius: "0px",
-              padding: "clamp(20px, 4vw, 30px)",
+              padding: "clamp(16px, 3vw, 24px)",
             }}
           >
             {/* Left: image placeholder */}
@@ -246,7 +246,7 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}
             </div>
 
             {/* Right: details */}
-            <div className="flex-1 flex flex-col gap-[30px]">
+            <div className="flex-1 flex flex-col justify-between gap-[20px]">
               <div className="flex flex-col gap-[10px]">
                 <h3 style={{ fontSize: "18px", lineHeight: "1.4em", color: NEON_GREEN, margin: 0 }}>
                   {featured.title}
