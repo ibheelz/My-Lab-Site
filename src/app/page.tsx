@@ -256,14 +256,12 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}
                     <CategoryPill key={tag} label={tag} color={TAG_COLORS[i]} />
                   ))}
                 </div>
-              </div>
-
-              <div className="flex flex-col gap-[14px]">
-                <p style={{ fontSize: "14px", lineHeight: "1.8em", color: BLUE, margin: 0 }}>
+                <p style={{ fontSize: "14px", lineHeight: "1.8em", color: BLUE, margin: 0, marginTop: "6px" }}>
                   {featured.description}
                 </p>
-                <ViewProjectButton href={featured.liveUrl ?? featured.githubUrl ?? "#"} />
               </div>
+
+              <ViewProjectButton href={featured.liveUrl ?? featured.githubUrl ?? "#"} />
             </div>
           </div>
         </ScrollReveal>
