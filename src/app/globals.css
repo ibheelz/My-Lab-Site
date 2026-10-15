@@ -137,3 +137,6 @@ body {
 @media (min-width: 810px) {
   .header-nav { display: flex; }
 }
+
+/* ── Resume download button ── */
+.resume-btn:hover { background-color: rgb(0, 255, 106) !important; color: rgb(0, 0, 0) !important; }
