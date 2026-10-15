@@ -177,7 +177,7 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}
                   color: NEON_GREEN,
                   backgroundColor: "transparent",
                   border: `1px solid ${NEON_GREEN}`,
-                  borderRadius: "10px",
+                  borderRadius: "0px",
                   padding: "8px 20px",
                   textDecoration: "none",
                   cursor: "pointer",
@@ -225,7 +225,7 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}
             className="flex flex-col gap-8 desktop:flex-row desktop:gap-10"
             style={{
               border: `1px solid ${NEON_GREEN}`,
-              borderRadius: "10px",
+              borderRadius: "0px",
               padding: "clamp(20px, 4vw, 30px)",
             }}
           >
@@ -234,7 +234,7 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}
               className="flex-1 flex items-center justify-center"
               style={{
                 backgroundColor: SURFACE,
-                borderRadius: "10px",
+                borderRadius: "0px",
                 minHeight: "220px",
                 border: "1px solid rgb(50, 55, 60)",
                 position: "relative",

@@ -27,7 +27,7 @@ export default function BlogImage({ src, alt, caption }: BlogImageProps) {
           onClick={() => setOpen(true)}
           style={{
             width: "100%",
-            borderRadius: "10px",
+            borderRadius: "0px",
             border: `1px solid ${BORDER}`,
             display: "block",
             cursor: "zoom-in",
@@ -64,7 +64,7 @@ export default function BlogImage({ src, alt, caption }: BlogImageProps) {
               right: "16px",
               background: "none",
               border: `1px solid ${NEON}`,
-              borderRadius: "10px",
+              borderRadius: "0px",
               color: NEON,
               fontSize: "13px",
               padding: "6px 14px",
@@ -84,7 +84,7 @@ export default function BlogImage({ src, alt, caption }: BlogImageProps) {
             style={{
               maxWidth: "100%",
               maxHeight: "90vh",
-              borderRadius: "10px",
+              borderRadius: "0px",
               border: `1px solid ${BORDER}`,
               display: "block",
               objectFit: "contain",

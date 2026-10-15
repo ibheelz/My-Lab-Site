@@ -17,7 +17,7 @@ export default function FaqItem({ question, answer }: FaqItemProps) {
     <div
       style={{
         border: `1px solid ${BORDER}`,
-        borderRadius: "10px",
+        borderRadius: "0px",
         overflow: "hidden",
         position: "relative",
         zIndex: 25,

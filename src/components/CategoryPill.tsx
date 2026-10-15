@@ -18,7 +18,7 @@ export default function CategoryPill({
         backgroundColor: toRgba(color, 0.2),
         color,
         padding: "2px 10px",
-        borderRadius: "10px",
+        borderRadius: "0px",
         fontSize: "12px",
         fontWeight: 300,
       }}

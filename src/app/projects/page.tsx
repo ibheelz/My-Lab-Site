@@ -58,7 +58,7 @@ export default function Projects() {
                 key={project.slug}
                 style={{
                   border: `1px solid ${project.featured ? NEON : "rgb(60, 60, 60)"}`,
-                  borderRadius: "10px",
+                  borderRadius: "0px",
                   padding: "clamp(20px, 4vw, 28px)",
                   display: "flex",
                   flexDirection: "column",
@@ -77,7 +77,7 @@ export default function Projects() {
                       width: "100%",
                       aspectRatio: "4 / 3",
                       objectFit: "cover",
-                      borderRadius: "8px",
+                      borderRadius: "0px",
                       border: "1px solid rgb(50, 55, 60)",
                       display: "block",
                     }}
@@ -88,7 +88,7 @@ export default function Projects() {
                       width: "100%",
                       aspectRatio: "4 / 3",
                       backgroundColor: "rgb(29, 32, 37)",
-                      borderRadius: "8px",
+                      borderRadius: "0px",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -133,7 +133,7 @@ export default function Projects() {
                     color: NEON,
                     fontSize: "14px",
                     fontWeight: 300,
-                    borderRadius: "10px",
+                    borderRadius: "0px",
                     border: `1px solid ${NEON}`,
                     cursor: "pointer",
                     textDecoration: "none",

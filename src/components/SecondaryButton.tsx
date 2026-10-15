@@ -32,7 +32,7 @@ export default function SecondaryButton({
     color: "rgb(0, 255, 106)",
     fontSize: "14px",
     fontWeight: 500,
-    borderRadius: "4px",
+    borderRadius: "0px",
     border: "1px solid rgb(0, 255, 106)",
     cursor: "pointer",
     transition: "background-color 0.2s, color 0.2s",

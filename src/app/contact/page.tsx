@@ -15,7 +15,7 @@ const INPUT_STYLE: React.CSSProperties = {
   width: "100%",
   backgroundColor: "transparent",
   border: `1px solid ${BORDER}`,
-  borderRadius: "4px",
+  borderRadius: "0px",
   padding: "12px 16px",
   color: "rgb(255, 255, 255)",
   fontSize: "14px",
@@ -180,7 +180,7 @@ export default function Contact() {
             />
 
             {sent ? (
-              <div className="flex flex-col gap-4 rounded-lg p-6" style={{ border: `1px dashed ${NEON}` }}>
+              <div className="flex flex-col gap-4 p-6" style={{ border: `1px dashed ${NEON}` }}>
                 <span style={{ color: NEON, fontSize: "16px" }}>Message sent.</span>
                 <p style={{ color: BLUE, fontSize: "14px", lineHeight: "1.8em", margin: 0 }}>
                   Thanks for reaching out — I&apos;ll get back to you within 24 hours.
@@ -195,7 +195,7 @@ export default function Contact() {
             ) : (
               <form
                 onSubmit={handleSubmit}
-                className="flex flex-col gap-5 rounded-lg"
+                className="flex flex-col gap-5"
                 style={{ border: `1px dashed ${NEON}`, padding: "clamp(20px, 4vw, 36px)" }}
               >
                 <div className="flex flex-col gap-1.5">

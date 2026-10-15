@@ -76,7 +76,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
               alt={post.title}
               style={{
                 width: "100%",
-                borderRadius: "10px",
+                borderRadius: "0px",
                 border: `1px solid ${BORDER}`,
                 display: "block",
                 position: "relative",
@@ -153,7 +153,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                           padding: "clamp(12px, 2.5vw, 14px) clamp(14px, 3vw, 18px)",
                           backgroundColor: "rgb(0, 0, 0)",
                           border: `1px solid ${BORDER}`,
-                          borderRadius: "10px",
+                          borderRadius: "0px",
                           color: CYAN,
                           fontSize: "13px",
                           textDecoration: "none",
@@ -206,7 +206,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                     style={{
                       backgroundColor: "rgb(0, 0, 0)",
                       border: `1px solid ${BORDER}`,
-                      borderRadius: "10px",
+                      borderRadius: "0px",
                       padding: "clamp(14px, 3vw, 20px)",
                       margin: 0,
                       whiteSpace: "pre-wrap",
@@ -243,7 +243,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                     style={{
                       backgroundColor: "rgb(0, 0, 0)",
                       border: `1px solid ${CYAN}`,
-                      borderRadius: "10px",
+                      borderRadius: "0px",
                       padding: "clamp(12px, 3vw, 16px)",
                       position: "relative",
                       zIndex: 25,

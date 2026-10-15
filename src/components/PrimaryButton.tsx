@@ -34,7 +34,7 @@ export default function PrimaryButton({
     color: "rgb(0, 0, 0)",
     fontSize: "14px",
     fontWeight: 500,
-    borderRadius: "4px",
+    borderRadius: "0px",
     border: "none",
     cursor: "pointer",
     transition: "opacity 0.2s",
