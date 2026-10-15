@@ -9,6 +9,11 @@ export default function Footer() {
         backgroundColor: "rgba(9, 9, 11, 0.85)",
         backdropFilter: "blur(10px)",
         borderTop: "1px solid rgb(0, 255, 106)",
+        animationName: "slideUpFooter",
+        animationDuration: "1s",
+        animationTimingFunction: "ease-out",
+        animationFillMode: "both",
+        animationDelay: "0ms",
       }}
     >
       <div className="max-w-[1200px] mx-auto h-full flex items-center justify-between gap-6">

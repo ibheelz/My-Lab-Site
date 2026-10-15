@@ -1,4 +1,6 @@
 import TypewriterText from "@/components/TypewriterText";
+import AsciiReveal from "@/components/AsciiReveal";
+import HeroAscii from "@/components/HeroAscii";
 import ScrollReveal from "@/components/ScrollReveal";
 import CategoryPill from "@/components/CategoryPill";
 import PrimaryButton, { MonitorIcon } from "@/components/PrimaryButton";
@@ -22,14 +24,11 @@ export default function Home() {
       {/* ── Hero ── */}
       <section className="w-full flex justify-center px-5 pt-10 pb-6 tablet:px-8 tablet:pt-14 tablet:pb-8 desktop:px-10 desktop:pt-20 desktop:pb-10">
         <div className="w-full max-w-[1200px] flex flex-col gap-8 tablet:flex-row tablet:items-stretch tablet:gap-[120px]">
-          <img
-            src="/hero-ascii.svg"
-            alt="ibheelz"
-            className="mx-auto translate-x-[10px] tablet:translate-x-0 tablet:mx-0"
+          <HeroAscii
+            className="mx-auto translate-x-[10px] tablet:translate-x-0 tablet:mx-0 block"
             style={{
               width: "100%",
               maxWidth: "420px",
-              display: "block",
               flexShrink: 0,
             }}
           />
@@ -49,18 +48,17 @@ export default function Home() {
             {/* ASCII name — centered on mobile */}
             <div className="w-full flex justify-center tablet:justify-start mb-8 tablet:mb-10">
               {/* Mobile: ABIOLA indented/centered */}
-              <pre
+              <AsciiReveal
                 className="block tablet:hidden"
                 style={{
                   fontFamily: "'Courier New', Courier, monospace",
                   fontSize: "clamp(6px, 0.85vw, 10px)",
                   lineHeight: 1.25,
-                  color: "#00ff6a",
                   margin: 0,
                   whiteSpace: "pre",
                   overflow: "hidden",
                 }}
-              >{`          ______   _______   ______   ______   __         ______
+                text={`          ______   _______   ______   ______   __         ______
          /      \\ /       \\ /      | /      \\ /  |       /      \\
         /$$$$$$  |$$$$$$$  |$$$$$$/ /$$$$$$  |$$ |      /$$$$$$  |
         $$ |__$$ |$$ |__$$ |  $$ |  $$ |  $$ |$$ |      $$ |__$$ |
@@ -78,21 +76,21 @@ $$    $$ |$$ |  $$ |$$    |     $$  $$/   $$    |     $$  $$/   $$    |
 $$$$$$$$ |$$ |  $$ |$$$$$/       $$$$/    $$$$$/       $$$$/    $$$$$/
 $$ |  $$ |$$ |__$$ |$$ |_____     $$ |    $$ |_____     $$ |    $$ |_____
 $$ |  $$ |$$    $$/ $$       |    $$ |    $$       |    $$ |    $$       |
-$$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}</pre>
+$$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}
+              />
 
               {/* Tablet+: ABIOLA left-aligned, no indent */}
-              <pre
+              <AsciiReveal
                 className="hidden tablet:block"
                 style={{
                   fontFamily: "'Courier New', Courier, monospace",
                   fontSize: "clamp(6px, 0.85vw, 10px)",
                   lineHeight: 1.25,
-                  color: "#00ff6a",
                   margin: 0,
                   whiteSpace: "pre",
                   overflow: "hidden",
                 }}
-              >{`  ______   _______   ______   ______   __         ______
+                text={`  ______   _______   ______   ______   __         ______
  /      \\ /       \\ /      | /      \\ /  |       /      \\
 /$$$$$$  |$$$$$$$  |$$$$$$/ /$$$$$$  |$$ |      /$$$$$$  |
 $$ |__$$ |$$ |__$$ |  $$ |  $$ |  $$ |$$ |      $$ |__$$ |
@@ -110,12 +108,13 @@ $$    $$ |$$ |  $$ |$$    |     $$  $$/   $$    |     $$  $$/   $$    |
 $$$$$$$$ |$$ |  $$ |$$$$$/       $$$$/    $$$$$/       $$$$/    $$$$$/
 $$ |  $$ |$$ |__$$ |$$ |_____     $$ |    $$ |_____     $$ |    $$ |_____
 $$ |  $$ |$$    $$/ $$       |    $$ |    $$       |    $$ |    $$       |
-$$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}</pre>
+$$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}
+              />
             </div>
 
             {/* About me — always left-aligned */}
             <div>
-            <div className="hidden tablet:flex" style={{ alignItems: "center", gap: "10px", marginTop: "0" }}>
+            <div className="hidden tablet:flex" style={{ alignItems: "center", gap: "10px", marginTop: "0", animationName: "fadeBlurIn", animationDuration: "0.65s", animationTimingFunction: "ease-out", animationFillMode: "both", animationDelay: "900ms", willChange: "transform, opacity" }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={CYAN} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                 <circle cx="12" cy="7" r="4" />
@@ -132,17 +131,17 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}</pre
                 hideCursorWhenDone={false}
               />
             </div>
-            <p style={{ fontSize: "14px", lineHeight: "1.9em", color: BLUE, margin: "16px 0 0" }}>
+            <p style={{ fontSize: "14px", lineHeight: "1.9em", color: BLUE, margin: "16px 0 0", animationName: "fadeBlurIn", animationDuration: "0.65s", animationTimingFunction: "ease-out", animationFillMode: "both", animationDelay: "1100ms", willChange: "transform, opacity" }}>
               IT support engineer with a deep curiosity for how systems work under the hood.
               I run a homelab to get hands-on with the technologies I work with daily —
               Active Directory, virtualisation, networking, and system administration.
             </p>
-            <p style={{ fontSize: "14px", lineHeight: "1.9em", color: BLUE, margin: "16px 0 0" }}>
+            <p style={{ fontSize: "14px", lineHeight: "1.9em", color: BLUE, margin: "16px 0 0", animationName: "fadeBlurIn", animationDuration: "0.65s", animationTimingFunction: "ease-out", animationFillMode: "both", animationDelay: "1300ms", willChange: "transform, opacity" }}>
               This site is where I document what I build, break, and figure out.
               Everything here comes from real scenarios, not textbooks.
             </p>
 
-            <div className="justify-center tablet:justify-start mt-5 desktop:mt-[40px]" style={{ display: "flex", alignItems: "center", gap: "20px", flexWrap: "wrap" }}>
+            <div className="justify-center tablet:justify-start mt-5 desktop:mt-[40px]" style={{ display: "flex", alignItems: "center", gap: "20px", flexWrap: "wrap", animationName: "fadeBlurIn", animationDuration: "0.65s", animationTimingFunction: "ease-out", animationFillMode: "both", animationDelay: "1500ms", willChange: "transform, opacity" }}>
               {/* Windows */}
               <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", color: NEON_GREEN, fontSize: "13px" }}>
                 <svg width="22" height="22" viewBox="0 0 24 24" fill={NEON_GREEN}>

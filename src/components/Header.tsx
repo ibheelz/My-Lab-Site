@@ -59,6 +59,10 @@ export default function Header() {
           backgroundColor: "rgba(9, 9, 11, 0.85)",
           backdropFilter: "blur(10px)",
           borderBottom: `1px solid ${NEON}`,
+          animationName: "slideDownNav",
+          animationDuration: "1s",
+          animationTimingFunction: "ease-out",
+          animationFillMode: "both",
         }}
       >
         <div className="max-w-[1200px] mx-auto h-full flex items-center justify-between">
@@ -116,50 +120,59 @@ export default function Header() {
 
       {/* Mobile dropdown */}
       <div
-        className="fixed top-[55px] left-0 right-0 z-40 tablet:hidden overflow-hidden"
+        className="fixed top-[55px] left-0 right-0 z-40 tablet:hidden"
         style={{
           backgroundColor: BG,
           backdropFilter: "blur(10px)",
-          borderBottom: open ? `1px solid ${NEON}` : "none",
-          maxHeight: open ? "320px" : "0px",
+          borderBottom: open ? `1px solid ${NEON}` : "1px solid transparent",
+          display: "grid",
+          gridTemplateRows: open ? "1fr" : "0fr",
           opacity: open ? 1 : 0,
-          transition: "max-height 0.3s ease, opacity 0.25s ease, border-bottom 0.3s ease",
+          transition: "grid-template-rows 0.35s ease-out, opacity 0.3s ease, border-bottom 0.3s ease",
           pointerEvents: open ? "auto" : "none",
         }}
       >
-        <nav className="flex flex-col px-5 py-4 gap-0">
-          {navLinks.map(({ label, href, Icon }) => {
-            const active = href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
-            const inactiveColor = "rgba(168, 215, 231, 0.5)";
-            return (
-              <Link
-                key={href}
-                href={href}
-                onClick={() => setOpen(false)}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "10px",
-                  fontSize: "15px",
-                  color: active ? NEON : inactiveColor,
-                  padding: "12px 0",
-                  borderBottom: "1px solid rgb(40,40,40)",
-                  textDecoration: "none",
-                  transition: "color 0.2s",
-                }}
-                onMouseEnter={active ? undefined : (e) => {
-                  (e.currentTarget as HTMLElement).style.color = BLUE;
-                }}
-                onMouseLeave={active ? undefined : (e) => {
-                  (e.currentTarget as HTMLElement).style.color = inactiveColor;
-                }}
-              >
-                <Icon />
-                {label}
-              </Link>
-            );
-          })}
-        </nav>
+        <div style={{ overflow: "hidden" }}>
+          <nav
+            className="flex flex-col px-5 py-4 gap-0"
+            style={{
+              transform: open ? "translateY(0)" : "translateY(-8px)",
+              transition: "transform 0.35s ease-out",
+            }}
+          >
+            {navLinks.map(({ label, href, Icon }) => {
+              const active = href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
+              const inactiveColor = "rgba(168, 215, 231, 0.5)";
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  onClick={() => setOpen(false)}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                    fontSize: "15px",
+                    color: active ? NEON : inactiveColor,
+                    padding: "12px 0",
+                    borderBottom: "1px solid rgb(40,40,40)",
+                    textDecoration: "none",
+                    transition: "color 0.2s",
+                  }}
+                  onMouseEnter={active ? undefined : (e) => {
+                    (e.currentTarget as HTMLElement).style.color = BLUE;
+                  }}
+                  onMouseLeave={active ? undefined : (e) => {
+                    (e.currentTarget as HTMLElement).style.color = inactiveColor;
+                  }}
+                >
+                  <Icon />
+                  {label}
+                </Link>
+              );
+            })}
+          </nav>
+        </div>
       </div>
     </>
   );

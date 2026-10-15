@@ -26,7 +26,7 @@ const INPUT_STYLE: React.CSSProperties = {
 };
 
 const directLinks = [
-  { label: "$ email",    value: "abioladeyeyey@gmail.com",      href: "mailto:abioladeyeyey@gmail.com" },
+  { label: "$ email",    value: "abioladeyeye@gmail.com",       href: "mailto:abioladeyeye@gmail.com" },
   { label: "$ location", value: "Lagos, Nigeria",               href: null },
   { label: "$ status",   value: "Open to Work",                 href: null },
 ];
