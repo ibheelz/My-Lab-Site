@@ -31,7 +31,7 @@ export default function BlogImage({ src, alt, caption }: BlogImageProps) {
         position: "fixed",
         inset: 0,
         zIndex: 9999,
-        backgroundColor: "rgba(0, 0, 0, 0.88)",
+        backgroundColor: "rgb(0, 0, 0)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
