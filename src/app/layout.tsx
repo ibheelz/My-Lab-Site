@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title: "Abiola's Lab",
   description: "it support specialist based in lagos, nigeria.",
   icons: {
-    icon: "data:,",
+    icon: "/icon.png?v=3",
   },
 };
 
