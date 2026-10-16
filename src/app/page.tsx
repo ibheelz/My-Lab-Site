@@ -275,11 +275,12 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}
           <div className="flex flex-col gap-4">
             <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={CYAN} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
-              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+              <path d="M9 3h6v11l3.5 6H5.5L9 14V3z" />
+              <line x1="9" y1="3" x2="15" y2="3" />
+              <path d="M6.5 19.5h11" />
             </svg>
             <TypewriterText
-              text="Latest Blog Posts"
+              text="Latest Labs"
               tag="h1"
               className="text-xl tablet:text-2xl"
               color={CYAN}
@@ -291,8 +292,7 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}
             />
             </div>
             <p style={{ fontSize: "16px", lineHeight: "1.6em", color: BLUE, margin: 0 }}>
-              Guides, troubleshooting notes, and IT walkthroughs. Practical documentation from
-              real support scenarios, homelab experiments, and system administration.
+              Practical documentation from real support scenarios, homelab experiments, and system administration.
             </p>
           </div>
 

@@ -114,7 +114,7 @@ export default function BlogCard({ slug, title, description, category, readTime,
 
       {/* Read the blog button */}
       <Link
-        href={`/blog/${slug}`}
+        href={`/labs/${slug}`}
         style={{
           display: "inline-flex",
           alignItems: "center",
@@ -142,7 +142,7 @@ export default function BlogCard({ slug, title, description, category, readTime,
           el.style.color = "rgb(0, 255, 106)";
         }}
       >
-        Read the blog
+        Open lab
       </Link>
     </div>
   );
