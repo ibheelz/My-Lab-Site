@@ -75,11 +75,9 @@ export default function Projects() {
                     alt={project.title}
                     style={{
                       width: "100%",
-                      aspectRatio: "4 / 3",
-                      objectFit: "cover",
-                      borderRadius: "0px",
-                      border: "1px solid rgb(50, 55, 60)",
+                      height: "auto",
                       display: "block",
+                      border: "1px solid rgb(50, 55, 60)",
                     }}
                   />
                 ) : (
