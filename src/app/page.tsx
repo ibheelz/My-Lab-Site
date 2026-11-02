@@ -1,3 +1,4 @@
+import Link from "next/link";
 import TypewriterText from "@/components/TypewriterText";
 import AsciiReveal from "@/components/AsciiReveal";
 import HeroAscii from "@/components/HeroAscii";
@@ -204,23 +205,47 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}
 
           {/* Header */}
           <div className="flex flex-col gap-4">
-            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={CYAN} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
-              <path d="M9 3h6v11l3.5 6H5.5L9 14V3z" />
-              <line x1="9" y1="3" x2="15" y2="3" />
-              <path d="M6.5 19.5h11" />
-            </svg>
-            <TypewriterText
-              text="Latest Labs"
-              tag="h1"
-              className="text-xl tablet:text-2xl"
-              color={CYAN}
-              cursorColor={CYAN}
-              cursorThickness={5}
-              typingSpeed={0.02}
-              showCursor
-              hideCursorWhenDone={false}
-            />
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={CYAN} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                  <path d="M9 3h6v11l3.5 6H5.5L9 14V3z" />
+                  <line x1="9" y1="3" x2="15" y2="3" />
+                  <path d="M6.5 19.5h11" />
+                </svg>
+                <TypewriterText
+                  text="Latest Labs"
+                  tag="h1"
+                  className="text-xl tablet:text-2xl"
+                  color={CYAN}
+                  cursorColor={CYAN}
+                  cursorThickness={5}
+                  typingSpeed={0.02}
+                  showCursor
+                  hideCursorWhenDone={false}
+                />
+              </div>
+              <Link
+                href="/labs"
+                className="resume-btn"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  fontSize: "14px",
+                  fontWeight: 500,
+                  color: NEON_GREEN,
+                  backgroundColor: "transparent",
+                  border: `1px solid ${NEON_GREEN}`,
+                  borderRadius: "0px",
+                  padding: "8px 20px",
+                  textDecoration: "none",
+                  cursor: "pointer",
+                  transition: "background-color 0.2s, color 0.2s",
+                  flexShrink: 0,
+                }}
+              >
+                View All
+              </Link>
             </div>
             <p style={{ fontSize: "16px", lineHeight: "1.6em", color: BLUE, margin: 0 }}>
               Practical documentation from real support scenarios, homelab experiments, and system administration.
@@ -250,21 +275,45 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}
         <ScrollReveal className="w-full max-w-[1200px] flex flex-col gap-4">
 
           {/* Projects heading */}
-          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={CYAN} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
-              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
-            </svg>
-            <TypewriterText
-              text="Latest Projects"
-              tag="h2"
-              className="text-xl tablet:text-2xl"
-              color={CYAN}
-              cursorColor={CYAN}
-              cursorThickness={5}
-              typingSpeed={0.02}
-              showCursor
-              hideCursorWhenDone={false}
-            />
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={CYAN} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+              </svg>
+              <TypewriterText
+                text="Latest Projects"
+                tag="h2"
+                className="text-xl tablet:text-2xl"
+                color={CYAN}
+                cursorColor={CYAN}
+                cursorThickness={5}
+                typingSpeed={0.02}
+                showCursor
+                hideCursorWhenDone={false}
+              />
+            </div>
+            <Link
+              href="/projects"
+              className="resume-btn"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                fontSize: "14px",
+                fontWeight: 500,
+                color: NEON_GREEN,
+                backgroundColor: "transparent",
+                border: `1px solid ${NEON_GREEN}`,
+                borderRadius: "0px",
+                padding: "8px 20px",
+                textDecoration: "none",
+                cursor: "pointer",
+                transition: "background-color 0.2s, color 0.2s",
+                flexShrink: 0,
+              }}
+            >
+              View All
+            </Link>
           </div>
 
           {/* 2-column project grid */}
