@@ -249,13 +249,13 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}
       <section className="w-full flex justify-center px-5 pt-6 pb-16 tablet:px-8 tablet:pt-8 tablet:pb-20 desktop:px-10 desktop:pt-10 desktop:pb-28">
         <ScrollReveal className="w-full max-w-[1200px] flex flex-col gap-4">
 
-          {/* Featured Projects heading */}
+          {/* Projects heading */}
           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={CYAN} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
             </svg>
             <TypewriterText
-              text="Featured Projects"
+              text="Projects"
               tag="h2"
               className="text-xl tablet:text-2xl"
               color={CYAN}
