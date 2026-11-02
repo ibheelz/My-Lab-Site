@@ -22,7 +22,7 @@ export default function Blog() {
               <path d="M6.5 19.5h11" />
             </svg>
             <TypewriterText
-              text="Labs"
+              text="All Labs"
               tag="h1"
               className="text-xl tablet:text-2xl"
               color={CYAN}
