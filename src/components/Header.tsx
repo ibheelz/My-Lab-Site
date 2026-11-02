@@ -39,8 +39,8 @@ const ContactIcon = () => (
 
 const navLinks = [
   { label: "home",     href: "/",        Icon: HomeIcon     },
-  { label: "projects", href: "/projects", Icon: ProjectsIcon },
   { label: "labs",     href: "/labs",     Icon: LabIcon      },
+  { label: "projects", href: "/projects", Icon: ProjectsIcon },
   { label: "contact",  href: "/contact",  Icon: ContactIcon  },
 ];
 
