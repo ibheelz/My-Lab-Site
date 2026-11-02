@@ -4,7 +4,7 @@ export default function MielaPage() {
     <>
       <div style={{ position: "fixed", inset: 0, backgroundColor: "#000", zIndex: 9998 }} />
       <iframe
-        src="/miela/index.html"
+        src="https://ibheelz.github.io/Mieladigital/"
         title="Miela Digital"
         style={{
           position: "fixed",
