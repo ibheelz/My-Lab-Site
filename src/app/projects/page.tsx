@@ -99,9 +99,6 @@ export default function Projects() {
 
                 {/* Title + tags */}
                 <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                  {project.featured && (
-                    <span style={{ fontSize: "12px", color: NEON }}>★ Featured Project</span>
-                  )}
                   <h3 style={{ fontSize: "18px", lineHeight: "1.4em", color: NEON, margin: 0, fontWeight: 400 }}>
                     {project.title}
                   </h3>
