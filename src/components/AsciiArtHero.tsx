@@ -89,7 +89,7 @@ export default function AsciiArtHero({
       <pre
         className="ascii-pre"
         style={{
-          fontFamily: "Courier New, monospace",
+          fontFamily: "var(--font-mono)",
           lineHeight: 1,
           color,
           margin: 0,

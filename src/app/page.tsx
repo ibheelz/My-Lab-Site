@@ -51,7 +51,7 @@ export default function Home() {
               <AsciiReveal
                 className="block tablet:hidden"
                 style={{
-                  fontFamily: "'Courier New', Courier, monospace",
+                  fontFamily: "var(--font-mono)",
                   fontSize: "clamp(6px, 0.85vw, 10px)",
                   lineHeight: 1.25,
                   margin: 0,
@@ -83,7 +83,7 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}
               <AsciiReveal
                 className="hidden tablet:block"
                 style={{
-                  fontFamily: "'Courier New', Courier, monospace",
+                  fontFamily: "var(--font-mono)",
                   fontSize: "clamp(6px, 0.85vw, 10px)",
                   lineHeight: 1.25,
                   margin: 0,

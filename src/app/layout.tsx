@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Oxanium } from "next/font/google";
+import { Oxanium, Source_Code_Pro } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -10,6 +10,12 @@ const oxanium = Oxanium({
   subsets: ["latin"],
   weight: ["300", "400", "500"],
   variable: "--font-oxanium",
+});
+
+const sourceCodePro = Source_Code_Pro({
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+  variable: "--font-mono",
 });
 
 export const metadata: Metadata = {
@@ -26,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={oxanium.variable}>
+    <html lang="en" className={`${oxanium.variable} ${sourceCodePro.variable}`}>
       <body style={{ fontFamily: "var(--font-oxanium)" }}>
         <ScanLines />
         <GradientScanner />
