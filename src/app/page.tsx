@@ -16,7 +16,6 @@ const BLUE      = "rgb(168, 215, 231)";
 const NEON_GREEN = "rgb(0, 255, 106)";
 const SURFACE   = "rgb(29, 32, 37)";
 
-const featured    = projects.find((p) => p.featured) ?? projects[0];
 const latestPosts = posts.slice(0, 3);
 
 export default function Home() {
@@ -250,13 +249,13 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}
       <section className="w-full flex justify-center px-5 pt-6 pb-16 tablet:px-8 tablet:pt-8 tablet:pb-20 desktop:px-10 desktop:pt-10 desktop:pb-28">
         <ScrollReveal className="w-full max-w-[1200px] flex flex-col gap-4">
 
-          {/* Featured Project heading — outside the card */}
+          {/* Featured Projects heading */}
           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={CYAN} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
             </svg>
             <TypewriterText
-              text="Featured Project"
+              text="Featured Projects"
               tag="h2"
               className="text-xl tablet:text-2xl"
               color={CYAN}
@@ -268,48 +267,71 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}
             />
           </div>
 
-          {/* Featured project card */}
-          <div
-            className="flex flex-col gap-6 desktop:flex-row desktop:gap-8"
-            style={{
-              border: `1px solid ${NEON_GREEN}`,
-              borderRadius: "0px",
-              padding: "clamp(16px, 3vw, 24px)",
-            }}
-          >
-            {/* Left: image placeholder */}
-            <div
-              className="flex-1 flex items-center justify-center"
-              style={{
-                backgroundColor: SURFACE,
-                borderRadius: "0px",
-                minHeight: "220px",
-                border: "1px solid rgb(50, 55, 60)",
-                position: "relative",
-                zIndex: 25,
-              }}
-            >
-              <span style={{ color: "rgba(168, 215, 231, 0.3)", fontSize: "12px", fontWeight: 300 }}>[ image ]</span>
-            </div>
+          {/* 2-column project grid */}
+          <div className="grid grid-cols-1 gap-6 tablet:grid-cols-2 tablet:gap-8">
+            {projects.map((project, i) => (
+              <div
+                key={project.slug}
+                style={{
+                  border: `1px solid ${project.featured ? NEON_GREEN : "rgb(60, 60, 60)"}`,
+                  borderRadius: "0px",
+                  padding: "clamp(16px, 3vw, 24px)",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "16px",
+                  backgroundColor: "rgb(0, 0, 0)",
+                  position: "relative",
+                  zIndex: 25,
+                }}
+              >
+                {/* Image */}
+                {project.image ? (
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    style={{
+                      width: "100%",
+                      aspectRatio: "16 / 9",
+                      objectFit: "cover",
+                      border: "1px solid rgb(50, 55, 60)",
+                      display: "block",
+                    }}
+                  />
+                ) : (
+                  <div style={{
+                    width: "100%",
+                    aspectRatio: "16 / 9",
+                    backgroundColor: SURFACE,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    border: "1px solid rgb(50, 55, 60)",
+                  }}>
+                    <span style={{ color: "rgba(168, 215, 231, 0.3)", fontSize: "12px", fontWeight: 300 }}>[ image ]</span>
+                  </div>
+                )}
 
-            {/* Right: details */}
-            <div className="flex-1 flex flex-col justify-between gap-[20px]">
-              <div className="flex flex-col gap-[10px]">
-                <h3 style={{ fontSize: "18px", lineHeight: "1.4em", color: NEON_GREEN, margin: 0 }}>
-                  {featured.title}
-                </h3>
-                <div className="flex gap-[10px] flex-wrap">
-                  {featured.tags.slice(0, 2).map((tag, i) => (
-                    <CategoryPill key={tag} label={tag} color={TAG_COLORS[i]} />
-                  ))}
+                {/* Title + tags */}
+                <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                  <h3 style={{ fontSize: "18px", lineHeight: "1.4em", color: NEON_GREEN, margin: 0, fontWeight: 400 }}>
+                    {project.title}
+                  </h3>
+                  <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+                    {project.tags.slice(0, 2).map((tag, ti) => (
+                      <CategoryPill key={tag} label={tag} color={TAG_COLORS[(i * 2 + ti) % TAG_COLORS.length]} />
+                    ))}
+                  </div>
                 </div>
-                <p style={{ fontSize: "14px", lineHeight: "1.8em", color: BLUE, margin: 0, marginTop: "6px" }}>
-                  {featured.description}
-                </p>
-              </div>
 
-              <ViewProjectButton href={featured.liveUrl ?? featured.githubUrl ?? "#"} />
-            </div>
+                {/* Description */}
+                <p style={{ fontSize: "14px", lineHeight: "1.8em", color: BLUE, margin: 0, flex: 1 }}>
+                  {project.description}
+                </p>
+
+                {/* Button */}
+                <ViewProjectButton href={project.liveUrl ?? project.githubUrl ?? "#"} />
+              </div>
+            ))}
           </div>
         </ScrollReveal>
       </section>

@@ -15,8 +15,14 @@ export const projects: Project[] = [
     title: "Miela Digital's Website",
     description: "Marketing website for a Gaming and iGaming agency specialising in brand awareness and user acquisition. Built with HTML, Tailwind CSS, and JavaScript.",
     tags: ["HTML", "Tailwind CSS", "JavaScript"],
-    liveUrl: "/miela/",
+    liveUrl: "/miela/index.html",
     githubUrl: "https://github.com/ibheelz/Mieladigital",
     featured: true,
+  },
+  {
+    slug: "coming-soon",
+    title: "Coming Soon",
+    description: "Next project in progress. Check back later.",
+    tags: ["TBD"],
   },
 ];
