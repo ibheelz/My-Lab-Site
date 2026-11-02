@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://db.onlinewebfonts.com/c/db43803fb4a7ccad71c4b2c69d32922f?family=HelveticaNeue-CondensedBlack"
+      rel="stylesheet" />
+    <!-- Logo -->
+    <link
+      rel="shortcut icon"
+      href="../src/images/Logos/M_logo.png"
+      type="image/x-icon" />
+    <!-- Font Awesome Icon -->
+    <script
+      src="https://kit.fontawesome.com/527da9814d.js"
+      crossorigin="anonymous"></script>
+    <link
+      rel="stylesheet"
+      href="https://fontawesome.com/icons/paper-plane-top?f=classic&s=regular" />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous" />
+    <!-- jQuery first, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <!-- AOS CSS CDN -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <!-- AOS JS CDN -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- <script src="/tailwind.config.js"></script> -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "custom-ash": "#646881",
+              "custom-white": "#F7F4F3",
+              "custom-yellow": "#FDC600",
+              "custom-black": "#080708"
+            },
+            backgroundImage: {
+              "hero-image": 'url("../src/images/Backgrounds/BG-1.png")',
+              "section-image": 'url("../src/images/Backgrounds/BG-3.png")',
+              "white-section": 'url("../src/images/Backgrounds/BG-2.png")'
+            },
+            fontFamily: {
+              helvetica: ["Helvetica", "sans-serif"],
+              helveticanue: ["HelveticaNeue-CondensedBlack", "sans-serif"]
+            }
+          }
+        }
+      };
+    </script>
+    <link rel="stylesheet" href="../src/style.css" />
+    <title>Miela Digital - Business Case Study</title>
+    <meta
+      name="description"
+      content="Miela Digital is an agency specialized in the Gaming and iGaming sectors. We are dedicated to generating activations focused on brand awareness and user acquisition. We differentiate ourselves by focusing on the narrow part of the funnel: conversion." />
+  </head>
+  <body
+    class="w-full p-0 m-0 font-helvetica relative scroll-smooth"
+    x-data="{ open: false, showModal: false }"
+    :class="{'max-h-screen overflow-hidden': open,' h-max': !open }">
+    <nav
+      data-aos="fade-down"
+      data-aos-duration="1300"
+      class="w-full absolute z-30">
+      <div
+        class="w-11/12 mx-auto py-3 sm:py-5 flex justify-between items-center">
+        <a href="../" class="">
+          <img
+            class="w-[70px] md:w-[90px]"
+            src="../src/images/Logos/M_logo.png"
+            alt="logo" />
+        </a>
+        <div class="flex flex-col-reverse md:flex-row items-center md:gap-4">
+          <ul
+            class="w-fit absolute right-0 top-0 h-screen md:h-fit md:relative flex flex-col md:flex-row md:border md:border-[#b6b6b6] gap-6 lg:gap-10 bg-custom-black backdrop-blur md:bg-transparent md:backdrop-blur-0 md:items-center text-custom-white md:text-[#272727] transition-all duration-150 overflow-hidden pl-10 pr-5 md:px-8 md:py-2 text-lg md:rounded-full box-border"
+            :class="{'w-4/5 sm:w-3/5 opacity-100 ': open, ' w-0 opacity-0 md:w-fit md:opacity-100': !open}">
+            <li
+              class="mt-24 md:mt-0 md:py-3 cursor-pointer hover:!cursor-pointer active:font-black md:hover:font-black active:text-custom-yellow transition-all duration-75 md:duration-100 overflow-hidden nav_link active_link md:w-[54px]"
+              @click.inside="open = false">
+              <a
+                href="../"
+                class="w-full h-full no-underline hover:text-inherit hover:no-underline active:no-underline">
+                Home
+              </a>
+            </li>
+            <li
+              class="md:py-3 cursor-pointer hover:!cursor-pointer active:font-black md:hover:font-black active:text-custom-yellow transition-all duration-75 md:duration-100 overflow-hidden nav_link inactive_link md:w-[83px]"
+              @click.inside="open = false">
+              <a
+                href="../#services"
+                class="no-underline hover:no-underline active:no-underline text-inherit">
+                Services
+              </a>
+            </li>
+            <li
+              class="md:py-3 cursor-pointer hover:!cursor-pointer active:font-black md:hover:font-black active:text-custom-yellow transition-all duration-75 md:duration-100 overflow-hidden nav_link inactive_link md:w-[64px]"
+              @click.inside="open = false">
+              <a
+                href="../#clients"
+                class="no-underline hover:no-underline active:no-underline text-inherit">
+                Clients
+              </a>
+            </li>
+            <li
+              class="md:py-3 cursor-pointer hover:!cursor-pointer active:font-black md:hover:font-black active:text-custom-yellow transition-all duration-75 md:duration-100 overflow-hidden nav_link inactive_link md:w-[103px]"
+              @click.inside="open = false">
+              <a
+                href="./"
+                class="w-full h-full no-underline hover:text-inherit hover:no-underline active:no-underline">
+                Case Study
+              </a>
+            </li>
+            <li
+              class="md:py-3 cursor-pointer hover:!cursor-pointer active:font-black md:hover:font-black active:text-custom-yellow transition-all duration-75 md:duration-100 overflow-hidden nav_link inactive_link md:w-[100px]"
+              @click=" open = false, showModal = !showModal">
+              Contact Us
+            </li>
+          </ul>
+          <div class="md:hidden">
+            <button
+              class="w-10 h-10 relative focus:outline-none bg-black md:hidden"
+              @click="open = !open">
+              <span class="sr-only">Open main menu</span>
+              <div
+                class="block w-5 absolute left-[18px] top-1/2 text-custom-yellow transform -translate-x-1/2 -translate-y-1/2 duration-150">
+                <span
+                  aria-hidden="true"
+                  class="block absolute h-0.5 w-6 bg-current transform transition duration-500 ease-in-out"
+                  :class="{'rotate-45': open,' -translate-y-1.5': !open }"></span>
+                <span
+                  aria-hidden="true"
+                  class="block absolute h-0.5 w-6 bg-current transform transition duration-500 ease-in-out"
+                  :class="{'opacity-0': open } "></span>
+                <span
+                  aria-hidden="true"
+                  class="block absolute h-0.5 w-6 bg-current transform transition duration-500 ease-in-out"
+                  :class="{'-rotate-45': open, ' translate-y-1.5': !open}"></span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <section
+      @click.inside="open = false"
+      id="case study"
+      class="section w-full md:min-h-screen pt-28 md:pt-36 pb-8 md:pb-10 lg:pb-14 bg-white-section bg-cover bg-no-repeat bg-bottom relative overflow-hidden">
+      <div
+        class="w-11/12 mx-auto h-full flex flex-col gap-5 md:gap-10 md:justify-between">
+        <div class="flex w-full justify-between items-center">
+          <div class="space-y-3">
+            <h1
+              data-aos="fade-up"
+              data-aos-duration="1300"
+              class="font-montserrat font-medium md:font-black w-11/12 md:ml-0 text-4xl sm:text-5xl md:text-6xl lg:text-[72px] md:w-fit text-black uppercase">
+              Case Study
+            </h1>
+            <p
+              data-aos="fade-up"
+              data-aos-duration="1300"
+              class="text-custom-ash font-thin text-lg md:text-xl lg:text-[22px] lg:leading-[26pt] md:w-11/12 bg-blend-color-burn text-justify">
+              Explore how we enhance businesses with our real-life case studies.
+            </p>
+          </div>
+          <div
+            data-aos="fade-up"
+            data-aos-duration="1300"
+            class="hidden md:flex gap-2">
+            <button class="bg-custom-white rounded-full p-2 active:border-none">
+              <svg
+                viewBox="0 0 24 24"
+                class="fill-custom-white w-6 md:w-8 cursor-pointer"
+                xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                    d="M16.1795 3.26875C15.7889 2.87823 15.1558 2.87823 14.7652 3.26875L8.12078 9.91322C6.94952 11.0845 6.94916 12.9833 8.11996 14.155L14.6903 20.7304C15.0808 21.121 15.714 21.121 16.1045 20.7304C16.495 20.3399 16.495 19.7067 16.1045 19.3162L9.53246 12.7442C9.14194 12.3536 9.14194 11.7205 9.53246 11.33L16.1795 4.68297C16.57 4.29244 16.57 3.65928 16.1795 3.26875Z"
+                    fill="#0F0F0F"></path>
+                </g>
+              </svg>
+            </button>
+            <button class="bg-custom-white rounded-full p-2">
+              <svg
+                viewBox="0 0 24 24"
+                class="fill-custom-white w-6 md:w-8 cursor-pointer"
+                xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                    d="M7.82054 20.7313C8.21107 21.1218 8.84423 21.1218 9.23476 20.7313L15.8792 14.0868C17.0505 12.9155 17.0508 11.0167 15.88 9.84497L9.3097 3.26958C8.91918 2.87905 8.28601 2.87905 7.89549 3.26958C7.50497 3.6601 7.50497 4.29327 7.89549 4.68379L14.4675 11.2558C14.8581 11.6464 14.8581 12.2795 14.4675 12.67L7.82054 19.317C7.43002 19.7076 7.43002 20.3407 7.82054 20.7313Z"
+                    fill="#0F0F0F"></path>
+                </g>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div
+          class="flex flex-col-reverse md:flex-row-reverse rounded-3xl overflow-hidden"
+          data-aos="fade-up"
+          data-aos-duration="1500"
+          data-aos-delay="100">
+          <div
+            class="w-full md:min-w-[370px] flex flex-col justify-center space-y-4 border-[#303030] border-[1.5px] p-4 md:py-6 md:px-6 lg:py-10 lg:!px-16 bg-gradient-to-r from-[#161616] via-[#1a1a1a] to-[#2c2c2c]">
+            <img
+              src="../src/images/Logos/ggbet-logo-white.png"
+              class="w-8/12 h-fit sm:h-10 sm:w-fit lg:h-12 md:w-fit md:mb-2 lg:mb-4"
+              alt="" />
+            <p
+              class="text-[#9f9f9f] font-thin text-lg md:text-xl lg:leading-[26pt] mb-2 lg:mb-4 text-justify">
+              GGBet is a worldwide betting company, sponsoring large events,
+              influencers, and competitions.
+            </p>
+            <p
+              class="text-[#9f9f9f] font-thin text-lg md:text-xl lg:leading-[26pt] text-justify mb-2">
+              GGBet is a dedicated esports betting bookmaker that covers all the
+              major games and markets. It was established in August 2016, when
+              they took their first esports bets, and remains a popular choice.
+            </p>
+            <p class="w-fit">
+              <a
+                class="py-2.5 px-4 cursor-pointer flex items-center gap-2 w-fit font-semibold rounded-3xl text-lg bg-custom-yellow hover:bg-[#f3e694] mt-2 md:mt-4 text-black active:outline-none focus:outline-none group hover:!text-black"
+                href="../preview/">
+                View
+                <span class="w-7 h-7">
+                  <svg
+                    viewBox="0 0 26 26"
+                    fill="none"
+                    className="w-7 h-7 fill-black "
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M4.0625 12C3.51022 12 3.0625 12.4477 3.0625 13C3.0625 13.5523 3.51022 14 4.0625 14L4.0625 12ZM21.9375 13L11.9375 7.2265L11.9375 18.7735L21.9375 13ZM4.80729 14C5.35958 14 5.80729 13.5523 5.80729 13C5.80729 12.4477 5.35958 12 4.80729 12L4.80729 14ZM7.78646 12C7.23417 12 6.78646 12.4477 6.78646 13C6.78646 13.5523 7.23417 14 7.78646 14L7.78646 12ZM12.2552 14C12.8075 14 13.2552 13.5523 13.2552 13C13.2552 12.4477 12.8075 12 12.2552 12L12.2552 14ZM13.7448 12C13.1925 12 12.7448 12.4477 12.7448 13C12.7448 13.5523 13.1925 14 13.7448 14L13.7448 12ZM16.724 14C17.2762 14 17.724 13.5523 17.724 13C17.724 12.4477 17.2762 12 16.724 12L16.724 14ZM21.1927 12C20.6404 12 20.1927 12.4477 20.1927 13C20.1927 13.5523 20.6404 14 21.1927 14L21.1927 12ZM4.0625 14L4.80729 14L4.80729 12L4.0625 12L4.0625 14ZM7.78646 14L12.2552 14L12.2552 12L7.78646 12L7.78646 14ZM13.7448 14L16.724 14L16.724 12L13.7448 12L13.7448 14Z"
+                      fill="#000" />
+                  </svg>
+                </span>
+              </a>
+            </p>
+          </div>
+          <div class="w-full md:w-[920px]">
+            <img
+              src="../src/images/People/IMG-9653.PNG"
+              class="h-[250px] sm:h-[300px] w-full md:h-full object-cover"
+              alt="influencers" />
+          </div>
+        </div>
+        <div
+          data-aos="fade-up"
+          data-aos-duration="1300"
+          data-aos-anchor="#casestudy-anchor"
+          class="flex md:hidden mt-3 gap-2 w-fit mx-auto">
+          <button class="bg-custom-white rounded-full p-2 active:border-none">
+            <svg
+              viewBox="0 0 24 24"
+              class="fill-custom-white w-6 md:w-8 cursor-pointer"
+              xmlns="http://www.w3.org/2000/svg">
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"></g>
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  d="M16.1795 3.26875C15.7889 2.87823 15.1558 2.87823 14.7652 3.26875L8.12078 9.91322C6.94952 11.0845 6.94916 12.9833 8.11996 14.155L14.6903 20.7304C15.0808 21.121 15.714 21.121 16.1045 20.7304C16.495 20.3399 16.495 19.7067 16.1045 19.3162L9.53246 12.7442C9.14194 12.3536 9.14194 11.7205 9.53246 11.33L16.1795 4.68297C16.57 4.29244 16.57 3.65928 16.1795 3.26875Z"
+                  fill="#0F0F0F"></path>
+              </g>
+            </svg>
+          </button>
+          <button class="bg-custom-white rounded-full p-2">
+            <svg
+              viewBox="0 0 24 24"
+              class="fill-custom-white w-6 md:w-8 cursor-pointer"
+              xmlns="http://www.w3.org/2000/svg">
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"></g>
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  d="M7.82054 20.7313C8.21107 21.1218 8.84423 21.1218 9.23476 20.7313L15.8792 14.0868C17.0505 12.9155 17.0508 11.0167 15.88 9.84497L9.3097 3.26958C8.91918 2.87905 8.28601 2.87905 7.89549 3.26958C7.50497 3.6601 7.50497 4.29327 7.89549 4.68379L14.4675 11.2558C14.8581 11.6464 14.8581 12.2795 14.4675 12.67L7.82054 19.317C7.43002 19.7076 7.43002 20.3407 7.82054 20.7313Z"
+                  fill="#0F0F0F"></path>
+              </g>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div
+        class="white flex flex-col items-center justify-center bg-[rgba(0,0,0,0.3)] backdrop-blur-sm fixed z-50 top-0 bottom-0 left-0 right-0 opacity-0"
+        x-show.transition.opacity.duration.600ms="showModal"
+        :class="{' block opacity-100': showModal, ' hidden scale-75': !showModal}">
+        <div
+          class="w-11/12 md:w-fit p-6 bg-white-section bg-cover mx-auto gap-3 md:gap-5 relative rounded-3xl transition-all duration-500"
+          x-show.transition.scale.duration.800ms="showModal"
+          x-transition.delay.50ms
+          @click.away="showModal = false">
+          <div class="md:w-[400px] lg:w-[500px]">
+            <div class="mb-3">
+              <h2
+                class="font-montserrat font-extrabold text-2xl lg:text-4xl w-fit text-custom-black uppercase">
+                Contact Us
+              </h2>
+              <p
+                class="text-custom-black text-base selection:bg-custom-yellow selection:text-black selection:font-extralight">
+                Contact us at
+                <span class="!no-underline">contact@mieladigital.com</span>
+                or fill out the form below.
+              </p>
+            </div>
+            <svg
+              version="1.1"
+              id="Capa_1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              viewBox="0 0 460.775 460.775"
+              class="absolute w-4 right-7 top-7 hover:fill-custom-yellow active:fill-custom-yellow cursor-pointer"
+              @click="showModal = !showModal"
+              xml:space="preserve">
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"></g>
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  d="M285.08,230.397L456.218,59.27c6.076-6.077,6.076-15.911,0-21.986L423.511,4.565c-2.913-2.911-6.866-4.55-10.992-4.55 c-4.127,0-8.08,1.639-10.993,4.55l-171.138,171.14L59.25,4.565c-2.913-2.911-6.866-4.55-10.993-4.55 c-4.126,0-8.08,1.639-10.992,4.55L4.558,37.284c-6.077,6.075-6.077,15.909,0,21.986l171.138,171.128L4.575,401.505 c-6.074,6.077-6.074,15.911,0,21.986l32.709,32.719c2.911,2.911,6.865,4.55,10.992,4.55c4.127,0,8.08-1.639,10.994-4.55 l171.117-171.12l171.118,171.12c2.913,2.911,6.866,4.55,10.993,4.55c4.128,0,8.081-1.639,10.992-4.55l32.709-32.719 c6.074-6.075,6.074-15.909,0-21.986L285.08,230.397z"></path>
+              </g>
+            </svg>
+            <form
+              id="homeContactForm"
+              onsubmit="SubmitContactForm(event)"
+              method="POST"
+              class="w-full space-y-2 text-base md:text-lg">
+              <input
+                type="text"
+                name="author"
+                id="author"
+                class="w-full p-2.5 focus:outline-black text-base md:text-lg border border-custom-ash rounded-sm"
+                placeholder="Name/Organization" />
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="w-full p-2.5 focus:outline-black text-base md:text-lg border border-custom-ash rounded-sm"
+                placeholder="Email" />
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                class="w-full p-2.5 focus:outline-black text-base md:text-lg border border-custom-ash rounded-sm"
+                placeholder="Subject" />
+              <textarea
+                id="message"
+                class="w-full p-2.5 focus:outline-black text-base md:text-lg border border-custom-ash rounded-sm md:h-[3em] lg:h-[4em]"
+                placeholder="Message ..."></textarea>
+              <button
+                type="submit"
+                @click="showModal = !showModal"
+                class="py-2 px-4 font-semibold text-base md:text-lg rounded-2xl bg-custom-yellow hover:bg-[#f3e694] mt-2 md:mt-4 text-black active:outline-none focus:outline-none float-right">
+                Submit
+                <i class="fa-regular fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="bg-black pb-3 pt-8 md:py-10 lg:py-14 overflow-hidden">
+      <div class="w-11/12 mx-auto space-y-6 md:space-y-8 lg:space-y-10">
+        <div class="w-full flex flex-col md:flex-row justify-between gap-5">
+          <div
+            data-aos="fade-up"
+            data-aos-duration="1300"
+            data-aos-delay="50"
+            class="w-full md:w-fit space-y-5">
+            <img
+              src="../src/images/Logos/MIELA-LOGO-COLORED.png"
+              class="w-16 md:w-20 lg:w-24"
+              alt="" />
+          </div>
+          <div
+            data-aos="fade-up"
+            data-aos-duration="1300"
+            data-aos-delay="100"
+            class="w-fit space-y-3">
+            <h2
+              class="font-montserrat font-extrabold text-white text-lg lg:text-xl w-fit uppercase">
+              Main
+            </h2>
+            <div class="font-normal text-base text-custom-white space-y-5">
+              <p
+                class="nav_link cursor-pointer active:text-custom-yellow md:hover:text-custom-yellow !border-none">
+                <a
+                  class="no-underline hover:no-underline active:no-underline text-inherit"
+                  href="../">
+                  Home
+                </a>
+              </p>
+              <p
+                class="nav_link cursor-pointer active:text-custom-yellow md:hover:text-custom-yellow !border-none">
+                <a
+                  href="../#our-services"
+                  class="no-underline hover:no-underline active:no-underline text-inherit">
+                  Services
+                </a>
+              </p>
+              <p
+                class="nav_link cursor-pointer active:text-custom-yellow md:hover:text-custom-yellow !border-none">
+                <a
+                  href="../#clients"
+                  class="no-underline hover:no-underline active:no-underline text-inherit">
+                  Clients
+                </a>
+                Clients
+              </p>
+              <p
+                class="cursor-pointer active:text-custom-yellow md:hover:text-custom-yellow !border-none">
+                <a
+                  class="no-underline hover:no-underline active:no-underline text-inherit"
+                  href="./">
+                  Case Study
+                </a>
+              </p>
+            </div>
+          </div>
+          <div
+            data-aos="fade-up"
+            data-aos-duration="1300"
+            data-aos-delay="150"
+            class="space-y-3 w-fit">
+            <h2
+              class="font-montserrat font-extrabold text-white text-lg lg:text-xl w-fit uppercase">
+              CONTACT
+            </h2>
+            <div class="text-base text-custom-white font-normal space-y-5">
+              <p>
+                <a
+                  href="mailto:contact@mieladigital.com"
+                  class="hover:no-underline hover:text-custom-yellow">
+                  contact@mieladigital.com
+                </a>
+              </p>
+            </div>
+            <h2
+              class="font-montserrat font-extrabold text-white text-lg lg:text-xl w-fit uppercase">
+              INTERESTED?
+              <br />
+              LET'S GET IN TOUCH!
+            </h2>
+          </div>
+          <div
+            data-aos="fade-up"
+            data-aos-duration="1300"
+            data-aos-delay="200"
+            class="space-y-3 w-fit">
+            <h2
+              id="footer-anchor"
+              class="font-montserrat font-extrabold whitespace-nowrap text-white text-lg lg:text-xl w-full uppercase">
+              FOLLOW US
+            </h2>
+            <div
+              class="text-base text-custom-white font-bold gap-3 flex flex-row items-center">
+              <a
+                href="https://www.linkedin.com/company/mieladigital"
+                target="_blank"
+                class="h-fit"
+                rel="noopener noreferrer">
+                <?xml version="1.0" encoding="utf-8"?>
+                <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+                <svg
+                  version="1.1"
+                  id="Capa_1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  class="fill-white hover:fill-custom-yellow h-6 cursor-pointer"
+                  viewBox="0 0 490.732 490.732"
+                  xml:space="preserve">
+                  <g>
+                    <g>
+                      <path
+                        d="M472.366,0.003H18.36C8.219,0.003,0,8.222,0,18.363v454.005c0,10.143,8.219,18.361,18.36,18.361h454.012
+                        c10.142,0,18.36-8.219,18.36-18.361V18.363C490.727,8.222,482.507,0.003,472.366,0.003z M130.375,403.808
+                        c0,6.762-5.478,12.238-12.24,12.238H69.132c-6.756,0-12.24-5.477-12.24-12.238V189.625c0-6.763,5.484-12.24,12.24-12.24h49.003
+                        c6.762,0,12.24,5.477,12.24,12.24V403.808z M130.375,127.482c0,6.763-5.478,12.24-12.24,12.24H69.132
+                        c-6.756,0-12.24-5.478-12.24-12.24V83.969c0-6.763,5.484-12.24,12.24-12.24h49.003c6.762,0,12.24,5.477,12.24,12.24V127.482z
+                        M433.835,403.808c0,6.762-5.483,12.238-12.24,12.238h-49.003c-6.763,0-12.24-5.477-12.24-12.238v-90.436
+                        c0-29.988-1.566-49.383-4.712-58.189c-3.14-8.807-8.237-15.649-15.3-20.526c-7.062-4.884-15.558-7.32-25.496-7.32
+                        c-12.729,0-24.149,3.488-34.26,10.459c-10.11,6.977-17.038,16.211-20.79,27.717c-3.745,11.506-5.618,32.779-5.618,63.807v74.488
+                        c0,6.762-5.483,12.238-12.24,12.238h-49.003c-6.756,0-12.24-5.477-12.24-12.238V189.625c0-6.763,5.483-12.24,12.24-12.24h43.771
+                        c6.763,0,12.24,5.477,12.24,12.24v16.316c0,6.763,3.312,7.852,7.858,2.852c22.864-25.123,50.753-37.687,83.673-37.687
+                        c16.212,0,31.028,2.919,44.455,8.758c13.422,5.838,23.58,13.292,30.466,22.356c6.885,9.063,11.683,19.351,14.382,30.857
+                        c2.699,11.505,4.058,27.98,4.058,49.426V403.808L433.835,403.808z" />
+                    </g>
+                  </g>
+                </svg>
+              </a>
+              <a
+                href="https://www.instagram.com/mieladigital/"
+                target="_blank"
+                class="h-fit"
+                rel="noopener noreferrer">
+                <?xml version="1.0" encoding="utf-8"?>
+                <svg
+                  viewBox="0 0 256 256"
+                  class="fill-white hover:fill-custom-yellow h-8 cursor-pointer"
+                  id="Flat"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M160,128a32,32,0,1,1-32-32A32.03667,32.03667,0,0,1,160,128Zm68-44v88a56.06353,56.06353,0,0,1-56,56H84a56.06353,56.06353,0,0,1-56-56V84A56.06353,56.06353,0,0,1,84,28h88A56.06353,56.06353,0,0,1,228,84Zm-52,44a48,48,0,1,0-48,48A48.05436,48.05436,0,0,0,176,128Zm16-52a12,12,0,1,0-12,12A12,12,0,0,0,192,76Z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        data-aos="fade-up"
+        data-aos-duration="1300"
+        data-aos-delay="200"
+        data-aos-anchor="#footer-anchor">
+        <hr class="bg-[#303030] mt-8 md:mt-10 mb-4" />
+        <p
+          class="text-custom-white font-normal text-sm text-center -mt-2">
+          ©2024 Miela Digital. All rights reserved.
+        </p>
+      </div>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
+      defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../src/script.js"></script>
+    <script src="../src/form.js"></script>
+    <script>
+      AOS.init({ once: true });
+    </script>
+  </body>
+</html>

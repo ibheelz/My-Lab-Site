@@ -1,0 +1,3936 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-3K398NKHHC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-3K398NKHHC");
+    </script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&display=swap"
+      rel="stylesheet" />
+    <!-- helveticaneue-condensedblack font -->
+    <link
+      href="https://db.onlinewebfonts.com/c/db43803fb4a7ccad71c4b2c69d32922f?family=HelveticaNeue-CondensedBlack"
+      rel="stylesheet" />
+    <!-- Logo -->
+    <link
+      rel="shortcut icon"
+      href="./src/images/Logos/M_logo.png"
+      type="image/x-icon" />
+    <!-- Font Awesome Icon -->
+    <script
+      src="https://kit.fontawesome.com/527da9814d.js"
+      crossorigin="anonymous"></script>
+    <link
+      rel="stylesheet"
+      href="https://fontawesome.com/icons/paper-plane-top?f=classic&s=regular" />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous" />
+    <!-- Link Swiper's CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- jQuery first, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <!-- Flowbite slider -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"
+      rel="stylesheet" />
+    <!-- AOS CSS CDN -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <!-- AOS JS CDN -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script src="/tailwind.config.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "custom-ash": "#bbbdcb",
+              "custom-white": "#F7F4F3",
+              "custom-whitish": "#ececed",
+              "custom-yellow": "#ffc300",
+              "custom-black": "#080708",
+              "custom-deep-ash": "#54586e",
+              "off-yellow": "#f3e694"
+            },
+            backgroundImage: {
+              // "hero-image": 'url("./src/images/Backgrounds/Influencer_Management_1.png")',
+              "blacked-image":
+                "linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.11670605742296913) 27%, rgba(0,0,0,0) 100%);",
+
+              "influencer-image":
+                "linear-gradient(0deg, rgba(0,0,0,0.60) 0%, rgba(0,0,0,0.60) 27%, rgba(0,0,0,0.60) 100%);",
+              "influencer-section": 'url("./src/images/Backgrounds/BG-1.png")',
+              "logo-section": 'url("./src/images/Backgrounds/BG-3.png")'
+            },
+            fontFamily: {
+              "helveticaneue-condensedblack": [
+                "HelveticaNeue-CondensedBlack",
+                "sans-serif"
+              ],
+              montserrat: ["montserrat", "sans-serif"]
+            },
+            animation: {
+              "infinite-scroll": "infinite-scroll 25s linear infinite",
+              "infinite-back": "infinite-back 25s linear infinite"
+            },
+            keyframes: {
+              "infinite-scroll": {
+                from: { transform: "translateX(0)" },
+                to: { transform: "translateX(-100%)" }
+              },
+              "infinite-back": {
+                from: { transform: "translateX(-100%)" },
+                to: { transform: "translateX(0)" }
+              }
+            },
+            transitionDuration: {
+              1500: "1500ms",
+              2000: "2000ms"
+              // Add more as needed
+            }
+          }
+        }
+      };
+    </script>
+    <link rel="stylesheet" href="./src/slider.css" />
+    <link rel="stylesheet" href="./src/style.css" />
+    <title>Miela Digital – Marketing, Esports & Consulting Services</title>
+    <meta
+      name="description"
+      content="Miela Digital is an agency specialized in the Gaming and iGaming sectors. We are dedicated to generating activations focused on brand awareness and user acquisition. We differentiate ourselves by focusing on the narrow part of the funnel: conversion." />
+
+    <style>
+      .dropdown-menu {
+        z-index: 9999;
+      }
+      iframe {
+        z-index: 0 !important;
+      }
+    </style>
+  </head>
+  <body
+    class="w-full p-0 m-0 relative scroll-smooth bg-black"
+    x-data="{ open: false, showModal: false, showVideo: false, showEventSliderOne: false, showEventSliderTwo: false, showEventSliderThree: false, showEventSliderFour: false, showEventSliderFive: false, showEventSliderSix: false, showEventSliderSeven: false, showEventSliderEight: false, showEventSliderNine: false }"
+    :class="{'max-h-screen overflow-hidden': open,' h-max': !open }">
+    <!-- Navigation -->
+    <nav
+      data-aos="fade-down"
+      data-aos-duration="1300"
+      class="w-full z-50 absolute md:relative bg-black">
+      <div
+        class="w-[85%] 2xl:w-[1400px] mx-auto py-3 sm:py-5 flex justify-between items-center">
+        <a href="./" class="">
+          <img
+            class="w-[53px] md:w-[65px] py-1"
+            src="./src/images/Logos/M_logo_copy.png"
+            alt="logo" />
+        </a>
+        <div class="flex flex-col-reverse md:flex-row items-center md:gap-4">
+          <ul
+            class="w-fit absolute right-0 top-0 h-screen md:h-fit md:relative flex flex-col md:flex-row gap-6 lg:gap-10 bg-custom-black backdrop-blur md:bg-transparent md:items-center text-custom-white md:text-[#272727] transition-all duration-150 overflow-hidden pl-10 pr-5 md:px-0 md:py-0 md:!pr-0 text-lg box-border z-[60] font-montserrat"
+            :class="{'w-4/5 sm:w-3/5 opacity-100 ': open, ' w-0 opacity-0 hidden md:flex md:w-fit md:opacity-100': !open}">
+            <li
+              class="md:text-[15px] md:font-semibold mt-24 md:mt-0 md:py-3 cursor-pointer hover:!cursor-pointer active:font-black md:hover: active:text-custom-yellow transition-all duration-75 md:duration-100 overflow-hidden px-2.5 pb-2 border-b-4 nav_link active_link"
+              @click.inside="open = false">
+              Home
+            </li>
+            <li
+              class="md:text-[15px] md:font-semibold md:py-3 cursor-pointer hover:!cursor-pointer active:text-custom-yellow transition-all duration-75 md:duration-100 overflow-hidden px-2.5 pb-2 border-b-4 nav_link inactive_link"
+              @click.inside="open = false">
+              Influencers
+            </li>
+            <li
+              class="md:text-[15px] md:font-semibold md:py-3 cursor-pointer hover:!cursor-pointer active:text-custom-yellow transition-all duration-75 md:duration-100 overflow-hidden px-2.5 pb-2 border-b-4 nav_link inactive_link"
+              @click.inside="open = false">
+              Our Team
+            </li>
+            <li
+              class="md:text-[15px] md:font-semibold md:py-3 cursor-pointer hover:!cursor-pointer active:text-custom-yellow transition-all duration-75 md:duration-100 overflow-hidden px-2.5 pb-2 border-b-4 nav_link inactive_link"
+              @click.inside="open = false">
+              Events
+            </li>
+          </ul>
+          <div class="md:hidden">
+            <button
+              class="w-10 h-10 relative focus:outline-none bg-black md:hidden z-[70]"
+              @click="open = !open">
+              <span class="sr-only">Open main menu</span>
+              <div
+                class="block w-5 absolute left-[18px] top-1/2 text-custom-yellow transform -translate-x-1/2 -translate-y-1/2 duration-150">
+                <span
+                  aria-hidden="true"
+                  class="block absolute h-0.5 w-6 bg-current transform transition duration-500 ease-in-out"
+                  :class="{'rotate-45': open,' -translate-y-1.5': !open }"></span>
+                <span
+                  aria-hidden="true"
+                  class="block absolute h-0.5 w-6 bg-current transform transition duration-500 ease-in-out"
+                  :class="{'opacity-0': open } "></span>
+                <span
+                  aria-hidden="true"
+                  class="block absolute h-0.5 w-6 bg-current transform transition duration-500 ease-in-out"
+                  :class="{'-rotate-45': open, ' translate-y-1.5': !open}"></span>
+              </div>
+            </button>
+          </div>
+        </div>
+        <button
+          class="hidden md:block md:py-3 cursor-pointer hover:!cursor-pointer active:bg-custom-ash transition-all duration-300 md:duration-300 overflow-hidden w-fit px-3.5 py-2 sm:px-4 sm:py-2.5 bg-custom-yellow hover:bg-off-yellow font-semibold !border-none !outline-none font-montserrat"
+          @click=" open = false, showModal = !showModal">
+          Contact us
+        </button>
+      </div>
+    </nav>
+
+    <!-- Contact us Popup -->
+    <div
+      class="white flex flex-col items-center justify-center bg-[rgba(0,0,0,0.3)] backdrop-blur-sm fixed z-50 top-0 bottom-0 left-0 right-0 opacity-0"
+      x-show.transition.opacity.duration.600ms="showModal"
+      :class="{' block opacity-100': showModal, ' hidden scale-75': !showModal}">
+      <div
+        class="w-11/12 md:w-fit p-6 bg-[#ffffff] bg-cover mx-auto gap-3 md:gap-5 relative rounded-sm transition-all duration-500"
+        x-show.transition.scale.duration.800ms="showModal"
+        x-transition.delay.50ms
+        @click.away="showModal = false">
+        <div class="md:w-[400px] lg:w-[500px]">
+          <div class="mb-3">
+            <h2
+              class="text-3xl md:text-4xl mb-1 font-helveticaneue-condensedblack font-extrabold text-custom-black">
+              Contact us
+            </h2>
+            <p
+              class="text-custom-black text-sm md:text-base tracking-wider selection:bg-custom-yellow selection:text-black selection:font-extralight">
+              Contact us at
+              <a
+                href="mailto:contact@mieladigital.com"
+                class="underline active:text-custom-yellow md:hover:text-custom-yellow">
+                contact@mieladigital.com
+              </a>
+              or fill out the form below.
+            </p>
+          </div>
+          <svg
+            version="1.1"
+            id="Capa_1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 0 460.775 460.775"
+            class="absolute w-4 right-7 top-7 hover:fill-custom-yellow active:fill-custom-yellow cursor-pointer"
+            @click="showModal = !showModal"
+            xml:space="preserve">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M285.08,230.397L456.218,59.27c6.076-6.077,6.076-15.911,0-21.986L423.511,4.565c-2.913-2.911-6.866-4.55-10.992-4.55 c-4.127,0-8.08,1.639-10.993,4.55l-171.138,171.14L59.25,4.565c-2.913-2.911-6.866-4.55-10.993-4.55 c-4.126,0-8.08,1.639-10.992,4.55L4.558,37.284c-6.077,6.075-6.077,15.909,0,21.986l171.138,171.128L4.575,401.505 c-6.074,6.077-6.074,15.911,0,21.986l32.709,32.719c2.911,2.911,6.865,4.55,10.992,4.55c4.127,0,8.08-1.639,10.994-4.55 l171.117-171.12l171.118,171.12c2.913,2.911,6.866,4.55,10.993,4.55c4.128,0,8.081-1.639,10.992-4.55l32.709-32.719 c6.074-6.075,6.074-15.909,0-21.986L285.08,230.397z"></path>
+            </g>
+          </svg>
+          <form
+            id="homeContactForm"
+            onsubmit="SubmitContactForm(event)"
+            method="POST"
+            class="w-full space-y-2.5 text-base md:text-lg">
+            <select
+              id="selectType"
+              name="selectType"
+              class="w-full p-2 md:p-2.5 focus:!outline-white focus:!ring-custom-yellow text-sm sm:text-base md:text-lg border border-custom-ash">
+              <option
+                value=""
+                class="!text-[#9ba3af] text-sm sm:text-base md:text-lg"
+                disabled
+                selected>
+                <span class="text-[#f6f6f6]">I am (Select)</span>
+              </option>
+              <option
+                value="A company"
+                class="!text-[#9ba3af] text-sm sm:text-base md:text-lg">
+                Company
+              </option>
+              <option
+                value="An influencer"
+                class="!text-[#9ba3af] text-sm sm:text-base md:text-lg">
+                Influencer
+              </option>
+              <option
+                value="Other"
+                class="!text-[#9ba3af] text-sm sm:text-base md:text-lg">
+                Other
+              </option>
+            </select>
+            <input
+              type="text"
+              name="author"
+              id="author"
+              class="w-full p-2 md:p-2.5 focus:!outline-white focus:!ring-custom-yellow text-base md:text-lg border border-custom-ash"
+              placeholder="Name/Organization" />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="w-full p-2 md:p-2.5 focus:!outline-white focus:!ring-custom-yellow text-sm sm:text-base md:text-lg border border-custom-ash"
+              placeholder="Email" />
+
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              class="w-full p-2 md:p-2.5 focus:!outline-white focus:!ring-custom-yellow text-sm sm:text-base md:text-lg border border-custom-ash"
+              placeholder="Subject" />
+            <textarea
+              id="message"
+              class="w-full p-2 md:p-2.5 focus:!outline-white focus:!ring-custom-yellow text-sm sm:text-base md:text-lg border border-custom-ash md:h-[3em] lg:h-[4em]"
+              placeholder="Message ..."></textarea>
+            <button
+              type="submit"
+              @click="showModal = !showModal"
+              class="py-2 px-4 font-medium text-base 2xl:text-lg bg-custom-yellow hover:bg-off-yellow transition-all duration-300 mt-2 md:mt-4 text-black active:outline-none focus:outline-none float-right">
+              Submit
+              <i class="fa-regular fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fixed Contact us Button -->
+    <button
+      class="fixed -right-[37px] bottom-[10%] -rotate-90 z-40 md:py-3 cursor-pointer hover:!cursor-pointer active:bg-custom-ash transition-all duration-300 md:duration-300 overflow-hidden w-fit px-3.5 py-2 sm:px-4 sm:py-2.5 bg-custom-yellow hover:bg-off-yellow font-semibold !border-none !outline-none block font-montserrat"
+      @click=" open = false, showModal = !showModal">
+      Contact us
+    </button>
+
+    <!-- Home/Service Container -->
+    <section
+      @click.inside="open = false"
+      id="home"
+      class="section 2xl:w-[1400px] pt-[96px] md:pt-0 relative z-10 mx-auto md:h-[740px] 2xl:h-[800px] bg-black bg-cover bg-no-repeat bg-bottom overflow-hidden">
+      <!-- Carousel -->
+      <div
+        data-aos="zoom-in"
+        data-aos-duration="1300"
+        data-aos-delay="100"
+        class="relative w-full font-montserrat flex flex-col md:flex-row aspect-video md:aspect-auto">
+        <!-- Carousel indicators -->
+        <div
+          class="services hidden w-[300px] md:h-[740px] 2xl:h-[800px] md:flex flex-row md:!flex-col font-montserrat z-30">
+          <button
+            type="button"
+            id="influencer-management-button"
+            class="w-full h-full aspect-video md:aspect-auto flex items-center justify-center border-b border-[#2a2c37] cursor-pointer group serviceButton">
+            <p
+              class="text-center md:!text-left text-sm font-semibold md:text-lg w-[125px] flex flex-col">
+              <span>Influencer</span>
+              <span>Services</span>
+            </p>
+          </button>
+          <button
+            type="button"
+            id="video-marketing-button"
+            class="w-full h-full aspect-video md:aspect-auto flex items-center justify-center cursor-pointer group serviceButton">
+            <p
+              class="text-center md:!text-left text-sm font-semibold md:text-lg w-[125px] flex flex-col">
+              <span>Video</span>
+              <span>Marketing</span>
+            </p>
+          </button>
+          <button
+            type="button"
+            id="Community-management-button"
+            class="w-full h-full aspect-video md:aspect-auto flex items-center justify-center border-b border-[#2a2c37] cursor-pointer group serviceButton">
+            <p
+              class="text-center md:!text-left text-sm font-semibold md:text-lg w-[125px] flex flex-col">
+              <span>Community</span>
+              <span>Management</span>
+            </p>
+          </button>
+          <button
+            type="button"
+            id="virtual-influencers-button"
+            class="w-full h-full aspect-video md:aspect-auto flex items-center justify-center border-b border-[#2a2c37] cursor-pointer group serviceButton">
+            <p
+              class="text-center md:!text-left text-sm font-semibold md:text-lg w-[125px] flex flex-col">
+              <span>Virtual</span>
+              <span>Influencers</span>
+            </p>
+          </button>
+          <button
+            type="button"
+            id="offline-events-button"
+            class="w-full h-full aspect-video md:aspect-auto flex items-center justify-center border-b border-[#2a2c37] cursor-pointer group serviceButton">
+            <p
+              class="text-center md:!text-left text-sm font-semibold md:text-lg w-[125px] flex flex-col">
+              <span>Offline</span>
+              <span>Events</span>
+            </p>
+          </button>
+        </div>
+
+        <!-- Carousel Items -->
+        <!-- Desktop Carousel -->
+        <div
+          class="swiper serviceSwiper md:h-[740px] 2xl:h-[800px] relative hidden md:block">
+          <!-- Mute and Unmute Button -->
+          <button
+            id="muteButton"
+            class="absolute top-0 right-0 gap-2 items-center justify-center rounded-full bg-custom-yellow hover:bg-off-yellow transition-all duration-300 w-7 h-7 md:h-8 md:w-8 group z-50 hidden md:flex md:hidden">
+            <svg
+              class="w-4 h-4 md:w-5 md:h-5 fill-white unmute group-hover:scale-90 transition-[scale] duration-300"
+              viewBox="0 0 56 56"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M 48.1605 48.9342 C 48.8765 49.4181 49.8252 49.2245 50.3865 48.4309 C 53.9286 43.3593 56.0000 36.8360 56.0000 29.9255 C 56.0000 23.0151 53.9096 16.4724 50.3865 11.4008 C 49.8252 10.6072 48.8765 10.4136 48.1605 10.9169 C 47.4248 11.4202 47.3086 12.3880 47.8700 13.2010 C 50.9863 17.7887 52.9221 23.6732 52.9221 29.9255 C 52.9221 36.1779 51.0446 42.1398 47.8700 46.6500 C 47.3086 47.4437 47.4248 48.4115 48.1605 48.9342 Z M 21.6412 47.5985 C 22.9575 47.5985 23.9060 46.6307 23.9060 45.3338 L 23.9060 14.4592 C 23.9060 13.1623 22.9575 12.0783 21.6025 12.0783 C 20.6540 12.0783 20.0152 12.5042 18.9893 13.4720 L 10.4528 21.5439 C 10.3173 21.6601 10.1431 21.7181 9.9495 21.7181 L 4.2005 21.7181 C 1.4711 21.7181 0 23.2086 0 26.1122 L 0 33.6227 C 0 36.5263 1.4711 38.0168 4.2005 38.0168 L 9.9495 38.0168 C 10.1431 38.0168 10.3173 38.0748 10.4528 38.1910 L 18.9893 46.3403 C 19.9184 47.2114 20.6927 47.5985 21.6412 47.5985 Z M 40.3595 43.6497 C 41.1143 44.1530 42.0436 43.9594 42.5855 43.1851 C 45.1405 39.6234 46.6117 34.8809 46.6117 29.9255 C 46.6117 24.9508 45.1599 20.2083 42.5855 16.6466 C 42.0242 15.8917 41.1143 15.6981 40.3595 16.2014 C 39.6238 16.7047 39.5076 17.6532 40.0884 18.4855 C 42.1982 21.5826 43.4953 25.6476 43.4953 29.9255 C 43.4953 34.2034 42.2370 38.3072 40.0690 41.3656 C 39.5270 42.1979 39.6238 43.1464 40.3595 43.6497 Z M 32.6360 38.4233 C 33.2941 38.8878 34.2426 38.7330 34.8039 37.9781 C 36.3139 35.9456 37.2238 32.9646 37.2238 29.9255 C 37.2238 26.8865 36.2945 23.9249 34.8039 21.8536 C 34.2426 21.0987 33.3135 20.9439 32.6360 21.4084 C 31.7843 21.9698 31.6875 22.9570 32.3069 23.8087 C 33.4296 25.3185 34.1071 27.6221 34.1071 29.9255 C 34.1071 32.2290 33.3909 34.5325 32.2876 36.0617 C 31.7068 36.8941 31.8037 37.8426 32.6360 38.4233 Z" />
+            </svg>
+          </button>
+          <button
+            id="unmuteButton"
+            class="absolute top-0 right-0 gap-2 items-center justify-center rounded-full bg-custom-yellow hover:bg-off-yellow transition-opacity duration-300 w-7 h-7 md:h-8 md:w-8 group z-50 hidden md:flex">
+            <svg
+              class="w-4 h-4 md:w-5 md:h-5 fill-white mute group-hover:scale-90 transition-[scale] duration-300"
+              viewBox="0 0 28 28"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M16.5 4.81425C16.5 3.71986 15.1932 3.15384 14.395 3.90244L9.45826 8.53182C9.13388 8.836 8.70587 9.00529 8.26119 9.00529H5.25C3.45508 9.00529 2 10.4604 2 12.2553V15.7473C2 17.5422 3.45507 18.9973 5.25 18.9973H8.26174C8.70619 18.9973 9.134 19.1664 9.45832 19.4703L14.3953 24.0964C15.1937 24.8446 16.5 24.2785 16.5 23.1843V4.81425Z" />
+              <path
+                d="M19.7824 10.7216C19.4905 10.4277 19.0157 10.4259 18.7217 10.7177C18.4277 11.0095 18.426 11.4844 18.7178 11.7784L20.9359 14.0128L18.7208 16.2186C18.4273 16.5108 18.4263 16.9857 18.7186 17.2792C19.0108 17.5727 19.4857 17.5737 19.7792 17.2814L21.9965 15.0735L24.2217 17.2823C24.5157 17.5741 24.9906 17.5723 25.2824 17.2784C25.5742 16.9844 25.5724 16.5095 25.2784 16.2177L23.0572 14.0128L25.2815 11.7792C25.5738 11.4857 25.5728 11.0109 25.2793 10.7186C24.9858 10.4263 24.5109 10.4273 24.2186 10.7208L21.9965 12.9521L19.7824 10.7216Z" />
+            </svg>
+          </button>
+          <div
+            class="w-full h-full absolute top-0 bottom-0 left-0 right-0 md:bg-blacked-image z-10">
+            <div class="swiper serviceWordSwiper hidden md:block">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide" data-swiper-autoplay="28000">
+                  <p
+                    class="hidden md:block w-11/12 md:w-9/12 absolute bottom-12 2xl:bottom-14 font-medium left-0 right-0 text-white mx-auto z-50 text-center text-lg">
+                    We identify, engage, and collaborate with influencers within
+                    the online gaming industry to promote your brand or
+                    services.
+                  </p>
+                  <p
+                    class="md:hidden w-11/12 md:w-9/12 absolute bottom-8 font-semibold left-0 right-0 text-white mx-auto z-50 text-center text-base">
+                    INFLUENCER SERVICES
+                  </p>
+                </div>
+                <div class="swiper-slide" data-swiper-autoplay="28000">
+                  <p
+                    class="hidden md:block w-11/12 md:w-9/12 absolute bottom-12 2xl:bottom-14 font-medium left-0 right-0 text-white mx-auto z-50 text-center text-lg">
+                    We create assets that can be used in marketing strategies
+                    across a variety of channels and formats to help reach and
+                    engage audiences.
+                  </p>
+                  <p
+                    class="md:hidden w-11/12 md:w-9/12 absolute bottom-8 font-semibold left-0 right-0 text-white mx-auto z-50 text-center text-base">
+                    VIDEO MARKETING
+                  </p>
+                </div>
+                <div class="swiper-slide" data-swiper-autoplay="20000">
+                  <p
+                    class="hidden md:block w-11/12 md:w-9/12 absolute bottom-12 2xl:bottom-14 font-medium left-0 right-0 text-white mx-auto z-50 text-center text-lg">
+                    We care about how your brand seizes opportunities to
+                    interact with your community in public online spaces.
+                  </p>
+                  <p
+                    class="md:hidden w-11/12 md:w-9/12 absolute bottom-8 font-semibold left-0 right-0 text-white mx-auto z-50 text-center text-base">
+                    COMMUNTIY MANAGEMENT
+                  </p>
+                </div>
+                <div class="swiper-slide" data-swiper-autoplay="22000">
+                  <p
+                    class="hidden md:block w-11/12 md:w-9/12 absolute bottom-12 2xl:bottom-14 font-medium left-0 right-0 text-white mx-auto z-50 text-center text-lg">
+                    We create influencers that doesn’t age and are free from
+                    scandals and they can be programmed to meet your brand
+                    needs.
+                  </p>
+                  <p
+                    class="md:hidden w-11/12 md:w-9/12 absolute bottom-8 font-semibold left-0 right-0 text-white mx-auto z-50 text-center text-base">
+                    VIRTUAL INFLUENCERS
+                  </p>
+                </div>
+                <div class="swiper-slide" data-swiper-autoplay="33000">
+                  <p
+                    class="hidden md:block w-11/12 md:w-9/12 absolute bottom-12 2xl:bottom-14 font-medium left-0 right-0 text-white mx-auto z-50 text-center text-lg">
+                    We open the door for remarkable in-person interactions that
+                    create truly unforgettable experiences.
+                  </p>
+                  <p
+                    class="md:hidden w-11/12 md:w-9/12 absolute bottom-8 font-semibold left-0 right-0 text-white mx-auto z-50 text-center text-base">
+                    OFFLINE EVENTS
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Desktop carousel -->
+          <div class="swiper-wrapper hidden md:flex">
+            <!--Item 1 -->
+            <div
+              class="swiper-slide h-full relative w-full aspect-video md:aspect-auto"
+              data-swiper-autoplay="28000">
+              <video
+                src="./src/videos/Infuencer_Management.mp4"
+                autoplay
+                loop
+                muted
+                playsinline
+                class="inlinevideo carouselVideo w-full"></video>
+            </div>
+            <!--Item 5 -->
+            <div
+              class="swiper-slide h-full relative w-full aspect-video md:aspect-auto"
+              data-swiper-autoplay="28000">
+              <video
+                src="./src/videos/Guion_1_FINAL.mp4"
+                autoplay
+                loop
+                muted
+                playsinline
+                class="carouselVideo w-full"></video>
+            </div>
+            <!--Item 2 -->
+            <div
+              class="swiper-slide h-full relative w-full aspect-video md:aspect-auto"
+              data-swiper-autoplay="20000">
+              <video
+                src="./src/videos/CommunityManagment.mp4"
+                autoplay
+                loop
+                muted
+                playsinline
+                class="carouselVideo w-full"></video>
+            </div>
+            <!--Item 3 -->
+            <div
+              class="swiper-slide h-full relative w-full aspect-video md:aspect-auto"
+              data-swiper-autoplay="22000">
+              <video
+                src="./src/videos/Virtual_Influencers.MP4"
+                autoplay
+                loop
+                muted
+                playsinline
+                class="carouselVideo w-full"></video>
+            </div>
+            <!--Item 4 -->
+            <div
+              class="swiper-slide h-full relative w-full aspect-video md:aspect-auto"
+              data-swiper-autoplay="33000">
+              <video
+                src="./src/videos/EventoBetano.mp4"
+                autoplay
+                loop
+                muted
+                playsinline
+                class="carouselVideo w-full"></video>
+            </div>
+          </div>
+          <!-- Carousel Nav buttons -->
+          <div
+            class="absolute w-full p-2.5 pb-3 md:p-10 md:pb-12 2xl:pb-24 z-30 bottom-0 2xl:bottom-4 left-0 right-0 mx-auto">
+            <div class="w-[90%] mx-auto mb-1 md:mb-6 2xl:mb-10">
+              <div class="flex w-full justify-between items-center">
+                <button
+                  type="button"
+                  id="service-carousel-prev-button"
+                  class="rounded-full w-8 h-8 sm:w-10 sm:h-10 p-2.5 flex items-center justify-center bg-black bg-opacity-75 hover:bg-[#666a7d] transition-opacity duration-300 group">
+                  <svg
+                    class="w-full fill-white group-hover:scale-90 transition-[scale] duration-300"
+                    version="1.1"
+                    id="Layer_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 492 492"
+                    xml:space="preserve">
+                    <g>
+                      <g>
+                        <path
+                          d="M464.344,207.418l0.768,0.168H135.888l103.496-103.724c5.068-5.064,7.848-11.924,7.848-19.124
+    c0-7.2-2.78-14.012-7.848-19.088L223.28,49.538c-5.064-5.064-11.812-7.864-19.008-7.864c-7.2,0-13.952,2.78-19.016,7.844
+    L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
+    c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
+    c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
+    C492,219.198,479.172,207.418,464.344,207.418z" />
+                      </g>
+                    </g>
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  id="service-carousel-next-button"
+                  class="rounded-full w-8 h-8 sm:w-10 sm:h-10 p-2.5 flex items-center justify-center bg-black bg-opacity-75 hover:bg-[#666a7d] transition-opacity duration-300 group">
+                  <svg
+                    class="w-full fill-white group-hover:scale-90 transition-[scale] duration-300"
+                    version="1.1"
+                    id="Layer_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 492.004 492.004"
+                    xml:space="preserve">
+                    <g>
+                      <g>
+                        <path
+                          d="M484.14,226.886L306.46,49.202c-5.072-5.072-11.832-7.856-19.04-7.856c-7.216,0-13.972,2.788-19.044,7.856l-16.132,16.136
+    c-5.068,5.064-7.86,11.828-7.86,19.04c0,7.208,2.792,14.2,7.86,19.264L355.9,207.526H26.58C11.732,207.526,0,219.15,0,234.002
+    v22.812c0,14.852,11.732,27.648,26.58,27.648h330.496L252.248,388.926c-5.068,5.072-7.86,11.652-7.86,18.864
+    c0,7.204,2.792,13.88,7.86,18.948l16.132,16.084c5.072,5.072,11.828,7.836,19.044,7.836c7.208,0,13.968-2.8,19.04-7.872
+    l177.68-177.68c5.084-5.088,7.88-11.88,7.86-19.1C492.02,238.762,489.228,231.966,484.14,226.886z" />
+                      </g>
+                    </g>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Mobile Carousel -->
+        <div
+          class="swiper mobileServiceSwiper md:h-[740px] 2xl:h-[800px] relative md:hidden">
+          <!-- Mute and Unmute Button -->
+          <button
+            id="mobileMuteButton"
+            class="absolute top-0 right-0 flex gap-2 items-center justify-center rounded-full bg-custom-yellow hover:bg-off-yellow transition-all duration-300 w-7 h-7 md:h-8 md:w-8 group z-50 md:hidden">
+            <svg
+              class="w-4 h-4 md:w-5 md:h-5 fill-white unmute group-hover:scale-90 transition-[scale] duration-300"
+              viewBox="0 0 56 56"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M 48.1605 48.9342 C 48.8765 49.4181 49.8252 49.2245 50.3865 48.4309 C 53.9286 43.3593 56.0000 36.8360 56.0000 29.9255 C 56.0000 23.0151 53.9096 16.4724 50.3865 11.4008 C 49.8252 10.6072 48.8765 10.4136 48.1605 10.9169 C 47.4248 11.4202 47.3086 12.3880 47.8700 13.2010 C 50.9863 17.7887 52.9221 23.6732 52.9221 29.9255 C 52.9221 36.1779 51.0446 42.1398 47.8700 46.6500 C 47.3086 47.4437 47.4248 48.4115 48.1605 48.9342 Z M 21.6412 47.5985 C 22.9575 47.5985 23.9060 46.6307 23.9060 45.3338 L 23.9060 14.4592 C 23.9060 13.1623 22.9575 12.0783 21.6025 12.0783 C 20.6540 12.0783 20.0152 12.5042 18.9893 13.4720 L 10.4528 21.5439 C 10.3173 21.6601 10.1431 21.7181 9.9495 21.7181 L 4.2005 21.7181 C 1.4711 21.7181 0 23.2086 0 26.1122 L 0 33.6227 C 0 36.5263 1.4711 38.0168 4.2005 38.0168 L 9.9495 38.0168 C 10.1431 38.0168 10.3173 38.0748 10.4528 38.1910 L 18.9893 46.3403 C 19.9184 47.2114 20.6927 47.5985 21.6412 47.5985 Z M 40.3595 43.6497 C 41.1143 44.1530 42.0436 43.9594 42.5855 43.1851 C 45.1405 39.6234 46.6117 34.8809 46.6117 29.9255 C 46.6117 24.9508 45.1599 20.2083 42.5855 16.6466 C 42.0242 15.8917 41.1143 15.6981 40.3595 16.2014 C 39.6238 16.7047 39.5076 17.6532 40.0884 18.4855 C 42.1982 21.5826 43.4953 25.6476 43.4953 29.9255 C 43.4953 34.2034 42.2370 38.3072 40.0690 41.3656 C 39.5270 42.1979 39.6238 43.1464 40.3595 43.6497 Z M 32.6360 38.4233 C 33.2941 38.8878 34.2426 38.7330 34.8039 37.9781 C 36.3139 35.9456 37.2238 32.9646 37.2238 29.9255 C 37.2238 26.8865 36.2945 23.9249 34.8039 21.8536 C 34.2426 21.0987 33.3135 20.9439 32.6360 21.4084 C 31.7843 21.9698 31.6875 22.9570 32.3069 23.8087 C 33.4296 25.3185 34.1071 27.6221 34.1071 29.9255 C 34.1071 32.2290 33.3909 34.5325 32.2876 36.0617 C 31.7068 36.8941 31.8037 37.8426 32.6360 38.4233 Z" />
+            </svg>
+          </button>
+          <button
+            id="mobileUnmuteButton"
+            class="absolute top-0 right-0 flex gap-2 items-center justify-center rounded-full bg-custom-yellow hover:bg-off-yellow transition-opacity duration-300 w-7 h-7 md:h-8 md:w-8 group z-50 md:hidden">
+            <svg
+              class="w-4 h-4 md:w-5 md:h-5 fill-white mute group-hover:scale-90 transition-[scale] duration-300"
+              viewBox="0 0 28 28"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M16.5 4.81425C16.5 3.71986 15.1932 3.15384 14.395 3.90244L9.45826 8.53182C9.13388 8.836 8.70587 9.00529 8.26119 9.00529H5.25C3.45508 9.00529 2 10.4604 2 12.2553V15.7473C2 17.5422 3.45507 18.9973 5.25 18.9973H8.26174C8.70619 18.9973 9.134 19.1664 9.45832 19.4703L14.3953 24.0964C15.1937 24.8446 16.5 24.2785 16.5 23.1843V4.81425Z" />
+              <path
+                d="M19.7824 10.7216C19.4905 10.4277 19.0157 10.4259 18.7217 10.7177C18.4277 11.0095 18.426 11.4844 18.7178 11.7784L20.9359 14.0128L18.7208 16.2186C18.4273 16.5108 18.4263 16.9857 18.7186 17.2792C19.0108 17.5727 19.4857 17.5737 19.7792 17.2814L21.9965 15.0735L24.2217 17.2823C24.5157 17.5741 24.9906 17.5723 25.2824 17.2784C25.5742 16.9844 25.5724 16.5095 25.2784 16.2177L23.0572 14.0128L25.2815 11.7792C25.5738 11.4857 25.5728 11.0109 25.2793 10.7186C24.9858 10.4263 24.5109 10.4273 24.2186 10.7208L21.9965 12.9521L19.7824 10.7216Z" />
+            </svg>
+          </button>
+
+          <div class="swiper-wrapper md:hidden">
+            <!--Item 1 -->
+            <div
+              class="swiper-slide h-full relative w-full aspect-video md:aspect-auto md:hidden"
+              data-swiper-autoplay="22000">
+              <video
+                src="./src/videos/mobile-services/InfluencerService_02.mp4"
+                autoplay
+                loop
+                muted
+                playsinline
+                class="mobileInlinevideo mobileCarouselVideo w-full"></video>
+            </div>
+            <!--Item 5 -->
+
+            <div
+              class="swiper-slide h-full relative w-full aspect-video md:aspect-auto md:hidden"
+              data-swiper-autoplay="31000">
+              <video
+                src="./src/videos/mobile-services/VideoMarketing_02.mp4"
+                autoplay
+                loop
+                muted
+                playsinline
+                class="mobileCarouselVideo w-full"></video>
+            </div>
+            <!--Item 2 -->
+
+            <div
+              class="swiper-slide h-full relative w-full aspect-video md:aspect-auto md:hidden"
+              data-swiper-autoplay="29000">
+              <video
+                src="./src/videos/mobile-services/CommunityManagment_02.mp4"
+                autoplay
+                loop
+                muted
+                playsinline
+                class="mobileCarouselVideo w-full"></video>
+            </div>
+            <!--Item 3 -->
+
+            <div
+              class="swiper-slide h-full relative w-full aspect-video md:aspect-auto md:hidden"
+              data-swiper-autoplay="24000">
+              <video
+                src="./src/videos/mobile-services/VirtualInfluencer_02.mp4"
+                autoplay
+                loop
+                muted
+                playsinline
+                class="mobileCarouselVideo w-full md:hidden"></video>
+            </div>
+            <!--Item 4 -->
+
+            <div
+              class="swiper-slide h-full relative w-full aspect-video md:aspect-auto md:hidden"
+              data-swiper-autoplay="36000">
+              <video
+                src="./src/videos/mobile-services/OfflineEvents_02.mp4"
+                autoplay
+                loop
+                muted
+                playsinline
+                class="mobileCarouselVideo w-full md:hidden"></video>
+            </div>
+          </div>
+          <!-- Carousel Nav buttons -->
+          <div
+            class="absolute w-full h-fit p-2.5 pb-3 md:p-10 md:pb-12 2xl:pb-24 z-30 bottom-0 top-0 left-0 right-0 m-auto">
+            <div class="w-[90%] mx-auto mb-1 md:mb-6 2xl:mb-10">
+              <div class="flex w-full justify-between items-center">
+                <button
+                  type="button"
+                  id="mobile-service-carousel-prev-button"
+                  class="rounded-full w-8 h-8 sm:w-10 sm:h-10 p-2.5 flex items-center justify-center bg-black bg-opacity-75 hover:bg-[#666a7d] transition-opacity duration-300 group">
+                  <svg
+                    class="w-full fill-white group-hover:scale-90 transition-[scale] duration-300"
+                    version="1.1"
+                    id="Layer_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 492 492"
+                    xml:space="preserve">
+                    <g>
+                      <g>
+                        <path
+                          d="M464.344,207.418l0.768,0.168H135.888l103.496-103.724c5.068-5.064,7.848-11.924,7.848-19.124
+    c0-7.2-2.78-14.012-7.848-19.088L223.28,49.538c-5.064-5.064-11.812-7.864-19.008-7.864c-7.2,0-13.952,2.78-19.016,7.844
+    L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
+    c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
+    c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
+    C492,219.198,479.172,207.418,464.344,207.418z" />
+                      </g>
+                    </g>
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  id="mobile-service-carousel-next-button"
+                  class="rounded-full w-8 h-8 sm:w-10 sm:h-10 p-2.5 flex items-center justify-center bg-black bg-opacity-75 hover:bg-[#666a7d] transition-opacity duration-300 group">
+                  <svg
+                    class="w-full fill-white group-hover:scale-90 transition-[scale] duration-300"
+                    version="1.1"
+                    id="Layer_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 492.004 492.004"
+                    xml:space="preserve">
+                    <g>
+                      <g>
+                        <path
+                          d="M484.14,226.886L306.46,49.202c-5.072-5.072-11.832-7.856-19.04-7.856c-7.216,0-13.972,2.788-19.044,7.856l-16.132,16.136
+    c-5.068,5.064-7.86,11.828-7.86,19.04c0,7.208,2.792,14.2,7.86,19.264L355.9,207.526H26.58C11.732,207.526,0,219.15,0,234.002
+    v22.812c0,14.852,11.732,27.648,26.58,27.648h330.496L252.248,388.926c-5.068,5.072-7.86,11.652-7.86,18.864
+    c0,7.204,2.792,13.88,7.86,18.948l16.132,16.084c5.072,5.072,11.828,7.836,19.044,7.836c7.208,0,13.968-2.8,19.04-7.872
+    l177.68-177.68c5.084-5.088,7.88-11.88,7.86-19.1C492.02,238.762,489.228,231.966,484.14,226.886z" />
+                      </g>
+                    </g>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Influencers Section -->
+    <section
+      @click.inside="open = false"
+      id="influencers"
+      class="section bg-influencer-section bg-center bg-cover py-8 md:py-10 lg:py-14 overflow-hidden z-10">
+      <div class="w-[85%] 2xl:w-[1400px] mx-auto">
+        <div
+          class="mb-8 md:mb-16"
+          data-aos="fade-up"
+          data-aos-duration="1300"
+          data-aos-delay="100">
+          <h2
+            class="md:text-center text-3xl md:text-4xl lg:text-5xl w-fit md:mx-auto font-helveticaneue-condensedblack">
+            Influencer Collaborations
+          </h2>
+          <p class="md:text-lg font-medium font-montserrat md:text-center mt-2">
+            We've worked with over 500 creators worldwide.
+          </p>
+        </div>
+
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 2xl:grid-cols-4 gap-5 2xl:gap-7">
+          <!-- Item 1 -->
+          <div
+            data-aos="zoom-in"
+            data-aos-duration="1300"
+            data-aos-delay="100"
+            class="group relative w-full overflow-hidden cursor-pointer">
+            <div class="relative w-full overflow-hidden">
+              <img
+                src="./src/People/Arturo.webp"
+                alt=""
+                class="relative z-0 w-full object-cover bg-white group-hover:scale-[105%] duration-500 transition-all" />
+              <div
+                class="opacity-0 group-hover:opacity-100 bg-influencer-image transition-opacity duration-700 absolute top-0 bottom-0 right-0 left-0 p-4 flex flex-col justify-between gap-2">
+                <div class="flex flex-wrap pl-1.5 gap-3 justify-end">
+                  <a
+                    href="https://www.instagram.com/arturolugoo/"
+                    target="_blank"
+                    class="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-custom-yellow hover:bg-off-yellow transition-all duration-300 flex justify-center items-center p-1.5 md:p-2 overflow-hidden">
+                    <img src="./src/images/Logos/IG.png" alt="IG Logo" class="w-5 md:w-6" />
+                  </a>
+                  <a
+                    target="_blank"
+                    href="https://www.tiktok.com/@arturolugoo"
+                    class="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-custom-yellow hover:bg-off-yellow transition-all duration-300 flex justify-center items-center p-1.5 md:p-2">
+                    <img src="./src/images/Logos/Tiktok.png" alt="IG Logo" class="w-5 md:w-6" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 mt-2">
+              <img
+                src="./src/images/flags/Peru.webp"
+                class="h-[20px] object-cover object-center"
+                alt="" />
+              <p class="font-semibold text-sm md:text-base xl:text-lg">
+                Arturo
+              </p>
+            </div>
+          </div>
+          <!-- Item 2 -->
+          <div
+            data-aos="zoom-in"
+            data-aos-duration="1300"
+            data-aos-delay="100"
+            class="group relative w-full overflow-hidden cursor-pointer">
+            <div class="relative w-full overflow-hidden">
+              <img
+                src="./src/People/Olengirl.webp"
+                alt=""
+                class="relative z-0 w-full object-cover bg-white group-hover:scale-[105%] duration-500 transition-all" />
+              <div
+                class="opacity-0 group-hover:opacity-100 bg-influencer-image transition-opacity duration-700 absolute top-0 bottom-0 right-0 left-0 p-4 flex flex-col justify-between gap-2">
+                <div class="flex flex-wrap pl-1.5 gap-3 justify-end">
+                  <a
+                    href="https://www.instagram.com/olenkamonteza/"
+                    target="_blank"
+                    class="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-custom-yellow hover:bg-off-yellow transition-all duration-300 flex justify-center items-center p-1.5 md:p-2 overflow-hidden">
+                    <img src="./src/images/Logos/IG.png" alt="IG Logo" class="w-5 md:w-6" />
+                  </a>
+                  <a
+                    target="_blank"
+                    href="http://kick.com/olengirlm"
+                    class="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-custom-yellow hover:bg-off-yellow transition-all duration-300 flex justify-center items-center p-1.5 md:p-2">
+                    <img src="./src/images/Logos/k.png" alt="IG Logo" class="w-5 md:w-6" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 mt-2">
+              <img
+                src="./src/images/flags/Peru.webp"
+                class="h-[20px] object-cover object-center"
+                alt="" />
+              <p class="font-semibold text-sm md:text-base xl:text-lg">
+                Olengirl
+              </p>
+            </div>
+          </div>
+          <!-- Item 3 -->
+          <div
+            data-aos="zoom-in"
+            data-aos-duration="1300"
+            data-aos-delay="100"
+            class="group relative w-full overflow-hidden cursor-pointer">
+            <div class="relative w-full overflow-hidden">
+              <img
+                src="./src/People/Daniel.webp"
+                alt=""
+                class="relative z-0 w-full object-cover bg-white group-hover:scale-[105%] duration-500 transition-all" />
+              <div
+                class="opacity-0 group-hover:opacity-100 bg-influencer-image transition-opacity duration-700 absolute top-0 bottom-0 right-0 left-0 p-4 flex flex-col justify-between gap-2">
+                <div class="flex flex-wrap pl-1.5 gap-3 justify-end">
+                  <a
+                    href="https://www.instagram.com/eldanycll"
+                    target="_blank"
+                    class="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-custom-yellow hover:bg-off-yellow transition-all duration-300 flex justify-center items-center p-1.5 md:p-2 overflow-hidden">
+                    <img src="./src/images/Logos/IG.png" alt="IG Logo" class="w-5 md:w-6" />
+                  </a>
+                  <a
+                    target="_blank"
+                    href="https://kick.com/eldanycl"
+                    class="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-custom-yellow hover:bg-off-yellow transition-all duration-300 flex justify-center items-center p-1.5 md:p-2">
+                    <img src="./src/images/Logos/k.png" alt="IG Logo" class="w-5 md:w-6" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 mt-2">
+              <img
+                src="./src/images/flags/Chile.webp"
+                class="h-[20px] object-cover object-center"
+                alt="" />
+              <p class="font-semibold text-sm md:text-base xl:text-lg">
+                ElDanyCL
+              </p>
+            </div>
+          </div>
+          <!-- Item 4 -->
+          <div
+            data-aos="zoom-in"
+            data-aos-duration="1300"
+            data-aos-delay="100"
+            class="group relative w-full overflow-hidden cursor-pointer">
+            <div class="relative w-full overflow-hidden">
+              <img
+                src="./src/People/Optical.webp"
+                alt=""
+                class="relative z-0 w-full object-cover bg-white group-hover:scale-[105%] duration-500 transition-all" />
+              <div
+                class="opacity-0 group-hover:opacity-100 bg-influencer-image transition-opacity duration-700 absolute top-0 bottom-0 right-0 left-0 p-4 flex flex-col justify-between gap-2">
+                <div class="flex flex-wrap pl-1.5 gap-3 justify-end">
+                  <a
+                    href="https://www.instagram.com/opticalrr/"
+                    target="_blank"
+                    class="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-custom-yellow hover:bg-off-yellow transition-all duration-300 flex justify-center items-center p-1.5 md:p-2 overflow-hidden">
+                    <img src="./src/images/Logos/IG.png" alt="IG Logo" class="w-5 md:w-6" />
+                  </a>
+                  <a
+                    target="_blank"
+                    href="https://kick.com/opticalrr"
+                    class="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-custom-yellow hover:bg-off-yellow transition-all duration-300 flex justify-center items-center p-1.5 md:p-2">
+                    <img src="./src/images/Logos/k.png" alt="Kick Logo" class="w-5 md:w-6" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 mt-2">
+              <img
+                src="./src/images/flags/Chile.webp"
+                class="h-[20px] object-cover object-center"
+                alt="" />
+              <p class="font-semibold text-sm md:text-base xl:text-lg">
+                Opticalrr
+              </p>
+            </div>
+          </div>
+          <!-- Item 5 -->
+          <div
+            data-aos="zoom-in"
+            data-aos-duration="1300"
+            data-aos-delay="100"
+            class="group relative w-full overflow-hidden cursor-pointer">
+            <div class="relative w-full overflow-hidden">
+              <img
+                src="./src/People/Chaleselcrack.webp"
+                alt=""
+                class="relative z-0 w-full object-cover bg-white group-hover:scale-[105%] duration-500 transition-all" />
+              <div
+                class="opacity-0 group-hover:opacity-100 bg-influencer-image transition-opacity duration-700 absolute top-0 bottom-0 right-0 left-0 p-4 flex flex-col justify-between gap-2">
+                <div class="flex flex-wrap pl-1.5 gap-3 justify-end">
+                  <a
+                    href="https://www.instagram.com/chaleselcrack/"
+                    target="_blank"
+                    class="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-custom-yellow hover:bg-off-yellow transition-all duration-300 flex justify-center items-center p-1.5 md:p-2 overflow-hidden">
+                    <img src="./src/images/Logos/IG.png" alt="IG Logo" class="w-5 md:w-6" />
+                  </a>
+                  <a
+                    target="_blank"
+                    href="https://kick.com/chaleselcrackk"
+                    class="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-custom-yellow hover:bg-off-yellow transition-all duration-300 flex justify-center items-center p-1.5 md:p-2">
+                    <img src="./src/images/Logos/k.png" alt="IG Logo" class="w-5 md:w-6" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 mt-2">
+              <img
+                src="./src/images/flags/Peru.webp"
+                class="h-[20px] object-cover object-center"
+                alt="" />
+              <p class="font-semibold text-sm md:text-base xl:text-lg">
+                Chaleselcrack
+              </p>
+            </div>
+          </div>
+          <!-- Item 6 -->
+          <div
+            data-aos="zoom-in"
+            data-aos-duration="1300"
+            data-aos-delay="100"
+            class="group relative w-full overflow-hidden cursor-pointer">
+            <div class="relative w-full overflow-hidden">
+              <img
+                src="./src/People/Depanenkape.webp"
+                alt=""
+                class="relative z-0 w-full object-cover bg-white group-hover:scale-[105%] duration-500 transition-all" />
+              <div
+                class="opacity-0 group-hover:opacity-100 bg-influencer-image transition-opacity duration-700 absolute top-0 bottom-0 right-0 left-0 p-4 flex flex-col justify-between gap-2">
+                <div class="flex flex-wrap pl-1.5 gap-3 justify-end">
+                  <a
+                    href="https://www.instagram.com/depanenkape"
+                    target="_blank"
+                    class="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-custom-yellow hover:bg-off-yellow transition-all duration-300 flex justify-center items-center p-1.5 md:p-2 overflow-hidden">
+                    <img src="./src/images/Logos/IG.png" alt="IG Logo" class="w-5 md:w-6" />
+                  </a>
+                  <a
+                    target="_blank"
+                    href="https://www.tiktok.com/@depanenkape?lang=en"
+                    class="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-custom-yellow hover:bg-off-yellow transition-all duration-300 flex justify-center items-center p-1.5 md:p-2">
+                    <img src="./src/images/Logos/Tiktok.png" alt="IG Logo" class="w-5 md:w-6" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 mt-2">
+              <img
+                src="./src/images/flags/Peru.webp"
+                class="h-[20px] object-cover object-center"
+                alt="" />
+              <p class="font-semibold text-sm md:text-base xl:text-lg">
+                Depanenkape
+              </p>
+            </div>
+          </div> 
+          <!-- Item 7 -->
+          <div
+            data-aos="zoom-in"
+            data-aos-duration="1300"
+            data-aos-delay="100"
+            class="group relative w-full overflow-hidden cursor-pointer">
+            <div class="relative w-full overflow-hidden">
+              <img
+                src="./src/People/Rakyz.webp"
+                alt=""
+                class="relative z-0 w-full object-cover bg-white group-hover:scale-[105%] duration-500 transition-all" />
+              <div
+                class="opacity-0 group-hover:opacity-100 bg-influencer-image transition-opacity duration-700 absolute top-0 bottom-0 right-0 left-0 p-4 flex flex-col justify-between gap-2">
+                <div class="flex flex-wrap pl-1.5 gap-3 justify-end">
+                  <a
+                    href="https://www.instagram.com/rakyzlol/"
+                    target="_blank"
+                    class="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-custom-yellow hover:bg-off-yellow transition-all duration-300 flex justify-center items-center p-1.5 md:p-2 overflow-hidden">
+                    <img src="./src/images/Logos/IG.png" alt="IG Logo" class="w-5 md:w-6" />
+                  </a>
+                  <a
+                    target="_blank"
+                    href="https://kick.com/rakyz"
+                    class="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-custom-yellow hover:bg-off-yellow transition-all duration-300 flex justify-center items-center p-1.5 md:p-2">
+                    <img src="./src/images/Logos/k.png" alt="IG Logo" class="w-5 md:w-6" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 mt-2">
+              <img
+                src="./src/images/flags/Chile.webp"
+                class="h-[20px] object-cover object-center"
+                alt="" />
+              <p class="font-semibold text-sm md:text-base xl:text-lg">
+                Rakyz
+              </p>
+            </div>
+          </div>
+<!-- Item 7 -->
+          <div
+            data-aos="zoom-in"
+            data-aos-duration="1300"
+            data-aos-delay="100"
+            class="group relative w-full overflow-hidden cursor-pointer">
+            <div class="relative w-full overflow-hidden">
+              <img
+                src="./src/People/PipeWKT.webp"
+                alt=""
+                class="relative z-0 w-full object-cover bg-white group-hover:scale-[105%] duration-500 transition-all" />
+              <div
+                class="opacity-0 group-hover:opacity-100 bg-influencer-image transition-opacity duration-700 absolute top-0 bottom-0 right-0 left-0 p-4 flex flex-col justify-between gap-2">
+                <div class="flex flex-wrap pl-1.5 gap-3 justify-end">
+                  <a
+                    href="https://www.instagram.com/pipewakatela/"
+                    target="_blank"
+                    class="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-custom-yellow hover:bg-off-yellow transition-all duration-300 flex justify-center items-center p-1.5 md:p-2 overflow-hidden">
+                    <img src="./src/images/Logos/IG.png" alt="IG Logo" class="w-5 md:w-6" />
+                  </a>
+                  <a
+                    target="_blank"
+                    href="https://kick.com/pipewakatela"
+                    class="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-custom-yellow hover:bg-off-yellow transition-all duration-300 flex justify-center items-center p-1.5 md:p-2">
+                    <img src="./src/images/Logos/k.png" alt="IG Logo" class="w-5 md:w-6" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 mt-2">
+              <img
+                src="./src/images/flags/Chile.webp"
+                class="h-[20px] object-cover object-center"
+                alt="" />
+              <p class="font-semibold text-sm md:text-base xl:text-lg">
+                PipeWKT
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="our-team"
+      class="section bg-black py-8 md:py-10 lg:py-14 overflow-hidden">
+      <div class="w-11/12 md:w-full 2xl:w-[1400px] mx-auto">
+        <h2
+          class="md:text-center text-3xl md:text-4xl lg:text-5xl w-fit md:mx-auto text-custom-yellow font-black mb-2 md:mb-8 font-helveticaneue-condensedblack"
+          data-aos="fade-up"
+          data-aos-duration="1300"
+          data-aos-delay="100">
+          What We Believe
+        </h2>
+        <p class="md:text-lg text-white font-montserrat md:text-center mb-12">
+          Talents is our podcast where we discuss about our experience and how
+          to do effective campaigns.
+        </p>
+
+        <!-- Highlight Carousel -->
+        <div
+          data-aos="fade-up"
+          data-aos-duration="1300"
+          data-aos-delay="100"
+          class="relative z-0 w-full font-montserrat flex flex-col md:flex-row aspect-video md:aspect-auto">
+          <!-- Mobile Carousel dropdown -->
+          <div class="mb-6 relative md:hidden top-0 left-0 z-[90] inset-0">
+            <div class="text-gray-900 antialiased">
+              <div class="">
+                <div class="w-full max-w-[160px]">
+                  <div
+                    class="space-y-1"
+                    x-data="Components.customSelect({ open: false, value: 1, selected: 1 })"
+                    x-init="init()">
+                    <div class="relative">
+                      <span class="inline-block w-full rounded-md shadow-sm">
+                        <button
+                          x-ref="button"
+                          @click="onButtonClick()"
+                          type="button"
+                          aria-haspopup="listbox"
+                          :aria-expanded="open"
+                          aria-labelledby="assigned-to-label"
+                          class="cursor-default relative w-full rounded-md border border-gray-300 text-black bg-white font-medium pl-2 pr-6 py-1.5 text-left focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition ease-in-out duration-150 text-[12px] sm:leading-5">
+                          <div class="flex items-center space-x-3">
+                            <span
+                              x-text="['Season 1 Episode 1', 'Season 1 Episode 2', 'Season 1 Episode 3', 'Season 2 Episode 1'][value - 1]"
+                              class="block truncate">
+                              Season 1 Episode 1
+                            </span>
+                          </div>
+                          <span
+                            class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                            <svg
+                              class="h-5 w-5 text-gray-400"
+                              fill="currentColor"
+                              viewBox="0 0 20 20">
+                              <path
+                                d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                                clip-rule="evenodd"
+                                fill-rule="evenodd"></path>
+                            </svg>
+                          </span>
+                        </button>
+                      </span>
+                      <div
+                        x-show="open"
+                        @focusout="onEscape()"
+                        @click.away="open = false"
+                        x-description="Select popover, show/hide based on select state."
+                        x-transition:leave="transition ease-in duration-100"
+                        x-transition:leave-start="opacity-100"
+                        x-transition:leave-end="opacity-0"
+                        class="absolute mt-1 w-full rounded-md bg-white shadow-lg z-[999]"
+                        style="display: none">
+                        <ul
+                          @keydown.enter.stop.prevent="onOptionSelect()"
+                          @keydown.space.stop.prevent="onOptionSelect()"
+                          @keydown.escape="onEscape()"
+                          @keydown.arrow-up.prevent="onArrowUp()"
+                          @keydown.arrow-down.prevent="onArrowDown()"
+                          x-ref="listbox"
+                          tabindex="-1"
+                          role="listbox"
+                          aria-labelledby="assigned-to-label"
+                          :aria-activedescendant="activeDescendant"
+                          class="max-h-56 rounded-md py-1 leading-6 shadow-xs overflow-auto focus:outline-none text-[12px] sm:leading-5">
+                          <li
+                            id="assigned-to-option-1"
+                            role="option"
+                            @click="choose(1)"
+                            @mouseenter="selected = 1"
+                            @mouseleave="selected = null"
+                            :class="{ 'text-white bg-custom-yellow': selected === 1, 'text-gray-900': !(selected === 1) }"
+                            class="text-gray-900 cursor-default select-none relative py-1.5 pl-2 pr-7">
+                            <div class="flex items-center space-x-3">
+                              <span
+                                :class="{ 'font-semibold': value === 1, 'font-normal': !(value === 1) }"
+                                class="font-normal block truncate">
+                                Season 1 Episode 1
+                              </span>
+                            </div>
+                            <span
+                              x-show="value === 1"
+                              :class="{ 'text-white': selected === 1, 'text-custom-yellow': !(selected === 1) }"
+                              class="absolute inset-y-0 right-0 flex items-center pr-2 text-custom-yellow"
+                              style="display: none">
+                              <svg
+                                class="h-5 w-5"
+                                fill="currentColor"
+                                viewBox="0 0 20 20">
+                                <path
+                                  fill-rule="evenodd"
+                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                  clip-rule="evenodd"></path>
+                              </svg>
+                            </span>
+                          </li>
+                          <li
+                            id="assigned-to-option-2"
+                            role="option"
+                            @click="choose(2)"
+                            @mouseenter="selected = 2"
+                            @mouseleave="selected = null"
+                            aria-selected="true"
+                            :class="{ 'text-white bg-custom-yellow': selected === 2, 'text-gray-900': !(selected === 2) }"
+                            class="text-gray-900 cursor-default select-none relative py-1.5 pl-2 pr-7">
+                            <div class="flex items-center space-x-3">
+                              <span
+                                :class="{ 'font-semibold': value === 2, 'font-normal': !(value === 2) }"
+                                class="font-normal block truncate">
+                                Season 1 Episode 2
+                              </span>
+                            </div>
+                            <span
+                              x-show="value === 2"
+                              :class="{ 'text-white': selected === 2, 'text-custom-yellow': !(selected === 2) }"
+                              class="absolute inset-y-0 right-0 flex items-center pr-2 text-custom-yellow"
+                              style="display: none">
+                              <svg
+                                class="h-5 w-5"
+                                fill="currentColor"
+                                viewBox="0 0 20 20">
+                                <path
+                                  fill-rule="evenodd"
+                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                  clip-rule="evenodd"></path>
+                              </svg>
+                            </span>
+                          </li>
+                          <li
+                            id="assigned-to-option-3"
+                            role="option"
+                            @click="choose(3)"
+                            @mouseenter="selected = 3"
+                            @mouseleave="selected = null"
+                            :class="{ 'text-white bg-custom-yellow': selected === 3, 'text-gray-900': !(selected === 3) }"
+                            class="text-gray-900 cursor-default select-none relative py-1.5 pl-2 pr-7">
+                            <div class="flex items-center space-x-3">
+                              <span
+                                :class="{ 'font-semibold': value === 3, 'font-normal': !(value === 3) }"
+                                class="font-normal block truncate">
+                                Season 1 Episode 3
+                              </span>
+                            </div>
+                            <span
+                              x-show="value === 3"
+                              :class="{ 'text-white': selected === 3, 'text-custom-yellow': !(selected === 3) }"
+                              class="absolute inset-y-0 right-0 flex items-center pr-2 text-custom-yellow"
+                              style="display: none">
+                              <svg
+                                class="h-5 w-5"
+                                fill="currentColor"
+                                viewBox="0 0 20 20">
+                                <path
+                                  fill-rule="evenodd"
+                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                  clip-rule="evenodd"></path>
+                              </svg>
+                            </span>
+                          </li>
+                          <li
+                            id="assigned-to-option-4"
+                            role="option"
+                            @click="choose(4)"
+                            @mouseenter="selected = 4"
+                            @mouseleave="selected = null"
+                            :class="{ 'text-white bg-custom-yellow': selected === 4, 'text-gray-900': !(selected === 4) }"
+                            class="bg-custom-yellow text-white cursor-default select-none relative py-1.5 pl-2 pr-7">
+                            <div class="flex items-center space-x-3">
+                              <span
+                                :class="{ 'font-semibold': value === 4, 'font-normal': !(value === 4) }"
+                                class="font-semibold block truncate">
+                                Season 2 Episode 1
+                              </span>
+                            </div>
+                            <span
+                              x-show="value === 4"
+                              :class="{ 'text-white': selected === 4, 'text-custom-yellow': !(selected === 4) }"
+                              class="absolute inset-y-0 right-0 flex items-center pr-2 text-white">
+                              <svg
+                                class="h-5 w-5"
+                                fill="currentColor"
+                                viewBox="0 0 20 20">
+                                <path
+                                  fill-rule="evenodd"
+                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                  clip-rule="evenodd"></path>
+                              </svg>
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carousel indicators -->
+          <div
+            class="highlights hidden w-[300px] md:flex flex-row md:!flex-col font-montserrat z-[999]">
+            <button
+              type="button"
+              id="highlight-one-button"
+              class="w-full h-full aspect-video md:aspect-auto flex items-center justify-center border-b border-[#2a2c37] cursor-pointer group highlightButton active-service-button z-[999]">
+              <p
+                class="text-center md:!text-left text-sm font-semibold md:text-lg flex flex-col">
+                Season 1
+                <br />
+                Episode 1
+              </p>
+            </button>
+            <button
+              type="button"
+              id="highlight-two-button"
+              class="w-full h-full aspect-video md:aspect-auto flex items-center justify-center border-b border-[#2a2c37] cursor-pointer group highlightButton unactive-service-button z-[999]">
+              <p
+                class="text-center md:!text-left text-sm font-semibold md:text-lg flex flex-col">
+                Season 1
+                <br />
+                Episode 2
+              </p>
+            </button>
+            <button
+              type="button"
+              id="highlight-three-button"
+              class="w-full h-full aspect-video md:aspect-auto flex items-center justify-center border-b border-[#2a2c37] cursor-pointer group highlightButton unactive-service-button z-[999]">
+              <p
+                class="text-center md:!text-left text-sm font-semibold md:text-lg flex flex-col">
+                Season 1
+                <br />
+                Episode 3
+              </p>
+            </button>
+            <button
+              type="button"
+              id="highlight-four-button"
+              class="w-full h-full aspect-video md:aspect-auto flex items-center justify-center border-b border-[#2a2c37] cursor-pointer group highlightButton unactive-service-button z-[999]">
+              <p
+                class="text-center md:!text-left text-sm font-semibold md:text-lg flex flex-col">
+                Season 2
+                <br />
+                Episode 1
+              </p>
+            </button>
+          </div>
+          <div class="swiper highlightSwiper relative">
+            <!-- Desktop carousel -->
+            <div class="swiper-wrapper">
+              <!--Item 1 -->
+              <div
+                class="swiper-slide h-full relative w-full aspect-video md:aspect-auto">
+                <iframe
+                  class="w-full aspect-video mx-auto relative"
+                  src="https://www.youtube.com/embed/5fj6Im0zA78?si=AWihFhKMhGLJ9rSX"
+                  title="YouTube video player"
+                  frameborder="0"
+                  style="z-index: 0 !important"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen></iframe>
+              </div>
+              <!--Item 2 -->
+              <div
+                class="swiper-slide h-full relative w-full aspect-video md:aspect-auto">
+                <iframe
+                  class="w-full aspect-video mx-auto"
+                  src="https://www.youtube.com/embed/WAkT1kYp1sI?si=STm1tmaayjpNZCll"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen></iframe>
+              </div>
+              <!--Item 3 -->
+              <div
+                class="swiper-slide h-full relative w-full aspect-video md:aspect-auto">
+                <iframe
+                  class="w-full aspect-video mx-auto"
+                  src="https://www.youtube.com/embed/klntZhrutiw?si=W-gEzuOmjK5PcouW"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen></iframe>
+              </div>
+              <!--Item 4 -->
+              <div
+                class="swiper-slide h-full relative w-full aspect-video md:aspect-auto">
+                <iframe
+                  class="w-full aspect-video mx-auto"
+                  src="https://www.youtube.com/embed/BeMCuYYKSLc?si=P5ArT3FRW4mpvnfl"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen></iframe>
+              </div>
+            </div>
+            <!-- Carousel Nav buttons -->
+            <div
+              class="absolute hidden h-fit w-full p-2.5 pb-3 md:p-10 md:pb-12 2xl:pb-24 z-30 top-0 bottom-0 left-0 right-0 m-auto">
+              <div class="w-[95%] mx-auto mb-1 md:mb-6 2xl:mb-10">
+                <div class="flex w-full justify-between items-center">
+                  <button
+                    type="button"
+                    id="highlight-carousel-prev-button"
+                    class="rounded-full w-8 h-8 sm:w-10 sm:h-10 p-2.5 flex items-center justify-center bg-black bg-opacity-75 hover:bg-opacity-100 transition-opacity duration-300 group opacity-50 pointer-events-none">
+                    <svg
+                      class="w-full fill-white group-hover:scale-90 transition-[scale] duration-300"
+                      version="1.1"
+                      id="Layer_1"
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      viewBox="0 0 492 492"
+                      xml:space="preserve">
+                      <g>
+                        <g>
+                          <path
+                            d="M464.344,207.418l0.768,0.168H135.888l103.496-103.724c5.068-5.064,7.848-11.924,7.848-19.124
+          c0-7.2-2.78-14.012-7.848-19.088L223.28,49.538c-5.064-5.064-11.812-7.864-19.008-7.864c-7.2,0-13.952,2.78-19.016,7.844
+          L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
+          c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
+          c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
+          C492,219.198,479.172,207.418,464.344,207.418z" />
+                        </g>
+                      </g>
+                    </svg>
+                  </button>
+                  <button
+                    type="button"
+                    id="highlight-carousel-next-button"
+                    class="rounded-full w-8 h-8 sm:w-10 sm:h-10 p-2.5 flex items-center justify-center bg-black bg-opacity-75 hover:bg-opacity-100 transition-opacity duration-300 group">
+                    <svg
+                      class="w-full fill-white group-hover:scale-90 transition-[scale] duration-300"
+                      version="1.1"
+                      id="Layer_1"
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      viewBox="0 0 492.004 492.004"
+                      xml:space="preserve">
+                      <g>
+                        <g>
+                          <path
+                            d="M484.14,226.886L306.46,49.202c-5.072-5.072-11.832-7.856-19.04-7.856c-7.216,0-13.972,2.788-19.044,7.856l-16.132,16.136
+          c-5.068,5.064-7.86,11.828-7.86,19.04c0,7.208,2.792,14.2,7.86,19.264L355.9,207.526H26.58C11.732,207.526,0,219.15,0,234.002
+          v22.812c0,14.852,11.732,27.648,26.58,27.648h330.496L252.248,388.926c-5.068,5.072-7.86,11.652-7.86,18.864
+          c0,7.204,2.792,13.88,7.86,18.948l16.132,16.084c5.072,5.072,11.828,7.836,19.044,7.836c7.208,0,13.968-2.8,19.04-7.872
+          l177.68-177.68c5.084-5.088,7.88-11.88,7.86-19.1C492.02,238.762,489.228,231.966,484.14,226.886z" />
+                        </g>
+                      </g>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section
+      id="customers"
+      class="section bg-logo-section bg-center bg-blend-darken bg-cover py-8 md:py-10 lg:py-14 overflow-hidden">
+      <div class="w-[85%] 2xl:w-[1400px] mx-auto">
+        <h2
+          class="md:text-center text-custom-yellow text-3xl md:text-4xl lg:text-5xl w-fit md:mx-auto mb-8 md:mb-16 font-helveticaneue-condensedblack"
+          data-aos="fade-up"
+          data-aos-duration="1300"
+          data-aos-delay="100">
+          They Trusted In Us
+        </h2>
+        <!-- Image Grid -->
+        <div
+          data-aos="zoom-in"
+          data-aos-duration="1300"
+          data-aos-delay="250"
+          class="w-full grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-y-5 md:gap-y-10 gap-x-5">
+          <div class="flex items-center">
+            <img
+              src="./src/images/Logos/Parimatch.png"
+              alt=""
+              class="w-[100%] md:w-[80%] mx-auto" />
+          </div>
+           <div class="flex items-center">
+            <img
+              src="./src/images/Logos/Betano.png"
+              alt=""
+              class="w-[100%] md:w-[80%] mx-auto" />
+          </div>
+          <div class="flex items-center">
+            <img
+              src="./src/images/Logos/Jugabet.png"
+              alt=""
+              class="w-[85%] md:w-[80%] mx-auto" />
+          </div>
+          <div class="flex items-center">
+            <img
+              src="./src/images/Logos/GGbet-Logo.png"
+              alt=""
+              class="w-[85%] md:w-[80%] mx-auto" />
+          </div>
+          <div class="flex items-center">
+            <img
+              src="./src/images/Logos/1xbet.png"
+              alt=""
+              class="w-[85%] md:w-[65%] mx-auto" />
+          </div>
+          <div class="flex items-center">
+            <img
+              src="./src/images/Logos/pocketbroker.png"
+              alt=""
+              class="w-[85%] md:w-[65%] mx-auto" />
+          </div>
+          <div class="flex items-center">
+            <img
+              src="./src/images/Logos/Pin-Up.png"
+              alt=""
+              class="w-[85%] md:w-[65%] mx-auto" />
+          </div>
+          <div class="flex items-center">
+            <img
+              src="./src/images/Logos/thunderpick.png"
+              alt=""
+              class="w-[85%] md:w-[65%] mx-auto" />
+          </div>
+          <div class="flex items-center">
+            <img
+              src="./src/images/Logos/stake.png"
+              alt=""
+              class="w-[85%] md:w-[65%] mx-auto" />
+          </div>
+          <div class="flex items-center">
+            <img
+              src="./src/images/Logos/naga.png"
+              alt=""
+              class="w-[85%] md:w-[65%] mx-auto" />
+          </div>
+          <div class="flex items-center">
+            <img
+              src="./src/images/Logos/melbet-logo.png"
+              alt=""
+              class="w-[85%] md:w-[65%] mx-auto" />
+          </div>
+          <div class="flex items-center">
+            <img
+              src="./src/images/Logos/betsson-logo.png"
+              alt=""
+              class="w-[85%] md:w-[65%] mx-auto" />
+          </div>
+        </div>
+      </div>
+    </section>
+    <section
+      @click.inside="open = false"
+      id="events"
+      class="section bg-influencer-section bg-center bg-cover py-8 md:py-10 lg:py-14 overflow-hidden z-10">
+      <div class="w-[85%] 2xl:w-[1400px] mx-auto">
+        <div
+          class="mb-8 md:mb-16"
+          data-aos="fade-up"
+          data-aos-duration="1300"
+          data-aos-delay="100">
+          <h2
+            class="md:text-center text-3xl md:text-4xl lg:text-5xl w-fit md:mx-auto font-helveticaneue-condensedblack">
+            Events
+          </h2>
+        </div>
+        <div
+          class="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 2xl:gap-7">
+          <div
+            data-aos="zoom-in"
+            data-aos-duration="1300"
+            data-aos-delay="100"
+            class="w-full space-y-2 overflow-hidden cursor-pointer group event-control-Image"
+            @click=" open = false, showEventSliderTwo = !showEventSliderTwo">
+            <div class="relative w-full overflow-hidden">
+              <img
+                src="./src/images/events/Tokyo-games/tokyo-1.jpeg"
+                alt=""
+                class="relative z-0 w-full object-cover bg-white group-hover:scale-[105%] duration-500 transition-all aspect-video" />
+            </div>
+            <p
+              class="w-full text-lg font-medium line-clamp-2 text-ellipsis group-hover:text-[#878787] duration-500 transition-all">
+              Tokyo Game Show 2024
+            </p>
+          </div>
+          <div
+            data-aos="zoom-in"
+            data-aos-duration="1300"
+            data-aos-delay="100"
+            class="w-full space-y-2 overflow-hidden cursor-pointer group event-control-Image"
+            @click=" open = false, showEventSliderSix = !showEventSliderSix">
+            <div class="relative w-full overflow-hidden">
+              <img
+                src="./src/images/events/Gamescom-events/Gamescom-2.jpeg"
+                alt=""
+                class="relative z-0 w-full object-cover bg-white group-hover:scale-[105%] duration-500 transition-all aspect-video" />
+            </div>
+            <p
+              class="w-full text-lg font-medium line-clamp-2 text-ellipsis group-hover:text-[#878787] duration-500 transition-all">
+              Gamescom Asia 2024
+            </p>
+          </div>
+
+          <div
+            data-aos="zoom-in"
+            data-aos-duration="1300"
+            data-aos-delay="100"
+            class="w-full space-y-2 overflow-hidden cursor-pointer group"
+            @click=" open = false, showEventSliderFive = !showEventSliderFive">
+            <div class="relative w-full overflow-hidden">
+              <img
+                src="./src/images/events/PGS-Lima-2024/E- CHB_1397.jpg"
+                alt=""
+                class="relative z-0 w-full object-cover bg-white group-hover:scale-[105%] duration-500 transition-all aspect-video" />
+            </div>
+            <p
+              class="w-full text-lg font-medium line-clamp-2 text-ellipsis group-hover:text-[#878787] duration-500 transition-all">
+              PGS Lima 2024
+            </p>
+          </div>
+          <div
+            data-aos="zoom-in"
+            data-aos-duration="1300"
+            data-aos-delay="100"
+            class="w-full space-y-2 overflow-hidden cursor-pointer group event-control-Image"
+            @click=" open = false, showEventSliderEight = !showEventSliderEight">
+            <div class="relative w-full overflow-hidden">
+              <img
+                src="./src/images/events/SIGMA-Manila-2024/MIELA Digital 05.06.2024 037.jpg"
+                alt=""
+                class="relative z-0 w-full object-cover bg-white group-hover:scale-[105%] duration-500 transition-all aspect-video" />
+            </div>
+            <p
+              class="w-full text-lg font-medium line-clamp-2 text-ellipsis group-hover:text-[#878787] duration-500 transition-all">
+              SIGMA Manila 2024
+            </p>
+          </div>
+          <div
+            data-aos="zoom-in"
+            data-aos-duration="1300"
+            data-aos-delay="100"
+            class="w-full space-y-2 overflow-hidden cursor-pointer group event-control-Image"
+            @click=" open = false, showEventSliderOne = !showEventSliderOne">
+            <div class="relative w-full overflow-hidden">
+              <img
+                src="./src/images/events/CGS-Santiago-2024/S -Evento-21.jpg"
+                alt=""
+                class="relative z-0 w-full object-cover bg-white group-hover:scale-[105%] duration-500 transition-all aspect-video" />
+            </div>
+            <p
+              class="w-full text-lg font-medium line-clamp-2 text-ellipsis group-hover:text-[#878787] duration-500 transition-all">
+              CGS Santiago 2024
+            </p>
+          </div>
+          <div
+            data-aos="zoom-in"
+            data-aos-duration="1300"
+            data-aos-delay="100"
+            class="w-full space-y-2 overflow-hidden cursor-pointer group event-control-Image"
+            @click=" open = false, showEventSliderThree = !showEventSliderThree">
+            <div class="relative w-full overflow-hidden">
+              <img
+                src="./src/images/events/ICE-London-2024/London.png"
+                alt=""
+                class="relative z-0 w-full object-cover bg-white group-hover:scale-[105%] duration-500 transition-all aspect-video" />
+            </div>
+            <p
+              class="w-full text-lg font-medium line-clamp-2 text-ellipsis group-hover:text-[#878787] duration-500 transition-all">
+              ICE London 2024
+            </p>
+          </div>
+          <div
+            data-aos="zoom-in"
+            data-aos-duration="1300"
+            data-aos-delay="100"
+            class="w-full space-y-2 overflow-hidden cursor-pointer group event-control-Image"
+            @click=" open = false, showEventSliderSeven = !showEventSliderSeven">
+            <div class="relative w-full overflow-hidden">
+              <img
+                src="./src/images/events/SBC-Miami/IMG_2164.JPG"
+                alt=""
+                class="relative z-0 w-full object-cover bg-white group-hover:scale-[105%] duration-500 transition-all aspect-video" />
+            </div>
+            <p
+              class="w-full text-lg font-medium line-clamp-2 text-ellipsis group-hover:text-[#878787] duration-500 transition-all">
+              SBC Miami 2023
+            </p>
+          </div>
+          <div
+            data-aos="zoom-in"
+            data-aos-duration="1300"
+            data-aos-delay="100"
+            class="w-full space-y-2 overflow-hidden cursor-pointer group event-control-Image"
+            @click=" open = false, showEventSliderNine = !showEventSliderNine">
+            <div class="relative w-full overflow-hidden">
+              <img
+                src="./src/images/events/World-Esports-Summit-2023/1701334015933.jpeg"
+                alt=""
+                class="relative z-0 w-full object-cover bg-white group-hover:scale-[105%] duration-500 transition-all aspect-video" />
+            </div>
+            <p
+              class="w-full text-lg font-medium line-clamp-2 text-ellipsis group-hover:text-[#878787] duration-500 transition-all">
+              World Esports Summit 2023
+            </p>
+          </div>
+          <div
+            data-aos="zoom-in"
+            data-aos-duration="1300"
+            data-aos-delay="100"
+            class="w-full space-y-2 overflow-hidden cursor-pointer group event-control-Image"
+            @click=" open = false, showEventSliderFour = !showEventSliderFour">
+            <div class="relative w-full overflow-hidden">
+              <img
+                src="./src/images/events/Lima-Major-2023/S - Copia de BTN-37.jpg"
+                alt=""
+                class="relative z-0 w-full object-cover bg-white group-hover:scale-[105%] duration-500 transition-all aspect-video" />
+            </div>
+            <p
+              class="w-full text-lg font-medium line-clamp-2 text-ellipsis group-hover:text-[#878787] duration-500 transition-all">
+              Lima Major 2023
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Events Slider 1 -->
+    <div
+      class="white flex flex-col items-center justify-center bg-[rgba(0,0,0,0.3)] backdrop-blur-sm fixed z-50 top-0 bottom-0 left-0 right-0 opacity-0"
+      x-show.transition.opacity.duration.600ms="showEventSliderTwo"
+      :class="{' block opacity-100': showEventSliderTwo, ' hidden scale-75': !showEventSliderTwo}">
+      <div
+        class="w-11/12 md:w-9/12 mx-auto gap-3 md:gap-5 relative rounded-sm transition-all duration-500"
+        x-show.transition.scale.duration.800ms="showEventSliderTwo"
+        x-transition.delay.50ms>
+        <div @click.away="showEventSliderTwo = false" class="mx-auto relative">
+          <div class="swiper eventSwiperTwo w-full relative">
+            <div class="swiper-wrapper">
+              <!-- Item 1 -->
+              <div
+                class="swiper-slide h-full relative w-full aspect-video eventSwiperImage secondSet">
+                <img
+                  src="./src/images/events/Tokyo-games/tokyo-1.jpeg"
+                  alt=""
+                  class="relative z-0 w-full object-cover bg-white aspect-video" />
+              </div>
+              <div
+                class="swiper-slide h-full relative w-full aspect-video eventSwiperImage secondSet">
+                <img
+                  src="./src/images/events/Tokyo-games/tokyo-2.jpeg"
+                  alt=""
+                  class="relative z-0 w-full object-cover bg-white aspect-video" />
+              </div>
+              <div
+                class="swiper-slide h-full relative w-full aspect-video eventSwiperImage secondSet">
+                <img
+                  src="./src/images/events/Tokyo-games/tokyo-3.jpeg"
+                  alt=""
+                  class="relative z-0 w-full object-cover bg-white aspect-video" />
+              </div>
+            </div>
+            <!-- Carousel Nav buttons -->
+            <div
+              class="absolute w-full h-fit p-2.5 pb-3 md:p-10 md:pb-12 2xl:pb-24 z-30 top-0 bottom-0 left-0 right-0 m-auto">
+              <div class="flex w-full justify-between items-center">
+                <button
+                  type="button"
+                  id="events-two-carousel-prev-button"
+                  class="rounded-full w-8 h-8 sm:w-10 sm:h-10 p-2.5 flex items-center justify-center bg-black bg-opacity-75 hover:bg-opacity-100 transition-opacity duration-300 group opacity-50 pointer-events-none">
+                  <svg
+                    class="w-full fill-white group-hover:scale-90 transition-[scale] duration-300"
+                    version="1.1"
+                    id="Layer_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 492 492"
+                    xml:space="preserve">
+                    <g>
+                      <g>
+                        <path
+                          d="M464.344,207.418l0.768,0.168H135.888l103.496-103.724c5.068-5.064,7.848-11.924,7.848-19.124
+    c0-7.2-2.78-14.012-7.848-19.088L223.28,49.538c-5.064-5.064-11.812-7.864-19.008-7.864c-7.2,0-13.952,2.78-19.016,7.844
+    L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
+    c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
+    c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
+    C492,219.198,479.172,207.418,464.344,207.418z" />
+                      </g>
+                    </g>
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  id="events-two-carousel-next-button"
+                  class="rounded-full w-8 h-8 sm:w-10 sm:h-10 p-2.5 flex items-center justify-center bg-black bg-opacity-75 hover:bg-opacity-100 transition-opacity duration-300 group">
+                  <svg
+                    class="w-full fill-white group-hover:scale-90 transition-[scale] duration-300"
+                    version="1.1"
+                    id="Layer_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 492.004 492.004"
+                    xml:space="preserve">
+                    <g>
+                      <g>
+                        <path
+                          d="M484.14,226.886L306.46,49.202c-5.072-5.072-11.832-7.856-19.04-7.856c-7.216,0-13.972,2.788-19.044,7.856l-16.132,16.136
+    c-5.068,5.064-7.86,11.828-7.86,19.04c0,7.208,2.792,14.2,7.86,19.264L355.9,207.526H26.58C11.732,207.526,0,219.15,0,234.002
+    v22.812c0,14.852,11.732,27.648,26.58,27.648h330.496L252.248,388.926c-5.068,5.072-7.86,11.652-7.86,18.864
+    c0,7.204,2.792,13.88,7.86,18.948l16.132,16.084c5.072,5.072,11.828,7.836,19.044,7.836c7.208,0,13.968-2.8,19.04-7.872
+    l177.68-177.68c5.084-5.088,7.88-11.88,7.86-19.1C492.02,238.762,489.228,231.966,484.14,226.886z" />
+                      </g>
+                    </g>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Events Slider 2 -->
+    <div
+      class="white flex flex-col items-center justify-center bg-[rgba(0,0,0,0.3)] backdrop-blur-sm fixed z-50 top-0 bottom-0 left-0 right-0 opacity-0"
+      x-show.transition.opacity.duration.600ms="showEventSliderOne"
+      :class="{' block opacity-100': showEventSliderOne, ' hidden scale-75': !showEventSliderOne}">
+      <div
+        class="w-11/12 md:w-9/12 mx-auto gap-3 md:gap-5 relative rounded-sm transition-all duration-500"
+        x-show.transition.scale.duration.800ms="showEventSliderOne"
+        x-transition.delay.50ms>
+        <div @click.away="showEventSliderOne = false" class="mx-auto relative">
+          <div class="swiper eventSwiperOne w-full relative">
+            <div class="swiper-wrapper">
+              <!--Item 1 -->
+              <div
+                class="swiper-slide h-full relative w-full aspect-video eventSwiperImage firstSet">
+                <img
+                  src="./src/images/events/CGS-Santiago-2024/S -Evento-21.jpg"
+                  alt=""
+                  class="relative z-0 w-full object-cover bg-white aspect-video" />
+              </div>
+              <!--Item 2 -->
+              <div
+                class="swiper-slide h-full relative w-full aspect-video eventSwiperImage firstSet">
+                <img
+                  src="./src/images/events/CGS-Santiago-2024/E- Evento-49.jpg"
+                  alt=""
+                  class="relative z-0 w-full object-cover bg-white aspect-video" />
+              </div>
+              <!--Item 3 -->
+              <div
+                class="swiper-slide h-full relative w-full aspect-video eventSwiperImage firstSet">
+                <img
+                  src="./src/images/events/CGS-Santiago-2024/S Evento-3.jpg"
+                  alt=""
+                  class="relative z-0 w-full object-cover bg-white aspect-video" />
+              </div>
+            </div>
+            <!-- Carousel Nav buttons -->
+            <div
+              class="absolute w-full h-fit p-2.5 pb-3 md:p-10 md:pb-12 2xl:pb-24 z-30 top-0 bottom-0 left-0 right-0 m-auto">
+              <div class="flex w-full justify-between items-center">
+                <button
+                  type="button"
+                  id="events-one-carousel-prev-button"
+                  class="rounded-full w-8 h-8 sm:w-10 sm:h-10 p-2.5 flex items-center justify-center bg-black bg-opacity-75 hover:bg-opacity-100 transition-opacity duration-300 group opacity-50 pointer-events-none">
+                  <svg
+                    class="w-full fill-white group-hover:scale-90 transition-[scale] duration-300"
+                    version="1.1"
+                    id="Layer_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 492 492"
+                    xml:space="preserve">
+                    <g>
+                      <g>
+                        <path
+                          d="M464.344,207.418l0.768,0.168H135.888l103.496-103.724c5.068-5.064,7.848-11.924,7.848-19.124
+    c0-7.2-2.78-14.012-7.848-19.088L223.28,49.538c-5.064-5.064-11.812-7.864-19.008-7.864c-7.2,0-13.952,2.78-19.016,7.844
+    L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
+    c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
+    c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
+    C492,219.198,479.172,207.418,464.344,207.418z" />
+                      </g>
+                    </g>
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  id="events-one-carousel-next-button"
+                  class="rounded-full w-8 h-8 sm:w-10 sm:h-10 p-2.5 flex items-center justify-center bg-black bg-opacity-75 hover:bg-opacity-100 transition-opacity duration-300 group">
+                  <svg
+                    class="w-full fill-white group-hover:scale-90 transition-[scale] duration-300"
+                    version="1.1"
+                    id="Layer_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 492.004 492.004"
+                    xml:space="preserve">
+                    <g>
+                      <g>
+                        <path
+                          d="M484.14,226.886L306.46,49.202c-5.072-5.072-11.832-7.856-19.04-7.856c-7.216,0-13.972,2.788-19.044,7.856l-16.132,16.136
+    c-5.068,5.064-7.86,11.828-7.86,19.04c0,7.208,2.792,14.2,7.86,19.264L355.9,207.526H26.58C11.732,207.526,0,219.15,0,234.002
+    v22.812c0,14.852,11.732,27.648,26.58,27.648h330.496L252.248,388.926c-5.068,5.072-7.86,11.652-7.86,18.864
+    c0,7.204,2.792,13.88,7.86,18.948l16.132,16.084c5.072,5.072,11.828,7.836,19.044,7.836c7.208,0,13.968-2.8,19.04-7.872
+    l177.68-177.68c5.084-5.088,7.88-11.88,7.86-19.1C492.02,238.762,489.228,231.966,484.14,226.886z" />
+                      </g>
+                    </g>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Events Slider 3 -->
+    <div
+      class="white flex flex-col items-center justify-center bg-[rgba(0,0,0,0.3)] backdrop-blur-sm fixed z-50 top-0 bottom-0 left-0 right-0 opacity-0"
+      x-show.transition.opacity.duration.600ms="showEventSliderThree"
+      :class="{' block opacity-100': showEventSliderThree, ' hidden scale-75': !showEventSliderThree}">
+      <div
+        class="w-11/12 md:w-9/12 mx-auto gap-3 md:gap-5 relative rounded-sm transition-all duration-500"
+        x-show.transition.scale.duration.800ms="showEventSliderThree"
+        x-transition.delay.50ms>
+        <div
+          @click.away="showEventSliderThree = false"
+          class="mx-auto relative">
+          <div class="swiper eventSwiperThree w-full relative">
+            <div class="swiper-wrapper">
+              <!--Item 1 -->
+              <div
+                class="swiper-slide h-full relative w-full aspect-video eventSwiperImage thirdSet">
+                <img
+                  src="./src/images/events/ICE-London-2024/London.png"
+                  alt=""
+                  class="relative z-0 w-full object-cover bg-white aspect-video" />
+              </div>
+              <!--Item 2 -->
+              <div
+                class="swiper-slide h-full relative w-full aspect-video eventSwiperImage thirdSet">
+                <img
+                  src="./src/images/events/ICE-London-2024/E  -20240207163134_IMG_0153.JPG"
+                  alt=""
+                  class="relative z-0 w-full object-cover bg-white aspect-video" />
+              </div>
+              <!--Item 3 -->
+              <div
+                class="swiper-slide h-full relative w-full aspect-video eventSwiperImage thirdSet">
+                <img
+                  src="./src/images/events/ICE-London-2024/E- ICE LONDON 2024.jpg"
+                  alt=""
+                  class="relative z-0 w-full object-cover bg-white aspect-video" />
+              </div>
+            </div>
+            <!-- Carousel Nav buttons -->
+            <div
+              class="absolute w-full h-fit p-2.5 pb-3 md:p-10 md:pb-12 2xl:pb-24 z-30 top-0 bottom-0 left-0 right-0 m-auto">
+              <div class="flex w-full justify-between items-center">
+                <button
+                  type="button"
+                  id="events-three-carousel-prev-button"
+                  class="rounded-full w-8 h-8 sm:w-10 sm:h-10 p-2.5 flex items-center justify-center bg-black bg-opacity-75 hover:bg-opacity-100 transition-opacity duration-300 group opacity-50 pointer-events-none">
+                  <svg
+                    class="w-full fill-white group-hover:scale-90 transition-[scale] duration-300"
+                    version="1.1"
+                    id="Layer_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 492 492"
+                    xml:space="preserve">
+                    <g>
+                      <g>
+                        <path
+                          d="M464.344,207.418l0.768,0.168H135.888l103.496-103.724c5.068-5.064,7.848-11.924,7.848-19.124
+    c0-7.2-2.78-14.012-7.848-19.088L223.28,49.538c-5.064-5.064-11.812-7.864-19.008-7.864c-7.2,0-13.952,2.78-19.016,7.844
+    L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
+    c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
+    c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
+    C492,219.198,479.172,207.418,464.344,207.418z" />
+                      </g>
+                    </g>
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  id="events-three-carousel-next-button"
+                  class="rounded-full w-8 h-8 sm:w-10 sm:h-10 p-2.5 flex items-center justify-center bg-black bg-opacity-75 hover:bg-opacity-100 transition-opacity duration-300 group">
+                  <svg
+                    class="w-full fill-white group-hover:scale-90 transition-[scale] duration-300"
+                    version="1.1"
+                    id="Layer_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 492.004 492.004"
+                    xml:space="preserve">
+                    <g>
+                      <g>
+                        <path
+                          d="M484.14,226.886L306.46,49.202c-5.072-5.072-11.832-7.856-19.04-7.856c-7.216,0-13.972,2.788-19.044,7.856l-16.132,16.136
+    c-5.068,5.064-7.86,11.828-7.86,19.04c0,7.208,2.792,14.2,7.86,19.264L355.9,207.526H26.58C11.732,207.526,0,219.15,0,234.002
+    v22.812c0,14.852,11.732,27.648,26.58,27.648h330.496L252.248,388.926c-5.068,5.072-7.86,11.652-7.86,18.864
+    c0,7.204,2.792,13.88,7.86,18.948l16.132,16.084c5.072,5.072,11.828,7.836,19.044,7.836c7.208,0,13.968-2.8,19.04-7.872
+    l177.68-177.68c5.084-5.088,7.88-11.88,7.86-19.1C492.02,238.762,489.228,231.966,484.14,226.886z" />
+                      </g>
+                    </g>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Events Slider 4 -->
+    <div
+      class="white flex flex-col items-center justify-center bg-[rgba(0,0,0,0.3)] backdrop-blur-sm fixed z-50 top-0 bottom-0 left-0 right-0 opacity-0"
+      x-show.transition.opacity.duration.600ms="showEventSliderFour"
+      :class="{' block opacity-100': showEventSliderFour, ' hidden scale-75': !showEventSliderFour}">
+      <div
+        class="w-11/12 md:w-9/12 mx-auto gap-3 md:gap-5 relative rounded-sm transition-all duration-500"
+        x-show.transition.scale.duration.800ms="showEventSliderFour"
+        x-transition.delay.50ms>
+        <div @click.away="showEventSliderFour = false" class="mx-auto relative">
+          <div class="swiper eventSwiperFour w-full relative">
+            <div class="swiper-wrapper">
+              <!--Item 1 -->
+              <div
+                class="swiper-slide h-full relative w-full aspect-video eventSwiperImage fourthSet">
+                <img
+                  src="./src/images/events/Lima-Major-2023/S - Copia de BTN-37.jpg"
+                  alt=""
+                  class="relative z-0 w-full object-cover bg-white aspect-video" />
+              </div>
+              <!--Item 2 -->
+              <div
+                class="swiper-slide h-full relative w-full aspect-video eventSwiperImage fourthSet">
+                <img
+                  src="./src/images/events/Lima-Major-2023/S- Copia de BTN-25.jpg"
+                  alt=""
+                  class="relative z-0 w-full object-cover bg-white aspect-video" />
+              </div>
+              <!--Item 3 -->
+              <div
+                class="swiper-slide h-full relative w-full aspect-video eventSwiperImage fourthSet">
+                <img
+                  src="./src/images/events/Lima-Major-2023/E-Copia de BTN-39.jpg"
+                  alt=""
+                  class="relative z-0 w-full object-cover bg-white aspect-video" />
+              </div>
+            </div>
+            <!-- Carousel Nav buttons -->
+            <div
+              class="absolute w-full h-fit p-2.5 pb-3 md:p-10 md:pb-12 2xl:pb-24 z-30 top-0 bottom-0 left-0 right-0 m-auto">
+              <div class="flex w-full justify-between items-center">
+                <button
+                  type="button"
+                  id="events-four-carousel-prev-button"
+                  class="rounded-full w-8 h-8 sm:w-10 sm:h-10 p-2.5 flex items-center justify-center bg-black bg-opacity-75 hover:bg-opacity-100 transition-opacity duration-300 group opacity-50 pointer-events-none">
+                  <svg
+                    class="w-full fill-white group-hover:scale-90 transition-[scale] duration-300"
+                    version="1.1"
+                    id="Layer_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 492 492"
+                    xml:space="preserve">
+                    <g>
+                      <g>
+                        <path
+                          d="M464.344,207.418l0.768,0.168H135.888l103.496-103.724c5.068-5.064,7.848-11.924,7.848-19.124
+    c0-7.2-2.78-14.012-7.848-19.088L223.28,49.538c-5.064-5.064-11.812-7.864-19.008-7.864c-7.2,0-13.952,2.78-19.016,7.844
+    L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
+    c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
+    c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
+    C492,219.198,479.172,207.418,464.344,207.418z" />
+                      </g>
+                    </g>
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  id="events-four-carousel-next-button"
+                  class="rounded-full w-8 h-8 sm:w-10 sm:h-10 p-2.5 flex items-center justify-center bg-black bg-opacity-75 hover:bg-opacity-100 transition-opacity duration-300 group">
+                  <svg
+                    class="w-full fill-white group-hover:scale-90 transition-[scale] duration-300"
+                    version="1.1"
+                    id="Layer_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 492.004 492.004"
+                    xml:space="preserve">
+                    <g>
+                      <g>
+                        <path
+                          d="M484.14,226.886L306.46,49.202c-5.072-5.072-11.832-7.856-19.04-7.856c-7.216,0-13.972,2.788-19.044,7.856l-16.132,16.136
+    c-5.068,5.064-7.86,11.828-7.86,19.04c0,7.208,2.792,14.2,7.86,19.264L355.9,207.526H26.58C11.732,207.526,0,219.15,0,234.002
+    v22.812c0,14.852,11.732,27.648,26.58,27.648h330.496L252.248,388.926c-5.068,5.072-7.86,11.652-7.86,18.864
+    c0,7.204,2.792,13.88,7.86,18.948l16.132,16.084c5.072,5.072,11.828,7.836,19.044,7.836c7.208,0,13.968-2.8,19.04-7.872
+    l177.68-177.68c5.084-5.088,7.88-11.88,7.86-19.1C492.02,238.762,489.228,231.966,484.14,226.886z" />
+                      </g>
+                    </g>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Events Slider 5 -->
+    <div
+      class="white flex flex-col items-center justify-center bg-[rgba(0,0,0,0.3)] backdrop-blur-sm fixed z-50 top-0 bottom-0 left-0 right-0 opacity-0"
+      x-show.transition.opacity.duration.600ms="showEventSliderFive"
+      :class="{' block opacity-100': showEventSliderFive, ' hidden scale-75': !showEventSliderFive}">
+      <div
+        class="w-11/12 md:w-9/12 mx-auto gap-3 md:gap-5 relative rounded-sm transition-all duration-500"
+        x-show.transition.scale.duration.800ms="showEventSliderFive"
+        x-transition.delay.50ms>
+        <div @click.away="showEventSliderFive = false" class="mx-auto relative">
+          <div class="swiper eventSwiperFive w-full relative">
+            <div class="swiper-wrapper">
+              <!-- Item 1 -->
+              <div
+                class="swiper-slide h-full relative w-full aspect-video eventSwiperImage fifthSet">
+                <img
+                  src="./src/images/events/PGS-Lima-2024/E- CHB_1397.jpg"
+                  alt=""
+                  class="relative z-0 w-full object-cover bg-white aspect-video" />
+              </div>
+              <!-- Item 2 -->
+              <div
+                class="swiper-slide h-full relative w-full aspect-video eventSwiperImage fifthSet">
+                <img
+                  src="./src/images/events/PGS-Lima-2024/E- CHB_1422.jpg"
+                  alt=""
+                  class="relative z-0 w-full object-cover bg-white aspect-video" />
+              </div>
+              <!-- Item 3 -->
+              <div
+                class="swiper-slide h-full relative w-full aspect-video eventSwiperImage fifthSet">
+                <img
+                  src="./src/images/events/PGS-Lima-2024/PSG.png"
+                  alt=""
+                  class="relative z-0 w-full object-cover bg-white aspect-video" />
+              </div>
+            </div>
+            <!-- Carousel Nav buttons -->
+            <div
+              class="absolute w-full h-fit p-2.5 pb-3 md:p-10 md:pb-12 2xl:pb-24 z-30 top-0 bottom-0 left-0 right-0 m-auto">
+              <div class="flex w-full justify-between items-center">
+                <button
+                  type="button"
+                  id="events-five-carousel-prev-button"
+                  class="rounded-full w-8 h-8 sm:w-10 sm:h-10 p-2.5 flex items-center justify-center bg-black bg-opacity-75 hover:bg-opacity-100 transition-opacity duration-300 group opacity-50 pointer-events-none">
+                  <svg
+                    class="w-full fill-white group-hover:scale-90 transition-[scale] duration-300"
+                    version="1.1"
+                    id="Layer_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 492 492"
+                    xml:space="preserve">
+                    <g>
+                      <g>
+                        <path
+                          d="M464.344,207.418l0.768,0.168H135.888l103.496-103.724c5.068-5.064,7.848-11.924,7.848-19.124
+    c0-7.2-2.78-14.012-7.848-19.088L223.28,49.538c-5.064-5.064-11.812-7.864-19.008-7.864c-7.2,0-13.952,2.78-19.016,7.844
+    L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
+    c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
+    c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
+    C492,219.198,479.172,207.418,464.344,207.418z" />
+                      </g>
+                    </g>
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  id="events-five-carousel-next-button"
+                  class="rounded-full w-8 h-8 sm:w-10 sm:h-10 p-2.5 flex items-center justify-center bg-black bg-opacity-75 hover:bg-opacity-100 transition-opacity duration-300 group">
+                  <svg
+                    class="w-full fill-white group-hover:scale-90 transition-[scale] duration-300"
+                    version="1.1"
+                    id="Layer_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 492.004 492.004"
+                    xml:space="preserve">
+                    <g>
+                      <g>
+                        <path
+                          d="M484.14,226.886L306.46,49.202c-5.072-5.072-11.832-7.856-19.04-7.856c-7.216,0-13.972,2.788-19.044,7.856l-16.132,16.136
+    c-5.068,5.064-7.86,11.828-7.86,19.04c0,7.208,2.792,14.2,7.86,19.264L355.9,207.526H26.58C11.732,207.526,0,219.15,0,234.002
+    v22.812c0,14.852,11.732,27.648,26.58,27.648h330.496L252.248,388.926c-5.068,5.072-7.86,11.652-7.86,18.864
+    c0,7.204,2.792,13.88,7.86,18.948l16.132,16.084c5.072,5.072,11.828,7.836,19.044,7.836c7.208,0,13.968-2.8,19.04-7.872
+    l177.68-177.68c5.084-5.088,7.88-11.88,7.86-19.1C492.02,238.762,489.228,231.966,484.14,226.886z" />
+                      </g>
+                    </g>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Events Slider 6 -->
+    <div
+      class="white flex flex-col items-center justify-center bg-[rgba(0,0,0,0.3)] backdrop-blur-sm fixed z-50 top-0 bottom-0 left-0 right-0 opacity-0"
+      x-show.transition.opacity.duration.600ms="showEventSliderSix"
+      :class="{' block opacity-100': showEventSliderSix, ' hidden scale-75': !showEventSliderSix}">
+      <div
+        class="w-11/12 md:w-9/12 mx-auto gap-3 md:gap-5 relative rounded-sm transition-all duration-500"
+        x-show.transition.scale.duration.800ms="showEventSliderSix"
+        x-transition.delay.50ms>
+        <div @click.away="showEventSliderSix = false" class="mx-auto relative">
+          <div class="swiper eventSwiperSix w-full relative">
+            <div class="swiper-wrapper">
+              <!-- Item 1 -->
+              <div
+                class="swiper-slide h-full relative w-full aspect-video eventSwiperImage sixthSet">
+                <img
+                  src="./src/images/events/Gamescom-events/Gamescom-2.jpeg"
+                  alt=""
+                  class="relative z-0 w-full object-cover bg-white aspect-video" />
+              </div>
+              <!-- Item 2 -->
+              <div
+                class="swiper-slide h-full relative w-full aspect-video eventSwiperImage sixthSet">
+                <img
+                  src="./src/images/events/Gamescom-events/Gamescom-1.jpeg"
+                  alt=""
+                  class="relative z-0 w-full object-cover bg-white aspect-video" />
+              </div>
+              <!-- Item 3 -->
+              <div
+                class="swiper-slide h-full relative w-full aspect-video eventSwiperImage sixthSet">
+                <img
+                  src="./src/images/events/Gamescom-events/Gamescom-3.jpeg"
+                  alt=""
+                  class="relative z-0 w-full object-cover bg-white aspect-video" />
+              </div>
+            </div>
+            <!-- Carousel Nav buttons -->
+            <div
+              class="absolute w-full h-fit p-2.5 pb-3 md:p-10 md:pb-12 2xl:pb-24 z-30 top-0 bottom-0 left-0 right-0 m-auto">
+              <div class="flex w-full justify-between items-center">
+                <button
+                  type="button"
+                  id="events-six-carousel-prev-button"
+                  class="rounded-full w-8 h-8 sm:w-10 sm:h-10 p-2.5 flex items-center justify-center bg-black bg-opacity-75 hover:bg-opacity-100 transition-opacity duration-300 group opacity-50 pointer-events-none">
+                  <svg
+                    class="w-full fill-white group-hover:scale-90 transition-[scale] duration-300"
+                    version="1.1"
+                    id="Layer_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 492 492"
+                    xml:space="preserve">
+                    <g>
+                      <g>
+                        <path
+                          d="M464.344,207.418l0.768,0.168H135.888l103.496-103.724c5.068-5.064,7.848-11.924,7.848-19.124
+    c0-7.2-2.78-14.012-7.848-19.088L223.28,49.538c-5.064-5.064-11.812-7.864-19.008-7.864c-7.2,0-13.952,2.78-19.016,7.844
+    L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
+    c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
+    c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
+    C492,219.198,479.172,207.418,464.344,207.418z" />
+                      </g>
+                    </g>
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  id="events-six-carousel-next-button"
+                  class="rounded-full w-8 h-8 sm:w-10 sm:h-10 p-2.5 flex items-center justify-center bg-black bg-opacity-75 hover:bg-opacity-100 transition-opacity duration-300 group">
+                  <svg
+                    class="w-full fill-white group-hover:scale-90 transition-[scale] duration-300"
+                    version="1.1"
+                    id="Layer_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 492.004 492.004"
+                    xml:space="preserve">
+                    <g>
+                      <g>
+                        <path
+                          d="M484.14,226.886L306.46,49.202c-5.072-5.072-11.832-7.856-19.04-7.856c-7.216,0-13.972,2.788-19.044,7.856l-16.132,16.136
+    c-5.068,5.064-7.86,11.828-7.86,19.04c0,7.208,2.792,14.2,7.86,19.264L355.9,207.526H26.58C11.732,207.526,0,219.15,0,234.002
+    v22.812c0,14.852,11.732,27.648,26.58,27.648h330.496L252.248,388.926c-5.068,5.072-7.86,11.652-7.86,18.864
+    c0,7.204,2.792,13.88,7.86,18.948l16.132,16.084c5.072,5.072,11.828,7.836,19.044,7.836c7.208,0,13.968-2.8,19.04-7.872
+    l177.68-177.68c5.084-5.088,7.88-11.88,7.86-19.1C492.02,238.762,489.228,231.966,484.14,226.886z" />
+                      </g>
+                    </g>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Events Slider 7 -->
+    <div
+      class="white flex flex-col items-center justify-center bg-[rgba(0,0,0,0.3)] backdrop-blur-sm fixed z-50 top-0 bottom-0 left-0 right-0 opacity-0"
+      x-show.transition.opacity.duration.600ms="showEventSliderSeven"
+      :class="{' block opacity-100': showEventSliderSeven, ' hidden scale-75': !showEventSliderSeven}">
+      <div
+        class="w-11/12 md:w-9/12 mx-auto gap-3 md:gap-5 relative rounded-sm transition-all duration-500"
+        x-show.transition.scale.duration.800ms="showEventSliderSeven"
+        x-transition.delay.50ms>
+        <div
+          @click.away="showEventSliderSeven = false"
+          class="mx-auto relative">
+          <div class="swiper eventSwiperSeven w-full relative">
+            <div class="swiper-wrapper">
+              <!--Item 1 -->
+              <div
+                class="swiper-slide h-full relative w-full aspect-video eventSwiperImage seventhSet">
+                <img
+                  src="./src/images/events/SBC-Miami/IMG_2164.JPG"
+                  alt=""
+                  class="relative z-0 w-full object-cover bg-white aspect-video" />
+              </div>
+            </div>
+            <!-- Carousel Nav buttons -->
+            <div
+              class="absolute w-full h-fit p-2.5 pb-3 md:p-10 md:pb-12 2xl:pb-24 z-30 top-0 bottom-0 left-0 right-0 m-auto">
+              <div class="flex w-full justify-between items-center">
+                <button
+                  type="button"
+                  id="events-seven-carousel-prev-button"
+                  class="rounded-full w-8 h-8 sm:w-10 sm:h-10 p-2.5 flex items-center justify-center bg-black bg-opacity-75 hover:bg-opacity-100 transition-opacity duration-300 group opacity-50 pointer-events-none">
+                  <svg
+                    class="w-full fill-white group-hover:scale-90 transition-[scale] duration-300"
+                    version="1.1"
+                    id="Layer_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 492 492"
+                    xml:space="preserve">
+                    <g>
+                      <g>
+                        <path
+                          d="M464.344,207.418l0.768,0.168H135.888l103.496-103.724c5.068-5.064,7.848-11.924,7.848-19.124
+    c0-7.2-2.78-14.012-7.848-19.088L223.28,49.538c-5.064-5.064-11.812-7.864-19.008-7.864c-7.2,0-13.952,2.78-19.016,7.844
+    L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
+    c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
+    c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
+    C492,219.198,479.172,207.418,464.344,207.418z" />
+                      </g>
+                    </g>
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  id="events-seven-carousel-next-button"
+                  class="rounded-full w-8 h-8 sm:w-10 sm:h-10 p-2.5 flex items-center justify-center bg-black bg-opacity-75 hover:bg-opacity-100 transition-opacity duration-300 group">
+                  <svg
+                    class="w-full fill-white group-hover:scale-90 transition-[scale] duration-300"
+                    version="1.1"
+                    id="Layer_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 492.004 492.004"
+                    xml:space="preserve">
+                    <g>
+                      <g>
+                        <path
+                          d="M484.14,226.886L306.46,49.202c-5.072-5.072-11.832-7.856-19.04-7.856c-7.216,0-13.972,2.788-19.044,7.856l-16.132,16.136
+    c-5.068,5.064-7.86,11.828-7.86,19.04c0,7.208,2.792,14.2,7.86,19.264L355.9,207.526H26.58C11.732,207.526,0,219.15,0,234.002
+    v22.812c0,14.852,11.732,27.648,26.58,27.648h330.496L252.248,388.926c-5.068,5.072-7.86,11.652-7.86,18.864
+    c0,7.204,2.792,13.88,7.86,18.948l16.132,16.084c5.072,5.072,11.828,7.836,19.044,7.836c7.208,0,13.968-2.8,19.04-7.872
+    l177.68-177.68c5.084-5.088,7.88-11.88,7.86-19.1C492.02,238.762,489.228,231.966,484.14,226.886z" />
+                      </g>
+                    </g>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Events Slider 8 -->
+    <div
+      class="white flex flex-col items-center justify-center bg-[rgba(0,0,0,0.3)] backdrop-blur-sm fixed z-50 top-0 bottom-0 left-0 right-0 opacity-0"
+      x-show.transition.opacity.duration.600ms="showEventSliderEight"
+      :class="{' block opacity-100': showEventSliderEight, ' hidden scale-75': !showEventSliderEight}">
+      <div
+        class="w-11/12 md:w-9/12 mx-auto gap-3 md:gap-5 relative rounded-sm transition-all duration-500"
+        x-show.transition.scale.duration.800ms="showEventSliderEight"
+        x-transition.delay.50ms>
+        <div
+          @click.away="showEventSliderEight = false"
+          class="mx-auto relative">
+          <div class="swiper eventSwiperEight w-full relative">
+            <div class="swiper-wrapper">
+              <!--Item 1 -->
+              <div
+                class="swiper-slide h-full relative w-full aspect-video eventSwiperImage eigthSet">
+                <img
+                  src="./src/images/events/SIGMA-Manila-2024/MIELA Digital 05.06.2024 033-fotor-20240607134530.png"
+                  alt=""
+                  class="relative z-0 w-full object-cover bg-white aspect-video" />
+              </div>
+              <!--Item 2 -->
+              <div
+                class="swiper-slide h-full relative w-full aspect-video eventSwiperImage eigthSet">
+                <img
+                  src="./src/images/events/SIGMA-Manila-2024/MIELA Digital 05.06.2024 037.jpg"
+                  alt=""
+                  class="relative z-0 w-full object-cover bg-white aspect-video" />
+              </div>
+              <!--Item 3 -->
+              <div
+                class="swiper-slide h-full relative w-full aspect-video eventSwiperImage eigthSet">
+                <img
+                  src="./src/images/events/SIGMA-Manila-2024/MM.png"
+                  alt=""
+                  class="relative z-0 w-full object-cover bg-white aspect-video" />
+              </div>
+            </div>
+            <!-- Carousel Nav buttons -->
+            <div
+              class="absolute w-full h-fit p-2.5 pb-3 md:p-10 md:pb-12 2xl:pb-24 z-30 top-0 bottom-0 left-0 right-0 m-auto">
+              <div class="flex w-full justify-between items-center">
+                <button
+                  type="button"
+                  id="events-eight-carousel-prev-button"
+                  class="rounded-full w-8 h-8 sm:w-10 sm:h-10 p-2.5 flex items-center justify-center bg-black bg-opacity-75 hover:bg-opacity-100 transition-opacity duration-300 group opacity-50 pointer-events-none">
+                  <svg
+                    class="w-full fill-white group-hover:scale-90 transition-[scale] duration-300"
+                    version="1.1"
+                    id="Layer_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 492 492"
+                    xml:space="preserve">
+                    <g>
+                      <g>
+                        <path
+                          d="M464.344,207.418l0.768,0.168H135.888l103.496-103.724c5.068-5.064,7.848-11.924,7.848-19.124
+    c0-7.2-2.78-14.012-7.848-19.088L223.28,49.538c-5.064-5.064-11.812-7.864-19.008-7.864c-7.2,0-13.952,2.78-19.016,7.844
+    L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
+    c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
+    c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
+    C492,219.198,479.172,207.418,464.344,207.418z" />
+                      </g>
+                    </g>
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  id="events-eight-carousel-next-button"
+                  class="rounded-full w-8 h-8 sm:w-10 sm:h-10 p-2.5 flex items-center justify-center bg-black bg-opacity-75 hover:bg-opacity-100 transition-opacity duration-300 group">
+                  <svg
+                    class="w-full fill-white group-hover:scale-90 transition-[scale] duration-300"
+                    version="1.1"
+                    id="Layer_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 492.004 492.004"
+                    xml:space="preserve">
+                    <g>
+                      <g>
+                        <path
+                          d="M484.14,226.886L306.46,49.202c-5.072-5.072-11.832-7.856-19.04-7.856c-7.216,0-13.972,2.788-19.044,7.856l-16.132,16.136
+    c-5.068,5.064-7.86,11.828-7.86,19.04c0,7.208,2.792,14.2,7.86,19.264L355.9,207.526H26.58C11.732,207.526,0,219.15,0,234.002
+    v22.812c0,14.852,11.732,27.648,26.58,27.648h330.496L252.248,388.926c-5.068,5.072-7.86,11.652-7.86,18.864
+    c0,7.204,2.792,13.88,7.86,18.948l16.132,16.084c5.072,5.072,11.828,7.836,19.044,7.836c7.208,0,13.968-2.8,19.04-7.872
+    l177.68-177.68c5.084-5.088,7.88-11.88,7.86-19.1C492.02,238.762,489.228,231.966,484.14,226.886z" />
+                      </g>
+                    </g>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Events Slider 9 -->
+    <div
+      class="white flex flex-col items-center justify-center bg-[rgba(0,0,0,0.3)] backdrop-blur-sm fixed z-50 top-0 bottom-0 left-0 right-0 opacity-0"
+      x-show.transition.opacity.duration.600ms="showEventSliderNine"
+      :class="{' block opacity-100': showEventSliderNine, ' hidden scale-75': !showEventSliderNine}">
+      <div
+        class="w-11/12 md:w-9/12 mx-auto gap-3 md:gap-5 relative rounded-sm transition-all duration-500"
+        x-show.transition.scale.duration.800ms="showEventSliderNine"
+        x-transition.delay.50ms>
+        <div @click.away="showEventSliderNine = false" class="mx-auto relative">
+          <div class="swiper eventSwiperNine w-full relative">
+            <div class="swiper-wrapper">
+              <!--Item 1 -->
+              <div
+                class="swiper-slide h-full relative w-full aspect-video eventSwiperImage ninthSet">
+                <img
+                  src="./src/images/events/World-Esports-Summit-2023/1701334015933.jpeg"
+                  alt=""
+                  class="relative z-0 w-full object-cover bg-white aspect-video" />
+              </div>
+              <!--Item 2 -->
+              <div
+                class="swiper-slide h-full relative w-full aspect-video eventSwiperImage ninthSet">
+                <img
+                  src="./src/images/events/World-Esports-Summit-2023/1701334016533.jpeg"
+                  alt=""
+                  class="relative z-0 w-full object-cover bg-white aspect-video" />
+              </div>
+              <!--Item 3 -->
+              <div
+                class="swiper-slide h-full relative w-full aspect-video eventSwiperImage ninthSet">
+                <img
+                  src="./src/images/events/World-Esports-Summit-2023/1701334017217.jpeg"
+                  alt=""
+                  class="relative z-0 w-full object-cover bg-white aspect-video" />
+              </div>
+            </div>
+            <!-- Carousel Nav buttons -->
+            <div
+              class="absolute w-full h-fit p-2.5 pb-3 md:p-10 md:pb-12 2xl:pb-24 z-30 top-0 bottom-0 left-0 right-0 m-auto">
+              <div class="flex w-full justify-between items-center">
+                <button
+                  type="button"
+                  id="events-nine-carousel-prev-button"
+                  class="rounded-full w-8 h-8 sm:w-10 sm:h-10 p-2.5 flex items-center justify-center bg-black bg-opacity-75 hover:bg-opacity-100 transition-opacity duration-300 group opacity-50 pointer-events-none">
+                  <svg
+                    class="w-full fill-white group-hover:scale-90 transition-[scale] duration-300"
+                    version="1.1"
+                    id="Layer_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 492 492"
+                    xml:space="preserve">
+                    <g>
+                      <g>
+                        <path
+                          d="M464.344,207.418l0.768,0.168H135.888l103.496-103.724c5.068-5.064,7.848-11.924,7.848-19.124
+    c0-7.2-2.78-14.012-7.848-19.088L223.28,49.538c-5.064-5.064-11.812-7.864-19.008-7.864c-7.2,0-13.952,2.78-19.016,7.844
+    L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
+    c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
+    c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
+    C492,219.198,479.172,207.418,464.344,207.418z" />
+                      </g>
+                    </g>
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  id="events-nine-carousel-next-button"
+                  class="rounded-full w-8 h-8 sm:w-10 sm:h-10 p-2.5 flex items-center justify-center bg-black bg-opacity-75 hover:bg-opacity-100 transition-opacity duration-300 group">
+                  <svg
+                    class="w-full fill-white group-hover:scale-90 transition-[scale] duration-300"
+                    version="1.1"
+                    id="Layer_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 492.004 492.004"
+                    xml:space="preserve">
+                    <g>
+                      <g>
+                        <path
+                          d="M484.14,226.886L306.46,49.202c-5.072-5.072-11.832-7.856-19.04-7.856c-7.216,0-13.972,2.788-19.044,7.856l-16.132,16.136
+    c-5.068,5.064-7.86,11.828-7.86,19.04c0,7.208,2.792,14.2,7.86,19.264L355.9,207.526H26.58C11.732,207.526,0,219.15,0,234.002
+    v22.812c0,14.852,11.732,27.648,26.58,27.648h330.496L252.248,388.926c-5.068,5.072-7.86,11.652-7.86,18.864
+    c0,7.204,2.792,13.88,7.86,18.948l16.132,16.084c5.072,5.072,11.828,7.836,19.044,7.836c7.208,0,13.968-2.8,19.04-7.872
+    l177.68-177.68c5.084-5.088,7.88-11.88,7.86-19.1C492.02,238.762,489.228,231.966,484.14,226.886z" />
+                      </g>
+                    </g>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer
+      id="footer-anchor"
+      class="bg-black pb-3 pt-8 md:py-10 lg:py-14 overflow-hidden font-montserrat">
+      <div
+        class="w-[85%] 2xl:w-[1400px] mx-auto space-y-6 md:space-y-8 lg:space-y-10">
+        <div class="w-full flex flex-col md:flex-row justify-between gap-5">
+          <div
+            data-aos="fade-up"
+            data-aos-duration="1300"
+            data-aos-delay="50"
+            class="w-full md:w-fit space-y-5">
+            <img
+              src="./src/images/Logos/M_logo_copy.png"
+              class="w-12 lg:w-16"
+              alt="" />
+            <p
+              class="text-white text-sm md:text-base max-w-[650px] md:max-w-[400px] mx-auto md:!ml-0">
+              Interested? Let’s get in touch.
+            </p>
+            <button
+              class="md:py-3 cursor-pointer text-sm md:text-base hover:!cursor-pointer active:bg-custom-ash transition-all duration-300 md:duration-300 overflow-hidden w-fit px-4 py-2.5 bg-custom-yellow hover:bg-off-yellow font-semibold !border-none !outline-none"
+              @click=" open = false, showModal = !showModal">
+              Contact us
+            </button>
+          </div>
+          <div
+            data-aos="fade-up"
+            data-aos-duration="1300"
+            data-aos-delay="100"
+            class="w-fit space-y-3">
+            <h2
+              class="font-montserrat text-base font-semibold tracking-wider text-white w-fit uppercase">
+              Quick Links
+            </h2>
+            <div
+              class="font-normal text-sm md:text-base text-custom-white space-y-5">
+              <p
+                class="nav_link text-sm md:text-base cursor-pointer active:text-custom-yellow md:hover:text-custom-yellow !border-none text-custom-deep-ash">
+                Home
+              </p>
+              <p
+                class="nav_link text-sm md:text-base cursor-pointer active:text-custom-yellow md:hover:text-custom-yellow !border-none custom-deep-ash text-custom-deep-ash">
+                Influencers
+              </p>
+              <p
+                class="nav_link text-sm md:text-base cursor-pointer active:text-custom-yellow md:hover:text-custom-yellow !border-none custom-deep-ash text-custom-deep-ash">
+                Our Team
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="bg-[#303030] mt-8 md:mt-10 mb-4" />
+      <div
+        data-aos="fade-up"
+        data-aos-duration="1300"
+        data-aos-delay="200"
+        data-aos-anchor="#footer-anchor"
+        class="flex flex-col md:flex-row gap-5 md:items-center justify-between w-[85%] 2xl:w-[1400px] mx-auto mb-2 md:mb-0">
+        <a
+          href="./src/pdf/Miela Company Deck 2024.pdf"
+          attributes-list
+          download
+          class="flex items-center gap-2 group cursor-pointer font-montserrat">
+          <div
+            class="h-8 w-8 md:h-11 md:w-11 rounded-full bg-custom-yellow flex justify-center items-center p-1.5 md:p-2 overflow-hidden group-hover:bg-off-yellow">
+            <svg
+              class="w-6 md:w-8"
+              viewBox="0 0 1920 1920"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M1016.47 903.048v710.738l185.902-185.9 79.962 79.849L960 1829.955l-322.334-322.22 79.962-79.85 185.901 185.901V903.048h112.942ZM960 56c221.816 0 408.847 143.661 478.08 342.212 10.052-.678 19.99-3.388 30.155-3.388 249.149 0 451.765 202.616 451.765 451.764s-202.616 451.765-451.765 451.765h-112.94v-112.941h112.94c186.805 0 338.824-152.02 338.824-338.824s-152.019-338.823-338.824-338.823c-1.92 0-3.727.564-5.647.677 2.146 18.523 5.647 36.706 5.647 55.793 0 44.16-5.76 88.094-16.94 130.673l-109.215-28.913c8.81-33.204 13.214-67.426 13.214-101.76 0-217.976-177.318-395.294-395.294-395.294-212.442 0-385.13 168.96-393.6 379.37 38.174 18.409 74.202 41.788 105.374 72.282l-78.946 80.753c-53.082-52.066-123.219-80.64-197.534-80.64-155.746 0-282.353 126.72-282.353 282.353 0 155.746 126.607 282.353 282.353 282.353h169.412v112.94H395.294C177.318 1298.353 0 1121.036 0 903.06c0-217.977 177.318-395.294 395.294-395.294 20.894 0 41.224 2.71 61.553 5.986C482.597 257.487 697.073 56 960 56Z"
+                fill-rule="evenodd" />
+            </svg>
+          </div>
+          <div>
+            <p
+              class="text-white tracking-wider font-semibold text-base md:text-xl text-nowrap group-hover:!text-custom-ash duration-300">
+              Company Deck
+            </p>
+            <p
+              class="text-[13px] md:text-sm text-custom-deep-ash group-hover:text-custom-ash duration-300 transition-colors">
+              PDF, 3MB
+            </p>
+          </div>
+        </a>
+        <p class="text-custom-white font-normal text-sm -mt-2 font-montserrat">
+          © 2025 Miela Digital. All rights reserved.
+        </p>
+        <div class="flex gap-3 items-center">
+          <a
+            target="_blank"
+            href="https://www.instagram.com/mieladigital/"
+            class="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-custom-yellow hover:bg-off-yellow transition-all duration-300 flex justify-center items-center p-1.5 md:p-2 overflow-hidden">
+            <svg
+              class="w-5 md:w-7 fill-black"
+              viewBox="0 0 256 256"
+              id="Flat"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M128,82a46,46,0,1,0,46,46A46.05239,46.05239,0,0,0,128,82Zm0,68a22,22,0,1,1,22-22A22.02489,22.02489,0,0,1,128,150ZM176,20H80A60.06812,60.06812,0,0,0,20,80v96a60.06812,60.06812,0,0,0,60,60h96a60.06812,60.06812,0,0,0,60-60V80A60.06812,60.06812,0,0,0,176,20Zm36,156a36.04061,36.04061,0,0,1-36,36H80a36.04061,36.04061,0,0,1-36-36V80A36.04061,36.04061,0,0,1,80,44h96a36.04061,36.04061,0,0,1,36,36ZM196,76a16,16,0,1,1-16-16A16.01833,16.01833,0,0,1,196,76Z" />
+            </svg>
+          </a>
+          <a
+            target="_blank"
+            href="mailto:contact@mieladigital.com"
+            class="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-custom-yellow hover:bg-off-yellow transition-all duration-300 flex justify-center items-center p-1.5 md:p-2">
+            <svg
+              class="w-4 sm:w-6"
+              viewBox="0 -9.31 56.223 56.223"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                id="email_unread"
+                data-name="email unread"
+                d="M798.377,169.859h.012a2.16,2.16,0,0,0,1.181-.346l.092-.059.063-.039,1.071-.887,25.563-21.094a.3.3,0,0,0-.239-.123H770.492a.291.291,0,0,0-.183.066l26.745,22.045A2.1,2.1,0,0,0,798.377,169.859ZM770.2,150.3v31.268l19.159-15.476Zm37.084,15.9,19.139,15.38V150.4Zm-6.085,5.021a4.559,4.559,0,0,1-5.619.005l-4.388-3.619L770.2,184.558v.053a.3.3,0,0,0,.3.3h55.625a.3.3,0,0,0,.3-.3v-.049l-20.974-16.852Z"
+                transform="translate(-770.195 -147.311)" />
+            </svg>
+          </a>
+          <a
+            target="_blank"
+            href="https://www.youtube.com/channel/UCa8yH5uqn2f3ih1eeB-lzZQ"
+            class="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-custom-yellow hover:bg-off-yellow transition-all duration-300 flex justify-center items-center p-1.5 md:p-2">
+            <svg
+              class="w-4 md:w-6"
+              viewBox="0 -3 20 20"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink">
+              <title>youtube [#168]</title>
+              <desc>Created with Sketch.</desc>
+              <defs></defs>
+              <g
+                id="Page-1"
+                stroke="none"
+                stroke-width="1"
+                fill="none"
+                fill-rule="evenodd">
+                <g
+                  id="Dribbble-Light-Preview"
+                  transform="translate(-300.000000, -7442.000000)"
+                  fill="#000000">
+                  <g id="icons" transform="translate(56.000000, 160.000000)">
+                    <path
+                      d="M251.988432,7291.58588 L251.988432,7285.97425 C253.980638,7286.91168 255.523602,7287.8172 257.348463,7288.79353 C255.843351,7289.62824 253.980638,7290.56468 251.988432,7291.58588 M263.090998,7283.18289 C262.747343,7282.73013 262.161634,7282.37809 261.538073,7282.26141 C259.705243,7281.91336 248.270974,7281.91237 246.439141,7282.26141 C245.939097,7282.35515 245.493839,7282.58153 245.111335,7282.93357 C243.49964,7284.42947 244.004664,7292.45151 244.393145,7293.75096 C244.556505,7294.31342 244.767679,7294.71931 245.033639,7294.98558 C245.376298,7295.33761 245.845463,7295.57995 246.384355,7295.68865 C247.893451,7296.0008 255.668037,7296.17532 261.506198,7295.73552 C262.044094,7295.64178 262.520231,7295.39147 262.895762,7295.02447 C264.385932,7293.53455 264.28433,7285.06174 263.090998,7283.18289"
+                      id="youtube-[#168]"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </a>
+          <a
+            target="_blank"
+            href="https://www.twitch.tv/team/miela"
+            class="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-custom-yellow hover:bg-off-yellow transition-all duration-300 flex justify-center items-center p-1.5 md:p-2">
+            <svg
+              class="w-4 md:w-6"
+              viewBox="-0.5 0 20 20"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink">
+              <title>twitch [#182]</title>
+              <desc>Created with Sketch.</desc>
+              <defs></defs>
+              <g
+                id="Page-1"
+                stroke="none"
+                stroke-width="1"
+                fill="none"
+                fill-rule="evenodd">
+                <g
+                  id="Dribbble-Light-Preview"
+                  transform="translate(-141.000000, -7399.000000)"
+                  fill="#000000">
+                  <g id="icons" transform="translate(56.000000, 160.000000)">
+                    <path
+                      d="M97,7249 L99,7249 L99,7244 L97,7244 L97,7249 Z M92,7249 L94,7249 L94,7244 L92,7244 L92,7249 Z M102,7250.307 L102,7241 L88,7241 L88,7253 L92,7253 L92,7255.953 L94.56,7253 L99.34,7253 L102,7250.307 Z M98.907,7256 L94.993,7256 L92.387,7259 L90,7259 L90,7256 L85,7256 L85,7242.48 L86.3,7239 L104,7239 L104,7251.173 L98.907,7256 Z"
+                      id="twitch-[#182]"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </a>
+          <a
+            target="_blank"
+            href="https://www.linkedin.com/company/mieladigital"
+            class="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-custom-yellow hover:bg-off-yellow transition-all duration-300 flex justify-center items-center p-1.5 md:p-2">
+            <svg
+              class="w-4 md:w-6"
+              viewBox="0 0 20 20"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink">
+              <title>linkedin [#161]</title>
+              <desc>Created with Sketch.</desc>
+              <defs></defs>
+              <g
+                id="Page-1"
+                stroke="none"
+                stroke-width="1"
+                fill="none"
+                fill-rule="evenodd">
+                <g
+                  id="Dribbble-Light-Preview"
+                  transform="translate(-180.000000, -7479.000000)"
+                  fill="#000000">
+                  <g id="icons" transform="translate(56.000000, 160.000000)">
+                    <path
+                      d="M144,7339 L140,7339 L140,7332.001 C140,7330.081 139.153,7329.01 137.634,7329.01 C135.981,7329.01 135,7330.126 135,7332.001 L135,7339 L131,7339 L131,7326 L135,7326 L135,7327.462 C135,7327.462 136.255,7325.26 139.083,7325.26 C141.912,7325.26 144,7326.986 144,7330.558 L144,7339 L144,7339 Z M126.442,7323.921 C125.093,7323.921 124,7322.819 124,7321.46 C124,7320.102 125.093,7319 126.442,7319 C127.79,7319 128.883,7320.102 128.883,7321.46 C128.884,7322.819 127.79,7323.921 126.442,7323.921 L126.442,7323.921 Z M124,7339 L129,7339 L129,7326 L124,7326 L124,7339 Z"
+                      id="linkedin-[#161]"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </a>
+          <a
+            target="_blank"
+            href="https://twitter.com/MielaDigital"
+            class="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-custom-yellow hover:bg-off-yellow transition-all duration-300 flex justify-center items-center p-1.5 md:p-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              enable-background="new 0 0 72 72"
+              viewBox="0 0 72 72"
+              id="twitter-x"
+              class="w-4 md:w-6">
+              <switch>
+                <g>
+                  <path
+                    d="M42.5,31.2L66,6h-6L39.8,27.6L24,6H4l24.6,33.6L4,66
+              h6l21.3-22.8L48,66h20L42.5,31.2z M12.9,10h8l38.1,52h-8L12.9,10z"></path>
+                </g>
+              </switch>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
+      defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./src/script.js"></script>
+    <script src="./src/form.js"></script>
+    <script>
+      AOS.init({ once: true });
+    </script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+      //PLAYS VIDEO IN LOW POWER MODE
+      $("body").on("click touchstart", function () {
+        if (window.innerWidth > 768) {
+          var videoElement = document.getElementsByClassName("inlinevideo");
+          if (videoElement.playing) {
+          } else {
+            $(".inlinevideo").trigger("play");
+          }
+        } else {
+          var videoElement =
+            document.getElementsByClassName("mobileServiceVideo");
+          if (videoElement.playing) {
+          } else {
+            $(".mobileServiceVideo").trigger("play");
+          }
+        }
+      });
+    </script>
+
+    <!-- Events Swipers 1-->
+    <script>
+      const firstEventSwiperImages = document.querySelectorAll(".firstSet");
+
+      var eventSwiperOne = new Swiper(".eventSwiperOne", {
+        keyboard: {
+          enabled: true,
+          onlyInViewport: false
+        },
+        spaceBetween: 30,
+        centeredSlides: true,
+        speed: 1500,
+        on: {
+          slideChange: () => {
+            if (eventSwiperOne) {
+              const activeIndex = eventSwiperOne.realIndex;
+              console.log("active index is ", activeIndex);
+              if (activeIndex === 0) {
+                eventOneSwiperPrevButton.classList.add(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+              } else if (activeIndex === firstEventSwiperImages.length - 1) {
+                eventOneSwiperNextButton.classList.add(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+              } else {
+                eventOneSwiperPrevButton.classList.remove(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+                eventOneSwiperNextButton.classList.remove(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+              }
+            }
+          }
+        },
+        navigation: {
+          nextEl: ".events-one-carousel-next-button",
+          prevEl: ".events-one-carousel-prev-button"
+        }
+      });
+
+      const eventOneSwiperPrevButton = document.getElementById(
+        "events-one-carousel-prev-button"
+      );
+      const eventOneSwiperNextButton = document.getElementById(
+        "events-one-carousel-next-button"
+      );
+
+      eventOneSwiperPrevButton.addEventListener("click", function () {
+        eventSwiperOne.slidePrev(); // Go to the previous slide
+      });
+
+      eventOneSwiperNextButton.addEventListener("click", function () {
+        eventSwiperOne.slideNext(); // Go to the next slide
+      });
+    </script>
+
+    <!-- Events Swipers 2-->
+    <script>
+      const secondEventSwiperImages = document.querySelectorAll(".secondSet");
+
+      var eventSwiperTwo = new Swiper(".eventSwiperTwo", {
+        keyboard: {
+          enabled: true,
+          onlyInViewport: false
+        },
+        spaceBetween: 30,
+        centeredSlides: true,
+        speed: 1500,
+        on: {
+          slideChange: () => {
+            if (eventSwiperTwo) {
+              const activeIndex = eventSwiperTwo.realIndex;
+              console.log("active index is ", activeIndex);
+              if (activeIndex === 0) {
+                eventTwoSwiperPrevButton.classList.add(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+              } else if (activeIndex === secondEventSwiperImages.length - 1) {
+                eventTwoSwiperNextButton.classList.add(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+              } else {
+                eventTwoSwiperPrevButton.classList.remove(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+                eventTwoSwiperNextButton.classList.remove(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+              }
+            }
+          }
+        },
+        navigation: {
+          nextEl: ".events-two-carousel-next-button",
+          prevEl: ".events-two-carousel-prev-button"
+        }
+      });
+
+      const eventTwoSwiperPrevButton = document.getElementById(
+        "events-two-carousel-prev-button"
+      );
+      const eventTwoSwiperNextButton = document.getElementById(
+        "events-two-carousel-next-button"
+      );
+
+      eventTwoSwiperPrevButton.addEventListener("click", function () {
+        eventSwiperTwo.slidePrev();
+      });
+
+      eventTwoSwiperNextButton.addEventListener("click", function () {
+        eventSwiperTwo.slideNext();
+      });
+    </script>
+
+    <!-- Events Swipers 3-->
+    <script>
+      const thirdEventSwiperImages = document.querySelectorAll(".thirdSet");
+      var eventSwiperThree = new Swiper(".eventSwiperThree", {
+        keyboard: {
+          enabled: true,
+          onlyInViewport: false
+        },
+        spaceBetween: 30,
+        centeredSlides: true,
+        speed: 1500,
+        on: {
+          slideChange: () => {
+            if (eventSwiperThree) {
+              const activeIndex = eventSwiperThree.realIndex;
+              console.log("active index is ", activeIndex);
+              if (activeIndex === 0) {
+                eventThreeSwiperPrevButton.classList.add(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+              } else if (activeIndex === thirdEventSwiperImages.length - 1) {
+                eventThreeSwiperNextButton.classList.add(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+              } else {
+                eventThreeSwiperPrevButton.classList.remove(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+                eventThreeSwiperNextButton.classList.remove(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+              }
+            }
+          }
+        },
+        navigation: {
+          nextEl: ".events-three-carousel-next-button",
+          prevEl: ".events-three-carousel-prev-button"
+        }
+      });
+
+      const eventThreeSwiperPrevButton = document.getElementById(
+        "events-three-carousel-prev-button"
+      );
+      const eventThreeSwiperNextButton = document.getElementById(
+        "events-three-carousel-next-button"
+      );
+
+      eventThreeSwiperPrevButton.addEventListener("click", function () {
+        eventSwiperThree.slidePrev(); // Go to the previous slide
+      });
+
+      eventThreeSwiperNextButton.addEventListener("click", function () {
+        eventSwiperThree.slideNext(); // Go to the next slide
+      });
+    </script>
+
+    <!-- Events Swipers 4-->
+    <script>
+      const fourthEventSwiperImages = document.querySelectorAll(".fourthSet");
+      var eventSwiperFour = new Swiper(".eventSwiperFour", {
+        keyboard: {
+          enabled: true,
+          onlyInViewport: false
+        },
+        spaceBetween: 30,
+        centeredSlides: true,
+        speed: 1500,
+        on: {
+          slideChange: () => {
+            if (eventSwiperFour) {
+              const activeIndex = eventSwiperFour.realIndex;
+              console.log("active index is ", activeIndex);
+              if (activeIndex === 0) {
+                eventFourSwiperPrevButton.classList.add(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+              } else if (activeIndex === fourthEventSwiperImages.length - 1) {
+                eventFourSwiperNextButton.classList.add(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+              } else {
+                eventFourSwiperPrevButton.classList.remove(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+                eventFourSwiperNextButton.classList.remove(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+              }
+            }
+          }
+        },
+        navigation: {
+          nextEl: ".events-four-carousel-next-button",
+          prevEl: ".events-four-carousel-prev-button"
+        }
+      });
+
+      const eventFourSwiperPrevButton = document.getElementById(
+        "events-four-carousel-prev-button"
+      );
+      const eventFourSwiperNextButton = document.getElementById(
+        "events-four-carousel-next-button"
+      );
+
+      eventFourSwiperPrevButton.addEventListener("click", function () {
+        eventSwiperFour.slidePrev(); // Go to the previous slide
+      });
+
+      eventFourSwiperNextButton.addEventListener("click", function () {
+        eventSwiperFour.slideNext(); // Go to the next slide
+      });
+    </script>
+
+    <!-- Events Swipers 5-->
+    <script>
+      const fifthEventSwiperImages = document.querySelectorAll(".fifthSet");
+      var eventSwiperFive = new Swiper(".eventSwiperFive", {
+        keyboard: {
+          enabled: true,
+          onlyInViewport: false
+        },
+        spaceBetween: 30,
+        centeredSlides: true,
+        speed: 1500,
+        on: {
+          slideChange: () => {
+            if (eventSwiperFive) {
+              const activeIndex = eventSwiperFive.realIndex;
+              console.log("active index is ", activeIndex);
+              if (activeIndex === 0) {
+                eventFiveSwiperPrevButton.classList.add(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+              } else if (activeIndex === fifthEventSwiperImages.length - 1) {
+                eventFiveSwiperNextButton.classList.add(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+              } else {
+                eventFiveSwiperPrevButton.classList.remove(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+                eventFiveSwiperNextButton.classList.remove(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+              }
+            }
+          }
+        },
+        navigation: {
+          nextEl: ".events-five-carousel-next-button",
+          prevEl: ".events-five-carousel-prev-button"
+        }
+      });
+
+      const eventFiveSwiperPrevButton = document.getElementById(
+        "events-five-carousel-prev-button"
+      );
+      const eventFiveSwiperNextButton = document.getElementById(
+        "events-five-carousel-next-button"
+      );
+
+      eventFiveSwiperPrevButton.addEventListener("click", function () {
+        eventSwiperFive.slidePrev(); // Go to the previous slide
+      });
+
+      eventFiveSwiperNextButton.addEventListener("click", function () {
+        eventSwiperFive.slideNext(); // Go to the next slide
+      });
+    </script>
+
+    <!-- Events Swipers 6-->
+    <script>
+      const sixthEventSwiperImages = document.querySelectorAll(".sixthSet");
+      var eventSwiperSix = new Swiper(".eventSwiperSix", {
+        keyboard: {
+          enabled: true,
+          onlyInViewport: false
+        },
+        spaceBetween: 30,
+        centeredSlides: true,
+        speed: 1500,
+        on: {
+          slideChange: () => {
+            if (eventSwiperSix) {
+              const activeIndex = eventSwiperSix.realIndex;
+
+              if (activeIndex === 0) {
+                eventSixSwiperPrevButton.classList.add(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+              } else if (activeIndex === sixthEventSwiperImages.length - 1) {
+                eventSixSwiperNextButton.classList.add(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+              } else {
+                eventSixSwiperPrevButton.classList.remove(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+                eventSixSwiperNextButton.classList.remove(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+              }
+            }
+          }
+        },
+        navigation: {
+          nextEl: ".events-six-carousel-next-button",
+          prevEl: ".events-six-carousel-prev-button"
+        }
+      });
+
+      const eventSixSwiperPrevButton = document.getElementById(
+        "events-six-carousel-prev-button"
+      );
+      const eventSixSwiperNextButton = document.getElementById(
+        "events-six-carousel-next-button"
+      );
+
+      eventSixSwiperPrevButton.addEventListener("click", function () {
+        eventSwiperSix.slidePrev();
+      });
+
+      eventSixSwiperNextButton.addEventListener("click", function () {
+        eventSwiperSix.slideNext();
+      });
+    </script>
+
+    <!-- Events Swipers 7-->
+    <script>
+      const seventhEventSwiperImages = document.querySelectorAll(".seventhSet");
+      var eventSwiperSeven = new Swiper(".eventSwiperSeven", {
+        keyboard: {
+          enabled: true,
+          onlyInViewport: false
+        },
+        spaceBetween: 30,
+        centeredSlides: true,
+        speed: 1500,
+        on: {
+          slideChange: () => {
+            if (eventSwiperSeven) {
+              const activeIndex = eventSwiperSeven.realIndex;
+              console.log("active index is ", activeIndex);
+              if (activeIndex === 0) {
+                eventSevenSwiperPrevButton.classList.add(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+                eventSevenSwiperNextButton.classList.add(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+              } else if (activeIndex === seventhEventSwiperImages.length - 1) {
+                eventSevenSwiperNextButton.classList.add(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+              } else {
+                eventSevenSwiperPrevButton.classList.remove(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+                eventSevenSwiperNextButton.classList.remove(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+              }
+            }
+          }
+        },
+        navigation: {
+          nextEl: ".events-seven-carousel-next-button",
+          prevEl: ".events-seven-carousel-prev-button"
+        }
+      });
+      eventSevenSwiperPrevButton.classList.add(
+        "opacity-50",
+        "pointer-events-none"
+      );
+      eventSevenSwiperNextButton.classList.add(
+        "opacity-50",
+        "pointer-events-none"
+      );
+
+      const eventSevenSwiperPrevButton = document.getElementById(
+        "events-seven-carousel-prev-button"
+      );
+      const eventSevenSwiperNextButton = document.getElementById(
+        "events-seven-carousel-next-button"
+      );
+
+      eventSevenSwiperPrevButton.addEventListener("click", function () {
+        eventSwiperSeven.slidePrev(); // Go to the previous slide
+      });
+
+      eventSevenSwiperNextButton.addEventListener("click", function () {
+        eventSwiperSeven.slideNext(); // Go to the next slide
+      });
+    </script>
+
+    <!-- Events Swipers 8-->
+    <script>
+      const eigthEventSwiperImages = document.querySelectorAll(".eigthSet");
+      var eventSwiperEight = new Swiper(".eventSwiperEight", {
+        keyboard: {
+          enabled: true,
+          onlyInViewport: false
+        },
+        spaceBetween: 30,
+        centeredSlides: true,
+        speed: 1500,
+        on: {
+          slideChange: () => {
+            if (eventSwiperEight) {
+              const activeIndex = eventSwiperEight.realIndex;
+              console.log("active index is ", activeIndex);
+              if (activeIndex === 0) {
+                eventEightSwiperPrevButton.classList.add(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+              } else if (activeIndex === eigthEventSwiperImages.length - 1) {
+                eventEightSwiperNextButton.classList.add(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+              } else {
+                eventEightSwiperPrevButton.classList.remove(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+                eventEightSwiperNextButton.classList.remove(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+              }
+            }
+          }
+        },
+        navigation: {
+          nextEl: ".events-eight-carousel-next-button",
+          prevEl: ".events-eight-carousel-prev-button"
+        }
+      });
+
+      const eventEightSwiperPrevButton = document.getElementById(
+        "events-eight-carousel-prev-button"
+      );
+      const eventEightSwiperNextButton = document.getElementById(
+        "events-eight-carousel-next-button"
+      );
+
+      eventEightSwiperPrevButton.addEventListener("click", function () {
+        eventSwiperEight.slidePrev(); // Go to the previous slide
+      });
+
+      eventEightSwiperNextButton.addEventListener("click", function () {
+        eventSwiperEight.slideNext(); // Go to the next slide
+      });
+    </script>
+
+    <!-- Events Swipers 9-->
+    <script>
+      const ninthEventSwiperImages = document.querySelectorAll(".ninthSet");
+      var eventSwiperNine = new Swiper(".eventSwiperNine", {
+        keyboard: {
+          enabled: true,
+          onlyInViewport: false
+        },
+        spaceBetween: 30,
+        centeredSlides: true,
+        speed: 1500,
+        on: {
+          slideChange: () => {
+            if (eventSwiperNine) {
+              const activeIndex = eventSwiperNine.realIndex;
+              console.log("active index is ", activeIndex);
+              if (activeIndex === 0) {
+                eventNineSwiperPrevButton.classList.add(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+              } else if (activeIndex === ninthEventSwiperImages.length - 1) {
+                eventNineSwiperNextButton.classList.add(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+              } else {
+                eventNineSwiperPrevButton.classList.remove(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+                eventNineSwiperNextButton.classList.remove(
+                  "opacity-50",
+                  "pointer-events-none"
+                );
+              }
+            }
+          }
+        },
+        navigation: {
+          nextEl: ".events-nine-carousel-next-button",
+          prevEl: ".events-nine-carousel-prev-button"
+        }
+      });
+
+      const eventNineSwiperPrevButton = document.getElementById(
+        "events-nine-carousel-prev-button"
+      );
+      const eventNineSwiperNextButton = document.getElementById(
+        "events-nine-carousel-next-button"
+      );
+
+      eventNineSwiperPrevButton.addEventListener("click", function () {
+        eventSwiperNine.slidePrev(); // Go to the previous slide
+      });
+
+      eventNineSwiperNextButton.addEventListener("click", function () {
+        eventSwiperNine.slideNext(); // Go to the next slide
+      });
+    </script>
+
+    <!-- Highlight Swiper -->
+    <script>
+      // highlightSwiper slider
+
+      // set event listeners for prev and next buttons
+      const highlightPrevButton = document.getElementById(
+        "highlight-carousel-prev-button"
+      );
+      const highlightNextButton = document.getElementById(
+        "highlight-carousel-next-button"
+      );
+
+      var highlightSwiper = new Swiper(".highlightSwiper", {
+        spaceBetween: 30,
+        centeredSlides: true,
+        speed: 1500,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true
+        },
+        on: {
+          slideChange: () => {
+            const highlightButtons =
+              document.querySelectorAll(".highlightButton");
+
+            if (highlightSwiper) {
+              const activeIndex = highlightSwiper.realIndex;
+
+              highlightButtons.forEach((highlightButton, index) => {
+                if (index === activeIndex) {
+                  highlightButton.classList.add("active-service-button");
+                  highlightButton.classList.remove("unactive-service-button");
+                } else {
+                  highlightButton.classList.remove("active-service-button");
+                  highlightButton.classList.add("unactive-service-button");
+                }
+              });
+
+              if (highlightPrevButton && highlightNextButton) {
+                if (activeIndex === 0) {
+                  highlightPrevButton.classList.add(
+                    "opacity-50",
+                    "pointer-events-none"
+                  );
+                } else if (activeIndex === 3) {
+                  highlightNextButton.classList.add(
+                    "opacity-50",
+                    "pointer-events-none"
+                  );
+                } else {
+                  highlightPrevButton.classList.remove(
+                    "opacity-50",
+                    "pointer-events-none"
+                  );
+                  highlightNextButton.classList.remove(
+                    "opacity-50",
+                    "pointer-events-none"
+                  );
+                }
+              }
+            }
+          }
+        },
+        navigation: {
+          nextEl: ".highlight-carousel-next-button",
+          prevEl: ".highlight-carousel-prev-button"
+        }
+      });
+
+      // Get side buttons
+      const highlightOneButton = document.getElementById(
+        "highlight-one-button"
+      );
+      const highlightTwoButton = document.getElementById(
+        "highlight-two-button"
+      );
+      const highlightThreeButton = document.getElementById(
+        "highlight-three-button"
+      );
+      const highlightFourButton = document.getElementById(
+        "highlight-four-button"
+      );
+
+      // Event Listeners for the service buttons
+      highlightOneButton.addEventListener("click", function () {
+        highlightSwiper.slideTo(0);
+      });
+      highlightTwoButton.addEventListener("click", function () {
+        highlightSwiper.slideTo(1);
+      });
+      highlightThreeButton.addEventListener("click", function () {
+        highlightSwiper.slideTo(2);
+      });
+      highlightFourButton.addEventListener("click", function () {
+        highlightSwiper.slideTo(3);
+      });
+
+      highlightPrevButton.addEventListener("click", function () {
+        highlightSwiper.slidePrev(); // Go to the previous slide
+      });
+
+      highlightNextButton.addEventListener("click", function () {
+        highlightSwiper.slideNext(); // Go to the next slide
+      });
+
+      const highlightOneSelect = document.getElementById(
+        "assigned-to-option-1"
+      );
+      const highlightTwoSelect = document.getElementById(
+        "assigned-to-option-2"
+      );
+      const highlightThreeSelect = document.getElementById(
+        "assigned-to-option-3"
+      );
+      const highlightFourSelect = document.getElementById(
+        "assigned-to-option-4"
+      );
+
+      // Event Listeners for the service buttons
+      highlightOneSelect.addEventListener("click", function () {
+        highlightSwiper.slideTo(0);
+      });
+      highlightTwoSelect.addEventListener("click", function () {
+        highlightSwiper.slideTo(1);
+      });
+      highlightThreeSelect.addEventListener("click", function () {
+        highlightSwiper.slideTo(2);
+      });
+      highlightFourSelect.addEventListener("click", function () {
+        highlightSwiper.slideTo(3);
+      });
+
+      highlightPrevButton.addEventListener("click", function () {
+        highlightSwiper.slidePrev(); // Go to the previous slide
+      });
+
+      highlightNextButton.addEventListener("click", function () {
+        highlightSwiper.slideNext(); // Go to the next slide
+      });
+    </script>
+
+    <!-- Initialize Desktop Swiper -->
+    <script>
+      const unmuteButton = document.getElementById("unmuteButton");
+      const muteButton = document.getElementById("muteButton");
+
+      const serviceCarouselVideos = document.querySelectorAll(".carouselVideo");
+
+      // Service slider
+      var serviceSwiper = new Swiper(".serviceSwiper", {
+        spaceBetween: 30,
+        centeredSlides: true,
+        loop: true,
+        autoplay: {
+          // delay: [4000, 4000, 6000, 8000, 10000],
+          disableOnInteraction: false
+        },
+        speed: 1500,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true
+        },
+        on: {
+          slideChange: () => {
+            const serviceButton = document.querySelectorAll(".serviceButton");
+
+            if (serviceSwiper) {
+              const activeIndex = serviceSwiper.realIndex;
+              // serviceCarouselVideo.play();
+
+              muteButton.classList.add("md:hidden");
+              unmuteButton.classList.remove("md:hidden");
+
+              serviceButton.forEach((serviceButton, index) => {
+                if (index === activeIndex) {
+                  serviceButton.classList.add("active-service-button");
+                  serviceButton.classList.remove("unactive-service-button");
+                } else {
+                  serviceButton.classList.remove("active-service-button");
+                  serviceButton.classList.add("unactive-service-button");
+                }
+              });
+              serviceCarouselVideos.forEach((serviceCarouselVideo, index) => {
+                if (index === activeIndex && serviceCarouselVideo.paused) {
+                  // console.log("Video info is coming ");
+                  // console.log("Video is paused", serviceCarouselVideo.play());
+                  serviceCarouselVideo.play();
+                  // var promise = serviceCarouselVideo.play();
+
+                  // if (promise !== undefined) {
+                  //   promise
+                  //     .catch(error => {
+                  //       // Auto-play was prevented
+                  //       // Show a UI element to let the user manually start playback
+                  //       if (error.name === "NotAllowedError") {
+                  //         console.log("Low Power Mode Active");
+                  //         serviceCarouselVideo.remove();
+                  //         videoElementFallback.style.display = "block";
+                  //       }
+                  //     })
+                  //     .then(() => {
+                  //       // if there is no error, then we play the video
+                  //       serviceCarouselVideo.play();
+                  //     });
+                  // }
+                } else {
+                  serviceCarouselVideo.muted = true;
+                }
+              });
+            }
+          }
+        },
+        navigation: {
+          nextEl: ".service-carousel-next-button",
+          prevEl: ".service-carousel-prev-button"
+        }
+      });
+
+      if (unmuteButton) {
+        unmuteButton.addEventListener("click", () => {
+          const activeIndex = serviceSwiper.realIndex;
+          if (serviceCarouselVideos[activeIndex].muted) {
+            serviceCarouselVideos[activeIndex].muted = false;
+            unmuteButton.classList.add("md:hidden");
+            muteButton.classList.remove("md:hidden");
+          }
+        });
+      }
+      if (muteButton) {
+        muteButton.addEventListener("click", () => {
+          const activeIndex = serviceSwiper.realIndex;
+          if (!serviceCarouselVideos[activeIndex].muted) {
+            serviceCarouselVideos[activeIndex].muted = true;
+            muteButton.classList.add("md:hidden");
+            unmuteButton.classList.remove("md:hidden");
+          }
+        });
+      }
+
+      serviceWordSwiper = new Swiper(".serviceWordSwiper", {
+        spaceBetween: 30,
+        centeredSlides: true,
+        loop: true,
+        autoplay: {
+          // delay: 23000,
+          disableOnInteraction: false
+        },
+        speed: 1500,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true
+        },
+        navigation: {
+          nextEl: ".service-carousel-next-button",
+          prevEl: ".service-carousel-prev-button"
+        }
+      });
+
+      // Get side buttons
+      const influencerMangementButton = document.getElementById(
+        "influencer-management-button"
+      );
+      const videoMarketingButton = document.getElementById(
+        "video-marketing-button"
+      );
+      const communityManagementButton = document.getElementById(
+        "Community-management-button"
+      );
+      const virtualInfluencersButton = document.getElementById(
+        "virtual-influencers-button"
+      );
+      const offlineEventsButton = document.getElementById(
+        "offline-events-button"
+      );
+
+      // const soundButtons = document.querySelectorAll(".soundButton");
+      // VideoButtons.forEach(button => {
+      //   button.addEventListener("click", () => {
+      //     const index = button.getAttribute("data-index");
+      //     changeVideo(index);
+      //   });
+      // });
+
+      // Event Listeners for the service buttons
+      influencerMangementButton.addEventListener("click", function () {
+        serviceSwiper.slideTo(1);
+        serviceWordSwiper.slideTo(1);
+      });
+      videoMarketingButton.addEventListener("click", function () {
+        serviceSwiper.slideTo(2);
+        serviceWordSwiper.slideTo(2);
+      });
+      communityManagementButton.addEventListener("click", function () {
+        serviceSwiper.slideTo(3);
+        serviceWordSwiper.slideTo(3);
+      });
+      virtualInfluencersButton.addEventListener("click", function () {
+        serviceSwiper.slideTo(4);
+        serviceWordSwiper.slideTo(4);
+      });
+      offlineEventsButton.addEventListener("click", function () {
+        serviceSwiper.slideTo(0);
+        serviceWordSwiper.slideTo(0);
+      });
+
+      // set event listeners for prev and next buttons
+      const servicePrevButton = document.getElementById(
+        "service-carousel-prev-button"
+      );
+      const serviceNextButton = document.getElementById(
+        "service-carousel-next-button"
+      );
+
+      servicePrevButton.addEventListener("click", function () {
+        serviceSwiper.slidePrev(); // Go to the previous slide
+        serviceWordSwiper.slidePrev();
+      });
+
+      serviceNextButton.addEventListener("click", function () {
+        serviceSwiper.slideNext(); // Go to the next slide
+        serviceWordSwiper.slideNext();
+      });
+    </script>
+    <script>
+      window.Components = {
+        customSelect(options) {
+          return {
+            init() {
+              this.$refs.listbox.focus();
+              this.optionCount = this.$refs.listbox.children.length;
+              this.$watch("selected", value => {
+                if (!this.open) return;
+
+                if (this.selected === null) {
+                  this.activeDescendant = "";
+                  return;
+                }
+
+                this.activeDescendant =
+                  this.$refs.listbox.children[this.selected - 1].id;
+              });
+            },
+            activeDescendant: null,
+            optionCount: null,
+            open: false,
+            selected: null,
+            value: 1,
+            choose(option) {
+              this.value = option;
+              this.open = false;
+            },
+            onButtonClick() {
+              if (this.open) return;
+              this.selected = this.value;
+              this.open = true;
+              this.$nextTick(() => {
+                this.$refs.listbox.focus();
+                this.$refs.listbox.children[this.selected - 1].scrollIntoView({
+                  block: "nearest"
+                });
+              });
+            },
+            onOptionSelect() {
+              if (this.selected !== null) {
+                this.value = this.selected;
+              }
+              this.open = false;
+              this.$refs.button.focus();
+            },
+            onEscape() {
+              this.open = false;
+              this.$refs.button.focus();
+            },
+            onArrowUp() {
+              this.selected =
+                this.selected - 1 < 1 ? this.optionCount : this.selected - 1;
+              this.$refs.listbox.children[this.selected - 1].scrollIntoView({
+                block: "nearest"
+              });
+            },
+            onArrowDown() {
+              this.selected =
+                this.selected + 1 > this.optionCount ? 1 : this.selected + 1;
+              this.$refs.listbox.children[this.selected - 1].scrollIntoView({
+                block: "nearest"
+              });
+            },
+            ...options
+          };
+        }
+      };
+    </script>
+
+    <!-- Initialize Mobile Swiper -->
+    <script>
+      const mobileUnmuteButton = document.getElementById("mobileUnmuteButton");
+      const mobileMuteButton = document.getElementById("mobileMuteButton");
+
+      const mobileServiceCarouselVideos = document.querySelectorAll(
+        ".mobileCarouselVideo"
+      );
+
+      // Service slider
+      var mobileServiceSwiper = new Swiper(".mobileServiceSwiper", {
+        spaceBetween: 30,
+        centeredSlides: true,
+        loop: true,
+        autoplay: {
+          // delay: [4000, 4000, 6000, 8000, 10000],
+          disableOnInteraction: false
+        },
+        speed: 1500,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true
+        },
+        on: {
+          slideChange: () => {
+            if (mobileServiceSwiper) {
+              const activeIndex = mobileServiceSwiper.realIndex;
+
+              mobileMuteButton.classList.add("hidden");
+              mobileUnmuteButton.classList.remove("hidden");
+              mobileServiceCarouselVideos.forEach(
+                (mobileServiceCarouselVideo, index) => {
+                  if (
+                    index === activeIndex &&
+                    mobileServiceCarouselVideo.paused
+                  ) {
+                    mobileServiceCarouselVideo.get(0).play();
+                  } else {
+                    mobileServiceCarouselVideo.pause();
+                    mobileServiceCarouselVideo.muted = true;
+                  }
+                }
+              );
+            }
+          }
+        },
+        navigation: {
+          nextEl: ".mobile-service-carousel-next-button",
+          prevEl: ".mobile-service-carousel-prev-button"
+        }
+      });
+
+      if (mobileUnmuteButton) {
+        mobileUnmuteButton.addEventListener("click", () => {
+          const activeIndex = mobileServiceSwiper.realIndex;
+          if (mobileServiceCarouselVideos[activeIndex].muted) {
+            mobileServiceCarouselVideos[activeIndex].muted = false;
+            mobileUnmuteButton.classList.add("hidden");
+            mobileMuteButton.classList.remove("hidden");
+          }
+        });
+      }
+      if (mobileMuteButton) {
+        mobileMuteButton.addEventListener("click", () => {
+          const activeIndex = mobileServiceSwiper.realIndex;
+          if (!mobileServiceCarouselVideos[activeIndex].muted) {
+            mobileServiceCarouselVideos[activeIndex].muted = true;
+            mobileMuteButton.classList.add("hidden");
+            mobileUnmuteButton.classList.remove("hidden");
+          }
+        });
+      }
+
+      // set event listeners for prev and next buttons
+      const mobileServicePrevButton = document.getElementById(
+        "mobile-service-carousel-prev-button"
+      );
+      const mobileServiceNextButton = document.getElementById(
+        "mobile-service-carousel-next-button"
+      );
+
+      mobileServicePrevButton.addEventListener("click", function () {
+        mobileServiceSwiper.slidePrev(); // Go to the previous slide
+      });
+
+      mobileServiceNextButton.addEventListener("click", function () {
+        mobileServiceSwiper.slideNext(); // Go to the next slide
+      });
+    </script>
+  </body>
+</html>

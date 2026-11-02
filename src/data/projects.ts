@@ -11,18 +11,12 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    slug: "helpdesk-ticketing-system",
-    title: "Helpdesk Ticketing System",
-    description: "Internal ticketing tool for logging, tracking, and resolving IT support requests across departments.",
-    tags: ["Next.js", "IT Support", "TypeScript"],
-    githubUrl: "https://github.com/abiola",
+    slug: "miela-digital",
+    title: "Miela Digital's Website",
+    description: "Marketing website for a Gaming and iGaming agency specialising in brand awareness and user acquisition. Built with HTML, Tailwind CSS, and JavaScript.",
+    tags: ["HTML", "Tailwind CSS", "JavaScript"],
+    liveUrl: "/miela/",
+    githubUrl: "https://github.com/ibheelz/Mieladigital",
     featured: true,
-  },
-  {
-    slug: "network-monitoring-dashboard",
-    title: "Network Monitoring Dashboard",
-    description: "Real-time dashboard for monitoring network health, device status, and bandwidth usage across the LAN.",
-    tags: ["Node.js", "Networking", "Dashboards"],
-    githubUrl: "https://github.com/abiola",
   },
 ];
