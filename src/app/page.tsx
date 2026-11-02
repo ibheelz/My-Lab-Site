@@ -291,10 +291,9 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}
                     alt={project.title}
                     style={{
                       width: "100%",
-                      aspectRatio: "16 / 9",
-                      objectFit: "cover",
-                      border: "1px solid rgb(50, 55, 60)",
+                      height: "auto",
                       display: "block",
+                      border: "1px solid rgb(50, 55, 60)",
                     }}
                   />
                 ) : (
