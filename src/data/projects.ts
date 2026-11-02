@@ -21,9 +21,12 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    slug: "coming-soon",
-    title: "Coming Soon",
-    description: "Next project in progress. Check back later.",
-    tags: ["TBD"],
+    slug: "mielo",
+    title: "Mielo",
+    description: "Influencer discovery platform for LATAM streamers across Twitch, YouTube, and Kick. Helps iGaming brands identify and vet creators by region, language, and audience profile.",
+    tags: ["React", "Node.js", "PostgreSQL"],
+    liveUrl: "https://frontend-olive-gamma-m7k5t9i3pg.vercel.app",
+    githubUrl: "https://github.com/ibheelz/Mielo",
+    featured: false,
   },
 ];
