@@ -144,7 +144,8 @@ export default function BlogCard({ slug, title, description, category, readTime,
       >
         Open lab
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: "6px", flexShrink: 0 }}>
-          <polyline points="9 18 15 12 9 6" />
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <polyline points="12 5 19 12 12 19" />
         </svg>
       </Link>
     </div>
