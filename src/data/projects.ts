@@ -17,6 +17,7 @@ export const projects: Project[] = [
     tags: ["HTML", "Tailwind CSS", "JavaScript"],
     liveUrl: "/miela/",
     githubUrl: "https://github.com/ibheelz/Mieladigital",
+    image: "/images/miela-cover.png",
     featured: true,
   },
   {
