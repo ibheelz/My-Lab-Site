@@ -201,7 +201,7 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}
 
       {/* ── Blog ── */}
       <section className="w-full flex justify-center px-5 pt-8 pb-8 tablet:px-8 tablet:pt-10 tablet:pb-10 desktop:px-10 desktop:pt-12 desktop:pb-12">
-        <ScrollReveal delay={100} className="w-full max-w-[1200px] flex flex-col gap-8 desktop:gap-20">
+        <ScrollReveal delay={100} className="w-full max-w-[1200px] flex flex-col gap-4">
 
           {/* Header */}
           <div className="flex flex-col gap-4">
@@ -325,7 +325,7 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}
           </div>
 
           <p style={{ fontSize: "16px", lineHeight: "1.6em", color: BLUE, margin: 0 }}>
-            Homelab projects, support tools, and automation scripts. Built to solve real IT problems and document solutions.
+            Websites and automation tools built for real-world use — from client projects to internal workflows.
           </p>
 
           {/* 2-column project grid */}
