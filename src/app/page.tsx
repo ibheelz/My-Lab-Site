@@ -18,6 +18,7 @@ const NEON_GREEN = "rgb(0, 255, 106)";
 const SURFACE   = "rgb(29, 32, 37)";
 
 const latestPosts = posts.slice(0, 3);
+const homeProjects = projects.filter(p => !p.hideFromHome);
 
 export default function Home() {
   return (
@@ -330,7 +331,7 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}
 
           {/* 2-column project grid */}
           <div className="grid grid-cols-1 gap-6 tablet:grid-cols-2 tablet:gap-8">
-            {projects.map((project, i) => (
+            {homeProjects.map((project, i) => (
               <div
                 key={project.slug}
                 style={{

@@ -7,6 +7,7 @@ export interface Project {
   githubUrl?: string;
   featured?: boolean;
   image?: string;
+  hideFromHome?: boolean;
 }
 
 export const projects: Project[] = [
@@ -29,5 +30,16 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/ibheelz/Mielo",
     image: "/images/mielo-cover.png",
     featured: true,
+  },
+  {
+    slug: "eyekontact",
+    title: "Eyekontact Limited's Website",
+    description: "Marketing website for Nigeria's leading out-of-home (OOH) advertising company. Built with React and Tailwind CSS.",
+    tags: ["React", "Tailwind CSS", "Framer Motion"],
+    liveUrl: "/eyekontact",
+    githubUrl: "https://github.com/ibheelz/Eyekontact",
+    image: "/images/eyekontact-cover.png",
+    featured: true,
+    hideFromHome: true,
   },
 ];
