@@ -68,8 +68,8 @@ export default function Projects() {
                   zIndex: 25,
                 }}
               >
-                {/* Image — desktop only */}
-                <div className="hidden desktop:block">
+                {/* Image */}
+                <div>
                   {project.image ? (
                     <img
                       src={project.image}
