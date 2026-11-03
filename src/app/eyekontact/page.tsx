@@ -5,7 +5,7 @@ export default function EyekontactPage() {
     <>
       <div style={{ position: "fixed", inset: 0, backgroundColor: "#000", zIndex: 9998 }} />
       <iframe
-        src="http://localhost:3000"
+        src="https://eyekontact.vercel.app"
         title="Eyekontact"
         style={{
           position: "fixed",
