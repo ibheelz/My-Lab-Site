@@ -25,7 +25,7 @@ export const projects: Project[] = [
     title: "Mielo",
     description: "Influencer discovery platform for LATAM streamers across Twitch, YouTube, and Kick. Helps iGaming brands identify and vet creators by region, language, and audience profile.",
     tags: ["React", "Node.js", "PostgreSQL"],
-    liveUrl: "https://frontend-olive-gamma-m7k5t9i3pg.vercel.app",
+    liveUrl: "/mielo",
     githubUrl: "https://github.com/ibheelz/Mielo",
     featured: false,
   },
