@@ -68,34 +68,36 @@ export default function Projects() {
                   zIndex: 25,
                 }}
               >
-                {/* Image / placeholder */}
-                {project.image ? (
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    style={{
-                      width: "100%",
-                      height: "auto",
-                      display: "block",
-                      border: "1px solid rgb(50, 55, 60)",
-                    }}
-                  />
-                ) : (
-                  <div
-                    style={{
-                      width: "100%",
-                      aspectRatio: "4 / 3",
-                      backgroundColor: "rgb(29, 32, 37)",
-                      borderRadius: "0px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      border: "1px solid rgb(50, 55, 60)",
-                    }}
-                  >
-                    <span style={{ color: "rgba(168, 215, 231, 0.3)", fontSize: "12px", fontWeight: 300 }}>[ image ]</span>
-                  </div>
-                )}
+                {/* Image — desktop only */}
+                <div className="hidden desktop:block">
+                  {project.image ? (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      style={{
+                        width: "100%",
+                        height: "auto",
+                        display: "block",
+                        border: "1px solid rgb(50, 55, 60)",
+                      }}
+                    />
+                  ) : (
+                    <div
+                      style={{
+                        width: "100%",
+                        aspectRatio: "4 / 3",
+                        backgroundColor: "rgb(29, 32, 37)",
+                        borderRadius: "0px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        border: "1px solid rgb(50, 55, 60)",
+                      }}
+                    >
+                      <span style={{ color: "rgba(168, 215, 231, 0.3)", fontSize: "12px", fontWeight: 300 }}>[ image ]</span>
+                    </div>
+                  )}
+                </div>
 
                 {/* Title + tags */}
                 <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>

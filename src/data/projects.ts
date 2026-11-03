@@ -27,6 +27,7 @@ export const projects: Project[] = [
     tags: ["React", "Node.js", "PostgreSQL"],
     liveUrl: "/mielo",
     githubUrl: "https://github.com/ibheelz/Mielo",
-    featured: false,
+    image: "/images/mielo-cover.png",
+    featured: true,
   },
 ];
