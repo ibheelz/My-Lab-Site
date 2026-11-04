@@ -12,7 +12,7 @@ export interface BlogPost {
 }
 
 export interface BlogSection {
-  type: "h2" | "h3" | "p" | "code" | "ul" | "note" | "img" | "label" | "qa" | "tasklist" | "group";
+  type: "h2" | "h3" | "p" | "code" | "ul" | "note" | "img" | "label" | "qa" | "tasklist" | "group" | "navpath";
   content: string | string[];
   alt?: string;
   caption?: string;
@@ -85,6 +85,7 @@ export const posts: BlogPost[] = [
             content:
               "Rename-Computer -NewName ZCDC01 -Restart\n  # renames the computer and restarts to apply it\nhostname\n  # prints the current computer name to confirm",
           },
+          { type: "navpath", content: "ZCDC01 > Server Manager > Local Server" },
           {
             type: "img",
             content: "/images/blog/zcdc01/01-server-identity.png",
@@ -111,6 +112,7 @@ export const posts: BlogPost[] = [
             content:
               "Set-TimeZone -Id \"W. Central Africa Standard Time\"\n  # sets the time zone to UTC+01:00, Lagos\nGet-TimeZone\n  # shows the current time zone to confirm",
           },
+          { type: "navpath", content: "ZCDC01 > Control Panel > Date and Time" },
           {
             type: "img",
             content: "/images/blog/zcdc01/03-time-zone.png",
@@ -136,6 +138,7 @@ export const posts: BlogPost[] = [
             content:
               "New-NetIPAddress -InterfaceAlias \"Ethernet\" -IPAddress 192.168.1.200 -PrefixLength 24 -DefaultGateway 192.168.1.1\n  # sets a fixed IP, a 255.255.255.0 subnet mask, and the router as gateway\nSet-DnsClientServerAddress -InterfaceAlias \"Ethernet\" -ServerAddresses 192.168.1.1\n  # temporary DNS before promotion; promotion later points the NIC at itself\nipconfig /all\n  # shows the full network configuration to verify it",
           },
+          { type: "navpath", content: "ZCDC01 > Network Connections > Ethernet > IPv4 Properties" },
           {
             type: "img",
             content: "/images/blog/zcdc01/02-ip-configuration.png",
@@ -190,6 +193,7 @@ export const posts: BlogPost[] = [
             content:
               "Get-DnsServerForwarder\n  # lists the IP addresses the DNS server forwards unknown queries to\nAdd-DnsServerForwarder -IPAddress 192.168.1.1\n  # adds the router as a forwarder if one is not already configured",
           },
+          { type: "navpath", content: "ZCDC01 > Windows PowerShell" },
           {
             type: "img",
             content: "/images/blog/zcdc01/06-name-lookups.png",
@@ -226,6 +230,7 @@ export const posts: BlogPost[] = [
             content:
               "Enable-NetFirewallRule -Name FPS-ICMP4-ERQ-In\n  # switches on the built-in rule allowing incoming ping, ICMPv4 Echo Request\nSet-ItemProperty -Path 'HKLM:\\System\\CurrentControlSet\\Control\\Terminal Server' -Name \"fDenyTSConnections\" -Value 0\n  # turns Remote Desktop on via the registry\nEnable-NetFirewallRule -DisplayGroup \"Remote Desktop\"\n  # opens the Windows firewall for RDP connections",
           },
+          { type: "navpath", content: "ZCDC01 > Windows PowerShell" },
           {
             type: "img",
             content: "/images/blog/zcdc01/04-ping.png",
@@ -233,6 +238,7 @@ export const posts: BlogPost[] = [
             caption:
               "04. Ping succeeds after enabling the ICMPv4 Echo Request inbound firewall rule.",
           },
+          { type: "navpath", content: "MacBook > Microsoft Remote Desktop > ZCDC01" },
           {
             type: "img",
             content: "/images/blog/zcdc01/05-rdp.png",
@@ -273,24 +279,28 @@ export const posts: BlogPost[] = [
             content:
               "New-ADOrganizationalUnit -Name \"Zenith\" -Path \"DC=zenithcreative,DC=com\"\nNew-ADOrganizationalUnit -Name \"Staff\" -Path \"OU=Zenith,DC=zenithcreative,DC=com\"\nNew-ADOrganizationalUnit -Name \"Design\" -Path \"OU=Staff,OU=Zenith,DC=zenithcreative,DC=com\"\nNew-ADOrganizationalUnit -Name \"Finance\" -Path \"OU=Staff,OU=Zenith,DC=zenithcreative,DC=com\"\nNew-ADOrganizationalUnit -Name \"IT Admins\" -Path \"OU=Zenith,DC=zenithcreative,DC=com\"\n  # each line creates one OU at the given path in the directory",
           },
+          { type: "navpath", content: "ADUC > zenithcreative.com" },
           {
             type: "img",
             content: "/images/blog/zcdc01/07-ou-tree.png",
             alt: "Active Directory Users and Computers showing the OU tree: IT Admins OU at domain level beside the Staff OU, which contains Design and Finance child OUs",
             caption: "07. OU tree: IT Admins sits at the same level as Staff, not inside it.",
           },
+          { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > Staff > Design" },
           {
             type: "img",
             content: "/images/blog/zcdc01/08-design-ou.png",
             alt: "Design OU in ADUC containing user Chide Eze and security group Design Staff",
             caption: "08. Design OU containing one user account and the Design Staff security group.",
           },
+          { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > Staff > Finance" },
           {
             type: "img",
             content: "/images/blog/zcdc01/09-finance-ou.png",
             alt: "Finance OU in ADUC containing users Funmi Adebayo and Kemi Johnson alongside the Finance Staff security group",
             caption: "09. Finance OU containing two user accounts and the Finance Staff security group.",
           },
+          { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > IT Admins" },
           {
             type: "img",
             content: "/images/blog/zcdc01/10-it-admin-ou.png",
@@ -342,18 +352,21 @@ export const posts: BlogPost[] = [
             content:
               "New-ADGroup -Name \"Design Staff\" -GroupScope Global -GroupCategory Security -Path \"OU=Design,OU=Staff,OU=Zenith,DC=zenithcreative,DC=com\"\n  # creates a security group in the Design OU\nAdd-ADGroupMember -Identity \"Design Staff\" -Members ceze\n  # adds a user to the group\nGet-ADGroupMember -Identity \"Design Staff\"\n  # lists the group's current members\nGet-ADPrincipalGroupMembership -Identity adm.abiola | Select-Object Name\n  # lists every group an account belongs to",
           },
+          { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > Staff > Design > Design Staff > Members" },
           {
             type: "img",
             content: "/images/blog/zcdc01/11-design-staff-members.png",
             alt: "Design Staff security group Properties Members tab showing Chide Eze as a member from zenithcreative.com/Staff/Design",
             caption: "11. Design Staff group: Chide Eze is the sole member.",
           },
+          { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > Staff > Finance > Finance Staff > Members" },
           {
             type: "img",
             content: "/images/blog/zcdc01/12-finance-staff-members.png",
             alt: "Finance Staff security group Properties Members tab showing Funmi Adebayo and Kemi Johnson from zenithcreative.com/Staff/Finance",
             caption: "12. Finance Staff group: both Finance users are members.",
           },
+          { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > IT Admins > adm.abiola > Member Of" },
           {
             type: "img",
             content: "/images/blog/zcdc01/13-admin-group-memberships.png",
@@ -387,6 +400,7 @@ export const posts: BlogPost[] = [
             content:
               "Set-ADAccountPassword -Identity ceze -Reset -NewPassword (Read-Host -AsSecureString \"New temporary password\")\n  # sets a new password without needing the old one\nSet-ADUser -Identity ceze -ChangePasswordAtLogon $true\n  # forces the user to choose their own password at next login\nUnlock-ADAccount -Identity ceze\n  # clears a lockout from too many failed attempts, if applicable",
           },
+          { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > Staff > Design > ceze > Reset Password" },
           {
             type: "img",
             content: "/images/blog/zcdc01/14-ticket-1042.png",
@@ -423,6 +437,7 @@ export const posts: BlogPost[] = [
             content:
               "Disable-ADAccount -Identity fadebayo\n  # blocks all logins while keeping the account and its memberships intact\nGet-ADUser -Identity fadebayo | Select-Object Name, Enabled\n  # confirms Enabled is False\nEnable-ADAccount -Identity fadebayo\n  # for when she returns",
           },
+          { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > Staff > Finance > fadebayo > (right-click menu)" },
           {
             type: "img",
             content: "/images/blog/zcdc01/15-ticket-1043.png",
@@ -460,6 +475,7 @@ export const posts: BlogPost[] = [
             content:
               "Get-ADPrincipalGroupMembership -Identity fadebayo | Select-Object Name\n  # checks Funmi's groups to know which ones to copy\nNew-ADUser -Name \"Kemi Johnson\" -GivenName Kemi -Surname Johnson -SamAccountName kjohnson -UserPrincipalName kjohnson@zenithcreative.com -Path \"OU=Finance,OU=Staff,OU=Zenith,DC=zenithcreative,DC=com\" -AccountPassword (Read-Host -AsSecureString \"Temporary password\") -ChangePasswordAtLogon $true -Enabled $true\n  # creates the account in the Finance OU\nAdd-ADGroupMember -Identity \"Finance Staff\" -Members kjohnson\n  # grants the same access as Funmi through the group",
           },
+          { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > Staff > Finance > kjohnson > Member Of" },
           {
             type: "img",
             content: "/images/blog/zcdc01/16-ticket-1044.png",
@@ -499,6 +515,7 @@ export const posts: BlogPost[] = [
             type: "code",
             content: "whoami /groups\n  # lists every group the current account belongs to",
           },
+          { type: "navpath", content: "ZCDC01 > Windows PowerShell" },
           {
             type: "img",
             content: "/images/blog/zcdc01/17-logged-in-as-admin.png",
@@ -566,6 +583,7 @@ export const posts: BlogPost[] = [
             content:
               "Add-Computer -DomainName zenithcreative.com -Credential (Get-Credential) -Restart\n  # joins the machine to the domain and restarts immediately\nMove-ADObject -Identity \"CN=ZCPC01,CN=Computers,DC=zenithcreative,DC=com\" -TargetPath \"OU=Workstations,OU=Devices,OU=Zenith,DC=zenithcreative,DC=com\"\n  # moves the computer object from the default Computers container to the correct OU",
           },
+          { type: "navpath", content: "ZCPC01 > System Properties > Computer Name > Change" },
           {
             type: "img",
             content: "/images/blog/zcdc02/01-domain-join.png",
@@ -591,30 +609,49 @@ export const posts: BlogPost[] = [
             content:
               "powershell -ExecutionPolicy Bypass -File .\\NewHires.ps1\n  # runs the script without permanently changing the execution policy\n\n# Script creates users like this:\nNew-ADUser @params -ErrorAction Stop\nAdd-ADGroupMember -Identity $group -Members $name\nWrite-Host \"CREATED $name > OU: $dept | Group: $group\"\n\n# Then runs a staff report:\nGet-ADUser -Filter * -SearchBase $OUPaths[$dept] -Properties Department,Title,Office,OfficePhone,Manager,MemberOf |\n  Select-Object Name,SamAccountName,Department,Title,Office,OfficePhone,Manager |\n  Sort-Object Department,Name | Format-Table -AutoSize",
           },
+          { type: "note", content: "Security groups (Design Staff and Finance Staff) were created manually before running the script. The script created the user accounts and added each one to the appropriate group." },
+          { type: "navpath", content: "ZCDC01 > Notepad > File > Save As" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/02b-save-newhires-script.png",
+            alt: "Notepad Save As dialog saving NewHires.ps1 to C:\\Scripts, with the Scripts folder selected in the Save in navigation pane",
+            caption: "02b. Script saved to C:\\Scripts\\NewHires.ps1 before running.",
+          },
+          { type: "navpath", content: "ZCDC01 > Windows PowerShell > NewHires.ps1" },
           {
             type: "img",
             content: "/images/blog/zcdc02/02-newhires-script-output.png",
             alt: "PowerShell terminal showing NewHires.ps1 output with CREATED lines for each user and a formatted staff report table at the end",
             caption: "02. NewHires.ps1 output. Each user confirmed created and assigned to their OU and security group.",
           },
+          { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > Staff > Finance" },
           {
             type: "img",
             content: "/images/blog/zcdc02/03-finance-ou.png",
             alt: "Active Directory Users and Computers showing the Finance OU containing seven user accounts and the Finance Staff security group",
-            caption: "03. Finance OU: seven user accounts and Finance Staff security group created by the script.",
+            caption: "03. Finance OU: seven user accounts created by the script and added to Finance Staff security group.",
           },
+          { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > Staff > Finance > Finance Staff > Members" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/03b-finance-staff-members.png",
+            alt: "Finance Staff group Properties Members tab showing seven Finance OU user accounts as members after the bulk creation script ran",
+            caption: "03b. Finance Staff group: seven members added by the script.",
+          },
+          { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > Staff > Design" },
           {
             type: "img",
             content: "/images/blog/zcdc02/04-design-ou.png",
             alt: "Active Directory Users and Computers showing the Design OU containing six user accounts and the Design Staff security group",
-            caption: "04. Design OU: six user accounts and Design Staff security group.",
+            caption: "04. Design OU: six user accounts created by the script and added to Design Staff security group.",
           },
+          { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > Staff > Design > Design Staff > Members" },
           {
-            type: "p",
-            content:
-              "The staff report at the end is built from live AD data, not the script's own variables, so it confirms what actually landed in the directory rather than what the script intended to create.",
+            type: "img",
+            content: "/images/blog/zcdc02/04b-design-staff-members.png",
+            alt: "Design Staff group Properties Members tab showing six Design OU user accounts as members after the bulk creation script ran",
+            caption: "04b. Design Staff group: six members added by the script.",
           },
-
           { type: "h3", content: "Task 3: Set Account Expiry for a Contractor" },
           { type: "note", content: "Tunde Bakare is a contractor. Set their account to expire automatically on December 2, 2026." },
           {
@@ -628,6 +665,7 @@ export const posts: BlogPost[] = [
             content:
               "Set-ADAccountExpiration -Identity tunde.bakare -DateTime \"2026-12-02\"\n  # sets the account to expire at the start of that date\nGet-ADUser -Identity tunde.bakare -Properties AccountExpirationDate | Select-Object Name,AccountExpirationDate\n  # confirms the expiry was set",
           },
+          { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > Staff > Finance > tunde.bakare > Account" },
           {
             type: "img",
             content: "/images/blog/zcdc02/05-tunde-account-expiry.png",
@@ -642,6 +680,17 @@ export const posts: BlogPost[] = [
 
           { type: "h3", content: "Task 4: Offboard a Resigned Staff Member" },
           { type: "note", content: "Emeka Obi has resigned with immediate effect. Disable the account, reset the password, record the reason, and move the object to the Leavers OU." },
+          { type: "h3", content: "5 Crucial Offboarding Steps" },
+          {
+            type: "ul",
+            content: [
+              "Disable the account immediately — prevents the user from logging in while the account still exists for audit purposes.",
+              "Reset the password to a random string — ensures the former employee cannot regain access even if the disable is reversed.",
+              "Remove from all security groups — revokes access to file shares, printers, and any resource gated by group membership.",
+              "Update the account description — records the leave date and reason directly on the AD object for future reference.",
+              "Move to the Leavers OU — separates the object from active staff, keeps it out of GPO scope, and makes it easy to locate or delete after the retention period.",
+            ],
+          },
           {
             type: "p",
             content:
@@ -652,6 +701,7 @@ export const posts: BlogPost[] = [
             type: "code",
             content: "powershell -ExecutionPolicy Bypass -File .\\Offboard-User.ps1 -SamAccountName emeka.obi -Reason \"Resigned\"",
           },
+          { type: "navpath", content: "ZCDC01 > Windows PowerShell > Offboard-User.ps1" },
           {
             type: "img",
             content: "/images/blog/zcdc02/06-offboard-output.png",
@@ -666,6 +716,7 @@ export const posts: BlogPost[] = [
             content:
               "I right-clicked the Staff OU in ADUC and selected Delegate Control. I selected the Helpdesk group and chose the common task to reset user passwords and force a password change at next logon. This gives Helpdesk the minimum permission needed to handle password reset tickets without granting them domain admin rights.",
           },
+          { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > Staff > (right-click) > Delegate Control" },
           {
             type: "img",
             content: "/images/blog/zcdc02/07-delegation-wizard.png",
@@ -685,6 +736,7 @@ export const posts: BlogPost[] = [
             content:
               "I created All Staff in the Staff OU and added Design Staff and Finance Staff as members. Any permission or policy applied to All Staff now automatically covers every member of both departments. When a new department is added, nesting its security group into All Staff is the only change needed.",
           },
+          { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > Staff > All Staff > Members" },
           {
             type: "img",
             content: "/images/blog/zcdc02/08-all-staff-members.png",
@@ -707,7 +759,7 @@ export const posts: BlogPost[] = [
           {
             type: "p",
             content:
-              "I created ZC Password Policy and linked it to the domain root so it applies to every user in zenithcreative.com. In the GPME I navigated to Computer Configuration > Policies > Windows Settings > Security Settings > Account Policies and configured both Password Policy and Account Lockout Policy. Minimum password length 12 characters, complexity required, maximum age 90 days, lockout threshold 5 invalid attempts, lockout duration 15 minutes.",
+              "I created ZC Password Policy and linked it to the domain root so it applies to every user in zenithcreative.com. In the GPME I configured both Password Policy and Account Lockout Policy. Minimum password length 12 characters, complexity required, maximum age 90 days, lockout threshold 5 invalid attempts, lockout duration 15 minutes.",
           },
           { type: "label", content: "PowerShell equivalent:" },
           {
@@ -715,23 +767,26 @@ export const posts: BlogPost[] = [
             content:
               "Set-ADDefaultDomainPasswordPolicy -Identity zenithcreative.com -MinPasswordLength 12 -PasswordHistoryCount 24 -MaxPasswordAge (New-TimeSpan -Days 90) -ComplexityEnabled $true -LockoutThreshold 5 -LockoutDuration (New-TimeSpan -Minutes 15) -LockoutObservationWindow (New-TimeSpan -Minutes 15)\n  # sets the default domain password and lockout policy in one command\nGet-ADDefaultDomainPasswordPolicy\n  # confirms all values are correct",
           },
+          { type: "navpath", content: "GPM > zenithcreative.com > Linked Group Policy Objects" },
           {
             type: "img",
             content: "/images/blog/zcdc02/09-password-policy-linked.png",
             alt: "Group Policy Management showing ZC Password Policy GPO linked to the zenithcreative.com domain with Link Enabled Yes",
             caption: "09. ZC Password Policy linked to the domain root at link order 1.",
           },
-          {
-            type: "img",
-            content: "/images/blog/zcdc02/10-account-lockout.png",
-            alt: "Group Policy Management Editor showing Account Lockout Policy with lockout duration 15 minutes and lockout threshold 5 invalid logon attempts",
-            caption: "10. Account Lockout Policy: 5 failed attempts triggers a 15-minute lockout.",
-          },
+          { type: "navpath", content: "GPME > ZC Password Policy > Computer Configuration > Policies > Windows Settings > Security Settings > Account Policies > Password Policy" },
           {
             type: "img",
             content: "/images/blog/zcdc02/11-password-policy-settings.png",
             alt: "Group Policy Management Editor showing Password Policy with minimum password length 12 characters and password must meet complexity requirements Enabled",
             caption: "11. Password Policy: 12-character minimum, complexity required.",
+          },
+          { type: "navpath", content: "GPME > ZC Password Policy > Computer Configuration > Policies > Windows Settings > Security Settings > Account Policies > Account Lockout Policy" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/10-account-lockout.png",
+            alt: "Group Policy Management Editor showing Account Lockout Policy with lockout duration 15 minutes and lockout threshold 5 invalid logon attempts",
+            caption: "10. Account Lockout Policy: 5 failed attempts triggers a 15-minute lockout.",
           },
           {
             type: "p",
@@ -744,7 +799,7 @@ export const posts: BlogPost[] = [
           {
             type: "p",
             content:
-              "I opened Active Directory Administrative Center, navigated to System > Password Settings Container, and created PSO_Privileged with a precedence of 10. Lower precedence numbers win when multiple PSOs apply to the same account. I set the minimum password length to 16 characters and applied the PSO directly to Domain Admins and Helpdesk.",
+              "I opened Active Directory Administrative Center and created PSO_Privileged with a precedence of 10. Lower precedence numbers win when multiple PSOs apply to the same account. I set the minimum password length to 16 characters and applied the PSO directly to Domain Admins and Helpdesk.",
           },
           { type: "label", content: "PowerShell equivalent:" },
           {
@@ -752,6 +807,14 @@ export const posts: BlogPost[] = [
             content:
               "New-ADFineGrainedPasswordPolicy -Name PSO_Privileged -Precedence 10 -MinPasswordLength 16 -PasswordHistoryCount 24 -MaxPasswordAge (New-TimeSpan -Days 90) -ComplexityEnabled $true -LockoutThreshold 5 -LockoutDuration (New-TimeSpan -Minutes 15) -LockoutObservationWindow (New-TimeSpan -Minutes 15) -ProtectedFromAccidentalDeletion $true\nAdd-ADFineGrainedPasswordPolicySubject -Identity PSO_Privileged -Subjects \"Domain Admins\",\"Helpdesk\"\n  # creates the PSO and applies it to both groups in two commands",
           },
+          { type: "navpath", content: "ADAC > zenithcreative.com (local) > System > Password Settings Container > Create PSO_Privileged" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/12b-pso-create.png",
+            alt: "Active Directory Administrative Center showing PSO_Privileged creation dialog with 16-character minimum and a Select Users or Groups dialog with Domain Admins being added",
+            caption: "12b. Creating PSO_Privileged in ADAC. Domain Admins being added to Directly Applies To.",
+          },
+          { type: "navpath", content: "ADAC > zenithcreative.com (local) > System > Password Settings Container" },
           {
             type: "img",
             content: "/images/blog/zcdc02/12-pso-applied.png",
@@ -774,14 +837,16 @@ export const posts: BlogPost[] = [
           {
             type: "p",
             content:
-              "I created ZC Staff Screen Lock and linked it to the Staff OU. Under User Configuration > Administrative Templates > Control Panel > Personalization I enabled the screen saver, set the timeout, and enabled password-protection on the screen saver. Because the policy is under User Configuration, it follows the user. It applies to any machine a staff member logs into, not just machines in the Workstations OU.",
+              "I created ZC Staff Screen Lock and linked it to the Staff OU. I enabled the screen saver, set the timeout, and enabled password-protection on the screen saver. Because the policy is under User Configuration, it follows the user — it applies to any machine a staff member logs into, not just machines in the Workstations OU.",
           },
+          { type: "navpath", content: "GPM > zenithcreative.com > Staff > Linked Group Policy Objects" },
           {
             type: "img",
             content: "/images/blog/zcdc02/13-screen-lock-linked.png",
             alt: "Group Policy Management showing ZC Staff Screen Lock GPO linked to the Staff OU",
             caption: "13. ZC Staff Screen Lock linked to the Staff OU.",
           },
+          { type: "navpath", content: "GPME > ZC Staff Screen Lock > User Configuration > Administrative Templates > Control Panel > Personalization" },
           {
             type: "img",
             content: "/images/blog/zcdc02/14-screen-saver-settings.png",
@@ -794,14 +859,16 @@ export const posts: BlogPost[] = [
           {
             type: "p",
             content:
-              "I created ZC Staff Settings and Control Panel Disable and linked it to the Staff OU. Under User Configuration > Administrative Templates > Control Panel I enabled Prohibit access to Control Panel and PC settings. With this active, both the Control Panel and the Settings app are blocked. Users cannot change network settings, add software, or modify system preferences.",
+              "I created ZC Staff Settings and Control Panel Disable and linked it to the Staff OU. I enabled Prohibit access to Control Panel and PC settings. With this active, both the Control Panel and the Settings app are blocked. Users cannot change network settings, add software, or modify system preferences.",
           },
+          { type: "navpath", content: "GPM > zenithcreative.com > Staff > Linked Group Policy Objects" },
           {
             type: "img",
             content: "/images/blog/zcdc02/15-control-panel-gpo-linked.png",
             alt: "Group Policy Management showing Staff OU with ZC Staff Screen Lock and ZC Staff Settings and Control Panel Disable GPOs linked",
             caption: "15. Staff OU: screen lock and control panel restriction GPOs both linked.",
           },
+          { type: "navpath", content: "GPME > ZC Staff Settings > User Configuration > Administrative Templates > Control Panel" },
           {
             type: "img",
             content: "/images/blog/zcdc02/16-prohibit-control-panel.png",
@@ -814,14 +881,16 @@ export const posts: BlogPost[] = [
           {
             type: "p",
             content:
-              "I created ZC Block USB Storage Connection and linked it to the Workstations OU rather than the Staff OU. The policy is under Computer Configuration so it follows the machine, not the user. Under Computer Configuration > Administrative Templates > System > Removable Storage Access I enabled All Removable Storage Classes: Deny All Access. This single setting blocks all classes of removable storage without needing a rule per device type.",
+              "I created ZC Block USB Storage Connection and linked it to the Workstations OU rather than the Staff OU. The policy is under Computer Configuration so it follows the machine, not the user. I enabled All Removable Storage Classes: Deny All Access. This single setting blocks all classes of removable storage without needing a rule per device type.",
           },
+          { type: "navpath", content: "GPM > zenithcreative.com > Workstations > Linked Group Policy Objects" },
           {
             type: "img",
             content: "/images/blog/zcdc02/17-usb-gpo-linked.png",
             alt: "Group Policy Management showing Workstations OU with ZC Block USB Storage Connection GPO linked",
             caption: "17. ZC Block USB Storage Connection linked to the Workstations OU.",
           },
+          { type: "navpath", content: "GPME > ZC Block USB Storage > Computer Configuration > Administrative Templates > System > Removable Storage Access" },
           {
             type: "img",
             content: "/images/blog/zcdc02/18-removable-storage-deny.png",
@@ -849,19 +918,49 @@ export const posts: BlogPost[] = [
           {
             type: "p",
             content:
-              "I created ZC Branding Assets and linked it to the Workstations OU. I placed zenith_wallpaper.jpg in a branding subfolder inside NETLOGON so the path is \\\\zenithcreative.com\\NETLOGON\\Branding\\zenith_wallpaper.jpg. Under Computer Configuration > Preferences > Windows Settings > Files I added an action to copy the image to C:\\Windows\\Web\\Wallpaper\\Zenith\\zenith_wallpaper.jpg on each workstation. NETLOGON is reachable by every domain-joined machine without additional share configuration.",
+              "I created ZC Branding Assets and linked it to the Workstations OU. I placed zenith_wallpaper.jpg in a branding subfolder inside NETLOGON so the path is \\\\zenithcreative.com\\NETLOGON\\Branding\\zenith_wallpaper.jpg. I added an action to copy the image to C:\\Windows\\Web\\Wallpaper\\Zenith\\zenith_wallpaper.jpg on each workstation. NETLOGON is reachable by every domain-joined machine without additional share configuration.",
           },
+          { type: "navpath", content: "GPM > zenithcreative.com > Workstations > Linked Group Policy Objects" },
           {
             type: "img",
             content: "/images/blog/zcdc02/19-branding-gpo-linked.png",
             alt: "Group Policy Management showing Workstations OU with ZC Block USB Storage Connection and ZC Branding Assets GPOs linked",
             caption: "19. ZC Branding Assets linked to the Workstations OU.",
           },
+          { type: "navpath", content: "GPME > ZC Branding Assets > Computer Configuration > Preferences > Windows Settings > Files" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/19b-branding-files-empty.png",
+            alt: "Group Policy Management Editor Files section of ZC Branding Assets showing no items and a right-click context menu with New and File options visible",
+            caption: "19b. Files section empty before setup. Right-click opens the menu to create a new file action.",
+          },
+          { type: "navpath", content: "File Explorer > Network > ZCDC01.zenithcreative.com" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/19c-netlogon-sysvol.png",
+            alt: "File Explorer browsing ZCDC01.zenithcreative.com over the network showing NETLOGON and SYSVOL shared folders",
+            caption: "19c. NETLOGON and SYSVOL shares on ZCDC01. The branding subfolder was created inside NETLOGON.",
+          },
+          { type: "navpath", content: "File Explorer > Network > ZCDC01.zenithcreative.com > NETLOGON > branding" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/19d-netlogon-branding.png",
+            alt: "File Explorer showing the branding subfolder inside NETLOGON containing zenith_wallpaper.jpg at 224 KB",
+            caption: "19d. zenith_wallpaper.jpg uploaded to NETLOGON\\branding. This is the source the file action copies from.",
+          },
+          { type: "navpath", content: "GPME > ZC Branding Assets > Files > zenith_wallpaper.jpg Properties > General" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/19e-branding-file-copy.png",
+            alt: "zenith_wallpaper.jpg file action Properties showing source as NETLOGON Branding and destination as C Windows Web Wallpaper Zenith",
+            caption: "19e. File action: source \\\\zenithcreative.com\\NETLOGON\\Branding, destination C:\\Windows\\Web\\Wallpaper\\Zenith.",
+          },
+          { type: "navpath", content: "GPME > ZC Branding Assets > Computer Configuration > Preferences > Windows Settings > Files" },
           {
             type: "img",
             content: "/images/blog/zcdc02/20-branding-file-listed.png",
             alt: "Group Policy Management Editor showing ZC Branding Assets with zenith_wallpaper.jpg file action copying from NETLOGON Branding to C Windows Web Wallpaper Zenith",
-            caption: "20. File copy action configured: source NETLOGON\\Branding, destination C:\\Windows\\Web\\Wallpaper\\Zenith.",
+            caption: "20. File copy action now listed. Source and destination confirmed.",
           },
 
           { type: "h3", content: "Tasks 18 and 19: GPO — Desktop Wallpaper" },
@@ -869,14 +968,30 @@ export const posts: BlogPost[] = [
           {
             type: "p",
             content:
-              "I created a separate GPO called ZC Wallpaper and linked it to the Workstations OU. Under User Configuration > Administrative Templates > Desktop > Desktop I enabled Desktop Wallpaper and set the path to C:\\Windows\\Web\\Wallpaper\\Zenith\\zenith_wallpaper.jpg, the local path the Branding Assets GPO copies the file to. Keeping this as a separate GPO from ZC Branding Assets makes the purpose of each GPO clear and allows the file deployment and the display policy to be managed independently.",
+              "I created a separate GPO called ZC Wallpaper and linked it to the Staff OU. I enabled Desktop Wallpaper and set the path to C:\\Windows\\Web\\Wallpaper\\Zenith\\zenith_wallpaper.jpg, the local path the Branding Assets GPO copies the file to. Keeping this as a separate GPO from ZC Branding Assets makes the purpose of each GPO clear and allows the file deployment and the display policy to be managed independently.",
           },
+          { type: "navpath", content: "GPM > zenithcreative.com > Staff > Linked Group Policy Objects" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/21-wallpaper-staff-linked.png",
+            alt: "Group Policy Management showing Staff OU with ZC Screen Lock, ZC Staff Settings, ZC Wallpaper, and ZC Design Printer linked",
+            caption: "21-link. ZC Wallpaper (item 3) linked to the Staff OU. User Configuration follows users, not computers.",
+          },
+          { type: "navpath", content: "GPME > ZC Wallpaper > User Configuration > Administrative Templates > Desktop > Desktop" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/21b-wallpaper-unc-path.png",
+            alt: "Group Policy Management Editor Desktop section of ZC Wallpaper GPO showing the Desktop Wallpaper setting listed as Enabled",
+            caption: "21b. Desktop Wallpaper in the ZC Wallpaper GPO Desktop section — Enabled.",
+          },
+          { type: "navpath", content: "GPME > ZC Wallpaper > User Configuration > Administrative Templates > Desktop > Desktop > Desktop Wallpaper" },
           {
             type: "img",
             content: "/images/blog/zcdc02/21-wallpaper-policy.png",
             alt: "Group Policy Management Editor Desktop Wallpaper setting showing Enabled with wallpaper path C Windows Web Wallpaper Zenith zenith_wallpaper.jpg",
             caption: "21. Desktop Wallpaper policy enabled with local path after the Branding Assets file copy.",
           },
+          { type: "navpath", content: "ZCPC01 > Windows Desktop (after gpupdate)" },
           {
             type: "img",
             content: "/images/blog/zcdc02/22-wallpaper-applied.png",
@@ -899,20 +1014,45 @@ export const posts: BlogPost[] = [
           {
             type: "p",
             content:
-              "I placed the 7-Zip 24.09 MSI in a software subfolder on NETLOGON. I created ZC 7zip Software Installer and linked it to the Workstations OU. Under Computer Configuration > Software Settings > Software Installation I added a package pointing to \\\\ZCDC01\\NETLOGON\\software\\7z2409-x64.msi and set deployment to Assigned. I also enabled Always wait for the network at computer startup and logon under Computer Configuration > Administrative Templates > System > Logon. This forces a synchronous Group Policy cycle to complete before the login screen appears, ensuring the software is installed before anyone logs in.",
+              "I placed the 7-Zip 24.09 MSI in a software subfolder on NETLOGON. I created ZC 7zip Software Installer and linked it to the Workstations OU. I added a package pointing to \\\\ZCDC01\\NETLOGON\\software\\7z2409-x64.msi and set deployment to Assigned.",
           },
+          { type: "p", content: "I also enabled Always wait for the network at computer startup and logon. This forces a synchronous Group Policy cycle to complete before the login screen appears, ensuring the software is installed before anyone logs in." },
+          { type: "navpath", content: "GPM > zenithcreative.com > Workstations > Linked Group Policy Objects" },
           {
             type: "img",
             content: "/images/blog/zcdc02/23-7zip-gpo-linked.png",
             alt: "Group Policy Management showing Workstations OU with ZC Block USB, ZC Branding Assets, and ZC 7zip Software Installer GPOs linked",
             caption: "23. ZC 7zip Software Installer linked to the Workstations OU.",
           },
+          { type: "navpath", content: "GPME > ZC 7zip Software Installer > Computer Configuration > Administrative Templates > System > Logon > Always wait for the network" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/23b-always-wait-network.png",
+            alt: "Group Policy Management Editor policy setting dialog for Always wait for the network at computer startup and logon showing Enabled selected",
+            caption: "23b. Always wait for the network at startup and logon: Enabled. Forces synchronous Group Policy before the login screen.",
+          },
+          { type: "navpath", content: "GPME > ZC 7zip Software Installer > Computer Configuration > Administrative Templates > System > Logon" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/23c-logon-wait-network.png",
+            alt: "Group Policy Management Editor Logon settings list showing Always wait for the network at computer startup and logon highlighted as Enabled",
+            caption: "23c. The policy confirmed Enabled in the Logon settings list.",
+          },
+          { type: "navpath", content: "GPME > ZC 7zip Software Installer > Computer Configuration > Software Settings > Software Installation" },
           {
             type: "img",
             content: "/images/blog/zcdc02/24-7zip-software-install.png",
             alt: "Group Policy Management Editor Software installation showing 7-Zip 24.09 x64 edition Assigned with source from NETLOGON software",
             caption: "24. 7-Zip 24.09 assigned via Software Installation from NETLOGON.",
           },
+          { type: "navpath", content: "GPME > ZC 7zip Software Installer > Computer Configuration > Software Settings > Software Installation > 7-Zip Properties" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/24b-7zip-deployment-properties.png",
+            alt: "7-Zip 24.09 x64 edition Properties dialog showing Deployment type set to Assigned",
+            caption: "24b. 7-Zip deployment properties: type set to Assigned so it installs automatically at startup.",
+          },
+          { type: "navpath", content: "ZCPC01 > Start Menu (after Group Policy refresh)" },
           {
             type: "img",
             content: "/images/blog/zcdc02/25-7zip-verified.png",
@@ -925,14 +1065,51 @@ export const posts: BlogPost[] = [
           {
             type: "p",
             content:
-              "I created ZC Design Printer and linked it to the Staff OU. Under User Configuration > Preferences > Control Panel Settings > Printers I added a shared printer pointing to \\\\ZCDC01\\ZCDesignPrinter. On the Common tab I enabled Item-level targeting and added a Security Group condition: the user must be a member of Design Staff. The printer maps only for Design Staff members even though the GPO is linked to the broader Staff OU.",
+              "I created ZC Design Printer and linked it to the Staff OU. I added a shared printer pointing to \\\\ZCDC01\\ZCDesignPrinter. On the Common tab I enabled Item-level targeting and added a Security Group condition: the user must be a member of Design Staff. The printer maps only for Design Staff members even though the GPO is linked to the broader Staff OU.",
           },
+          { type: "navpath", content: "GPM > zenithcreative.com > Staff > Linked Group Policy Objects" },
           {
             type: "img",
             content: "/images/blog/zcdc02/26-design-printer-linked.png",
             alt: "Group Policy Management showing Staff OU with four linked GPOs including ZC Design Printer",
             caption: "26. ZC Design Printer linked to the Staff OU. Item-level targeting scopes it to Design Staff.",
           },
+          { type: "navpath", content: "GPME > ZC Design Printer > User Configuration > Preferences > Control Panel Settings > Printers > ZCDesignPrinter Properties > General" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/26b-printer-general.png",
+            alt: "ZCDesignPrinter Properties General tab showing Action Update and Share path set to \\\\ZCDC01\\ZCDesignPrinter",
+            caption: "26b. Printer share path: \\\\ZCDC01\\ZCDesignPrinter. Action set to Update.",
+          },
+          { type: "navpath", content: "GPME > ZC Design Printer > User Configuration > Preferences > Control Panel Settings > Printers > ZCDesignPrinter Properties > Common" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/26c-printer-common-targeting.png",
+            alt: "ZCDesignPrinter Properties Common tab showing Item-level targeting checkbox ticked with Targeting button available",
+            caption: "26c. Common tab: Item-level targeting enabled. Only matching users will receive this printer.",
+          },
+          { type: "navpath", content: "GPME > ZC Design Printer > Targeting Editor > New Item" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/26d-targeting-new-item.png",
+            alt: "Targeting Editor with New Item dropdown expanded showing a list of targeting types with Security Group highlighted",
+            caption: "26d. Targeting Editor: New Item menu open with Security Group selected as the targeting type.",
+          },
+          { type: "navpath", content: "GPME > ZC Design Printer > Targeting Editor > Security Group > Select Group" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/26e-targeting-select.png",
+            alt: "Select Group dialog with Design Staff typed in the object name field and zenithcreative.com as the location",
+            caption: "26e. Selecting Design Staff as the security group target from zenithcreative.com.",
+          },
+          { type: "navpath", content: "GPME > ZC Design Printer > Targeting Editor" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/26f-targeting-confirmed.png",
+            alt: "Targeting Editor showing the user is a member of the security group ZENITH\\Design Staff with the group SID confirmed",
+            caption: "26f. Targeting confirmed: printer maps only when the user is a member of ZENITH\\Design Staff.",
+          },
+          { type: "navpath", content: "GPME > ZC Design Printer > User Configuration > Preferences > Control Panel Settings > Printers" },
           {
             type: "img",
             content: "/images/blog/zcdc02/27-design-printer-setup.png",
@@ -957,23 +1134,145 @@ export const posts: BlogPost[] = [
             content:
               "I created four domain local groups in the Zenith > Access Groups OU: DL DesignFiles Modify, DL FinanceFiles Modify, DL Public Read, and DL Public Edit. I nested Design Staff into DL DesignFiles Modify, Finance Staff into DL FinanceFiles Modify, and Domain Users into DL Public Read. I created the SMB shares from Server Manager under File and Storage Services. For each share I ran the New Share wizard with SMB Quick, then customised the NTFS permissions: I disabled inheritance, removed the default entries, and added only the relevant DL group with Modify access and Administrators with Full Control.",
           },
+          { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > Access Groups" },
           {
             type: "img",
             content: "/images/blog/zcdc02/28-dl-groups.png",
             alt: "Active Directory Users and Computers showing the Access Groups OU with DL DesignFiles Modify, DL FinanceFiles Modify, DL Public Edit, and DL Public Read",
             caption: "28. Access Groups OU: four domain local groups, one per share permission level.",
           },
+          { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > Access Groups > DL FinanceFiles Modify > Members" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/28b-dl-financefiles-members.png",
+            alt: "DL FinanceFiles Modify group Properties Members tab showing Finance Staff from zenithcreative.com as the sole member",
+            caption: "28b. DL FinanceFiles Modify: Finance Staff nested in as the sole member.",
+          },
+          { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > Access Groups > DL Public Read > Members" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/28c-dl-public-read-members.png",
+            alt: "DL Public Read group Properties Members tab showing Domain Users from zenithcreative.com as the sole member",
+            caption: "28c. DL Public Read: Domain Users nested in, covering every domain account.",
+          },
+          { type: "navpath", content: "ZCDC01 > Server Manager > File and Storage Services > Shares" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/29b-server-manager-new-share.png",
+            alt: "Server Manager File and Storage Services Shares view showing NETLOGON, print dollar, and SYSVOL with a New Share context menu open",
+            caption: "29b. Server Manager Shares before setup. Right-click opens the New Share wizard.",
+          },
+          { type: "navpath", content: "New Share Wizard > Select Profile" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/29c-share-wizard-smb-quick.png",
+            alt: "New Share Wizard Select the profile screen with SMB Share Quick selected from the file share profile list",
+            caption: "29c. SMB Share - Quick selected. The fastest path for a standard SMB file share.",
+          },
+          { type: "navpath", content: "New Share Wizard > Share Location" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/29d-share-wizard-select-server.png",
+            alt: "New Share Wizard Share Location screen with ZCDC01 selected as the server and C: volume chosen for the share location",
+            caption: "29d. ZCDC01 selected as the server. Share folder will be created under C:\\Shares.",
+          },
+          { type: "navpath", content: "New Share Wizard > Share Name" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/29e-share-wizard-name.png",
+            alt: "New Share Wizard Specify share name screen showing share name DesignFiles, local path C:\\Shares\\DesignFiles, and remote path \\\\ZCDC01\\DesignFiles",
+            caption: "29e. Share name: DesignFiles. Local path C:\\Shares\\DesignFiles. Remote path \\\\ZCDC01\\DesignFiles.",
+          },
+          { type: "navpath", content: "New Share Wizard > Other Settings" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/29f-share-wizard-settings.png",
+            alt: "New Share Wizard Configure share settings screen with Enable access-based enumeration and Allow caching of share checked",
+            caption: "29f. Access-based enumeration enabled: users only see shares they have permission to access.",
+          },
+          { type: "navpath", content: "New Share Wizard > Permissions" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/29g-share-wizard-initial-permissions.png",
+            alt: "New Share Wizard Specify permissions screen showing default folder permissions with BUILTIN\\Users and BUILTIN\\Administrators entries",
+            caption: "29g. Default permissions before customisation. Inheritance will be blocked and these replaced with the DL group.",
+          },
+          { type: "navpath", content: "ZCDC01 > File Explorer > DesignFiles > Advanced Security Settings > Block Inheritance" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/29h-security-block-inheritance.png",
+            alt: "Advanced Security Settings for DesignFiles with Block Inheritance dialog asking what to do with current inherited permissions",
+            caption: "29h. Blocking inheritance on DesignFiles. Inherited permissions will be removed so only explicit entries remain.",
+          },
+          { type: "navpath", content: "ZCDC01 > File Explorer > DesignFiles > Advanced Security Settings > Add > Select a principal" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/29i-permission-entry-add-dl.png",
+            alt: "Permission Entry for DesignFiles with Select User Computer Service Account or Group dialog showing DL DesignFiles Modify typed in the object name field",
+            caption: "29i. Adding DL DesignFiles Modify as the principal for the new NTFS permission entry.",
+          },
+          { type: "navpath", content: "ZCDC01 > File Explorer > DesignFiles > Advanced Security Settings > DL DesignFiles Modify > Permissions" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/29j-permission-entry-permissions.png",
+            alt: "Permission Entry for DesignFiles showing DL DesignFiles Modify as principal with Modify Read and Execute List Read and Write permissions checked",
+            caption: "29j. DL DesignFiles Modify granted Modify access. Full Control unchecked — Design Staff can read and write but not change ownership.",
+          },
+          { type: "navpath", content: "New Share Wizard > Permissions (updated)" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/29k-share-wizard-permissions-updated.png",
+            alt: "New Share Wizard Specify permissions screen showing ZENITH\\DL DesignFiles Modify with Modify access and BUILTIN\\Administrators with Full Control",
+            caption: "29k. Wizard permissions panel updated: only DL DesignFiles Modify (Modify) and Administrators (Full Control) remain.",
+          },
+          { type: "navpath", content: "New Share Wizard > Confirmation" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/29l-share-wizard-confirm.png",
+            alt: "New Share Wizard Confirm selections screen showing ZCDC01, local path C:\\Shares\\DesignFiles, share name DesignFiles, SMB protocol, access-based enumeration enabled",
+            caption: "29l. Final confirmation: DesignFiles on ZCDC01, C:\\Shares\\DesignFiles, SMB, access-based enumeration on.",
+          },
+          { type: "navpath", content: "New Share Wizard > Results" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/29m-share-wizard-results.png",
+            alt: "New Share Wizard View results screen showing Create SMB share and Set SMB permissions both completed successfully",
+            caption: "29m. Share created successfully. Both tasks completed.",
+          },
+          { type: "navpath", content: "ZCDC01 > File Explorer > DesignFiles > Advanced Security Settings" },
           {
             type: "img",
             content: "/images/blog/zcdc02/29-designfiles-permissions.png",
             alt: "Advanced Security Settings for DesignFiles showing Administrators Full Control and DL DesignFiles Modify Modify access, both non-inherited",
             caption: "29. DesignFiles NTFS permissions after blocking inheritance. Only two entries remain.",
           },
+          { type: "navpath", content: "ZCDC01 > Server Manager > File and Storage Services > Shares" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/29n-server-manager-designfiles-listed.png",
+            alt: "Server Manager Shares view now showing four shares: NETLOGON, print dollar, SYSVOL, and DesignFiles at C:\\Shares\\DesignFiles",
+            caption: "29n. Server Manager confirms DesignFiles is now listed alongside the built-in shares.",
+          },
+          { type: "navpath", content: "ZCDC01 > File Explorer > Public > Advanced Security Settings" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/29o-public-share-permissions.png",
+            alt: "Advanced Security Settings for Public share showing Administrators Full Control and Domain Users Read and Execute, both non-inherited",
+            caption: "29o. Public share NTFS permissions: Administrators Full Control, Domain Users Read and Execute. Inheritance blocked.",
+          },
+          { type: "navpath", content: "ZCPC01 > File Explorer > Network > ZCDC01" },
           {
             type: "img",
             content: "/images/blog/zcdc02/30-shares-visible.png",
             alt: "File Explorer browsing ZCDC01 showing DesignFiles, FinanceFiles, netlogon, Public, sysvol and ZCDesignPrinter",
             caption: "30. All shares visible from a client. NTFS permissions control what each user can access inside each share.",
+          },
+          { type: "navpath", content: "ZCPC01 > File Explorer > Network > ZCDC01 > FinanceFiles (access denied)" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/30b-access-denied-finance.png",
+            alt: "Windows File Explorer showing a Network Error dialog: Windows cannot access \\\\ZCDC01\\FinanceFiles, you do not have permission to access this location",
+            caption: "30b. Access denied on FinanceFiles when logged in as a Design Staff user. NTFS permissions are working correctly.",
           },
           {
             type: "p",
@@ -996,20 +1295,65 @@ export const posts: BlogPost[] = [
           {
             type: "p",
             content:
-              "I created ZC Drive Maps and linked it to the Staff OU. Under User Configuration > Preferences > Windows Settings > Drive Maps I added three drives: S: to \\\\ZCDC01\\DesignFiles for DL DesignFiles Modify members, F: to \\\\ZCDC01\\FinanceFiles for DL FinanceFiles Modify members, and P: to \\\\ZCDC01\\Public for everyone. Each used item-level targeting with a Security Group condition. The action on each was set to Replace so the drive is removed and re-created on each logon, keeping it consistent if a user changes groups.",
+              "I created ZC Drive Maps and linked it to the Staff OU. I added three drives: S: to \\\\ZCDC01\\DesignFiles for DL DesignFiles Modify members, F: to \\\\ZCDC01\\FinanceFiles for DL FinanceFiles Modify members, and P: to \\\\ZCDC01\\Public for everyone. Each used item-level targeting with a Security Group condition. The action on each was set to Replace so the drive is removed and re-created on each logon, keeping it consistent if a user changes groups.",
           },
+          { type: "navpath", content: "GPM > zenithcreative.com > Staff > Linked Group Policy Objects" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/31b-staff-ou-drive-maps-added.png",
+            alt: "Group Policy Management showing Staff OU with five linked GPOs: ZC Staff Screen Lock, ZC Staff Settings Control Panel Disable, ZC Wallpaper, ZC Design Printer, and ZC Drive Maps",
+            caption: "31b. Staff OU now has five linked GPOs. ZC Drive Maps added at link order 5.",
+          },
+          { type: "navpath", content: "GPME > ZC Drive Maps > User Configuration > Preferences > Windows Settings > Drive Maps" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/31c-drive-maps-empty.png",
+            alt: "Group Policy Management Editor Drive Maps section showing no items and a right-click context menu with New and Mapped Drive options visible",
+            caption: "31c. Drive Maps section empty before setup. Right-click creates a new mapped drive entry.",
+          },
+          { type: "navpath", content: "GPME > ZC Drive Maps > Drive Maps > New Drive Properties > General" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/31d-new-s-drive.png",
+            alt: "New Drive Properties General tab showing Action Update, Location \\\\ZCDC01\\DesignFiles, Label Design Files, and drive letter S assigned",
+            caption: "31d. New drive: S: mapped to \\\\ZCDC01\\DesignFiles. Label: Design Files.",
+          },
+          { type: "navpath", content: "GPME > ZC Drive Maps > Drive Maps > New Drive Properties > Common" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/31e-drive-maps-common-targeting.png",
+            alt: "New Drive Properties Common tab showing Item-level targeting checkbox ticked with the Targeting button available",
+            caption: "31e. Item-level targeting enabled on the drive map. Only matching users receive this drive letter.",
+          },
+          { type: "navpath", content: "GPME > ZC Drive Maps > Drive Maps > Targeting Editor > New Item" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/31f-targeting-editor-security-group.png",
+            alt: "Targeting Editor with New Item dropdown expanded showing targeting types with Security Group highlighted at the bottom of the list",
+            caption: "31f. Targeting Editor: Security Group selected as the targeting type for this drive.",
+          },
+          { type: "navpath", content: "GPME > ZC Drive Maps > Drive Maps > Targeting Editor" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/31g-targeting-dl-designfiles.png",
+            alt: "Targeting Editor showing the user is a member of the security group ZENITH\\DL DesignFiles Modify with the group SID confirmed",
+            caption: "31g. Targeting confirmed: S: maps only for members of ZENITH\\DL DesignFiles Modify.",
+          },
+          { type: "navpath", content: "GPME > ZC Drive Maps > User Configuration > Preferences > Windows Settings > Drive Maps" },
           {
             type: "img",
             content: "/images/blog/zcdc02/31-drive-maps-configured.png",
             alt: "Group Policy Management Editor Drive Maps showing S drive to DesignFiles, F drive to FinanceFiles, and P drive to Public, all with action Replace",
             caption: "31. ZC Drive Maps: S:, F:, and P: configured with item-level targeting per group.",
           },
+          { type: "navpath", content: "ZCPC01 > This PC (Design Staff drives after logon)" },
           {
             type: "img",
             content: "/images/blog/zcdc02/32-drives-mapped-design.png",
             alt: "Windows 11 This PC showing Design Files S drive and Public P drive mapped as network locations",
             caption: "32. Design Staff account: S: and P: mapped automatically at logon.",
           },
+          { type: "navpath", content: "ZCPC01 > This PC (Finance Staff drives after logon)" },
           {
             type: "img",
             content: "/images/blog/zcdc02/33-drives-mapped-finance.png",
@@ -1032,7 +1376,7 @@ export const posts: BlogPost[] = [
           {
             type: "p",
             content:
-              "I opened Settings > System > Remote Desktop on ZCPC01 and clicked Select users that can remotely access this PC. I added Chide Eze's account from zenithcreative.com. This adds the account to the local Remote Desktop Users group on that specific machine. Domain Admins can RDP to any domain computer by default. This grants the same access to a standard user on one specific workstation.",
+              "I opened Settings on ZCPC01 and clicked Select users that can remotely access this PC. I added Chide Eze's account from zenithcreative.com. This adds the account to the local Remote Desktop Users group on that specific machine. Domain Admins can RDP to any domain computer by default. This grants the same access to a standard user on one specific workstation.",
           },
           { type: "label", content: "PowerShell equivalent:" },
           {
@@ -1040,6 +1384,7 @@ export const posts: BlogPost[] = [
             content:
               "Add-LocalGroupMember -Group \"Remote Desktop Users\" -Member \"ZENITH\\chide.eze\"\n  # run on ZCPC01, adds the user to the local Remote Desktop Users group\nGet-LocalGroupMember -Group \"Remote Desktop Users\"\n  # lists who currently has RDP access to this machine",
           },
+          { type: "navpath", content: "ZCPC01 > Settings > System > Remote Desktop" },
           {
             type: "img",
             content: "/images/blog/zcdc02/34-remote-desktop.png",
