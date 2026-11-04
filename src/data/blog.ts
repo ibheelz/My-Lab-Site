@@ -12,18 +12,22 @@ export interface BlogPost {
 }
 
 export interface BlogSection {
-  type: "h2" | "h3" | "p" | "code" | "ul" | "note" | "img" | "label" | "qa" | "tasklist";
+  type: "h2" | "h3" | "p" | "code" | "ul" | "note" | "img" | "label" | "qa" | "tasklist" | "group";
   content: string | string[];
   alt?: string;
   caption?: string;
   answer?: string;
   links?: Array<{ label: string; href: string }>;
+  title?: string;
+  children?: BlogSection[];
 }
 
 export const posts: BlogPost[] = [
+
+  // ── Lab 1 ──────────────────────────────────────────────────────────────────
   {
     slug: "zcdc01-windows-domain-from-scratch",
-    title: "Setting up a Windows Active Directory Domain Services",
+    title: "Setting up a Windows Active Directory Domain Services — Part 1",
     description: "Zenith Creative is a 15 person design studio in Lagos. They have just bought their first server and need a domain set up before staff start on Monday. You are the IT technician. Build it.",
     category: "Windows Lab",
     color: "rgb(192, 132, 252)",
@@ -33,7 +37,7 @@ export const posts: BlogPost[] = [
     tags: ["IT Support", "Active Directory", "Windows Server", "PowerShell", "Home Lab"],
     sections: [
 
-      // ── Assessment Overview ───────────────────────────────────────────────
+      // ── Assessment Overview (flat) ─────────────────────────────────────────
       { type: "h2", content: "Assessment Overview" },
       {
         type: "ul",
@@ -48,571 +52,1001 @@ export const posts: BlogPost[] = [
         content:
           "Zenith Creative is a fictional 15-person design studio in Lagos that needs its first domain before staff start Monday. I am the IT technician.",
       },
+
+      // ── Group: Infrastructure Setup ────────────────────────────────────────
       {
-        type: "tasklist",
+        type: "group",
         content: "",
-        links: [
-          { label: "Tasks 1–3: Create the VM and Install Windows Server 2025", href: "#tasks-1-to-3-create-the-vm-and-install-windows-server-2025" },
-          { label: "Task 4: Name the Server ZCDC01",                           href: "#task-4-name-the-server-zcdc01" },
-          { label: "Task 5: Set the Lagos Time Zone",                          href: "#task-5-set-the-lagos-time-zone" },
-          { label: "Task 6: Assign a Static IP Address",                       href: "#task-6-assign-a-static-ip-address" },
-          { label: "Task 7: Create the Forest zenithcreative.com",             href: "#task-7-create-the-forest-zenithcreative-com" },
-          { label: "Task 8: Resolve Internal and Internet Names",              href: "#task-8-resolve-internal-and-internet-names" },
-          { label: "Tasks 9–10: Enable Remote Desktop and Confirm Connectivity", href: "#tasks-9-and-10-enable-remote-desktop-and-confirm-connectivity" },
-          { label: "Task 11: Build the OU Structure",                          href: "#task-11-build-the-ou-structure" },
-          { label: "Tasks 12–15: User Accounts and Personal Admin Account",   href: "#tasks-12-to-15-user-accounts-and-personal-admin-account" },
-          { label: "Tasks 16–17: Security Groups",                             href: "#tasks-16-and-17-security-groups" },
-          { label: "Ticket 1042",                                              href: "#ticket-1042" },
-          { label: "Ticket 1043",                                              href: "#ticket-1043" },
-          { label: "Ticket 1044",                                              href: "#ticket-1044" },
-          { label: "Part C: Final Verification",                               href: "#part-c-final-verification" },
-          { label: "Part D: Verbal Interview Questions",                       href: "#part-d-verbal-interview-questions" },
+        title: "Infrastructure Setup",
+        children: [
+
+          { type: "h3", content: "Tasks 1 to 3: Create the VM and Install Windows Server 2025" },
+          {
+            type: "note",
+            content:
+              "Create a Windows Server 2025 virtual machine with 4 GB RAM, 2 CPUs, a 60 GB disk, EFI firmware, and a bridged network adapter. Install Windows Server 2025 Standard with Desktop Experience.",
+          },
+          {
+            type: "p",
+            content:
+              "I created the VM in VirtualBox with 4 GB RAM, 2 CPUs, a 60 GB dynamically allocated disk, and EFI firmware enabled. I set the network adapter to bridged mode. Bridged networking places the server on the same physical network segment as my MacBook, so it receives a real IP address on the office subnet and can be managed remotely from any machine on that network. A NAT adapter would isolate it behind VirtualBox and make remote management impossible without extra port-forwarding rules. I attached the Windows Server 2025 ISO, booted the VM, selected Windows Server 2025 Standard Evaluation with Desktop Experience, accepted the licence, and chose the custom installation path. The installer completed without issues.",
+          },
+
+          { type: "h3", content: "Task 4: Name the Server ZCDC01" },
+          { type: "note", content: "Set the computer name to ZCDC01." },
+          {
+            type: "p",
+            content:
+              "I opened Server Manager, clicked the computer name link under Local Server, and renamed the machine ZCDC01 in the System Properties dialog. The server restarted to apply the change. The name follows a simple convention: ZC for Zenith Creative, DC for domain controller, 01 for the first instance. That pattern keeps the name readable in DNS records, event logs, and support tickets.",
+          },
+          { type: "label", content: "PowerShell equivalent:" },
+          {
+            type: "code",
+            content:
+              "Rename-Computer -NewName ZCDC01 -Restart\n  # renames the computer and restarts to apply it\nhostname\n  # prints the current computer name to confirm",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc01/01-server-identity.png",
+            alt: "Server Manager Local Server properties showing computer name ZCDC01 joined to zenithcreative.com with Ethernet IP 192.168.1.200",
+            caption:
+              "01. Server Manager confirming ZCDC01 as the computer name and zenithcreative.com as the domain.",
+          },
+          {
+            type: "p",
+            content:
+              "A clear, consistent naming convention makes the server identifiable at a glance in any tool, from ADUC to network scanners. A generic name like WIN-A1B2C3 gives no useful information when reading logs.",
+          },
+
+          { type: "h3", content: "Task 5: Set the Lagos Time Zone" },
+          { type: "note", content: "Set the time zone to Lagos (UTC+01:00)." },
+          {
+            type: "p",
+            content:
+              "I opened Date and Time settings and set the time zone to UTC+01:00 West Central Africa. I verified the displayed time matched my MacBook clock before continuing.",
+          },
+          { type: "label", content: "PowerShell equivalent:" },
+          {
+            type: "code",
+            content:
+              "Set-TimeZone -Id \"W. Central Africa Standard Time\"\n  # sets the time zone to UTC+01:00, Lagos\nGet-TimeZone\n  # shows the current time zone to confirm",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc01/03-time-zone.png",
+            alt: "Date and Time dialog on ZCDC01 showing UTC+01:00 West Central Africa time zone",
+            caption: "03. Time zone set to UTC+01:00 West Central Africa.",
+          },
+          {
+            type: "p",
+            content:
+              "Kerberos, the authentication protocol Active Directory relies on, rejects logins when the clock on a client differs from the domain controller by more than five minutes. Setting the correct time zone before promotion prevents that failure from affecting anyone on day one.",
+          },
+
+          { type: "h3", content: "Task 6: Assign a Static IP Address" },
+          { type: "note", content: "Assign a static IP address to the server NIC." },
+          {
+            type: "p",
+            content:
+              "I opened the IPv4 properties for the Ethernet adapter and set the IP address to 192.168.1.200 with a 255.255.255.0 subnet mask and 192.168.1.1 as the default gateway. For the preferred DNS I entered 127.0.0.1, pointing to the loopback address. After the Active Directory promotion, the DNS service on this machine takes over and reconfigures the NIC to use itself as the resolver. Setting loopback at this stage avoids a chicken-and-egg problem during promotion.",
+          },
+          { type: "label", content: "PowerShell equivalent:" },
+          {
+            type: "code",
+            content:
+              "New-NetIPAddress -InterfaceAlias \"Ethernet\" -IPAddress 192.168.1.200 -PrefixLength 24 -DefaultGateway 192.168.1.1\n  # sets a fixed IP, a 255.255.255.0 subnet mask, and the router as gateway\nSet-DnsClientServerAddress -InterfaceAlias \"Ethernet\" -ServerAddresses 192.168.1.1\n  # temporary DNS before promotion; promotion later points the NIC at itself\nipconfig /all\n  # shows the full network configuration to verify it",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc01/02-ip-configuration.png",
+            alt: "IPv4 Properties dialog showing static IP 192.168.1.200, subnet mask 255.255.255.0, default gateway 192.168.1.1, preferred DNS 127.0.0.1",
+            caption:
+              "02. Static IP 192.168.1.200 set on the Ethernet adapter. Preferred DNS is loopback, ready for the AD promotion.",
+          },
+          {
+            type: "p",
+            content:
+              "Every machine on the network will use this server as its DNS resolver and Kerberos authentication endpoint. If the server's IP changed, clients could no longer find it and logins, domain joins, and name lookups would all fail. A static address makes its location fixed and predictable.",
+          },
+
+          { type: "h3", content: "Task 7: Create the Forest zenithcreative.com" },
+          {
+            type: "p",
+            content:
+              "I installed the Active Directory Domain Services role through Server Manager, then clicked the yellow flag notification and selected Promote this server to a domain controller. I chose Add a new forest, entered zenithcreative.com as the root domain name, and set the NetBIOS name to ZENITH. I left the DNS option checked, set a strong DSRM recovery password, ran through the prerequisites check, and clicked Install. The server restarted automatically. After the restart I logged in as ZENITH\\Administrator and confirmed the domain was live.",
+          },
+          { type: "label", content: "PowerShell equivalent:" },
+          {
+            type: "code",
+            content:
+              "Install-WindowsFeature AD-Domain-Services -IncludeManagementTools\n  # installs the Active Directory role and its admin tools onto the server\nInstall-ADDSForest -DomainName \"zenithcreative.com\" -DomainNetbiosName \"ZENITH\" -InstallDns\n  # promotes the server: creates the forest, domain, AD database and DNS zone\nGet-ADDomain\n  # prints domain details to confirm promotion succeeded",
+          },
+          {
+            type: "p",
+            content:
+              "Installing the role and promoting the server are two distinct steps. Installing copies the AD DS binaries onto the machine. It adds the capability but changes nothing else. Promotion runs the actual configuration: it creates the AD database and SYSVOL folders, builds the DNS zone for zenithcreative.com, sets up Kerberos, and turns the server from a standalone Windows machine into a domain controller that can issue Kerberos tickets and authenticate users. A server with the role installed but not promoted cannot do any of that. The two-step design exists so administrators can stage the software before committing to the promotion.",
+          },
+
+          { type: "h3", content: "Task 8: Resolve Internal and Internet Names" },
+          {
+            type: "note",
+            content:
+              "Confirm the DNS server resolves both internal company names and external internet names.",
+          },
+          {
+            type: "p",
+            content:
+              "After the restart I opened PowerShell and tested both DNS paths. I pinged zenithcreative.com to confirm the domain controller answered for its own domain, and pinged google.com to confirm the forwarder was passing unknown names out through the router. Both resolved cleanly. The domain controller holds the authoritative DNS zone for zenithcreative.com and answers those queries itself. For any name it does not hold a record for, it forwards the query to 192.168.1.1. Without that forwarder every computer on the network would use this server as its only DNS resolver, meaning staff could authenticate and reach company resources but could not load any website or reach any external service.",
+          },
+          { type: "label", content: "Commands I ran:" },
+          {
+            type: "code",
+            content:
+              "ping zenithcreative.com\n  # confirms the domain controller answers for its own domain\nping google.com\n  # confirms internet names resolve through the forwarder",
+          },
+          { type: "label", content: "PowerShell equivalent:" },
+          {
+            type: "code",
+            content:
+              "Get-DnsServerForwarder\n  # lists the IP addresses the DNS server forwards unknown queries to\nAdd-DnsServerForwarder -IPAddress 192.168.1.1\n  # adds the router as a forwarder if one is not already configured",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc01/06-name-lookups.png",
+            alt: "PowerShell on ZCDC01 showing ping to zenithcreative.com resolving to 192.168.1.200 and ping to google.com resolving to an external IP address",
+            caption:
+              "06. Internal name resolves to 192.168.1.200. External names forward through the router to the internet.",
+          },
+          {
+            type: "p",
+            content:
+              "When the domain controller answers zenithcreative.com, the response is authoritative: it holds the record and answered directly from its own zone. When it answered google.com, the response was non-authoritative: it did not hold that record and forwarded the query upstream to get the answer.",
+          },
+
+          { type: "h3", content: "Tasks 9 and 10: Enable Remote Desktop and Confirm Connectivity" },
+          {
+            type: "note",
+            content:
+              "Enable Remote Desktop on the server and confirm it can be reached and pinged from a remote workstation.",
+          },
+          {
+            type: "p",
+            content:
+              "I enabled Remote Desktop early in the build so I could switch to managing the server from my Mac as quickly as possible. When I first tested network connectivity, the ping attempt failed. RDP on port 3389 was already working. That combination is useful diagnostic information: if RDP connects, the server is up and the network path is open. Ping failing alone means the Windows firewall is blocking ICMP, which is the default on Windows Server. It is not a server problem or a network problem. I enabled the built-in ICMPv4 Echo Request inbound rule and ping came back clean. I then ran all remaining tasks from the Mac through the RDP session.",
+          },
+          { type: "label", content: "Command I ran:" },
+          {
+            type: "code",
+            content:
+              "ping 192.168.1.200\n  # confirms the server replies to ICMP after the firewall rule was enabled",
+          },
+          { type: "label", content: "PowerShell equivalent:" },
+          {
+            type: "code",
+            content:
+              "Enable-NetFirewallRule -Name FPS-ICMP4-ERQ-In\n  # switches on the built-in rule allowing incoming ping, ICMPv4 Echo Request\nSet-ItemProperty -Path 'HKLM:\\System\\CurrentControlSet\\Control\\Terminal Server' -Name \"fDenyTSConnections\" -Value 0\n  # turns Remote Desktop on via the registry\nEnable-NetFirewallRule -DisplayGroup \"Remote Desktop\"\n  # opens the Windows firewall for RDP connections",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc01/04-ping.png",
+            alt: "Windows PowerShell on ZCDC01 showing successful ping to 192.168.1.200 with four replies and zero packet loss",
+            caption:
+              "04. Ping succeeds after enabling the ICMPv4 Echo Request inbound firewall rule.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc01/05-rdp.png",
+            alt: "Microsoft Remote Desktop on macOS with ZCDC01 Server Manager open inside an RDP session connected to 192.168.1.200",
+            caption:
+              "05. Server Manager open inside an RDP session from the MacBook. All remaining build work was done from here.",
+          },
+
         ],
       },
 
-      // ── Part A ────────────────────────────────────────────────────────────
-      { type: "h2", content: "Part A: Build Tasks" },
+      // ── Group: Active Directory ────────────────────────────────────────────
+      {
+        type: "group",
+        content: "",
+        title: "Active Directory",
+        children: [
 
-      // Tasks 1–3
-      {
-        type: "h3",
-        content: "Tasks 1 to 3: Create the VM and Install Windows Server 2025",
-      },
-      {
-        type: "note",
-        content:
-          "Create a Windows Server 2025 virtual machine with 4 GB RAM, 2 CPUs, a 60 GB disk, EFI firmware, and a bridged network adapter. Install Windows Server 2025 Standard with Desktop Experience.",
-      },
-      {
-        type: "p",
-        content:
-          "I created the VM in VirtualBox with 4 GB RAM, 2 CPUs, a 60 GB dynamically allocated disk, and EFI firmware enabled. I set the network adapter to bridged mode. Bridged networking places the server on the same physical network segment as my MacBook, so it receives a real IP address on the office subnet and can be managed remotely from any machine on that network. A NAT adapter would isolate it behind VirtualBox and make remote management impossible without extra port-forwarding rules. I attached the Windows Server 2025 ISO, booted the VM, selected Windows Server 2025 Standard Evaluation with Desktop Experience, accepted the licence, and chose the custom installation path. The installer completed without issues.",
-      },
+          { type: "h3", content: "Task 11: Build the OU Structure" },
+          {
+            type: "note",
+            content:
+              "Create an Organisational Unit structure for IT Admins and departmental staff.",
+          },
+          {
+            type: "p",
+            content:
+              "I opened Active Directory Users and Computers and created the following structure under the domain root. Users live in OUs rather than the default Users container because only OUs can receive Group Policy Objects and delegated control. The default container cannot.",
+          },
+          {
+            type: "code",
+            content:
+              "zenithcreative.com\n └── Zenith\n      ├── Staff\n      │    ├── Design\n      │    └── Finance\n      └── IT Admins",
+          },
+          { type: "label", content: "PowerShell equivalent:" },
+          {
+            type: "code",
+            content:
+              "New-ADOrganizationalUnit -Name \"Zenith\" -Path \"DC=zenithcreative,DC=com\"\nNew-ADOrganizationalUnit -Name \"Staff\" -Path \"OU=Zenith,DC=zenithcreative,DC=com\"\nNew-ADOrganizationalUnit -Name \"Design\" -Path \"OU=Staff,OU=Zenith,DC=zenithcreative,DC=com\"\nNew-ADOrganizationalUnit -Name \"Finance\" -Path \"OU=Staff,OU=Zenith,DC=zenithcreative,DC=com\"\nNew-ADOrganizationalUnit -Name \"IT Admins\" -Path \"OU=Zenith,DC=zenithcreative,DC=com\"\n  # each line creates one OU at the given path in the directory",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc01/07-ou-tree.png",
+            alt: "Active Directory Users and Computers showing the OU tree: IT Admins OU at domain level beside the Staff OU, which contains Design and Finance child OUs",
+            caption: "07. OU tree: IT Admins sits at the same level as Staff, not inside it.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc01/08-design-ou.png",
+            alt: "Design OU in ADUC containing user Chide Eze and security group Design Staff",
+            caption: "08. Design OU containing one user account and the Design Staff security group.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc01/09-finance-ou.png",
+            alt: "Finance OU in ADUC containing users Funmi Adebayo and Kemi Johnson alongside the Finance Staff security group",
+            caption: "09. Finance OU containing two user accounts and the Finance Staff security group.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc01/10-it-admin-ou.png",
+            alt: "IT Admins OU in ADUC containing a single user named Abiola",
+            caption: "10. IT Admins OU: the personal admin account sits here, separate from all staff OUs.",
+          },
+          {
+            type: "p",
+            content:
+              "A distinguished name is the full path to an object in the directory. It reads right to left: DC=com is the top-level domain component, DC=zenithcreative is the domain name, OU=Zenith is the first organisational unit, and so on down to the object. IT Admins sits beside Staff rather than inside it because any Group Policy linked to the Staff OU, such as desktop restrictions or software deployment rules, must never apply to admin accounts. Structural separation makes that guarantee permanent. If IT Admins were inside Staff, every staff policy would apply to admin accounts by default and would have to be blocked with exceptions, which is fragile.",
+          },
 
-      // Task 4
-      { type: "h3", content: "Task 4: Name the Server ZCDC01" },
-      {
-        type: "note",
-        content: "Set the computer name to ZCDC01.",
-      },
-      {
-        type: "p",
-        content:
-          "I opened Server Manager, clicked the computer name link under Local Server, and renamed the machine ZCDC01 in the System Properties dialog. The server restarted to apply the change. The name follows a simple convention: ZC for Zenith Creative, DC for domain controller, 01 for the first instance. That pattern keeps the name readable in DNS records, event logs, and support tickets.",
-      },
-      { type: "label", content: "PowerShell equivalent:" },
-      {
-        type: "code",
-        content:
-          "Rename-Computer -NewName ZCDC01 -Restart\n  # renames the computer and restarts to apply it\nhostname\n  # prints the current computer name to confirm",
-      },
-      {
-        type: "img",
-        content: "/images/blog/zcdc01/01-server-identity.png",
-        alt: "Server Manager Local Server properties showing computer name ZCDC01 joined to zenithcreative.com with Ethernet IP 192.168.1.200",
-        caption:
-          "01. Server Manager confirming ZCDC01 as the computer name and zenithcreative.com as the domain.",
-      },
-      {
-        type: "p",
-        content:
-          "A clear, consistent naming convention makes the server identifiable at a glance in any tool, from ADUC to network scanners. A generic name like WIN-A1B2C3 gives no useful information when reading logs.",
-      },
+          { type: "h3", content: "Tasks 12 to 15: User Accounts and Personal Admin Account" },
+          {
+            type: "note",
+            content:
+              "Create user accounts for Design and Finance staff, and a personal admin account adm.abiola with domain admin rights.",
+          },
+          {
+            type: "p",
+            content:
+              "I used the New User wizard in ADUC to create accounts for Chide Eze (ceze) in the Design OU and Funmi Adebayo (fadebayo) in the Finance OU. I set a temporary password and ticked the box requiring a change at first login for both. I then created my personal admin account, adm.abiola, in the IT Admins OU and added it to the Domain Admins group.",
+          },
+          { type: "label", content: "PowerShell equivalent:" },
+          {
+            type: "code",
+            content:
+              "New-ADUser -Name \"Chidi Eze\" -GivenName Chidi -Surname Eze -SamAccountName ceze -UserPrincipalName ceze@zenithcreative.com -Path \"OU=Design,OU=Staff,OU=Zenith,DC=zenithcreative,DC=com\" -AccountPassword (Read-Host -AsSecureString \"Temporary password\") -ChangePasswordAtLogon $true -Enabled $true\n  # creates the user, prompts for a temporary password, forces a change at first login\nAdd-ADGroupMember -Identity \"Domain Admins\" -Members adm.abiola\n  # grants the personal admin account domain admin rights",
+          },
+          {
+            type: "p",
+            content: "Funmi Adebayo (fadebayo) was created in the Finance OU using the same process.",
+          },
 
-      // Task 5
-      { type: "h3", content: "Task 5: Set the Lagos Time Zone" },
-      {
-        type: "note",
-        content: "Set the time zone to Lagos (UTC+01:00).",
-      },
-      {
-        type: "p",
-        content:
-          "I opened Date and Time settings and set the time zone to UTC+01:00 West Central Africa. I verified the displayed time matched my MacBook clock before continuing.",
-      },
-      { type: "label", content: "PowerShell equivalent:" },
-      {
-        type: "code",
-        content:
-          "Set-TimeZone -Id \"W. Central Africa Standard Time\"\n  # sets the time zone to UTC+01:00, Lagos\nGet-TimeZone\n  # shows the current time zone to confirm",
-      },
-      {
-        type: "img",
-        content: "/images/blog/zcdc01/03-time-zone.png",
-        alt: "Date and Time dialog on ZCDC01 showing UTC+01:00 West Central Africa time zone",
-        caption: "03. Time zone set to UTC+01:00 West Central Africa.",
-      },
-      {
-        type: "p",
-        content:
-          "Kerberos, the authentication protocol Active Directory relies on, rejects logins when the clock on a client differs from the domain controller by more than five minutes. Setting the correct time zone before promotion prevents that failure from affecting anyone on day one.",
-      },
+          { type: "h3", content: "Tasks 16 and 17: Security Groups" },
+          {
+            type: "note",
+            content:
+              "Create security groups for Design Staff and Finance Staff, and add the appropriate user accounts.",
+          },
+          {
+            type: "p",
+            content:
+              "I created a Design Staff security group inside the Design OU and added ceze. I created a Finance Staff security group inside the Finance OU and added fadebayo. Permissions are assigned to the groups, not to individual user accounts. Adding or removing someone from a group is the only action needed to grant or revoke access. Onboarding and offboarding both become a single operation.",
+          },
+          { type: "label", content: "PowerShell equivalent:" },
+          {
+            type: "code",
+            content:
+              "New-ADGroup -Name \"Design Staff\" -GroupScope Global -GroupCategory Security -Path \"OU=Design,OU=Staff,OU=Zenith,DC=zenithcreative,DC=com\"\n  # creates a security group in the Design OU\nAdd-ADGroupMember -Identity \"Design Staff\" -Members ceze\n  # adds a user to the group\nGet-ADGroupMember -Identity \"Design Staff\"\n  # lists the group's current members\nGet-ADPrincipalGroupMembership -Identity adm.abiola | Select-Object Name\n  # lists every group an account belongs to",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc01/11-design-staff-members.png",
+            alt: "Design Staff security group Properties Members tab showing Chide Eze as a member from zenithcreative.com/Staff/Design",
+            caption: "11. Design Staff group: Chide Eze is the sole member.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc01/12-finance-staff-members.png",
+            alt: "Finance Staff security group Properties Members tab showing Funmi Adebayo and Kemi Johnson from zenithcreative.com/Staff/Finance",
+            caption: "12. Finance Staff group: both Finance users are members.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc01/13-admin-group-memberships.png",
+            alt: "adm.abiola user Properties Member Of tab showing Domain Admins and Domain Users group memberships",
+            caption: "13. adm.abiola is a member of Domain Admins. A named personal account, not the shared built-in Administrator.",
+          },
 
-      // Task 6
-      { type: "h3", content: "Task 6: Assign a Static IP Address" },
-      {
-        type: "note",
-        content: "Assign a static IP address to the server NIC.",
-      },
-      {
-        type: "p",
-        content:
-          "I opened the IPv4 properties for the Ethernet adapter and set the IP address to 192.168.1.200 with a 255.255.255.0 subnet mask and 192.168.1.1 as the default gateway. For the preferred DNS I entered 127.0.0.1, pointing to the loopback address. After the Active Directory promotion, the DNS service on this machine takes over and reconfigures the NIC to use itself as the resolver. Setting loopback at this stage avoids a chicken-and-egg problem during promotion.",
-      },
-      { type: "label", content: "PowerShell equivalent:" },
-      {
-        type: "code",
-        content:
-          "New-NetIPAddress -InterfaceAlias \"Ethernet\" -IPAddress 192.168.1.200 -PrefixLength 24 -DefaultGateway 192.168.1.1\n  # sets a fixed IP, a 255.255.255.0 subnet mask, and the router as gateway\nSet-DnsClientServerAddress -InterfaceAlias \"Ethernet\" -ServerAddresses 192.168.1.1\n  # temporary DNS before promotion; promotion later points the NIC at itself\nipconfig /all\n  # shows the full network configuration to verify it",
-      },
-      {
-        type: "img",
-        content: "/images/blog/zcdc01/02-ip-configuration.png",
-        alt: "IPv4 Properties dialog showing static IP 192.168.1.200, subnet mask 255.255.255.0, default gateway 192.168.1.1, preferred DNS 127.0.0.1",
-        caption:
-          "02. Static IP 192.168.1.200 set on the Ethernet adapter. Preferred DNS is loopback, ready for the AD promotion.",
-      },
-      {
-        type: "p",
-        content:
-          "Every machine on the network will use this server as its DNS resolver and Kerberos authentication endpoint. If the server's IP changed, clients could no longer find it and logins, domain joins, and name lookups would all fail. A static address makes its location fixed and predictable.",
-      },
-
-      // Task 7
-      { type: "h3", content: "Task 7: Create the Forest zenithcreative.com" },
-      {
-        type: "p",
-        content:
-          "I installed the Active Directory Domain Services role through Server Manager, then clicked the yellow flag notification and selected Promote this server to a domain controller. I chose Add a new forest, entered zenithcreative.com as the root domain name, and set the NetBIOS name to ZENITH. I left the DNS option checked, set a strong DSRM recovery password, ran through the prerequisites check, and clicked Install. The server restarted automatically. After the restart I logged in as ZENITH\\Administrator and confirmed the domain was live.",
-      },
-      { type: "label", content: "PowerShell equivalent:" },
-      {
-        type: "code",
-        content:
-          "Install-WindowsFeature AD-Domain-Services -IncludeManagementTools\n  # installs the Active Directory role and its admin tools onto the server\nInstall-ADDSForest -DomainName \"zenithcreative.com\" -DomainNetbiosName \"ZENITH\" -InstallDns\n  # promotes the server: creates the forest, domain, AD database and DNS zone\nGet-ADDomain\n  # prints domain details to confirm promotion succeeded",
-      },
-      {
-        type: "p",
-        content:
-          "Installing the role and promoting the server are two distinct steps. Installing copies the AD DS binaries onto the machine. It adds the capability but changes nothing else. Promotion runs the actual configuration: it creates the AD database and SYSVOL folders, builds the DNS zone for zenithcreative.com, sets up Kerberos, and turns the server from a standalone Windows machine into a domain controller that can issue Kerberos tickets and authenticate users. A server with the role installed but not promoted cannot do any of that. The two-step design exists so administrators can stage the software before committing to the promotion.",
+        ],
       },
 
-      // Task 8
-      { type: "h3", content: "Task 8: Resolve Internal and Internet Names" },
+      // ── Group: Support Tickets ─────────────────────────────────────────────
       {
-        type: "note",
-        content:
-          "Confirm the DNS server resolves both internal company names and external internet names.",
-      },
-      {
-        type: "p",
-        content:
-          "After the restart I opened PowerShell and tested both DNS paths. I pinged zenithcreative.com to confirm the domain controller answered for its own domain, and pinged google.com to confirm the forwarder was passing unknown names out through the router. Both resolved cleanly. The domain controller holds the authoritative DNS zone for zenithcreative.com and answers those queries itself. For any name it does not hold a record for, it forwards the query to 192.168.1.1. Without that forwarder every computer on the network would use this server as its only DNS resolver, meaning staff could authenticate and reach company resources but could not load any website or reach any external service.",
-      },
-      { type: "label", content: "Commands I ran:" },
-      {
-        type: "code",
-        content:
-          "ping zenithcreative.com\n  # confirms the domain controller answers for its own domain\nping google.com\n  # confirms internet names resolve through the forwarder",
-      },
-      { type: "label", content: "PowerShell equivalent:" },
-      {
-        type: "code",
-        content:
-          "Get-DnsServerForwarder\n  # lists the IP addresses the DNS server forwards unknown queries to\nAdd-DnsServerForwarder -IPAddress 192.168.1.1\n  # adds the router as a forwarder if one is not already configured",
-      },
-      {
-        type: "img",
-        content: "/images/blog/zcdc01/06-name-lookups.png",
-        alt: "PowerShell on ZCDC01 showing ping to zenithcreative.com resolving to 192.168.1.200 and ping to google.com resolving to an external IP address",
-        caption:
-          "06. Internal name resolves to 192.168.1.200. External names forward through the router to the internet.",
-      },
-      {
-        type: "p",
-        content:
-          "When the domain controller answers zenithcreative.com, the response is authoritative: it holds the record and answered directly from its own zone. When it answered google.com, the response was non-authoritative: it did not hold that record and forwarded the query upstream to get the answer.",
+        type: "group",
+        content: "",
+        title: "Support Tickets",
+        children: [
+
+          { type: "h3", content: "Ticket 1042" },
+          { type: "note", content: "\"Hi IT, I'm Chidi. I forgot my password and I can't log in.\"" },
+          { type: "label", content: "Diagnosis:" },
+          { type: "p", content: "The account password needed resetting." },
+          { type: "label", content: "Resolution:" },
+          {
+            type: "p",
+            content:
+              "I located Chide Eze in the Design OU in ADUC, right-clicked the account, and selected Reset Password. I set a temporary password and ticked the box requiring a change at next logon.",
+          },
+          { type: "label", content: "PowerShell equivalent:" },
+          {
+            type: "code",
+            content:
+              "Set-ADAccountPassword -Identity ceze -Reset -NewPassword (Read-Host -AsSecureString \"New temporary password\")\n  # sets a new password without needing the old one\nSet-ADUser -Identity ceze -ChangePasswordAtLogon $true\n  # forces the user to choose their own password at next login\nUnlock-ADAccount -Identity ceze\n  # clears a lockout from too many failed attempts, if applicable",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc01/14-ticket-1042.png",
+            alt: "Reset Password dialog for a user in the Design OU with empty new password fields and User must change password at next logon checked",
+            caption: "14. Ticket 1042: password reset with forced change at next logon.",
+          },
+          { type: "label", content: "Why this approach:" },
+          {
+            type: "p",
+            content:
+              "Admins can reset passwords but can never read them. Windows stores only a hash of each password, not the value itself. There is no way to retrieve the original, only to replace it. The forced change at next logon means the admin never knows the user's actual working password.",
+          },
+
+          { type: "h3", content: "Ticket 1043" },
+          {
+            type: "note",
+            content:
+              "\"Funmi is going on 3 months maternity leave from today. Please make sure nobody can use her account while she's away, but don't delete anything.\"",
+          },
+          { type: "label", content: "Diagnosis:" },
+          {
+            type: "p",
+            content: "The account needed to block all login attempts without removing it or any of its access.",
+          },
+          { type: "label", content: "Resolution:" },
+          {
+            type: "p",
+            content:
+              "I located Funmi Adebayo in the Finance OU, right-clicked her account, and selected Disable Account.",
+          },
+          { type: "label", content: "PowerShell equivalent:" },
+          {
+            type: "code",
+            content:
+              "Disable-ADAccount -Identity fadebayo\n  # blocks all logins while keeping the account and its memberships intact\nGet-ADUser -Identity fadebayo | Select-Object Name, Enabled\n  # confirms Enabled is False\nEnable-ADAccount -Identity fadebayo\n  # for when she returns",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc01/15-ticket-1043.png",
+            alt: "ADUC right-click context menu on Funmi Adebayo with Enable Account highlighted, confirming the account is currently disabled",
+            caption:
+              "15. Ticket 1043: Funmi's account disabled. Enable Account in the context menu confirms it is currently off.",
+          },
+          { type: "label", content: "Why this approach:" },
+          {
+            type: "p",
+            content:
+              "Deleting the account destroys its Security Identifier. A recreated account gets a new SID, which means every group membership and every file permission that referenced the original SID is permanently gone. IT would have to rebuild her access by hand when she returns. Disabling preserves everything. One click re-enables the account and she continues exactly where she left off.",
+          },
+
+          { type: "h3", content: "Ticket 1044" },
+          {
+            type: "note",
+            content:
+              "\"Our new hire Kemi Johnson starts in Finance tomorrow. Logon name kjohnson. Same access as Funmi.\"",
+          },
+          { type: "label", content: "Diagnosis:" },
+          {
+            type: "p",
+            content: "A new user account was needed in the Finance OU with identical access to an existing Finance user.",
+          },
+          { type: "label", content: "Resolution:" },
+          {
+            type: "p",
+            content:
+              "I checked Funmi's group memberships to know what access to copy, created a new user account for Kemi Johnson (kjohnson) in the Finance OU, and added her to the Finance Staff security group.",
+          },
+          { type: "label", content: "PowerShell equivalent:" },
+          {
+            type: "code",
+            content:
+              "Get-ADPrincipalGroupMembership -Identity fadebayo | Select-Object Name\n  # checks Funmi's groups to know which ones to copy\nNew-ADUser -Name \"Kemi Johnson\" -GivenName Kemi -Surname Johnson -SamAccountName kjohnson -UserPrincipalName kjohnson@zenithcreative.com -Path \"OU=Finance,OU=Staff,OU=Zenith,DC=zenithcreative,DC=com\" -AccountPassword (Read-Host -AsSecureString \"Temporary password\") -ChangePasswordAtLogon $true -Enabled $true\n  # creates the account in the Finance OU\nAdd-ADGroupMember -Identity \"Finance Staff\" -Members kjohnson\n  # grants the same access as Funmi through the group",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc01/16-ticket-1044.png",
+            alt: "Kemi Johnson Properties Member Of tab showing Finance Staff and Domain Users group memberships",
+            caption:
+              "16. Ticket 1044: Kemi Johnson added to Finance Staff. Group membership grants her identical access to Funmi's in one step.",
+          },
+          { type: "label", content: "Why this approach:" },
+          {
+            type: "p",
+            content:
+              "Access is on the group, not the individual. Matching Funmi's groups gives Kemi the correct permissions in a single addition. There are no individual permission entries to audit or miss.",
+          },
+
+        ],
       },
 
-      // Tasks 9–10
+      // ── Group: Final Verification ──────────────────────────────────────────
       {
-        type: "h3",
-        content: "Tasks 9 and 10: Enable Remote Desktop and Confirm Connectivity",
-      },
-      {
-        type: "note",
-        content:
-          "Enable Remote Desktop on the server and confirm it can be reached and pinged from a remote workstation.",
-      },
-      {
-        type: "p",
-        content:
-          "I enabled Remote Desktop early in the build so I could switch to managing the server from my Mac as quickly as possible. When I first tested network connectivity, the ping attempt failed. RDP on port 3389 was already working. That combination is useful diagnostic information: if RDP connects, the server is up and the network path is open. Ping failing alone means the Windows firewall is blocking ICMP, which is the default on Windows Server. It is not a server problem or a network problem. I enabled the built-in ICMPv4 Echo Request inbound rule and ping came back clean. I then ran all remaining tasks from the Mac through the RDP session.",
-      },
-      { type: "label", content: "Command I ran:" },
-      {
-        type: "code",
-        content:
-          "ping 192.168.1.200\n  # confirms the server replies to ICMP after the firewall rule was enabled",
-      },
-      { type: "label", content: "PowerShell equivalent:" },
-      {
-        type: "code",
-        content:
-          "Enable-NetFirewallRule -Name FPS-ICMP4-ERQ-In\n  # switches on the built-in rule allowing incoming ping, ICMPv4 Echo Request\nSet-ItemProperty -Path 'HKLM:\\System\\CurrentControlSet\\Control\\Terminal Server' -Name \"fDenyTSConnections\" -Value 0\n  # turns Remote Desktop on via the registry\nEnable-NetFirewallRule -DisplayGroup \"Remote Desktop\"\n  # opens the Windows firewall for RDP connections",
-      },
-      {
-        type: "img",
-        content: "/images/blog/zcdc01/04-ping.png",
-        alt: "Windows PowerShell on ZCDC01 showing successful ping to 192.168.1.200 with four replies and zero packet loss",
-        caption:
-          "04. Ping succeeds after enabling the ICMPv4 Echo Request inbound firewall rule.",
-      },
-      {
-        type: "img",
-        content: "/images/blog/zcdc01/05-rdp.png",
-        alt: "Microsoft Remote Desktop on macOS with ZCDC01 Server Manager open inside an RDP session connected to 192.168.1.200",
-        caption:
-          "05. Server Manager open inside an RDP session from the MacBook. All remaining build work was done from here.",
+        type: "group",
+        content: "",
+        title: "Final Verification",
+        children: [
+
+          {
+            type: "p",
+            content:
+              "All final work, including the three ticket resolutions, was completed from the adm.abiola account. I ran whoami in PowerShell before closing the session to provide a clean record of the active identity.",
+          },
+          { type: "label", content: "Command I ran:" },
+          {
+            type: "code",
+            content: "whoami\n  # shows the currently logged-in account and its domain",
+          },
+          { type: "label", content: "PowerShell equivalent:" },
+          {
+            type: "code",
+            content: "whoami /groups\n  # lists every group the current account belongs to",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc01/17-logged-in-as-admin.png",
+            alt: "Windows PowerShell terminal showing whoami returning zenith\\adm.abiola",
+            caption: "17. All admin work done as zenith\\adm.abiola, confirmed with whoami.",
+          },
+          {
+            type: "p",
+            content:
+              "Using adm.abiola rather than the built-in Administrator account matters for two reasons. Every action in the domain event log is attributed to a specific person, not to a shared account that anyone with the password could be. The built-in Administrator is also a known target: it exists in every domain by default, its name is predictable, and attackers probe it first. A named personal admin account provides accountability and reduces that surface.",
+          },
+
+        ],
       },
 
-      // Task 11
-      { type: "h3", content: "Task 11: Build the OU Structure" },
-      {
-        type: "note",
-        content:
-          "Create an Organisational Unit structure for IT Admins and departmental staff.",
-      },
-      {
-        type: "p",
-        content:
-          "I opened Active Directory Users and Computers and created the following structure under the domain root. Users live in OUs rather than the default Users container because only OUs can receive Group Policy Objects and delegated control. The default container cannot.",
-      },
-      {
-        type: "code",
-        content:
-          "zenithcreative.com\n └── Zenith\n      ├── Staff\n      │    ├── Design\n      │    └── Finance\n      └── IT Admins",
-      },
-      { type: "label", content: "PowerShell equivalent:" },
-      {
-        type: "code",
-        content:
-          "New-ADOrganizationalUnit -Name \"Zenith\" -Path \"DC=zenithcreative,DC=com\"\nNew-ADOrganizationalUnit -Name \"Staff\" -Path \"OU=Zenith,DC=zenithcreative,DC=com\"\nNew-ADOrganizationalUnit -Name \"Design\" -Path \"OU=Staff,OU=Zenith,DC=zenithcreative,DC=com\"\nNew-ADOrganizationalUnit -Name \"Finance\" -Path \"OU=Staff,OU=Zenith,DC=zenithcreative,DC=com\"\nNew-ADOrganizationalUnit -Name \"IT Admins\" -Path \"OU=Zenith,DC=zenithcreative,DC=com\"\n  # each line creates one OU at the given path in the directory",
-      },
-      {
-        type: "img",
-        content: "/images/blog/zcdc01/07-ou-tree.png",
-        alt: "Active Directory Users and Computers showing the OU tree: IT Admins OU at domain level beside the Staff OU, which contains Design and Finance child OUs",
-        caption: "07. OU tree: IT Admins sits at the same level as Staff, not inside it.",
-      },
-      {
-        type: "img",
-        content: "/images/blog/zcdc01/08-design-ou.png",
-        alt: "Design OU in ADUC containing user Chide Eze and security group Design Staff",
-        caption: "08. Design OU containing one user account and the Design Staff security group.",
-      },
-      {
-        type: "img",
-        content: "/images/blog/zcdc01/09-finance-ou.png",
-        alt: "Finance OU in ADUC containing users Funmi Adebayo and Kemi Johnson alongside the Finance Staff security group",
-        caption: "09. Finance OU containing two user accounts and the Finance Staff security group.",
-      },
-      {
-        type: "img",
-        content: "/images/blog/zcdc01/10-it-admin-ou.png",
-        alt: "IT Admins OU in ADUC containing a single user named Abiola",
-        caption: "10. IT Admins OU: the personal admin account sits here, separate from all staff OUs.",
-      },
-      {
-        type: "p",
-        content:
-          "A distinguished name is the full path to an object in the directory. It reads right to left: DC=com is the top-level domain component, DC=zenithcreative is the domain name, OU=Zenith is the first organisational unit, and so on down to the object. IT Admins sits beside Staff rather than inside it because any Group Policy linked to the Staff OU, such as desktop restrictions or software deployment rules, must never apply to admin accounts. Structural separation makes that guarantee permanent. If IT Admins were inside Staff, every staff policy would apply to admin accounts by default and would have to be blocked with exceptions, which is fragile.",
-      },
+    ],
+  },
 
-      // Tasks 12–15
-      {
-        type: "h3",
-        content: "Tasks 12 to 15: User Accounts and Personal Admin Account",
-      },
-      {
-        type: "note",
-        content:
-          "Create user accounts for Design and Finance staff, and a personal admin account adm.abiola with domain admin rights.",
-      },
-      {
-        type: "p",
-        content:
-          "I used the New User wizard in ADUC to create accounts for Chide Eze (ceze) in the Design OU and Funmi Adebayo (fadebayo) in the Finance OU. I set a temporary password and ticked the box requiring a change at first login for both. I then created my personal admin account, adm.abiola, in the IT Admins OU and added it to the Domain Admins group.",
-      },
-      { type: "label", content: "PowerShell equivalent:" },
-      {
-        type: "code",
-        content:
-          "New-ADUser -Name \"Chidi Eze\" -GivenName Chidi -Surname Eze -SamAccountName ceze -UserPrincipalName ceze@zenithcreative.com -Path \"OU=Design,OU=Staff,OU=Zenith,DC=zenithcreative,DC=com\" -AccountPassword (Read-Host -AsSecureString \"Temporary password\") -ChangePasswordAtLogon $true -Enabled $true\n  # creates the user, prompts for a temporary password, forces a change at first login\nAdd-ADGroupMember -Identity \"Domain Admins\" -Members adm.abiola\n  # grants the personal admin account domain admin rights",
-      },
-      {
-        type: "p",
-        content: "Funmi Adebayo (fadebayo) was created in the Finance OU using the same process.",
-      },
+  // ── Lab 2 ──────────────────────────────────────────────────────────────────
+  {
+    slug: "zcdc02-gpo-file-shares-and-automation",
+    title: "Active Directory: Group Policy, File Shares and Automation — Part 2",
+    description: "The domain is live and staff start Monday. Automate bulk user creation and offboarding with PowerShell, lock down workstations with Group Policy, deploy software and printers, and wire up file shares with drive maps.",
+    category: "Windows Lab",
+    color: "rgb(192, 132, 252)",
+    readTime: 24,
+    date: "2026-11-04",
+    thumbnail: "/images/blog/active-directory-2-cover.png",
+    tags: ["IT Support", "Active Directory", "Windows Server", "PowerShell", "Group Policy", "Home Lab"],
+    sections: [
 
-      // Tasks 16–17
-      { type: "h3", content: "Tasks 16 and 17: Security Groups" },
-      {
-        type: "note",
-        content:
-          "Create security groups for Design Staff and Finance Staff, and add the appropriate user accounts.",
-      },
-      {
-        type: "p",
-        content:
-          "I created a Design Staff security group inside the Design OU and added ceze. I created a Finance Staff security group inside the Finance OU and added fadebayo. Permissions are assigned to the groups, not to individual user accounts. Adding or removing someone from a group is the only action needed to grant or revoke access. Onboarding and offboarding both become a single operation.",
-      },
-      { type: "label", content: "PowerShell equivalent:" },
-      {
-        type: "code",
-        content:
-          "New-ADGroup -Name \"Design Staff\" -GroupScope Global -GroupCategory Security -Path \"OU=Design,OU=Staff,OU=Zenith,DC=zenithcreative,DC=com\"\n  # creates a security group in the Design OU\nAdd-ADGroupMember -Identity \"Design Staff\" -Members ceze\n  # adds a user to the group\nGet-ADGroupMember -Identity \"Design Staff\"\n  # lists the group's current members\nGet-ADPrincipalGroupMembership -Identity adm.abiola | Select-Object Name\n  # lists every group an account belongs to",
-      },
-      {
-        type: "img",
-        content: "/images/blog/zcdc01/11-design-staff-members.png",
-        alt: "Design Staff security group Properties Members tab showing Chide Eze as a member from zenithcreative.com/Staff/Design",
-        caption: "11. Design Staff group: Chide Eze is the sole member.",
-      },
-      {
-        type: "img",
-        content: "/images/blog/zcdc01/12-finance-staff-members.png",
-        alt: "Finance Staff security group Properties Members tab showing Funmi Adebayo and Kemi Johnson from zenithcreative.com/Staff/Finance",
-        caption: "12. Finance Staff group: both Finance users are members.",
-      },
-      {
-        type: "img",
-        content: "/images/blog/zcdc01/13-admin-group-memberships.png",
-        alt: "adm.abiola user Properties Member Of tab showing Domain Admins and Domain Users group memberships",
-        caption: "13. adm.abiola is a member of Domain Admins. A named personal account, not the shared built-in Administrator.",
-      },
-
-      // ── Part B ────────────────────────────────────────────────────────────
-      { type: "h2", content: "Part B: Support Tickets" },
-
-      // Ticket 1042
-      { type: "h3", content: "Ticket 1042" },
-      {
-        type: "note",
-        content: "\"Hi IT, I'm Chidi. I forgot my password and I can't log in.\"",
-      },
-      { type: "label", content: "Diagnosis:" },
-      { type: "p", content: "The account password needed resetting." },
-      { type: "label", content: "Resolution:" },
-      {
-        type: "p",
-        content:
-          "I located Chide Eze in the Design OU in ADUC, right-clicked the account, and selected Reset Password. I set a temporary password and ticked the box requiring a change at next logon.",
-      },
-      { type: "label", content: "PowerShell equivalent:" },
-      {
-        type: "code",
-        content:
-          "Set-ADAccountPassword -Identity ceze -Reset -NewPassword (Read-Host -AsSecureString \"New temporary password\")\n  # sets a new password without needing the old one\nSet-ADUser -Identity ceze -ChangePasswordAtLogon $true\n  # forces the user to choose their own password at next login\nUnlock-ADAccount -Identity ceze\n  # clears a lockout from too many failed attempts, if applicable",
-      },
-      {
-        type: "img",
-        content: "/images/blog/zcdc01/14-ticket-1042.png",
-        alt: "Reset Password dialog for a user in the Design OU with empty new password fields and User must change password at next logon checked",
-        caption: "14. Ticket 1042: password reset with forced change at next logon.",
-      },
-      { type: "label", content: "Why this approach:" },
-      {
-        type: "p",
-        content:
-          "Admins can reset passwords but can never read them. Windows stores only a hash of each password, not the value itself. There is no way to retrieve the original, only to replace it. The forced change at next logon means the admin never knows the user's actual working password.",
-      },
-
-      // Ticket 1043
-      { type: "h3", content: "Ticket 1043" },
-      {
-        type: "note",
-        content:
-          "\"Funmi is going on 3 months maternity leave from today. Please make sure nobody can use her account while she's away, but don't delete anything.\"",
-      },
-      { type: "label", content: "Diagnosis:" },
-      {
-        type: "p",
-        content: "The account needed to block all login attempts without removing it or any of its access.",
-      },
-      { type: "label", content: "Resolution:" },
-      {
-        type: "p",
-        content:
-          "I located Funmi Adebayo in the Finance OU, right-clicked her account, and selected Disable Account.",
-      },
-      { type: "label", content: "PowerShell equivalent:" },
-      {
-        type: "code",
-        content:
-          "Disable-ADAccount -Identity fadebayo\n  # blocks all logins while keeping the account and its memberships intact\nGet-ADUser -Identity fadebayo | Select-Object Name, Enabled\n  # confirms Enabled is False\nEnable-ADAccount -Identity fadebayo\n  # for when she returns",
-      },
-      {
-        type: "img",
-        content: "/images/blog/zcdc01/15-ticket-1043.png",
-        alt: "ADUC right-click context menu on Funmi Adebayo with Enable Account highlighted, confirming the account is currently disabled",
-        caption:
-          "15. Ticket 1043: Funmi's account disabled. Enable Account in the context menu confirms it is currently off.",
-      },
-      { type: "label", content: "Why this approach:" },
-      {
-        type: "p",
-        content:
-          "Deleting the account destroys its Security Identifier. A recreated account gets a new SID, which means every group membership and every file permission that referenced the original SID is permanently gone. IT would have to rebuild her access by hand when she returns. Disabling preserves everything. One click re-enables the account and she continues exactly where she left off.",
-      },
-
-      // Ticket 1044
-      { type: "h3", content: "Ticket 1044" },
-      {
-        type: "note",
-        content:
-          "\"Our new hire Kemi Johnson starts in Finance tomorrow. Logon name kjohnson. Same access as Funmi.\"",
-      },
-      { type: "label", content: "Diagnosis:" },
-      {
-        type: "p",
-        content: "A new user account was needed in the Finance OU with identical access to an existing Finance user.",
-      },
-      { type: "label", content: "Resolution:" },
-      {
-        type: "p",
-        content:
-          "I checked Funmi's group memberships to know what access to copy, created a new user account for Kemi Johnson (kjohnson) in the Finance OU, and added her to the Finance Staff security group.",
-      },
-      { type: "label", content: "PowerShell equivalent:" },
-      {
-        type: "code",
-        content:
-          "Get-ADPrincipalGroupMembership -Identity fadebayo | Select-Object Name\n  # checks Funmi's groups to know which ones to copy\nNew-ADUser -Name \"Kemi Johnson\" -GivenName Kemi -Surname Johnson -SamAccountName kjohnson -UserPrincipalName kjohnson@zenithcreative.com -Path \"OU=Finance,OU=Staff,OU=Zenith,DC=zenithcreative,DC=com\" -AccountPassword (Read-Host -AsSecureString \"Temporary password\") -ChangePasswordAtLogon $true -Enabled $true\n  # creates the account in the Finance OU\nAdd-ADGroupMember -Identity \"Finance Staff\" -Members kjohnson\n  # grants the same access as Funmi through the group",
-      },
-      {
-        type: "img",
-        content: "/images/blog/zcdc01/16-ticket-1044.png",
-        alt: "Kemi Johnson Properties Member Of tab showing Finance Staff and Domain Users group memberships",
-        caption:
-          "16. Ticket 1044: Kemi Johnson added to Finance Staff. Group membership grants her identical access to Funmi's in one step.",
-      },
-      { type: "label", content: "Why this approach:" },
-      {
-        type: "p",
-        content:
-          "Access is on the group, not the individual. Matching Funmi's groups gives Kemi the correct permissions in a single addition. There are no individual permission entries to audit or miss.",
-      },
-
-      // ── Part C ────────────────────────────────────────────────────────────
-      { type: "h2", content: "Part C: Final Verification" },
-      {
-        type: "p",
-        content:
-          "All final work, including the three ticket resolutions, was completed from the adm.abiola account. I ran whoami in PowerShell before closing the session to provide a clean record of the active identity.",
-      },
-      { type: "label", content: "Command I ran:" },
-      {
-        type: "code",
-        content: "whoami\n  # shows the currently logged-in account and its domain",
-      },
-      { type: "label", content: "PowerShell equivalent:" },
-      {
-        type: "code",
-        content: "whoami /groups\n  # lists every group the current account belongs to",
-      },
-      {
-        type: "img",
-        content: "/images/blog/zcdc01/17-logged-in-as-admin.png",
-        alt: "Windows PowerShell terminal showing whoami returning zenith\\adm.abiola",
-        caption: "17. All admin work done as zenith\\adm.abiola, confirmed with whoami.",
-      },
-      {
-        type: "p",
-        content:
-          "Using adm.abiola rather than the built-in Administrator account matters for two reasons. Every action in the domain event log is attributed to a specific person, not to a shared account that anyone with the password could be. The built-in Administrator is also a known target: it exists in every domain by default, its name is predictable, and attackers probe it first. A named personal admin account provides accountability and reduces that surface.",
-      },
-
-      // ── Part D ────────────────────────────────────────────────────────────
-      { type: "h2", content: "Part D: Verbal Interview Questions" },
-
-      {
-        type: "qa",
-        content: "Question 1: Walk me through what you did, from empty VM to working domain.",
-        answer: "I confirmed 192.168.1.200 was free, checked virtualisation was enabled, then created the VM with 4 GB RAM, 2 CPUs, a 60 GB disk, EFI, and a bridged adapter so it sits on the office network. I installed Windows Server 2025 with Desktop Experience, set the Lagos time zone, renamed it ZCDC01, and gave it a static IP of 192.168.1.200 with the router as gateway. I enabled Remote Desktop and allowed ICMP through the firewall so it could be reached and pinged from my workstation. I then installed AD DS and promoted it to a new forest, zenithcreative.com, NetBIOS name ZENITH, with DNS, and set a DSRM password. After the restart I verified the domain, confirmed DNS resolved internal and internet names through the forwarder, then built the OU structure, users, groups, and a personal admin account.",
-      },
-
-      {
-        type: "qa",
-        content: "Question 2: What is the difference between installing AD DS and promoting a server?",
-        answer: "Installing AD DS only adds the software to the server. Promoting runs the configuration that creates the forest and domain, builds the AD database, sets up DNS, and turns the server into a domain controller that can authenticate users. Installing is buying the kitchen equipment. Promoting is opening the restaurant.",
-      },
-
-      {
-        type: "qa",
-        content: "Question 3: Why does a domain controller need a static IP?",
-        answer: "Every computer in the domain points to the domain controller for DNS and authentication. If its IP changed, clients could no longer find it, so logins, domain joins, and name lookups would all fail. A static IP keeps it in one known place.",
-      },
-
-      {
-        type: "qa",
-        content: "Question 4: A user says their password is correct but they cannot log in to the domain. Name three things you would check, in order.",
-        answer: "First, the account in Active Directory: is it locked out, disabled, or is the password expired? Second, connectivity: can the computer reach the domain controller, and is its DNS pointing to it? Third, time: if the clocks differ by more than five minutes, Kerberos rejects the login.",
-      },
-
-      {
-        type: "qa",
-        content: "Question 5: Why did you create a personal admin account instead of using Administrator?",
-        answer: "Every admin action is tied to me personally, which gives a clear audit trail. The built-in Administrator exists in every domain, so attackers target it first, and if it is shared between multiple people, nobody knows who did what. Personal admin accounts can also be removed when someone leaves without affecting anything else in the domain.",
-      },
-
-      {
-        type: "qa",
-        content: "Question 6: Why did you put users in OUs instead of the default Users container?",
-        answer: "Group Policy can be linked to OUs but not to the default Users container. OUs also allow delegated control, for example letting a team lead reset passwords only in their own department OU. They also keep the directory organised as it grows.",
-      },
-
-      {
-        type: "qa",
-        content: "Question 7: Your server cannot be pinged, but RDP works. What does that tell you?",
-        answer: "The server is up and the network path is open, because Remote Desktop on port 3389 is connecting. Ping failing means the firewall is blocking ICMP, which is the default on Windows Server. It is a firewall configuration issue, not a network or server problem. I enabled it with Enable-NetFirewallRule -Name FPS-ICMP4-ERQ-In.",
-      },
-
-      {
-        type: "qa",
-        content: "Question 8: What is DNS forwarding, and why did this server need it?",
-        answer: "DNS forwarding sends any lookup the domain controller cannot answer itself, such as google.com, to another DNS server, here the router at 192.168.1.1. The domain controller answers company names directly from its own zone. Because every computer on the network uses it as its only DNS server, without a forwarder staff could authenticate and reach internal resources but could not reach the internet.",
-      },
-
-      {
-        type: "qa",
-        content: "Question 9: A staff member's computer will not join the domain. What is the first thing you check?",
-        answer: "DNS. Is the computer's DNS server set to the domain controller, and does nslookup of the domain name succeed? Without that, the computer cannot locate the domain at all. After DNS I check network connectivity to the DC, then the Windows edition (Home editions cannot join a domain), and whether the account being used has permission to join computers.",
-      },
-
-      {
-        type: "qa",
-        content: "Question 10: Ticket 1043: why disable rather than delete? What would happen if you deleted the account?",
-        answer: "Disabling blocks access but keeps the account exactly as it is. Deleting removes its Security Identifier. Recreating the account later would produce a new SID, which means every group membership and every permission tied to the original SID is gone permanently. IT would have to rebuild her access from scratch. Disabling preserves all of that so re-enabling it on return is a single click.",
-      },
-
-      // ── Skills ────────────────────────────────────────────────────────────
-      { type: "h2", content: "Skills Demonstrated" },
+      // ── Assessment Overview (flat) ─────────────────────────────────────────
+      { type: "h2", content: "Assessment Overview" },
       {
         type: "ul",
         content: [
-          "Windows Server 2025 | Tasks 1 to 3: VM creation and OS installation",
-          "Active Directory Domain Services | Task 7: new forest and domain controller promotion",
-          "DNS and forwarding | Task 8: internal resolution and internet forwarding",
-          "Static IP configuration | Task 6: server NIC configuration",
-          "Windows Firewall | Tasks 9 and 10: ICMP and RDP inbound rules",
-          "Remote Desktop | Tasks 9 and 10: managing a Windows server from macOS",
-          "PowerShell | Commands throughout: AD management, verification, troubleshooting",
-          "OU design | Task 11: structural separation of admin and staff accounts",
-          "Security groups | Tasks 16 and 17: group-based access control",
-          "Least privilege | Personal admin account adm.abiola, not the built-in Administrator",
-          "Ticket handling | Password reset, account disable for leave, new hire onboarding",
-          "Troubleshooting | Ping vs RDP diagnosis: isolating a firewall rule from a connectivity fault",
+          "Role: IT Support Technician (Windows Infrastructure)",
+          "Format: Hands-on build, support tickets, evidence, verbal questions",
+          "Lab: Windows Server 2025 VM managed from a MacBook over Remote Desktop, Windows 11 client VM for GPO verification",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Part 2 builds directly on the domain created in Part 1. The domain controller ZCDC01 is already live. This assessment covers everything that happens next: joining a client workstation, automating user management with PowerShell, locking down machines with Group Policy, setting up file shares with correct NTFS permissions, and mapping drives so staff can access them without manual configuration.",
+      },
+
+      // ── Group: Domain Operations ───────────────────────────────────────────
+      {
+        type: "group",
+        content: "",
+        title: "Domain Operations",
+        children: [
+
+          { type: "h3", content: "Task 1: Join ZCPC01 to the Domain" },
+          { type: "note", content: "Join the Windows 11 workstation ZCPC01 to the zenithcreative.com domain." },
+          {
+            type: "p",
+            content:
+              "I opened System Properties on the Windows 11 VM, clicked Change next to the computer name, selected Domain, and entered zenithcreative.com. I authenticated with the adm.abiola domain admin account. Windows prompted for a restart and after the reboot the machine was visible in the Computers container in ADUC. I then moved it to the Zenith > Devices > Workstations OU so GPOs scoped to that OU would apply to it. The name ZCPC01 follows the same convention as the server: ZC for Zenith Creative, PC for workstation, 01 for the first unit.",
+          },
+          { type: "label", content: "PowerShell equivalent:" },
+          {
+            type: "code",
+            content:
+              "Add-Computer -DomainName zenithcreative.com -Credential (Get-Credential) -Restart\n  # joins the machine to the domain and restarts immediately\nMove-ADObject -Identity \"CN=ZCPC01,CN=Computers,DC=zenithcreative,DC=com\" -TargetPath \"OU=Workstations,OU=Devices,OU=Zenith,DC=zenithcreative,DC=com\"\n  # moves the computer object from the default Computers container to the correct OU",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/01-domain-join.png",
+            alt: "Computer Name/Domain Changes dialog showing ZCPC01 joining zenithcreative.com with the Domain radio button selected",
+            caption: "01. ZCPC01 joining zenithcreative.com. Domain radio button selected, domain name entered.",
+          },
+          {
+            type: "p",
+            content:
+              "Moving the computer to the Workstations OU immediately matters. Any GPO linked to Workstations will not apply until the computer object sits in that OU. Leaving it in the default Computers container means those policies never reach it.",
+          },
+
+          { type: "h3", content: "Task 2: Create New Hire Accounts via PowerShell" },
+          { type: "note", content: "12 new staff join Design and Finance on Monday. Create their accounts in bulk using a script. Output a staff report on completion." },
+          {
+            type: "p",
+            content:
+              "I wrote a PowerShell script called NewHires.ps1 and saved it to C:\\Scripts. The script reads a CSV of new staff, creates user accounts in the correct OUs, adds each user to their department security group, sets a temporary password with a forced change at first logon, and prints a formatted staff report at the end built from live AD data.",
+          },
+          { type: "label", content: "Script structure:" },
+          {
+            type: "code",
+            content:
+              "powershell -ExecutionPolicy Bypass -File .\\NewHires.ps1\n  # runs the script without permanently changing the execution policy\n\n# Script creates users like this:\nNew-ADUser @params -ErrorAction Stop\nAdd-ADGroupMember -Identity $group -Members $name\nWrite-Host \"CREATED $name > OU: $dept | Group: $group\"\n\n# Then runs a staff report:\nGet-ADUser -Filter * -SearchBase $OUPaths[$dept] -Properties Department,Title,Office,OfficePhone,Manager,MemberOf |\n  Select-Object Name,SamAccountName,Department,Title,Office,OfficePhone,Manager |\n  Sort-Object Department,Name | Format-Table -AutoSize",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/02-newhires-script-output.png",
+            alt: "PowerShell terminal showing NewHires.ps1 output with CREATED lines for each user and a formatted staff report table at the end",
+            caption: "02. NewHires.ps1 output. Each user confirmed created and assigned to their OU and security group.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/03-finance-ou.png",
+            alt: "Active Directory Users and Computers showing the Finance OU containing seven user accounts and the Finance Staff security group",
+            caption: "03. Finance OU: seven user accounts and Finance Staff security group created by the script.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/04-design-ou.png",
+            alt: "Active Directory Users and Computers showing the Design OU containing six user accounts and the Design Staff security group",
+            caption: "04. Design OU: six user accounts and Design Staff security group.",
+          },
+          {
+            type: "p",
+            content:
+              "The staff report at the end is built from live AD data, not the script's own variables, so it confirms what actually landed in the directory rather than what the script intended to create.",
+          },
+
+          { type: "h3", content: "Task 3: Set Account Expiry for a Contractor" },
+          { type: "note", content: "Tunde Bakare is a contractor. Set their account to expire automatically on December 2, 2026." },
+          {
+            type: "p",
+            content:
+              "I opened Tunde Bakare's account properties in ADUC, went to the Account tab, and set the account expiry to December 2, 2026. On that date Windows automatically blocks all logins without any manual action from IT.",
+          },
+          { type: "label", content: "PowerShell equivalent:" },
+          {
+            type: "code",
+            content:
+              "Set-ADAccountExpiration -Identity tunde.bakare -DateTime \"2026-12-02\"\n  # sets the account to expire at the start of that date\nGet-ADUser -Identity tunde.bakare -Properties AccountExpirationDate | Select-Object Name,AccountExpirationDate\n  # confirms the expiry was set",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/05-tunde-account-expiry.png",
+            alt: "Tunde Bakare account properties Account tab showing account expires End of Wednesday December 2 2026",
+            caption: "05. Tunde Bakare's account set to expire automatically on December 2, 2026.",
+          },
+          {
+            type: "p",
+            content:
+              "Account expiry is a safety net. If the offboarding request never arrives when the contractor finishes, the account still closes on schedule. Setting it at account creation means no future action is required.",
+          },
+
+          { type: "h3", content: "Task 4: Offboard a Resigned Staff Member" },
+          { type: "note", content: "Emeka Obi has resigned with immediate effect. Disable the account, reset the password, record the reason, and move the object to the Leavers OU." },
+          {
+            type: "p",
+            content:
+              "I ran Offboard-User.ps1 from C:\\Scripts, passing Emeka Obi's SAM account name and the reason Resigned. The script disabled the account and set it to expire immediately, reset the password to a random 12-character string not stored anywhere, removed him from Finance Staff, wrote the leave date and reason to the description field, and moved the object from the Finance OU to the Leavers OU. The whole process completed in under two seconds and was logged to C:\\Scripts\\Logs\\Leavers.log.",
+          },
+          { type: "label", content: "Command I ran:" },
+          {
+            type: "code",
+            content: "powershell -ExecutionPolicy Bypass -File .\\Offboard-User.ps1 -SamAccountName emeka.obi -Reason \"Resigned\"",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/06-offboard-output.png",
+            alt: "PowerShell terminal showing Offboard-User.ps1 steps for emeka.obi: account disabled, password reset, removed from Finance Staff, description updated, moved to Leavers OU",
+            caption: "06. Offboard-User.ps1 processing emeka.obi. Each step confirmed. Final state: account in Leavers OU.",
+          },
+
+          { type: "h3", content: "Task 5: Delegate Control on the Staff OU" },
+          { type: "note", content: "Delegate the ability to reset passwords and unlock accounts on the Staff OU to the Helpdesk team." },
+          {
+            type: "p",
+            content:
+              "I right-clicked the Staff OU in ADUC and selected Delegate Control. I selected the Helpdesk group and chose the common task to reset user passwords and force a password change at next logon. This gives Helpdesk the minimum permission needed to handle password reset tickets without granting them domain admin rights.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/07-delegation-wizard.png",
+            alt: "Delegation of Control Wizard on the Staff OU showing the common tasks list with Reset user passwords and force password change at next logon checked",
+            caption: "07. Delegation of Control on the Staff OU. Helpdesk gets password reset rights only.",
+          },
+          {
+            type: "p",
+            content:
+              "Giving a team domain admin rights to handle password resets is unnecessary access that expands the blast radius if that account is compromised. Delegated control scopes exactly what is needed to exactly the OU where it is needed.",
+          },
+
+          { type: "h3", content: "Task 6: Create the All Staff Security Group" },
+          { type: "note", content: "Create a universal All Staff security group and nest Design Staff and Finance Staff inside it." },
+          {
+            type: "p",
+            content:
+              "I created All Staff in the Staff OU and added Design Staff and Finance Staff as members. Any permission or policy applied to All Staff now automatically covers every member of both departments. When a new department is added, nesting its security group into All Staff is the only change needed.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/08-all-staff-members.png",
+            alt: "All Staff security group Properties Members tab showing Design Staff and Finance Staff as nested member groups",
+            caption: "08. All Staff group: Design Staff and Finance Staff nested inside it.",
+          },
+
+        ],
+      },
+
+      // ── Group: Password Policies ───────────────────────────────────────────
+      {
+        type: "group",
+        content: "",
+        title: "Password Policies",
+        children: [
+
+          { type: "h3", content: "Tasks 7 and 8: GPO — Password Policy" },
+          { type: "note", content: "Create a domain-wide password policy GPO: minimum 12 characters, complexity required, maximum age 90 days, lockout after 5 failed attempts for 15 minutes." },
+          {
+            type: "p",
+            content:
+              "I created ZC Password Policy and linked it to the domain root so it applies to every user in zenithcreative.com. In the GPME I navigated to Computer Configuration > Policies > Windows Settings > Security Settings > Account Policies and configured both Password Policy and Account Lockout Policy. Minimum password length 12 characters, complexity required, maximum age 90 days, lockout threshold 5 invalid attempts, lockout duration 15 minutes.",
+          },
+          { type: "label", content: "PowerShell equivalent:" },
+          {
+            type: "code",
+            content:
+              "Set-ADDefaultDomainPasswordPolicy -Identity zenithcreative.com -MinPasswordLength 12 -PasswordHistoryCount 24 -MaxPasswordAge (New-TimeSpan -Days 90) -ComplexityEnabled $true -LockoutThreshold 5 -LockoutDuration (New-TimeSpan -Minutes 15) -LockoutObservationWindow (New-TimeSpan -Minutes 15)\n  # sets the default domain password and lockout policy in one command\nGet-ADDefaultDomainPasswordPolicy\n  # confirms all values are correct",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/09-password-policy-linked.png",
+            alt: "Group Policy Management showing ZC Password Policy GPO linked to the zenithcreative.com domain with Link Enabled Yes",
+            caption: "09. ZC Password Policy linked to the domain root at link order 1.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/10-account-lockout.png",
+            alt: "Group Policy Management Editor showing Account Lockout Policy with lockout duration 15 minutes and lockout threshold 5 invalid logon attempts",
+            caption: "10. Account Lockout Policy: 5 failed attempts triggers a 15-minute lockout.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/11-password-policy-settings.png",
+            alt: "Group Policy Management Editor showing Password Policy with minimum password length 12 characters and password must meet complexity requirements Enabled",
+            caption: "11. Password Policy: 12-character minimum, complexity required.",
+          },
+          {
+            type: "p",
+            content:
+              "Creating a separate ZC Password Policy GPO rather than editing the Default Domain Policy is deliberate. If something breaks, reverting a custom GPO is clean. Rolling back changes to the Default Domain Policy can have unpredictable side effects on other domain-wide settings it controls.",
+          },
+
+          { type: "h3", content: "Task 9: Fine-Grained Password Policy" },
+          { type: "note", content: "Create a stricter password settings object for privileged accounts: 16-character minimum, lockout after 5 attempts, 90-day maximum age. Apply it to Domain Admins and Helpdesk." },
+          {
+            type: "p",
+            content:
+              "I opened Active Directory Administrative Center, navigated to System > Password Settings Container, and created PSO_Privileged with a precedence of 10. Lower precedence numbers win when multiple PSOs apply to the same account. I set the minimum password length to 16 characters and applied the PSO directly to Domain Admins and Helpdesk.",
+          },
+          { type: "label", content: "PowerShell equivalent:" },
+          {
+            type: "code",
+            content:
+              "New-ADFineGrainedPasswordPolicy -Name PSO_Privileged -Precedence 10 -MinPasswordLength 16 -PasswordHistoryCount 24 -MaxPasswordAge (New-TimeSpan -Days 90) -ComplexityEnabled $true -LockoutThreshold 5 -LockoutDuration (New-TimeSpan -Minutes 15) -LockoutObservationWindow (New-TimeSpan -Minutes 15) -ProtectedFromAccidentalDeletion $true\nAdd-ADFineGrainedPasswordPolicySubject -Identity PSO_Privileged -Subjects \"Domain Admins\",\"Helpdesk\"\n  # creates the PSO and applies it to both groups in two commands",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/12-pso-applied.png",
+            alt: "Active Directory Administrative Center showing PSO_Privileged with Domain Admins and Helpdesk in the Directly Applies To section",
+            caption: "12. PSO_Privileged: 16-character minimum applied to Domain Admins and Helpdesk.",
+          },
+
+        ],
+      },
+
+      // ── Group: Workstation Restrictions ───────────────────────────────────
+      {
+        type: "group",
+        content: "",
+        title: "Workstation Restrictions",
+        children: [
+
+          { type: "h3", content: "Tasks 10 and 11: GPO — Screen Lock" },
+          { type: "note", content: "Create a GPO that enables the screen saver and locks the screen after a period of inactivity. Apply it to the Staff OU." },
+          {
+            type: "p",
+            content:
+              "I created ZC Staff Screen Lock and linked it to the Staff OU. Under User Configuration > Administrative Templates > Control Panel > Personalization I enabled the screen saver, set the timeout, and enabled password-protection on the screen saver. Because the policy is under User Configuration, it follows the user. It applies to any machine a staff member logs into, not just machines in the Workstations OU.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/13-screen-lock-linked.png",
+            alt: "Group Policy Management showing ZC Staff Screen Lock GPO linked to the Staff OU",
+            caption: "13. ZC Staff Screen Lock linked to the Staff OU.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/14-screen-saver-settings.png",
+            alt: "Group Policy Management Editor showing Personalization settings with Enable screen saver set to Enabled",
+            caption: "14. Screen saver enabled via Personalization policy under User Configuration.",
+          },
+
+          { type: "h3", content: "Tasks 12 and 13: GPO — Control Panel Restriction" },
+          { type: "note", content: "Prevent staff from accessing Control Panel and PC Settings. Apply it to the Staff OU." },
+          {
+            type: "p",
+            content:
+              "I created ZC Staff Settings and Control Panel Disable and linked it to the Staff OU. Under User Configuration > Administrative Templates > Control Panel I enabled Prohibit access to Control Panel and PC settings. With this active, both the Control Panel and the Settings app are blocked. Users cannot change network settings, add software, or modify system preferences.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/15-control-panel-gpo-linked.png",
+            alt: "Group Policy Management showing Staff OU with ZC Staff Screen Lock and ZC Staff Settings and Control Panel Disable GPOs linked",
+            caption: "15. Staff OU: screen lock and control panel restriction GPOs both linked.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/16-prohibit-control-panel.png",
+            alt: "Group Policy Management Editor showing Prohibit access to Control Panel and PC settings set to Enabled",
+            caption: "16. Prohibit access to Control Panel and PC settings: Enabled.",
+          },
+
+          { type: "h3", content: "Tasks 14 and 15: GPO — Block USB Storage" },
+          { type: "note", content: "Prevent USB storage devices from being used on company workstations." },
+          {
+            type: "p",
+            content:
+              "I created ZC Block USB Storage Connection and linked it to the Workstations OU rather than the Staff OU. The policy is under Computer Configuration so it follows the machine, not the user. Under Computer Configuration > Administrative Templates > System > Removable Storage Access I enabled All Removable Storage Classes: Deny All Access. This single setting blocks all classes of removable storage without needing a rule per device type.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/17-usb-gpo-linked.png",
+            alt: "Group Policy Management showing Workstations OU with ZC Block USB Storage Connection GPO linked",
+            caption: "17. ZC Block USB Storage Connection linked to the Workstations OU.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/18-removable-storage-deny.png",
+            alt: "Group Policy Management Editor showing All Removable Storage classes Deny all access set to Enabled",
+            caption: "18. All Removable Storage classes: Deny all access — Enabled.",
+          },
+          {
+            type: "p",
+            content:
+              "If a domain admin logs into a workstation, the USB block still applies because the machine is in the Workstations OU. User-scoped policies follow the user. Computer-scoped policies follow the machine. Getting the distinction right determines whether the policy does what you intend.",
+          },
+
+        ],
+      },
+
+      // ── Group: Branding & Wallpaper ────────────────────────────────────────
+      {
+        type: "group",
+        content: "",
+        title: "Branding & Wallpaper",
+        children: [
+
+          { type: "h3", content: "Tasks 16 and 17: GPO — Branding Assets" },
+          { type: "note", content: "Use Group Policy to deploy the company wallpaper image file from the NETLOGON share to all workstations." },
+          {
+            type: "p",
+            content:
+              "I created ZC Branding Assets and linked it to the Workstations OU. I placed zenith_wallpaper.jpg in a branding subfolder inside NETLOGON so the path is \\\\zenithcreative.com\\NETLOGON\\Branding\\zenith_wallpaper.jpg. Under Computer Configuration > Preferences > Windows Settings > Files I added an action to copy the image to C:\\Windows\\Web\\Wallpaper\\Zenith\\zenith_wallpaper.jpg on each workstation. NETLOGON is reachable by every domain-joined machine without additional share configuration.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/19-branding-gpo-linked.png",
+            alt: "Group Policy Management showing Workstations OU with ZC Block USB Storage Connection and ZC Branding Assets GPOs linked",
+            caption: "19. ZC Branding Assets linked to the Workstations OU.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/20-branding-file-listed.png",
+            alt: "Group Policy Management Editor showing ZC Branding Assets with zenith_wallpaper.jpg file action copying from NETLOGON Branding to C Windows Web Wallpaper Zenith",
+            caption: "20. File copy action configured: source NETLOGON\\Branding, destination C:\\Windows\\Web\\Wallpaper\\Zenith.",
+          },
+
+          { type: "h3", content: "Tasks 18 and 19: GPO — Desktop Wallpaper" },
+          { type: "note", content: "Set the company wallpaper on all workstations using Group Policy. Users should not be able to change it." },
+          {
+            type: "p",
+            content:
+              "I created a separate GPO called ZC Wallpaper and linked it to the Workstations OU. Under User Configuration > Administrative Templates > Desktop > Desktop I enabled Desktop Wallpaper and set the path to C:\\Windows\\Web\\Wallpaper\\Zenith\\zenith_wallpaper.jpg, the local path the Branding Assets GPO copies the file to. Keeping this as a separate GPO from ZC Branding Assets makes the purpose of each GPO clear and allows the file deployment and the display policy to be managed independently.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/21-wallpaper-policy.png",
+            alt: "Group Policy Management Editor Desktop Wallpaper setting showing Enabled with wallpaper path C Windows Web Wallpaper Zenith zenith_wallpaper.jpg",
+            caption: "21. Desktop Wallpaper policy enabled with local path after the Branding Assets file copy.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/22-wallpaper-applied.png",
+            alt: "Windows 11 desktop on ZCPC01 showing the Zenith Creative branded wallpaper applied after Group Policy refresh",
+            caption: "22. Wallpaper applied on ZCPC01 after gpupdate. Policy working as expected.",
+          },
+
+        ],
+      },
+
+      // ── Group: Software & Printers ─────────────────────────────────────────
+      {
+        type: "group",
+        content: "",
+        title: "Software & Printers",
+        children: [
+
+          { type: "h3", content: "Tasks 20 to 22: GPO — Software Deployment" },
+          { type: "note", content: "Deploy 7-Zip to all workstations silently via Group Policy software installation. Ensure Group Policy applies synchronously at startup so the software is present before users log in." },
+          {
+            type: "p",
+            content:
+              "I placed the 7-Zip 24.09 MSI in a software subfolder on NETLOGON. I created ZC 7zip Software Installer and linked it to the Workstations OU. Under Computer Configuration > Software Settings > Software Installation I added a package pointing to \\\\ZCDC01\\NETLOGON\\software\\7z2409-x64.msi and set deployment to Assigned. I also enabled Always wait for the network at computer startup and logon under Computer Configuration > Administrative Templates > System > Logon. This forces a synchronous Group Policy cycle to complete before the login screen appears, ensuring the software is installed before anyone logs in.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/23-7zip-gpo-linked.png",
+            alt: "Group Policy Management showing Workstations OU with ZC Block USB, ZC Branding Assets, and ZC 7zip Software Installer GPOs linked",
+            caption: "23. ZC 7zip Software Installer linked to the Workstations OU.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/24-7zip-software-install.png",
+            alt: "Group Policy Management Editor Software installation showing 7-Zip 24.09 x64 edition Assigned with source from NETLOGON software",
+            caption: "24. 7-Zip 24.09 assigned via Software Installation from NETLOGON.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/25-7zip-verified.png",
+            alt: "Windows 11 Start menu search for 7z showing 7-Zip File Manager as the best match",
+            caption: "25. 7-Zip visible in Start after Group Policy ran. Software deployment confirmed.",
+          },
+
+          { type: "h3", content: "Tasks 23 to 25: GPO — Printer Deployment" },
+          { type: "note", content: "Deploy the ZCDesignPrinter shared printer to Design Staff workstations only, using item-level targeting." },
+          {
+            type: "p",
+            content:
+              "I created ZC Design Printer and linked it to the Staff OU. Under User Configuration > Preferences > Control Panel Settings > Printers I added a shared printer pointing to \\\\ZCDC01\\ZCDesignPrinter. On the Common tab I enabled Item-level targeting and added a Security Group condition: the user must be a member of Design Staff. The printer maps only for Design Staff members even though the GPO is linked to the broader Staff OU.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/26-design-printer-linked.png",
+            alt: "Group Policy Management showing Staff OU with four linked GPOs including ZC Design Printer",
+            caption: "26. ZC Design Printer linked to the Staff OU. Item-level targeting scopes it to Design Staff.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/27-design-printer-setup.png",
+            alt: "Group Policy Management Editor Printers section showing ZCDesignPrinter mapped to ZCDC01 ZCDesignPrinter with action Update",
+            caption: "27. ZCDesignPrinter preference item in the GPO.",
+          },
+
+        ],
+      },
+
+      // ── Group: File Shares & Access ────────────────────────────────────────
+      {
+        type: "group",
+        content: "",
+        title: "File Shares & Access",
+        children: [
+
+          { type: "h3", content: "Tasks 26 and 27: Access Groups and File Shares" },
+          { type: "note", content: "Create domain local security groups for each share permission level, create SMB shares for Design, Finance, and Public, and set NTFS permissions using the groups." },
+          {
+            type: "p",
+            content:
+              "I created four domain local groups in the Zenith > Access Groups OU: DL DesignFiles Modify, DL FinanceFiles Modify, DL Public Read, and DL Public Edit. I nested Design Staff into DL DesignFiles Modify, Finance Staff into DL FinanceFiles Modify, and Domain Users into DL Public Read. I created the SMB shares from Server Manager under File and Storage Services. For each share I ran the New Share wizard with SMB Quick, then customised the NTFS permissions: I disabled inheritance, removed the default entries, and added only the relevant DL group with Modify access and Administrators with Full Control.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/28-dl-groups.png",
+            alt: "Active Directory Users and Computers showing the Access Groups OU with DL DesignFiles Modify, DL FinanceFiles Modify, DL Public Edit, and DL Public Read",
+            caption: "28. Access Groups OU: four domain local groups, one per share permission level.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/29-designfiles-permissions.png",
+            alt: "Advanced Security Settings for DesignFiles showing Administrators Full Control and DL DesignFiles Modify Modify access, both non-inherited",
+            caption: "29. DesignFiles NTFS permissions after blocking inheritance. Only two entries remain.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/30-shares-visible.png",
+            alt: "File Explorer browsing ZCDC01 showing DesignFiles, FinanceFiles, netlogon, Public, sysvol and ZCDesignPrinter",
+            caption: "30. All shares visible from a client. NTFS permissions control what each user can access inside each share.",
+          },
+          {
+            type: "p",
+            content:
+              "This is the AGdLP pattern: Accounts in Global groups, Global groups nested in Domain Local groups, Domain Local groups assigned Permissions. Adding a new Design user to Design Staff automatically grants them Modify access to DesignFiles without touching the share or its NTFS ACL.",
+          },
+
+        ],
+      },
+
+      // ── Group: Drive Maps ──────────────────────────────────────────────────
+      {
+        type: "group",
+        content: "",
+        title: "Drive Maps",
+        children: [
+
+          { type: "h3", content: "Tasks 28 and 29: GPO — Drive Maps" },
+          { type: "note", content: "Map network drives automatically for staff based on their security group membership." },
+          {
+            type: "p",
+            content:
+              "I created ZC Drive Maps and linked it to the Staff OU. Under User Configuration > Preferences > Windows Settings > Drive Maps I added three drives: S: to \\\\ZCDC01\\DesignFiles for DL DesignFiles Modify members, F: to \\\\ZCDC01\\FinanceFiles for DL FinanceFiles Modify members, and P: to \\\\ZCDC01\\Public for everyone. Each used item-level targeting with a Security Group condition. The action on each was set to Replace so the drive is removed and re-created on each logon, keeping it consistent if a user changes groups.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/31-drive-maps-configured.png",
+            alt: "Group Policy Management Editor Drive Maps showing S drive to DesignFiles, F drive to FinanceFiles, and P drive to Public, all with action Replace",
+            caption: "31. ZC Drive Maps: S:, F:, and P: configured with item-level targeting per group.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/32-drives-mapped-design.png",
+            alt: "Windows 11 This PC showing Design Files S drive and Public P drive mapped as network locations",
+            caption: "32. Design Staff account: S: and P: mapped automatically at logon.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/33-drives-mapped-finance.png",
+            alt: "Windows 11 This PC showing Finance Files F drive and Public P drive mapped as network locations",
+            caption: "33. Finance Staff account: F: and P: mapped. S: absent because this user is not in DL DesignFiles Modify.",
+          },
+
+        ],
+      },
+
+      // ── Group: Remote Desktop ──────────────────────────────────────────────
+      {
+        type: "group",
+        content: "",
+        title: "Remote Desktop",
+        children: [
+
+          { type: "h3", content: "Task 30: Remote Desktop Access" },
+          { type: "note", content: "Grant Chide Eze remote desktop access to the ZCPC01 workstation." },
+          {
+            type: "p",
+            content:
+              "I opened Settings > System > Remote Desktop on ZCPC01 and clicked Select users that can remotely access this PC. I added Chide Eze's account from zenithcreative.com. This adds the account to the local Remote Desktop Users group on that specific machine. Domain Admins can RDP to any domain computer by default. This grants the same access to a standard user on one specific workstation.",
+          },
+          { type: "label", content: "PowerShell equivalent:" },
+          {
+            type: "code",
+            content:
+              "Add-LocalGroupMember -Group \"Remote Desktop Users\" -Member \"ZENITH\\chide.eze\"\n  # run on ZCPC01, adds the user to the local Remote Desktop Users group\nGet-LocalGroupMember -Group \"Remote Desktop Users\"\n  # lists who currently has RDP access to this machine",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/34-remote-desktop.png",
+            alt: "Windows 11 System Remote Desktop settings on ZCPC01 showing Select Users dialog with Chide Eze being added from zenithcreative.com",
+            caption: "34. Chide Eze added to Remote Desktop Users on ZCPC01.",
+          },
+
         ],
       },
 

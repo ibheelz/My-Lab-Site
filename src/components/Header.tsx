@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import TypewriterText from "@/components/TypewriterText";
+import BrandTypewriter from "@/components/BrandTypewriter";
 
 const NEON = "rgb(0, 255, 106)";
 const BLUE = "rgb(168, 215, 231)";
@@ -43,9 +45,19 @@ const navLinks = [
   { label: "contact",  href: "/contact",  Icon: ContactIcon  },
 ];
 
+function getPageSuffix(pathname: string): string {
+  if (pathname === "/") return "home";
+  if (pathname.startsWith("/labs")) return "labs";
+  if (pathname.startsWith("/projects")) return "projects";
+  if (pathname.startsWith("/contact")) return "contact";
+  return "";
+}
+
 export default function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+
+  const pageSuffix = getPageSuffix(pathname);
 
   return (
     <>
@@ -64,9 +76,29 @@ export default function Header() {
       >
         <div className="max-w-[1200px] mx-auto h-full flex items-center justify-between">
           <Link href="/" style={{ color: NEON, fontWeight: 500, fontSize: "14px", letterSpacing: "0.02em" }}>
-            <span style={{ color: NEON }}>abiola</span>
-            <span style={{ color: NEON }}>@portfolio</span>
-            <span style={{ color: NEON }}>:~$</span>
+            {/* Mobile: always base text */}
+            <span className="tablet:hidden">
+              <TypewriterText
+                text="abiola@portfolio:~$"
+                tag="span"
+                color={NEON}
+                cursorColor={NEON}
+                cursorThickness={2}
+                typingSpeed={0.04}
+                showCursor
+                hideCursorWhenDone={false}
+                enableLoop
+              />
+            </span>
+            {/* Desktop: page-aware text with white suffix */}
+            <span className="hidden tablet:inline">
+              <BrandTypewriter
+                base="abiola@portfolio:~$"
+                suffix={pageSuffix}
+                typingSpeed={0.04}
+                cursorThickness={2}
+              />
+            </span>
           </Link>
 
           {/* Desktop nav */}

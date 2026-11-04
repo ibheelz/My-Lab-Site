@@ -131,6 +131,7 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}
                 typingSpeed={0.02}
                 showCursor
                 hideCursorWhenDone={false}
+                enableLoop
               />
             </div>
             <p style={{ fontSize: "14px", lineHeight: "1.9em", color: BLUE, margin: "16px 0 0", animationName: "fadeBlurIn", animationDuration: "0.65s", animationTimingFunction: "ease-out", animationFillMode: "both", animationDelay: "1100ms", willChange: "transform, opacity" }}>
@@ -223,6 +224,7 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}
                   typingSpeed={0.02}
                   showCursor
                   hideCursorWhenDone={false}
+                  enableLoop
                 />
               </div>
               <Link
@@ -260,16 +262,17 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}
           {/* Articles grid */}
           <div className="grid grid-cols-1 gap-5 tablet:grid-cols-2 tablet:gap-8 desktop:grid-cols-3 desktop:gap-10">
             {latestPosts.map((post, i) => (
-              <BlogCard
-                key={post.slug}
-                slug={post.slug}
-                title={post.title}
-                description={post.description}
-                category={post.category}
-                readTime={post.readTime}
-                thumbnail={post.thumbnail}
-                categoryColor={post.color ?? TAG_COLORS[i % TAG_COLORS.length]}
-              />
+              <ScrollReveal key={post.slug} delay={i * 100}>
+                <BlogCard
+                  slug={post.slug}
+                  title={post.title}
+                  description={post.description}
+                  category={post.category}
+                  readTime={post.readTime}
+                  thumbnail={post.thumbnail}
+                  categoryColor={post.color ?? TAG_COLORS[i % TAG_COLORS.length]}
+                />
+              </ScrollReveal>
             ))}
           </div>
         </ScrollReveal>
@@ -295,6 +298,7 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}
                 typingSpeed={0.02}
                 showCursor
                 hideCursorWhenDone={false}
+                enableLoop
               />
             </div>
             <Link
@@ -332,8 +336,8 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}
           {/* 2-column project grid */}
           <div className="grid grid-cols-1 gap-6 tablet:grid-cols-2 tablet:gap-8">
             {homeProjects.map((project, i) => (
+              <ScrollReveal key={project.slug} delay={i * 100}>
               <div
-                key={project.slug}
                 style={{
                   border: `1px solid ${project.featured ? NEON_GREEN : "rgb(60, 60, 60)"}`,
                   borderRadius: "0px",
@@ -394,6 +398,7 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}
                 {/* Button */}
                 <ViewProjectButton href={project.liveUrl ?? project.githubUrl ?? "#"} />
               </div>
+              </ScrollReveal>
             ))}
           </div>
         </ScrollReveal>

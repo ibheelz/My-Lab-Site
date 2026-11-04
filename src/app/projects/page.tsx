@@ -19,14 +19,11 @@ export default function Projects() {
 
   return (
     <section className="w-full flex justify-center px-5 pt-10 pb-16 tablet:px-8 tablet:pt-14 tablet:pb-20 desktop:px-10 desktop:pt-20 desktop:pb-28">
-      <div className="w-full max-w-[1200px] flex flex-col gap-[60px] desktop:gap-[80px]">
-
-
-        <div className="flex flex-col gap-[40px] desktop:gap-[60px]">
+      <div className="w-full max-w-[1200px] flex flex-col gap-4">
 
           {/* Page header */}
           <ScrollReveal>
-          <div className="flex flex-col gap-[20px] desktop:gap-[30px]">
+          <div className="flex flex-col gap-4">
             <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={CYAN} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
                 <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
@@ -51,11 +48,10 @@ export default function Projects() {
           </ScrollReveal>
 
           {/* 2-column project grid */}
-          <ScrollReveal delay={150}>
           <div className="grid grid-cols-1 gap-6 tablet:grid-cols-2 tablet:gap-10">
             {projects.map((project, i) => (
+              <ScrollReveal key={project.slug} delay={i * 100}>
               <div
-                key={project.slug}
                 style={{
                   border: `1px solid ${project.featured ? NEON : "rgb(60, 60, 60)"}`,
                   borderRadius: "0px",
@@ -156,11 +152,10 @@ export default function Projects() {
                   </svg>
                 </Link>
               </div>
+              </ScrollReveal>
             ))}
           </div>
-          </ScrollReveal>
 
-        </div>
       </div>
     </section>
   );

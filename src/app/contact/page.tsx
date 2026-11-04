@@ -109,12 +109,12 @@ export default function Contact() {
         </ScrollReveal>
 
         {/* Body: info left + form right */}
-        <ScrollReveal delay={150}>
         <div className="grid grid-cols-1 gap-10 tablet:gap-12 desktop:grid-cols-2 desktop:gap-16 desktop:items-start">
 
           {/* Left column: Direct Contact + Social Links */}
           <div className="flex flex-col gap-10 min-w-0">
 
+            <ScrollReveal delay={100}>
             <div className="flex flex-col gap-5 min-w-0">
               <TypewriterText
                 text="Direct Contact"
@@ -131,7 +131,9 @@ export default function Contact() {
                 {directLinks.map((l) => <InfoRow key={l.label} {...l} />)}
               </div>
             </div>
+            </ScrollReveal>
 
+            <ScrollReveal delay={180}>
             <div className="flex flex-col gap-5 min-w-0">
               <TypewriterText
                 text="Social Links"
@@ -163,9 +165,11 @@ export default function Contact() {
                 ))}
               </div>
             </div>
+            </ScrollReveal>
           </div>
 
           {/* Right column: Form */}
+          <ScrollReveal delay={150}>
           <div className="flex flex-col gap-5 min-w-0">
             <TypewriterText
               text="Say hello!"
@@ -223,9 +227,9 @@ export default function Contact() {
               </form>
             )}
           </div>
+          </ScrollReveal>
 
         </div>
-        </ScrollReveal>
       </div>
     </section>
   );

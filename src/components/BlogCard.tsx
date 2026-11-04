@@ -69,7 +69,16 @@ export default function BlogCard({ slug, title, description, category, readTime,
 
       {/* Title */}
       <h3 style={{ color: "rgb(0, 255, 106)", fontSize: "18px", lineHeight: "1.4em", fontWeight: 400, margin: 0 }}>
-        {title}
+        {(() => {
+          const idx = title.indexOf("Part");
+          if (idx === -1) return title;
+          return (
+            <>
+              <span style={{ color: "rgb(0, 255, 106)" }}>{title.slice(0, idx)}</span>
+              <span style={{ color: "rgb(255, 255, 255)" }}>{title.slice(idx)}</span>
+            </>
+          );
+        })()}
       </h3>
 
       {/* Thumbnail or placeholder */}

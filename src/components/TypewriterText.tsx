@@ -14,6 +14,8 @@ interface TypewriterTextProps {
   hideCursorWhenDone?: boolean;
   enableLoop?: boolean;
   className?: string;
+  splitAt?: string;
+  secondColor?: string;
 }
 
 export default function TypewriterText({
@@ -28,6 +30,8 @@ export default function TypewriterText({
   hideCursorWhenDone = false,
   enableLoop = false,
   className = "",
+  splitAt,
+  secondColor = "rgb(255, 255, 255)",
 }: TypewriterTextProps) {
   const { displayed, isDone, cursorVisible } = useTypewriter({
     text,
@@ -40,12 +44,21 @@ export default function TypewriterText({
 
   const Tag = tag as keyof JSX.IntrinsicElements;
 
+  const splitIndex = splitAt ? text.indexOf(splitAt) : -1;
+  const part1 = splitIndex >= 0 ? displayed.slice(0, splitIndex) : displayed;
+  const part2 = splitIndex >= 0 ? displayed.slice(splitIndex) : "";
+
   return (
     <Tag
       className={className}
       style={{ color, margin: 0, whiteSpace: "pre-wrap" }}
     >
-      {displayed}
+      {splitIndex >= 0 ? (
+        <>
+          <span style={{ color }}>{part1}</span>
+          {part2 && <span style={{ color: secondColor }}>{part2}</span>}
+        </>
+      ) : displayed}
       {showCursorNow && (
         <span
           style={{
