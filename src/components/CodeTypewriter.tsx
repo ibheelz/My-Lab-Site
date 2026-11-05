@@ -9,8 +9,7 @@ export default function CodeTypewriter({ content }: { content: string }) {
   const { displayed, cursorVisible } = useTypewriter({
     text: content,
     speed: 0.015,
-    loop: true,
-    loopDelay: 20000,
+    loop: false,
   });
 
   const lines = displayed.split("\n");

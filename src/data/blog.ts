@@ -829,7 +829,7 @@ export const posts: BlogPost[] = [
       {
         type: "group",
         content: "",
-        title: "Workstation Restrictions",
+        title: "Staff PC Restrictions",
         children: [
 
           { type: "h3", content: "Tasks 10 and 11: GPO — Screen Lock" },
@@ -1014,9 +1014,16 @@ export const posts: BlogPost[] = [
           {
             type: "p",
             content:
-              "I placed the 7-Zip 24.09 MSI in a software subfolder on NETLOGON. I created ZC 7zip Software Installer and linked it to the Workstations OU. I added a package pointing to \\\\ZCDC01\\NETLOGON\\software\\7z2409-x64.msi and set deployment to Assigned.",
+              "Group Policy software installation requires the MSI to sit on a network share that every workstation can reach. I downloaded 7z2409-x64.msi and created a software subfolder inside NETLOGON on the domain controller. The resulting UNC path is \\\\zenithcreative.com\\NETLOGON\\software\\7z2409-x64.msi. NETLOGON is already accessible to every domain-joined machine with no extra share setup, which makes it the standard place for deployment files.",
           },
-          { type: "p", content: "I also enabled Always wait for the network at computer startup and logon. This forces a synchronous Group Policy cycle to complete before the login screen appears, ensuring the software is installed before anyone logs in." },
+          { type: "note", content: "The MSI must be referenced by its UNC path, not a local path like C:\\. When Group Policy runs on a workstation at startup, the machine reaches out to the DC over the network to fetch the installer. A local path only exists on the DC itself and would fail on every other machine." },
+          {
+            type: "p",
+            content:
+              "I created a new GPO called ZC 7zip Software Installer and linked it to the Workstations OU. Inside GPME I navigated to Computer Configuration > Software Settings > Software Installation, right-clicked the pane, and selected New > Package. In the file browser I typed the full UNC path into the address bar, opened the software folder, selected 7z2409-x64.msi, and clicked Open. A dialog asks whether to deploy as Published or Assigned. I chose Assigned.",
+          },
+          { type: "note", content: "Assigned vs Published: Assigned installs the software automatically at computer startup with no user involvement. Published makes it available for users to install manually from Control Panel but does not push it automatically. For a tool the whole organisation needs, Assigned is the correct choice." },
+          { type: "p", content: "I also enabled Always wait for the network at computer startup and logon. Without this, Group Policy runs asynchronously in the background and the login screen can appear before the software installation has finished. Enabling it forces a full synchronous Group Policy cycle to complete — including the software install — before the login screen appears." },
           { type: "navpath", content: "GPM > zenithcreative.com > Workstations > Linked Group Policy Objects" },
           {
             type: "img",
@@ -1057,7 +1064,7 @@ export const posts: BlogPost[] = [
             type: "img",
             content: "/images/blog/zcdc02/25-7zip-verified.png",
             alt: "Windows 11 Start menu search for 7z showing 7-Zip File Manager as the best match",
-            caption: "25. 7-Zip visible in Start after Group Policy ran. Software deployment confirmed.",
+            caption: "25. 7-Zip visible in Start on ZCPC01 (user workstation) after Group Policy ran at startup. Software deployment confirmed.",
           },
 
           { type: "h3", content: "Tasks 23 to 25: GPO — Printer Deployment" },
@@ -1140,6 +1147,13 @@ export const posts: BlogPost[] = [
             content: "/images/blog/zcdc02/28-dl-groups.png",
             alt: "Active Directory Users and Computers showing the Access Groups OU with DL DesignFiles Modify, DL FinanceFiles Modify, DL Public Edit, and DL Public Read",
             caption: "28. Access Groups OU: four domain local groups, one per share permission level.",
+          },
+          { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > Access Groups > DL DesignFiles Modify > Members" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/28a-dl-designfiles-members.png",
+            alt: "DL DesignFiles Modify group Properties Members tab showing Design Staff from zenithcreative.com/Zenith/Staff/Design as the sole member",
+            caption: "28a. DL DesignFiles Modify: Design Staff nested in as the sole member.",
           },
           { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > Access Groups > DL FinanceFiles Modify > Members" },
           {
@@ -1253,6 +1267,7 @@ export const posts: BlogPost[] = [
             alt: "Server Manager Shares view now showing four shares: NETLOGON, print dollar, SYSVOL, and DesignFiles at C:\\Shares\\DesignFiles",
             caption: "29n. Server Manager confirms DesignFiles is now listed alongside the built-in shares.",
           },
+          { type: "note", content: "I repeated the exact same wizard steps above to create the FinanceFiles share: New Share > SMB Quick, same folder path pattern, block inheritance, remove defaults, add DL FinanceFiles Modify with Modify access and Administrators with Full Control. The process is identical — only the share name and DL group change." },
           { type: "navpath", content: "ZCDC01 > File Explorer > Public > Advanced Security Settings" },
           {
             type: "img",
@@ -1344,7 +1359,7 @@ export const posts: BlogPost[] = [
             type: "img",
             content: "/images/blog/zcdc02/31-drive-maps-configured.png",
             alt: "Group Policy Management Editor Drive Maps showing S drive to DesignFiles, F drive to FinanceFiles, and P drive to Public, all with action Replace",
-            caption: "31. ZC Drive Maps: S:, F:, and P: configured with item-level targeting per group.",
+            caption: "31. ZC Drive Maps: S:, F:, and P: configured with item-level targeting per group. S: was set up first (shown in earlier screenshots). I repeated the same steps to add F: for DL FinanceFiles Modify members, and P: for everyone — P: has no security group condition so it maps for all Staff OU users regardless of department.",
           },
           { type: "navpath", content: "ZCPC01 > This PC (Design Staff drives after logon)" },
           {

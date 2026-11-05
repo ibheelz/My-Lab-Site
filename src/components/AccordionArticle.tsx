@@ -133,6 +133,36 @@ function SectionContent({ section }: { section: BlogSection }) {
         />
       );
 
+    case "navpath": {
+      const segments = (section.content as string).split(">").map((s) => s.trim());
+      return (
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            gap: "4px",
+            backgroundColor: "rgb(10, 10, 10)",
+            border: `1px solid ${BORDER}`,
+            borderLeft: `3px solid ${CYAN}`,
+            borderRadius: "0px",
+            padding: "10px 14px",
+            fontFamily: "var(--font-mono)",
+            fontSize: "12px",
+          }}
+        >
+          {segments.map((seg, k) => (
+            <span key={k} style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}>
+              <span style={{ color: "rgb(255, 255, 255)" }}>{seg}</span>
+              {k < segments.length - 1 && (
+                <span style={{ color: NEON, fontWeight: 700, margin: "0 2px" }}>›</span>
+              )}
+            </span>
+          ))}
+        </div>
+      );
+    }
+
     case "label":
       return (
         <p
@@ -162,7 +192,7 @@ function SectionContent({ section }: { section: BlogSection }) {
   }
 }
 
-const NAV_HEIGHT = 55 + 16;
+const NAV_HEIGHT = 55;
 
 export default function AccordionArticle({ sections }: { sections: BlogSection[] }) {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
@@ -170,9 +200,8 @@ export default function AccordionArticle({ sections }: { sections: BlogSection[]
   const scrollTargetRef = useRef<number | null>(null);
 
   function handleGroupClick(i: number) {
-    const isOpen = openIdx === i;
-    if (!isOpen) scrollTargetRef.current = i;
-    setOpenIdx(isOpen ? null : i);
+    scrollTargetRef.current = i;
+    setOpenIdx((prev) => (prev === i ? null : i));
   }
 
   useEffect(() => {
@@ -181,8 +210,10 @@ export default function AccordionArticle({ sections }: { sections: BlogSection[]
     scrollTargetRef.current = null;
     const el = groupRefs.current.get(i);
     if (!el) return;
-    const top = window.scrollY + el.getBoundingClientRect().top - NAV_HEIGHT;
-    window.scrollTo({ top, behavior: "smooth" });
+    requestAnimationFrame(() => {
+      const top = window.scrollY + el.getBoundingClientRect().top - NAV_HEIGHT;
+      window.scrollTo({ top, behavior: "smooth" });
+    });
   }, [openIdx]);
 
   return (
@@ -229,6 +260,9 @@ export default function AccordionArticle({ sections }: { sections: BlogSection[]
                 lineHeight: "1.6",
                 fontFamily: "inherit",
                 fontWeight: 500,
+                position: "sticky",
+                top: "55px",
+                zIndex: 30,
               }}
             >
               <span style={{ display: "flex", alignItems: "center", gap: "10px" }}>
