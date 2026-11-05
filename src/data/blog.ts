@@ -590,6 +590,13 @@ export const posts: BlogPost[] = [
             alt: "Computer Name/Domain Changes dialog showing ZCPC01 joining zenithcreative.com with the Domain radio button selected",
             caption: "01. ZCPC01 joining zenithcreative.com. Domain radio button selected, domain name entered.",
           },
+          { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > Devices > Workstations" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/01b-zcpc01-workstations-ou.png",
+            alt: "Active Directory Users and Computers showing ZCPC01 computer object in the Workstations OU under Zenith",
+            caption: "01b. ZCPC01 appears in the Workstations OU in ADUC confirming the domain join succeeded.",
+          },
           {
             type: "p",
             content:
@@ -700,6 +707,13 @@ export const posts: BlogPost[] = [
           {
             type: "code",
             content: "powershell -ExecutionPolicy Bypass -File .\\Offboard-User.ps1 -SamAccountName emeka.obi -Reason \"Resigned\"",
+          },
+          { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > Leavers" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/06b-leavers-ou-emeka.png",
+            alt: "Active Directory Users and Computers showing the Leavers OU containing Emeka Obi with description LEFT 2026-11-02 Resigned",
+            caption: "06b. Leavers OU: Emeka Obi moved here by the script. Description field stamped with leave date and reason.",
           },
           { type: "navpath", content: "ZCDC01 > Windows PowerShell > Offboard-User.ps1" },
           {
@@ -1024,26 +1038,19 @@ export const posts: BlogPost[] = [
           },
           { type: "note", content: "Assigned vs Published: Assigned installs the software automatically at computer startup with no user involvement. Published makes it available for users to install manually from Control Panel but does not push it automatically. For a tool the whole organisation needs, Assigned is the correct choice." },
           { type: "p", content: "I also enabled Always wait for the network at computer startup and logon. Without this, Group Policy runs asynchronously in the background and the login screen can appear before the software installation has finished. Enabling it forces a full synchronous Group Policy cycle to complete — including the software install — before the login screen appears." },
+          { type: "navpath", content: "File Explorer > Network > ZCDC01.zenithcreative.com > NETLOGON > software" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/23a-netlogon-software-msi.png",
+            alt: "File Explorer showing the software subfolder inside NETLOGON on ZCDC01 containing 7z2409-x64.msi at 1941 KB",
+            caption: "23a. 7z2409-x64.msi placed in NETLOGON\\software. All workstations can reach this path at startup.",
+          },
           { type: "navpath", content: "GPM > zenithcreative.com > Workstations > Linked Group Policy Objects" },
           {
             type: "img",
             content: "/images/blog/zcdc02/23-7zip-gpo-linked.png",
             alt: "Group Policy Management showing Workstations OU with ZC Block USB, ZC Branding Assets, and ZC 7zip Software Installer GPOs linked",
             caption: "23. ZC 7zip Software Installer linked to the Workstations OU.",
-          },
-          { type: "navpath", content: "GPME > ZC 7zip Software Installer > Computer Configuration > Administrative Templates > System > Logon > Always wait for the network" },
-          {
-            type: "img",
-            content: "/images/blog/zcdc02/23b-always-wait-network.png",
-            alt: "Group Policy Management Editor policy setting dialog for Always wait for the network at computer startup and logon showing Enabled selected",
-            caption: "23b. Always wait for the network at startup and logon: Enabled. Forces synchronous Group Policy before the login screen.",
-          },
-          { type: "navpath", content: "GPME > ZC 7zip Software Installer > Computer Configuration > Administrative Templates > System > Logon" },
-          {
-            type: "img",
-            content: "/images/blog/zcdc02/23c-logon-wait-network.png",
-            alt: "Group Policy Management Editor Logon settings list showing Always wait for the network at computer startup and logon highlighted as Enabled",
-            caption: "23c. The policy confirmed Enabled in the Logon settings list.",
           },
           { type: "navpath", content: "GPME > ZC 7zip Software Installer > Computer Configuration > Software Settings > Software Installation" },
           {
@@ -1058,6 +1065,13 @@ export const posts: BlogPost[] = [
             content: "/images/blog/zcdc02/24b-7zip-deployment-properties.png",
             alt: "7-Zip 24.09 x64 edition Properties dialog showing Deployment type set to Assigned",
             caption: "24b. 7-Zip deployment properties: type set to Assigned so it installs automatically at startup.",
+          },
+          { type: "navpath", content: "GPME > ZC 7zip Software Installer > Computer Configuration > Administrative Templates > System > Logon" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/23c-logon-wait-network.png",
+            alt: "Group Policy Management Editor Logon settings list showing Always wait for the network at computer startup and logon highlighted as Enabled",
+            caption: "23c. The policy confirmed Enabled in the Logon settings list.",
           },
           { type: "navpath", content: "ZCPC01 > Start Menu (after Group Policy refresh)" },
           {
@@ -1074,12 +1088,68 @@ export const posts: BlogPost[] = [
             content:
               "I created ZC Design Printer and linked it to the Staff OU. I added a shared printer pointing to \\\\ZCDC01\\ZCDesignPrinter. On the Common tab I enabled Item-level targeting and added a Security Group condition: the user must be a member of Design Staff. The printer maps only for Design Staff members even though the GPO is linked to the broader Staff OU.",
           },
+          { type: "navpath", content: "ZCDC01 > Settings > Printers & scanners > Add Printer > Find a printer by other options" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/25a-add-printer-method.png",
+            alt: "Add Printer wizard showing Find a printer by other options with Add a local printer or network printer with manual settings selected",
+            caption: "25a. Add Printer wizard: selected Add a local printer or network printer with manual settings.",
+          },
+          { type: "navpath", content: "ZCDC01 > Settings > Printers & scanners > Add Printer > Choose a printer port" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/25b-add-printer-port.png",
+            alt: "Add Printer wizard Choose a printer port step showing Use an existing port LPT1 selected",
+            caption: "25b. Printer port: Use an existing port, LPT1.",
+          },
+          { type: "navpath", content: "ZCDC01 > Settings > Printers & scanners > Add Printer > Install the printer driver" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/25c-add-printer-driver.png",
+            alt: "Add Printer wizard Install the printer driver step showing Generic manufacturer and Generic Text Only driver selected",
+            caption: "25c. Driver: Generic / Text Only. This is a virtual shared printer so no physical driver is needed.",
+          },
+          { type: "navpath", content: "ZCDC01 > Settings > Printers & scanners > Add Printer > Which version of the driver" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/25d-add-printer-driver-version.png",
+            alt: "Add Printer wizard asking which driver version to use showing Use the driver that is currently installed recommended selected",
+            caption: "25d. Driver version: use the currently installed driver.",
+          },
+          { type: "navpath", content: "ZCDC01 > Settings > Printers & scanners > Add Printer > Type a printer name" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/25e-add-printer-name.png",
+            alt: "Add Printer wizard Type a printer name step with ZCDesignPrinter entered as the printer name",
+            caption: "25e. Printer name set to ZCDesignPrinter.",
+          },
+          { type: "navpath", content: "ZCDC01 > Settings > Printers & scanners > Add Printer > Printer Sharing" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/25f-add-printer-sharing.png",
+            alt: "Add Printer wizard Printer Sharing step showing Share this printer selected with share name ZCDesignPrinter",
+            caption: "25f. Printer sharing enabled. Share name ZCDesignPrinter — this is what the GPO UNC path points to.",
+          },
+          { type: "navpath", content: "ZCDC01 > Settings > Printers & scanners > Add Printer > Finish" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/25g-add-printer-success.png",
+            alt: "Add Printer wizard success screen showing You've successfully added ZCDesignPrinter",
+            caption: "25g. ZCDesignPrinter created and shared on ZCDC01. The GPO can now reference \\\\ZCDC01\\ZCDesignPrinter.",
+          },
           { type: "navpath", content: "GPM > zenithcreative.com > Staff > Linked Group Policy Objects" },
           {
             type: "img",
             content: "/images/blog/zcdc02/26-design-printer-linked.png",
             alt: "Group Policy Management showing Staff OU with four linked GPOs including ZC Design Printer",
             caption: "26. ZC Design Printer linked to the Staff OU. Item-level targeting scopes it to Design Staff.",
+          },
+          { type: "navpath", content: "GPME > ZC Design Printer > User Configuration > Preferences > Control Panel Settings > Printers" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/26a-printers-new-menu.png",
+            alt: "Group Policy Management Editor Printers section showing an empty pane with right-click context menu open and New submenu showing Shared Printer, TCP/IP Printer, and Local Printer options",
+            caption: "26a. Printers section empty. Right-click > New > Shared Printer to add the printer preference.",
           },
           { type: "navpath", content: "GPME > ZC Design Printer > User Configuration > Preferences > Control Panel Settings > Printers > ZCDesignPrinter Properties > General" },
           {
@@ -1275,6 +1345,13 @@ export const posts: BlogPost[] = [
             alt: "Advanced Security Settings for Public share showing Administrators Full Control and Domain Users Read and Execute, both non-inherited",
             caption: "29o. Public share NTFS permissions: Administrators Full Control, Domain Users Read and Execute. Inheritance blocked.",
           },
+          { type: "navpath", content: "Server Manager > File and Storage Services > Shares" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/29p-all-shares-listed.png",
+            alt: "Server Manager File and Storage Services Shares view showing six shares on ZCDC01: DesignFiles, FinanceFiles, Public, print dollar, SYSVOL, and NETLOGON",
+            caption: "29p. Server Manager confirms all three custom shares alongside the built-in shares.",
+          },
           { type: "navpath", content: "ZCPC01 > File Explorer > Network > ZCDC01" },
           {
             type: "img",
@@ -1353,6 +1430,20 @@ export const posts: BlogPost[] = [
             content: "/images/blog/zcdc02/31g-targeting-dl-designfiles.png",
             alt: "Targeting Editor showing the user is a member of the security group ZENITH\\DL DesignFiles Modify with the group SID confirmed",
             caption: "31g. Targeting confirmed: S: maps only for members of ZENITH\\DL DesignFiles Modify.",
+          },
+          { type: "navpath", content: "GPME > ZC Drive Maps > Drive Maps > Targeting Editor" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/31i-targeting-dl-financefiles.png",
+            alt: "Targeting Editor showing the user is a member of the security group ZENITH\\DL FinanceFiles Modify with the group SID confirmed",
+            caption: "31i. Targeting confirmed: F: maps only for members of ZENITH\\DL FinanceFiles Modify.",
+          },
+          { type: "navpath", content: "GPME > ZC Drive Maps > P: Drive Properties > Common > Targeting Editor" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc02/31h-targeting-domain-users.png",
+            alt: "Targeting Editor showing the user is a member of the security group ZENITH\\Domain Users for the P drive mapping",
+            caption: "31h. P: drive targeting: Domain Users — maps the Public share for everyone on Staff, no group restriction.",
           },
           { type: "navpath", content: "GPME > ZC Drive Maps > User Configuration > Preferences > Windows Settings > Drive Maps" },
           {
