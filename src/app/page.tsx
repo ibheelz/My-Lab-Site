@@ -135,7 +135,7 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}
               />
             </div>
             <p style={{ fontSize: "14px", lineHeight: "1.9em", color: BLUE, margin: "16px 0 0", animationName: "fadeBlurIn", animationDuration: "0.65s", animationTimingFunction: "ease-out", animationFillMode: "both", animationDelay: "1100ms", willChange: "transform, opacity" }}>
-              IT support engineer with a deep curiosity for how systems work under the hood.
+              IT support specialist with a deep curiosity for how systems work under the hood.
               I run a homelab to get hands-on with the technologies I work with daily —
               Active Directory, virtualisation, networking, and system administration.
             </p>
