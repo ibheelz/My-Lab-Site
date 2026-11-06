@@ -336,7 +336,7 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}
           {/* 2-column project grid */}
           <div className="grid grid-cols-1 gap-6 tablet:grid-cols-2 tablet:gap-8">
             {homeProjects.map((project, i) => (
-              <ScrollReveal key={project.slug} delay={i * 100}>
+              <ScrollReveal key={project.slug} delay={i * 100} className="h-full">
               <div
                 style={{
                   border: `1px solid ${project.featured ? NEON_GREEN : "rgb(60, 60, 60)"}`,
@@ -348,6 +348,7 @@ $$/   $$/ $$$$$$$/  $$$$$$$$/     $$/     $$$$$$$$/     $$/     $$$$$$$$/`}
                   backgroundColor: "rgb(0, 0, 0)",
                   position: "relative",
                   zIndex: 25,
+                  height: "100%",
                 }}
               >
                 {/* Image */}
