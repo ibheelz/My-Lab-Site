@@ -24,12 +24,11 @@ export default function Home() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="w-full flex justify-center px-5 pt-10 pb-6 tablet:px-8 tablet:pt-14 tablet:pb-8 desktop:px-10 desktop:pt-20 desktop:pb-10">
-        <div className="w-full max-w-[1200px] flex flex-col gap-8 tablet:flex-row tablet:items-stretch tablet:gap-[120px]">
+      <section className="w-full flex justify-center px-5 pt-6 pb-6 tablet:px-8 tablet:pt-14 tablet:pb-8 desktop:px-10 desktop:pt-20 desktop:pb-10">
+        <div className="w-full max-w-[1200px] flex flex-col gap-3 tablet:flex-row tablet:items-stretch tablet:gap-[120px]">
           <HeroAscii
-            className="mx-auto translate-x-[10px] tablet:translate-x-0 tablet:mx-0 block"
+            className="mx-auto translate-x-[10px] tablet:translate-x-0 tablet:mx-0 block h-[45vh] w-auto tablet:h-auto tablet:w-full"
             style={{
-              width: "100%",
               maxWidth: "420px",
               flexShrink: 0,
             }}
@@ -48,7 +47,7 @@ export default function Home() {
               }}
             >
             {/* ASCII name — centered on mobile */}
-            <div className="w-full flex justify-center tablet:justify-start mb-8 tablet:mb-10">
+            <div className="w-full flex justify-center tablet:justify-start mb-3 tablet:mb-10">
               {/* Mobile: ABIOLA indented/centered */}
               <AsciiReveal
                 className="block tablet:hidden"
