@@ -19,7 +19,7 @@
     }
 
     .card {
-      width: 400px;
+      width: 300px;
       background: rgb(7, 9, 7);
       border: 1px solid rgb(60, 60, 60);
       padding: 22px 30px;
@@ -230,6 +230,8 @@
       typeLine1(onLineDone);
       typeInto(document.getElementById('v2'), 'Lagos, Nigeria  |  +234 902 448 1896', 48, onLineDone);
       typeInto(document.getElementById('v3a'), 'visit: ', 48, () => {
+        const leftover = document.getElementById('v3a').querySelector('.cursor-rest');
+        if (leftover) leftover.remove();
         typeInto(document.getElementById('v3b'), 'lab.abioladeyeye.com', 48, onLineDone);
       });
     }
