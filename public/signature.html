@@ -19,12 +19,18 @@
     }
 
     .card {
-      width: 300px;
+      width: 350px;
       background: rgb(7, 9, 7);
       border: 1px solid rgb(60, 60, 60);
       padding: 22px 30px;
       position: relative;
       overflow: hidden;
+      animation: expand 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes expand {
+      from { width: 0; padding-left: 0; padding-right: 0; border-width: 0; }
+      to   { width: 350px; padding-left: 30px; padding-right: 30px; border-width: 1px; }
     }
 
     .card::after {
@@ -221,6 +227,11 @@
 
     function runCycle() {
       clearAll();
+      const card = document.querySelector('.card');
+      card.style.animation = 'none';
+      card.offsetHeight; // force reflow
+      card.style.animation = '';
+      setTimeout(() => {
 
       let done = 0;
       function onLineDone() {
@@ -234,10 +245,11 @@
         if (leftover) leftover.remove();
         typeInto(document.getElementById('v3b'), 'lab.abioladeyeye.com', 48, onLineDone);
       });
+      }, 700); // wait for expand animation
     }
 
-    // wait for fonts to load before starting
-    document.fonts.ready.then(() => setTimeout(runCycle, 400));
+    // wait for fonts + expand animation before starting
+    document.fonts.ready.then(() => setTimeout(runCycle, 1100));
   </script>
 </body>
 </html>
