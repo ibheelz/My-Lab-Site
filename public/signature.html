@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Signature</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500&family=Source+Code+Pro:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: rgb(7, 9, 7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: 'Oxanium', sans-serif;
+    }
+
+    .card {
+      width: fit-content;
+      background: rgb(7, 9, 7);
+      border: 1px solid rgb(60, 60, 60);
+      padding: 22px 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        180deg,
+        transparent 0px,
+        transparent 4.5px,
+        rgba(255, 255, 255, 0.03) 4.5px,
+        rgba(255, 255, 255, 0.03) 6px
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .content { position: relative; z-index: 2; }
+
+    .line {
+      margin-bottom: 10px;
+      font-size: 14px;
+      line-height: 1.6;
+      min-height: 22px;
+      white-space: nowrap;
+    }
+
+    .line:last-child { margin-bottom: 0; }
+
+    /* terminal line 1 — Source Code Pro for the mono feel */
+    .prompt { color: rgb(0, 255, 106); font-weight: 500; font-size: 14px; }
+    .role   { color: rgb(255, 255, 255); font-weight: 400; font-size: 14px; }
+
+    /* lines 2 & 3 */
+    #v2, #v3a { color: rgb(120, 181, 255); font-size: 13.5px; }
+    #v3b       { color: rgb(255, 255, 255); font-size: 13.5px; }
+
+    /* cursors */
+    .cursor-block {
+      display: inline-block;
+      width: 9px;
+      height: 14px;
+      background: rgb(0, 255, 106);
+      margin-left: 2px;
+      vertical-align: middle;
+      box-shadow: 0 0 7px rgb(0, 255, 106);
+      animation: blink 1.06s step-end infinite;
+    }
+
+    .cursor-rest {
+      display: inline-block;
+      width: 9px;
+      height: 14px;
+      background: rgb(0, 255, 106);
+      margin-left: 2px;
+      vertical-align: middle;
+      box-shadow: 0 0 7px rgb(0, 255, 106);
+      animation: blink 1.06s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    /* GradientScanner — matches the lab site exactly */
+    .scanner {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 3;
+    }
+
+    .scanner-bar {
+      position: absolute;
+      width: 100%;
+      height: 400%;
+      background: linear-gradient(
+        180deg,
+        transparent 0%,
+        transparent 38%,
+        rgba(0, 255, 106, 0.9) 50%,
+        transparent 62%,
+        transparent 100%
+      );
+      animation: scan 14s linear infinite;
+    }
+
+    .scanner-bar:nth-child(2) { animation-delay: -2s;  }
+    .scanner-bar:nth-child(3) { animation-delay: -4s;  }
+    .scanner-bar:nth-child(4) { animation-delay: -6s;  }
+    .scanner-bar:nth-child(5) { animation-delay: -8s;  }
+    .scanner-bar:nth-child(6) { animation-delay: -10s; }
+    .scanner-bar:nth-child(7) { animation-delay: -12s; }
+
+    @keyframes scan {
+      0%   { transform: translateY(-400%); opacity: 0;    }
+      5%   { transform: translateY(-400%); opacity: 0.20; }
+      95%  { transform: translateY(100%);  opacity: 0.20; }
+      100% { transform: translateY(100%);  opacity: 0;    }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="scanner">
+      <div class="scanner-bar"></div>
+      <div class="scanner-bar"></div>
+      <div class="scanner-bar"></div>
+      <div class="scanner-bar"></div>
+      <div class="scanner-bar"></div>
+      <div class="scanner-bar"></div>
+      <div class="scanner-bar"></div>
+    </div>
+    <div class="content">
+
+      <!-- line 1: abiola@adeyeye:~$ (green) + it-support-specialist (white) -->
+      <div class="line">
+        <span class="prompt" id="seg-prompt"></span><span class="role" id="seg-role"></span>
+      </div>
+
+      <!-- line 2: Lagos, Nigeria | +234 902 448 1896 (light blue) -->
+      <div class="line"><span id="v2"></span></div>
+
+      <!-- line 3: visit label + url -->
+      <div class="line"><span id="v3a"></span><span id="v3b"></span></div>
+
+    </div>
+  </div>
+
+  <script>
+    const LOOP_PAUSE = 10000;
+
+    function typeInto(el, text, speed, onDone) {
+      const block = document.createElement('span');
+      block.className = 'cursor-block';
+      el.appendChild(block);
+
+      let i = 0;
+      (function tick() {
+        if (i < text.length) {
+          block.insertAdjacentText('beforebegin', text[i++]);
+          setTimeout(tick, speed + (Math.random() * 16 - 8));
+        } else {
+          const rest = document.createElement('span');
+          rest.className = 'cursor-rest';
+          block.replaceWith(rest);
+          onDone && onDone();
+        }
+      })();
+    }
+
+    function typeLine1(onDone) {
+      const segments = [
+        { el: 'seg-prompt', text: 'abiola@adeyeye:~$',    speed: 68 },
+        { el: 'seg-role',   text: 'it-support-specialist', speed: 55 },
+      ];
+
+      function nextSeg(i) {
+        if (i >= segments.length) { onDone && onDone(); return; }
+        const { el, text, speed } = segments[i];
+        const span  = document.getElementById(el);
+        const block = document.createElement('span');
+        block.className = 'cursor-block';
+        span.appendChild(block);
+
+        let j = 0;
+        (function tick() {
+          if (j < text.length) {
+            block.insertAdjacentText('beforebegin', text[j++]);
+            setTimeout(tick, speed + (Math.random() * 16 - 8));
+          } else {
+            block.remove();
+            if (i === segments.length - 1) {
+              const rest = document.createElement('span');
+              rest.className = 'cursor-rest';
+              span.appendChild(rest);
+              onDone && onDone();
+            } else {
+              nextSeg(i + 1);
+            }
+          }
+        })();
+      }
+      nextSeg(0);
+    }
+
+    function clearAll() {
+      ['seg-prompt', 'seg-role', 'v2', 'v3a', 'v3b'].forEach(id => {
+        document.getElementById(id).innerHTML = '';
+      });
+    }
+
+    function runCycle() {
+      clearAll();
+
+      let done = 0;
+      function onLineDone() {
+        if (++done === 3) setTimeout(runCycle, LOOP_PAUSE);
+      }
+
+      typeLine1(onLineDone);
+      typeInto(document.getElementById('v2'), 'Lagos, Nigeria  |  +234 902 448 1896', 48, onLineDone);
+      typeInto(document.getElementById('v3a'), 'visit: ', 48, () => {
+        typeInto(document.getElementById('v3b'), 'lab.abioladeyeye.com', 48, onLineDone);
+      });
+    }
+
+    // wait for fonts to load before starting
+    document.fonts.ready.then(() => setTimeout(runCycle, 400));
+  </script>
+</body>
+</html>
