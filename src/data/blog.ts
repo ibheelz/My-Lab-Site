@@ -21,6 +21,7 @@ export interface BlogSection {
   links?: Array<{ label: string; href: string }>;
   title?: string;
   children?: BlogSection[];
+  boldLead?: boolean;
 }
 
 export const posts: BlogPost[] = [
@@ -28,7 +29,7 @@ export const posts: BlogPost[] = [
   // ── Lab 1 ──────────────────────────────────────────────────────────────────
   {
     slug: "zcdc01-windows-domain-from-scratch",
-    title: "Setting up a Windows Active Directory Domain Services — Part 1",
+    title: "Setting up a Windows Active Directory Domain Services: Part 1",
     description: "Built a Windows Server 2025 Active Directory domain from scratch. VM setup, DNS, DHCP, OU structure, user accounts, and remote access. Managed the whole build from a MacBook over RDP.",
     category: "Windows Lab",
     color: "rgb(192, 132, 252)",
@@ -66,7 +67,7 @@ export const posts: BlogPost[] = [
             type: "img",
             content: "/images/blog/zcdc01/00-vm-details.png",
             alt: "VirtualBox VM details for ZCDC01 showing Windows Server 2025 64-bit, 4 GB RAM, 2 CPUs, 60 GB disk, and bridged network adapter",
-            caption: "00. VirtualBox VM details — ZCDC01 running Windows Server 2025, 4 GB RAM, 60 GB disk, bridged adapter.",
+            caption: "00. VirtualBox VM details: ZCDC01 running Windows Server 2025, 4 GB RAM, 60 GB disk, bridged adapter.",
           },
           {
             type: "aside",
@@ -147,7 +148,7 @@ export const posts: BlogPost[] = [
           },
           {
             type: "aside",
-            content: "After the Active Directory promotion, the DNS service on this machine takes over and reconfigures the NIC to use itself as the resolver. Setting loopback at this stage avoids a chicken-and-egg problem during promotion. Every machine on the network will use this server as its DNS resolver and Kerberos authentication endpoint — if the server's IP changed, clients could no longer find it and logins, domain joins, and name lookups would all fail. A static address makes its location fixed and predictable.",
+            content: "After the Active Directory promotion, the DNS service on this machine takes over and reconfigures the NIC to use itself as the resolver. Setting loopback at this stage avoids a chicken-and-egg problem during promotion. Every machine on the network will use this server as its DNS resolver and Kerberos authentication endpoint. If the server's IP changed, clients could no longer find it and logins, domain joins, and name lookups would all fail. A static address makes its location fixed and predictable.",
           },
 
           { type: "h3", content: "Task 7: Create the Forest zenithcreative.com" },
@@ -164,7 +165,7 @@ export const posts: BlogPost[] = [
           },
           {
             type: "aside",
-            content: "Installing the role and promoting the server are two distinct steps. Installing copies the AD DS binaries onto the machine — it adds the capability but changes nothing else. Promotion runs the actual configuration: it creates the AD database and SYSVOL folders, builds the DNS zone for zenithcreative.com, sets up Kerberos, and turns the server from a standalone Windows machine into a domain controller. A server with the role installed but not promoted cannot do any of that.",
+            content: "Installing the role and promoting the server are two distinct steps. Installing copies the AD DS binaries onto the machine: it adds the capability but changes nothing else. Promotion runs the actual configuration: it creates the AD database and SYSVOL folders, builds the DNS zone for zenithcreative.com, sets up Kerberos, and turns the server from a standalone Windows machine into a domain controller. A server with the role installed but not promoted cannot do any of that.",
           },
 
           { type: "h3", content: "Task 8: Resolve Internal and Internet Names" },
@@ -200,7 +201,7 @@ export const posts: BlogPost[] = [
           },
           {
             type: "aside",
-            content: "The domain controller holds the authoritative DNS zone for zenithcreative.com and answers those queries itself. For any name it does not hold a record for, it forwards the query to 192.168.1.1. Without that forwarder every computer on the network would use this server as its only DNS resolver, meaning staff could authenticate and reach company resources but could not load any website or reach any external service. When it answers zenithcreative.com the response is authoritative — it holds the record directly. When it answered google.com the response was non-authoritative — it forwarded the query upstream to get the answer.",
+            content: "The domain controller holds the authoritative DNS zone for zenithcreative.com and answers those queries itself. For any name it does not hold a record for, it forwards the query to 192.168.1.1. Without that forwarder every computer on the network would use this server as its only DNS resolver, meaning staff could authenticate and reach company resources but could not load any website or reach any external service. When it answers zenithcreative.com the response is authoritative: it holds the record directly. When it answered google.com the response was non-authoritative: it forwarded the query upstream to get the answer.",
           },
 
           { type: "h3", content: "Tasks 9 and 10: Enable Remote Desktop and Confirm Connectivity" },
@@ -225,7 +226,7 @@ export const posts: BlogPost[] = [
             type: "img",
             content: "/images/blog/zcdc01/05a-ping-fail.png",
             alt: "MacBook terminal showing ping to 192.168.1.200 timing out with 100% packet loss before the ICMPv4 firewall rule was enabled",
-            caption: "05a. Ping failing before the rule — 100% packet loss. The server is up; ICMP is just blocked by default.",
+            caption: "05a. Ping failing before the rule. 100% packet loss. The server is up; ICMP is just blocked by default.",
           },
           { type: "label", content: "PowerShell equivalent:" },
           {
@@ -250,7 +251,7 @@ export const posts: BlogPost[] = [
           },
           {
             type: "aside",
-            content: "RDP connecting while ping fails is a useful diagnostic combination — it confirms the server is up and the network path is open. Ping failing alone just means the Windows firewall is blocking ICMP, which is the default on Windows Server. It is not a server problem or a network problem.",
+            content: "RDP connecting while ping fails is a useful diagnostic combination. It confirms the server is up and the network path is open. Ping failing alone just means the Windows firewall is blocking ICMP, which is the default on Windows Server. It is not a server problem or a network problem.",
           },
 
         ],
@@ -315,7 +316,7 @@ export const posts: BlogPost[] = [
           },
           {
             type: "aside",
-            content: "Users live in OUs rather than the default Users container because only OUs can receive Group Policy Objects and delegated control. IT Admins sits beside Staff rather than inside it because any Group Policy linked to the Staff OU must never apply to admin accounts — structural separation makes that guarantee permanent.",
+            content: "Users live in OUs rather than the default Users container because only OUs can receive Group Policy Objects and delegated control. IT Admins sits beside Staff rather than inside it because any Group Policy linked to the Staff OU must never apply to admin accounts. Structural separation makes that guarantee permanent.",
           },
 
           { type: "h3", content: "Tasks 12 to 15: User Accounts and Personal Admin Account" },
@@ -380,7 +381,7 @@ export const posts: BlogPost[] = [
           },
           {
             type: "aside",
-            content: "Permissions are assigned to the groups, not to individual user accounts. Adding or removing someone from a group is the only action needed to grant or revoke access — onboarding and offboarding both become a single operation.",
+            content: "Permissions are assigned to the groups, not to individual user accounts. Adding or removing someone from a group is the only action needed to grant or revoke access. Onboarding and offboarding both become a single operation.",
           },
 
         ],
@@ -454,7 +455,7 @@ export const posts: BlogPost[] = [
           },
           {
             type: "aside",
-            content: "Deleting the account destroys its Security Identifier. A recreated account gets a new SID, which means every group membership and every file permission that referenced the original SID is permanently gone. Disabling preserves everything — one click re-enables the account and she continues exactly where she left off.",
+            content: "Deleting the account destroys its Security Identifier. A recreated account gets a new SID, which means every group membership and every file permission that referenced the original SID is permanently gone. Disabling preserves everything. One click re-enables the account and she continues exactly where she left off.",
           },
 
           { type: "h3", content: "Ticket 1044" },
@@ -490,7 +491,7 @@ export const posts: BlogPost[] = [
           },
           {
             type: "aside",
-            content: "Access is on the group, not the individual. Matching Funmi's groups gives Kemi the correct permissions in a single addition — there are no individual permission entries to audit or miss.",
+            content: "Access is on the group, not the individual. Matching Funmi's groups gives Kemi the correct permissions in a single addition. There are no individual permission entries to audit or miss.",
           },
 
         ],
@@ -522,7 +523,7 @@ export const posts: BlogPost[] = [
           },
           {
             type: "aside",
-            content: "Using adm.abiola rather than the built-in Administrator account matters for two reasons. Every action in the domain event log is attributed to a specific person, not a shared account anyone with the password could be. The built-in Administrator is also a known target — it exists in every domain by default, its name is predictable, and attackers probe it first.",
+            content: "Using adm.abiola rather than the built-in Administrator account matters for two reasons. Every action in the domain event log is attributed to a specific person, not a shared account anyone with the password could be. The built-in Administrator is also a known target: it exists in every domain by default, its name is predictable, and attackers probe it first.",
           },
 
         ],
@@ -534,7 +535,7 @@ export const posts: BlogPost[] = [
   // ── Lab 2 ──────────────────────────────────────────────────────────────────
   {
     slug: "zcdc02-gpo-file-shares-and-automation",
-    title: "Active Directory: Group Policy, File Shares and Automation — Part 2",
+    title: "Active Directory: Group Policy, File Shares and Automation: Part 2",
     description: "I joined a Windows 11 workstation to the domain, automated bulk user creation with PowerShell, locked down workstations with GPOs, configured file shares with NTFS permissions, and set up automatic drive mapping.",
     category: "Windows Lab",
     color: "rgb(192, 132, 252)",
@@ -581,7 +582,7 @@ export const posts: BlogPost[] = [
           },
           {
             type: "aside",
-            content: "Moving the computer to the Workstations OU immediately matters. Any GPO linked to Workstations will not apply until the computer object sits in that OU — leaving it in the default Computers container means those policies never reach it.",
+            content: "Moving the computer to the Workstations OU immediately matters. Any GPO linked to Workstations will not apply until the computer object sits in that OU. Leaving it in the default Computers container means those policies never reach it.",
           },
 
           { type: "h3", content: "Task 2: Create New Hire Accounts via PowerShell" },
@@ -662,7 +663,7 @@ export const posts: BlogPost[] = [
           },
           {
             type: "aside",
-            content: "Account expiry is a safety net. If the offboarding request never arrives when the contractor finishes, the account still closes on schedule — setting it at account creation means no future action is required.",
+            content: "Account expiry is a safety net. If the offboarding request never arrives when the contractor finishes, the account still closes on schedule. Setting it at account creation means no future action is required.",
           },
 
           { type: "h3", content: "Task 4: Offboard a Resigned Staff Member" },
@@ -670,12 +671,13 @@ export const posts: BlogPost[] = [
           { type: "h3", content: "5 Crucial Offboarding Steps" },
           {
             type: "ul",
+            boldLead: true,
             content: [
-              "Disable the account immediately — prevents the user from logging in while the account still exists for audit purposes.",
-              "Reset the password to a random string — ensures the former employee cannot regain access even if the disable is reversed.",
-              "Remove from all security groups — revokes access to file shares, printers, and any resource gated by group membership.",
-              "Update the account description — records the leave date and reason directly on the AD object for future reference.",
-              "Move to the Leavers OU — separates the object from active staff, keeps it out of GPO scope, and makes it easy to locate or delete after the retention period.",
+              "Disable the account immediately: Prevents the user from logging in while the account still exists for audit purposes.",
+              "Reset the password to a random string: Ensures the former employee cannot regain access even if the disable is reversed.",
+              "Remove from all security groups: Revokes access to file shares, printers, and any resource gated by group membership.",
+              "Update the account description: Records the leave date and reason directly on the AD object for future reference.",
+              "Move to the Leavers OU: Separates the object from active staff, keeps it out of GPO scope, and makes it easy to locate or delete after the retention period.",
             ],
           },
           {
@@ -841,7 +843,7 @@ export const posts: BlogPost[] = [
           },
           {
             type: "aside",
-            content: "Because the policy is under User Configuration, it follows the user — it applies to any machine a staff member logs into, not just machines in the Workstations OU.",
+            content: "Because the policy is under User Configuration, it follows the user. It applies to any machine a staff member logs into, not just machines in the Workstations OU.",
           },
           { type: "navpath", content: "GPM > zenithcreative.com > Staff > Linked Group Policy Objects" },
           {
@@ -903,7 +905,7 @@ export const posts: BlogPost[] = [
             type: "img",
             content: "/images/blog/zcdc02/13b-removable-storage-deny.png",
             alt: "Group Policy Management Editor showing All Removable Storage classes Deny all access set to Enabled",
-            caption: "13b. All Removable Storage classes: Deny all access — Enabled.",
+            caption: "13b. All Removable Storage classes: Deny all access. Enabled.",
           },
           {
             type: "aside",
@@ -997,7 +999,7 @@ export const posts: BlogPost[] = [
             type: "img",
             content: "/images/blog/zcdc02/15b-wallpaper-gpme-desktop.png",
             alt: "Group Policy Management Editor Desktop section of ZC Wallpaper GPO showing the Desktop Wallpaper setting listed as Enabled",
-            caption: "15b. Desktop Wallpaper in the ZC Wallpaper GPO Desktop section — Enabled.",
+            caption: "15b. Desktop Wallpaper in the ZC Wallpaper GPO Desktop section. Enabled.",
           },
           { type: "navpath", content: "GPME > ZC Wallpaper > User Configuration > Administrative Templates > Desktop > Desktop > Desktop Wallpaper" },
           {
@@ -1038,7 +1040,7 @@ export const posts: BlogPost[] = [
               "I created a new GPO called ZC 7zip Software Installer and linked it to the Workstations OU. Inside GPME I navigated to Computer Configuration > Software Settings > Software Installation, right-clicked the pane, and selected New > Package. In the file browser I typed the full UNC path into the address bar, opened the software folder, selected 7z2409-x64.msi, and clicked Open. A dialog asks whether to deploy as Published or Assigned. I chose Assigned.",
           },
           { type: "note", content: "Assigned vs Published: Assigned installs the software automatically at computer startup with no user involvement. Published makes it available for users to install manually from Control Panel but does not push it automatically. For a tool the whole organisation needs, Assigned is the correct choice." },
-          { type: "p", content: "I also enabled Always wait for the network at computer startup and logon. Without this, Group Policy runs asynchronously in the background and the login screen can appear before the software installation has finished. Enabling it forces a full synchronous Group Policy cycle to complete — including the software install — before the login screen appears." },
+          { type: "p", content: "I also enabled Always wait for the network at computer startup and logon. Without this, Group Policy runs asynchronously in the background and the login screen can appear before the software installation has finished. Enabling it forces a full synchronous Group Policy cycle to complete, including the software install, before the login screen appears." },
           { type: "navpath", content: "File Explorer > Network > ZCDC01.zenithcreative.com > NETLOGON > software" },
           {
             type: "img",
@@ -1129,7 +1131,7 @@ export const posts: BlogPost[] = [
             type: "img",
             content: "/images/blog/zcdc02/17f-add-printer-sharing.png",
             alt: "Add Printer wizard Printer Sharing step showing Share this printer selected with share name ZCDesignPrinter",
-            caption: "17f. Printer sharing enabled. Share name ZCDesignPrinter — this is what the GPO UNC path points to.",
+            caption: "17f. Printer sharing enabled. Share name ZCDesignPrinter: this is what the GPO UNC path points to.",
           },
           { type: "navpath", content: "ZCDC01 > Settings > Printers & scanners > Add Printer > Finish" },
           {
@@ -1301,7 +1303,7 @@ export const posts: BlogPost[] = [
             type: "img",
             content: "/images/blog/zcdc02/20i-permission-entry-permissions.png",
             alt: "Permission Entry for DesignFiles showing DL DesignFiles Modify as principal with Modify Read and Execute List Read and Write permissions checked",
-            caption: "20i. DL DesignFiles Modify granted Modify access. Full Control unchecked — Design Staff can read and write but not change ownership.",
+            caption: "20i. DL DesignFiles Modify granted Modify access. Full Control unchecked: Design Staff can read and write but not change ownership.",
           },
           { type: "navpath", content: "New Share Wizard > Permissions (updated)" },
           {
@@ -1338,7 +1340,7 @@ export const posts: BlogPost[] = [
             alt: "Server Manager Shares view now showing four shares: NETLOGON, print dollar, SYSVOL, and DesignFiles at C:\\Shares\\DesignFiles",
             caption: "20n. Server Manager confirms DesignFiles is now listed alongside the built-in shares.",
           },
-          { type: "note", content: "I repeated the exact same wizard steps above to create the FinanceFiles share: New Share > SMB Quick, same folder path pattern, block inheritance, remove defaults, add DL FinanceFiles Modify with Modify access and Administrators with Full Control. The process is identical — only the share name and DL group change." },
+          { type: "note", content: "I repeated the exact same wizard steps above to create the FinanceFiles share: New Share > SMB Quick, same folder path pattern, block inheritance, remove defaults, add DL FinanceFiles Modify with Modify access and Administrators with Full Control. The process is identical: only the share name and DL group change." },
           { type: "navpath", content: "ZCDC01 > File Explorer > Public > Advanced Security Settings" },
           {
             type: "img",
@@ -1443,14 +1445,14 @@ export const posts: BlogPost[] = [
             type: "img",
             content: "/images/blog/zcdc02/22h-targeting-domain-users.png",
             alt: "Targeting Editor showing the user is a member of the security group ZENITH\\Domain Users for the P drive mapping",
-            caption: "22h. P: drive targeting: Domain Users — maps the Public share for everyone on Staff, no group restriction.",
+            caption: "22h. P: drive targeting: Domain Users maps the Public share for everyone on Staff, no group restriction.",
           },
           { type: "navpath", content: "GPME > ZC Drive Maps > User Configuration > Preferences > Windows Settings > Drive Maps" },
           {
             type: "img",
             content: "/images/blog/zcdc02/22i-drive-maps-configured.png",
             alt: "Group Policy Management Editor Drive Maps showing S drive to DesignFiles, F drive to FinanceFiles, and P drive to Public, all with action Replace",
-            caption: "22i. ZC Drive Maps: S:, F:, and P: configured with item-level targeting per group. S: was set up first (shown in earlier screenshots). I repeated the same steps to add F: for DL FinanceFiles Modify members, and P: for everyone — P: has no security group condition so it maps for all Staff OU users regardless of department.",
+            caption: "22i. ZC Drive Maps: S:, F:, and P: configured with item-level targeting per group. S: was set up first (shown in earlier screenshots). I repeated the same steps to add F: for DL FinanceFiles Modify members, and P: for everyone. P: has no security group condition so it maps for all Staff OU users regardless of department.",
           },
           { type: "navpath", content: "ZCPC01 > This PC (Design Staff drives after logon)" },
           {

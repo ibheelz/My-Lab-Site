@@ -129,16 +129,19 @@ function SectionContent({ section, isFirst, noHighlight }: { section: BlogSectio
         </h2>
       );
 
-    case "h3":
+    case "h3": {
+      const h3Text = section.content as string;
+      const isBoldWhite = h3Text === "5 Crucial Offboarding Steps";
       return (
         <h3
-          id={slugify(section.content as string)}
+          id={slugify(h3Text)}
           className="text-sm tablet:text-base"
-          style={{ color: CYAN, margin: "8px 0 0", fontWeight: 500 }}
+          style={{ color: isBoldWhite ? "rgb(249, 115, 22)" : CYAN, margin: "8px 0 0", fontWeight: isBoldWhite ? 700 : 500 }}
         >
-          {section.content as string}
+          {h3Text}
         </h3>
       );
+    }
 
     case "tasklist":
       return (
@@ -191,16 +194,28 @@ function SectionContent({ section, isFirst, noHighlight }: { section: BlogSectio
     case "ul":
       return (
         <ul className="flex flex-col gap-2" style={{ margin: 0, paddingLeft: "0" }}>
-          {(section.content as string[]).map((item, j) => (
-            <li
-              key={j}
-              className="text-sm tablet:text-base leading-relaxed flex gap-3"
-              style={{ color: BLUE, listStyle: "none" }}
-            >
-              <span style={{ color: NEON, flexShrink: 0 }}>▸</span>
-              {item}
-            </li>
-          ))}
+          {(section.content as string[]).map((item, j) => {
+            if (section.boldLead) {
+              const colonIdx = item.indexOf(":");
+              const lead = colonIdx !== -1 ? item.slice(0, colonIdx) : item;
+              const rest = colonIdx !== -1 ? item.slice(colonIdx) : "";
+              return (
+                <li key={j} className="text-sm tablet:text-base leading-relaxed flex gap-3" style={{ listStyle: "none" }}>
+                  <span style={{ color: NEON, flexShrink: 0 }}>▸</span>
+                  <span>
+                    <span style={{ color: "rgb(255, 255, 255)", fontWeight: 700 }}>{lead}</span>
+                    <span style={{ color: BLUE }}>{rest}</span>
+                  </span>
+                </li>
+              );
+            }
+            return (
+              <li key={j} className="text-sm tablet:text-base leading-relaxed flex gap-3" style={{ color: BLUE, listStyle: "none" }}>
+                <span style={{ color: NEON, flexShrink: 0 }}>▸</span>
+                {item}
+              </li>
+            );
+          })}
         </ul>
       );
 

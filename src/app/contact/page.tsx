@@ -187,7 +187,7 @@ export default function Contact() {
               <div className="flex flex-col gap-4 p-6" style={{ border: `1px dashed ${NEON}` }}>
                 <span style={{ color: NEON, fontSize: "16px" }}>Message sent.</span>
                 <p style={{ color: BLUE, fontSize: "14px", lineHeight: "1.8em", margin: 0 }}>
-                  Thanks for reaching out — I&apos;ll get back to you within 24 hours.
+                  Thanks for reaching out. I&apos;ll get back to you within 24 hours.
                 </p>
                 <button
                   onClick={() => { setSent(false); setForm({ name: "", email: "", message: "" }); }}
