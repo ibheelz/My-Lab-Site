@@ -157,15 +157,57 @@ export const posts: BlogPost[] = [
             content:
               "I installed the Active Directory Domain Services role through Server Manager, then clicked the yellow flag notification and selected Promote this server to a domain controller. I chose Add a new forest, entered zenithcreative.com as the root domain name, and set the NetBIOS name to ZENITH. I left the DNS option checked, set a strong DSRM recovery password, ran through the prerequisites check, and clicked Install. The server restarted automatically. After the restart I logged in as ZENITH\\Administrator and confirmed the domain was live.",
           },
+          { type: "navpath", content: "Server Manager > Local Server > Manage" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc01/03a-add-roles-features.png",
+            alt: "Server Manager Local Server Properties for ZCDC01 with the Manage menu open and Add Roles and Features highlighted",
+            caption: "03a. Manage menu on ZCDC01. Add Roles and Features is the entry point for installing the AD DS role.",
+          },
+          { type: "navpath", content: "Add Roles and Features Wizard > Server Roles" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc01/03b-select-ad-ds-role.png",
+            alt: "Add Roles and Features Wizard Server Roles page with Active Directory Domain Services checked",
+            caption: "03b. Active Directory Domain Services checked in the server roles list.",
+          },
+          { type: "navpath", content: "Add Roles and Features Wizard > Server Roles > Add Features" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc01/03c-add-features-dialog.png",
+            alt: "Add features required for Active Directory Domain Services dialog listing Group Policy Management and Remote Server Administration Tools",
+            caption: "03c. Required features added automatically: Group Policy Management and the AD DS administration tools.",
+          },
+          { type: "navpath", content: "Add Roles and Features Wizard > Results" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc01/03d-installation-complete.png",
+            alt: "Add Roles and Features Wizard Results page showing Installation succeeded on ZCDC01.zenithcreative.com with a Promote this server to a domain controller link",
+            caption: "03d. Installation succeeded on ZCDC01.zenithcreative.com. The Promote link triggers the next step.",
+          },
+          { type: "navpath", content: "Server Manager > Local Server > Post-deployment Configuration" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc01/03e-post-deploy-notify.png",
+            alt: "Server Manager Local Server with a Post-deployment Configuration notification showing Configuration required for Active Directory Domain Services at ZCDC01 and a Promote this server to a domain controller link",
+            caption: "03e. Post-deployment notification confirms AD DS is installed and waiting for promotion.",
+          },
+          { type: "navpath", content: "AD DS Configuration Wizard > Deployment Configuration" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc01/03f-deployment-config.png",
+            alt: "Active Directory Domain Services Configuration Wizard Deployment Configuration page with Add a new forest selected and zenithcreative.com entered as the root domain name",
+            caption: "03f. Add a new forest selected. Root domain name set to zenithcreative.com.",
+          },
+          {
+            type: "aside",
+            content: "Installing the role and promoting the server are two distinct steps. Installing copies the AD DS binaries onto the machine: it adds the capability but changes nothing else. Promotion runs the actual configuration: it creates the AD database and SYSVOL folders, builds the DNS zone for zenithcreative.com, sets up Kerberos, and turns the server from a standalone Windows machine into a domain controller. A server with the role installed but not promoted cannot do any of that.",
+          },
           { type: "label", content: "PowerShell equivalent:" },
           {
             type: "code",
             content:
               "Install-WindowsFeature AD-Domain-Services -IncludeManagementTools\n  # installs the Active Directory role and its admin tools onto the server\nInstall-ADDSForest -DomainName \"zenithcreative.com\" -DomainNetbiosName \"ZENITH\" -InstallDns\n  # promotes the server: creates the forest, domain, AD database and DNS zone\nGet-ADDomain\n  # prints domain details to confirm promotion succeeded",
-          },
-          {
-            type: "aside",
-            content: "Installing the role and promoting the server are two distinct steps. Installing copies the AD DS binaries onto the machine: it adds the capability but changes nothing else. Promotion runs the actual configuration: it creates the AD database and SYSVOL folders, builds the DNS zone for zenithcreative.com, sets up Kerberos, and turns the server from a standalone Windows machine into a domain controller. A server with the role installed but not promoted cannot do any of that.",
           },
 
           { type: "h3", content: "Task 8: Resolve Internal and Internet Names" },
@@ -185,12 +227,6 @@ export const posts: BlogPost[] = [
             content:
               "ping zenithcreative.com\n  # confirms the domain controller answers for its own domain\nping google.com\n  # confirms internet names resolve through the forwarder",
           },
-          { type: "label", content: "PowerShell equivalent:" },
-          {
-            type: "code",
-            content:
-              "Get-DnsServerForwarder\n  # lists the IP addresses the DNS server forwards unknown queries to\nAdd-DnsServerForwarder -IPAddress 192.168.1.1\n  # adds the router as a forwarder if one is not already configured",
-          },
           { type: "navpath", content: "ZCDC01 > Windows PowerShell" },
           {
             type: "img",
@@ -202,6 +238,12 @@ export const posts: BlogPost[] = [
           {
             type: "aside",
             content: "The domain controller holds the authoritative DNS zone for zenithcreative.com and answers those queries itself. For any name it does not hold a record for, it forwards the query to 192.168.1.1. Without that forwarder every computer on the network would use this server as its only DNS resolver, meaning staff could authenticate and reach company resources but could not load any website or reach any external service. When it answers zenithcreative.com the response is authoritative: it holds the record directly. When it answered google.com the response was non-authoritative: it forwarded the query upstream to get the answer.",
+          },
+          { type: "label", content: "PowerShell equivalent:" },
+          {
+            type: "code",
+            content:
+              "Get-DnsServerForwarder\n  # lists the IP addresses the DNS server forwards unknown queries to\nAdd-DnsServerForwarder -IPAddress 192.168.1.1\n  # adds the router as a forwarder if one is not already configured",
           },
 
           { type: "h3", content: "Tasks 9 and 10: Enable Remote Desktop and Confirm Connectivity" },
@@ -280,12 +322,6 @@ export const posts: BlogPost[] = [
             content:
               "zenithcreative.com\n └── Zenith\n      ├── Staff\n      │    ├── Design\n      │    └── Finance\n      └── IT Admins",
           },
-          { type: "label", content: "PowerShell equivalent:" },
-          {
-            type: "code",
-            content:
-              "New-ADOrganizationalUnit -Name \"Zenith\" -Path \"DC=zenithcreative,DC=com\"\nNew-ADOrganizationalUnit -Name \"Staff\" -Path \"OU=Zenith,DC=zenithcreative,DC=com\"\nNew-ADOrganizationalUnit -Name \"Design\" -Path \"OU=Staff,OU=Zenith,DC=zenithcreative,DC=com\"\nNew-ADOrganizationalUnit -Name \"Finance\" -Path \"OU=Staff,OU=Zenith,DC=zenithcreative,DC=com\"\nNew-ADOrganizationalUnit -Name \"IT Admins\" -Path \"OU=Zenith,DC=zenithcreative,DC=com\"\n  # each line creates one OU at the given path in the directory",
-          },
           { type: "navpath", content: "ADUC > zenithcreative.com" },
           {
             type: "img",
@@ -317,6 +353,12 @@ export const posts: BlogPost[] = [
           {
             type: "aside",
             content: "Users live in OUs rather than the default Users container because only OUs can receive Group Policy Objects and delegated control. IT Admins sits beside Staff rather than inside it because any Group Policy linked to the Staff OU must never apply to admin accounts. Structural separation makes that guarantee permanent.",
+          },
+          { type: "label", content: "PowerShell equivalent:" },
+          {
+            type: "code",
+            content:
+              "New-ADOrganizationalUnit -Name \"Zenith\" -Path \"DC=zenithcreative,DC=com\"\nNew-ADOrganizationalUnit -Name \"Staff\" -Path \"OU=Zenith,DC=zenithcreative,DC=com\"\nNew-ADOrganizationalUnit -Name \"Design\" -Path \"OU=Staff,OU=Zenith,DC=zenithcreative,DC=com\"\nNew-ADOrganizationalUnit -Name \"Finance\" -Path \"OU=Staff,OU=Zenith,DC=zenithcreative,DC=com\"\nNew-ADOrganizationalUnit -Name \"IT Admins\" -Path \"OU=Zenith,DC=zenithcreative,DC=com\"\n  # each line creates one OU at the given path in the directory",
           },
 
           { type: "h3", content: "Tasks 12 to 15: User Accounts and Personal Admin Account" },
@@ -352,12 +394,6 @@ export const posts: BlogPost[] = [
             content:
               "I created a Design Staff security group inside the Design OU and added ceze. I created a Finance Staff security group inside the Finance OU and added fadebayo.",
           },
-          { type: "label", content: "PowerShell equivalent:" },
-          {
-            type: "code",
-            content:
-              "New-ADGroup -Name \"Design Staff\" -GroupScope Global -GroupCategory Security -Path \"OU=Design,OU=Staff,OU=Zenith,DC=zenithcreative,DC=com\"\n  # creates a security group in the Design OU\nAdd-ADGroupMember -Identity \"Design Staff\" -Members ceze\n  # adds a user to the group\nGet-ADGroupMember -Identity \"Design Staff\"\n  # lists the group's current members\nGet-ADPrincipalGroupMembership -Identity adm.abiola | Select-Object Name\n  # lists every group an account belongs to",
-          },
           { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > Staff > Design > Design Staff > Members" },
           {
             type: "img",
@@ -383,6 +419,12 @@ export const posts: BlogPost[] = [
             type: "aside",
             content: "Permissions are assigned to the groups, not to individual user accounts. Adding or removing someone from a group is the only action needed to grant or revoke access. Onboarding and offboarding both become a single operation.",
           },
+          { type: "label", content: "PowerShell equivalent:" },
+          {
+            type: "code",
+            content:
+              "New-ADGroup -Name \"Design Staff\" -GroupScope Global -GroupCategory Security -Path \"OU=Design,OU=Staff,OU=Zenith,DC=zenithcreative,DC=com\"\n  # creates a security group in the Design OU\nAdd-ADGroupMember -Identity \"Design Staff\" -Members ceze\n  # adds a user to the group\nGet-ADGroupMember -Identity \"Design Staff\"\n  # lists the group's current members\nGet-ADPrincipalGroupMembership -Identity adm.abiola | Select-Object Name\n  # lists every group an account belongs to",
+          },
 
         ],
       },
@@ -404,12 +446,6 @@ export const posts: BlogPost[] = [
             content:
               "I located Chide Eze in the Design OU in ADUC, right-clicked the account, and selected Reset Password. I set a temporary password and ticked the box requiring a change at next logon.",
           },
-          { type: "label", content: "PowerShell equivalent:" },
-          {
-            type: "code",
-            content:
-              "Set-ADAccountPassword -Identity ceze -Reset -NewPassword (Read-Host -AsSecureString \"New temporary password\")\n  # sets a new password without needing the old one\nSet-ADUser -Identity ceze -ChangePasswordAtLogon $true\n  # forces the user to choose their own password at next login\nUnlock-ADAccount -Identity ceze\n  # clears a lockout from too many failed attempts, if applicable",
-          },
           { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > Staff > Design > ceze > Reset Password" },
           {
             type: "img",
@@ -420,6 +456,12 @@ export const posts: BlogPost[] = [
           {
             type: "aside",
             content: "Admins can reset passwords but can never read them. Windows stores only a hash of each password, not the value itself. The forced change at next logon means the admin never knows the user's actual working password.",
+          },
+          { type: "label", content: "PowerShell equivalent:" },
+          {
+            type: "code",
+            content:
+              "Set-ADAccountPassword -Identity ceze -Reset -NewPassword (Read-Host -AsSecureString \"New temporary password\")\n  # sets a new password without needing the old one\nSet-ADUser -Identity ceze -ChangePasswordAtLogon $true\n  # forces the user to choose their own password at next login\nUnlock-ADAccount -Identity ceze\n  # clears a lockout from too many failed attempts, if applicable",
           },
 
           { type: "h3", content: "Ticket 1043" },
@@ -439,12 +481,6 @@ export const posts: BlogPost[] = [
             content:
               "I located Funmi Adebayo in the Finance OU, right-clicked her account, and selected Disable Account.",
           },
-          { type: "label", content: "PowerShell equivalent:" },
-          {
-            type: "code",
-            content:
-              "Disable-ADAccount -Identity fadebayo\n  # blocks all logins while keeping the account and its memberships intact\nGet-ADUser -Identity fadebayo | Select-Object Name, Enabled\n  # confirms Enabled is False\nEnable-ADAccount -Identity fadebayo\n  # for when she returns",
-          },
           { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > Staff > Finance > fadebayo > (right-click menu)" },
           {
             type: "img",
@@ -456,6 +492,12 @@ export const posts: BlogPost[] = [
           {
             type: "aside",
             content: "Deleting the account destroys its Security Identifier. A recreated account gets a new SID, which means every group membership and every file permission that referenced the original SID is permanently gone. Disabling preserves everything. One click re-enables the account and she continues exactly where she left off.",
+          },
+          { type: "label", content: "PowerShell equivalent:" },
+          {
+            type: "code",
+            content:
+              "Disable-ADAccount -Identity fadebayo\n  # blocks all logins while keeping the account and its memberships intact\nGet-ADUser -Identity fadebayo | Select-Object Name, Enabled\n  # confirms Enabled is False\nEnable-ADAccount -Identity fadebayo\n  # for when she returns",
           },
 
           { type: "h3", content: "Ticket 1044" },
@@ -475,12 +517,6 @@ export const posts: BlogPost[] = [
             content:
               "I checked Funmi's group memberships to know what access to copy, created a new user account for Kemi Johnson (kjohnson) in the Finance OU, and added her to the Finance Staff security group.",
           },
-          { type: "label", content: "PowerShell equivalent:" },
-          {
-            type: "code",
-            content:
-              "Get-ADPrincipalGroupMembership -Identity fadebayo | Select-Object Name\n  # checks Funmi's groups to know which ones to copy\nNew-ADUser -Name \"Kemi Johnson\" -GivenName Kemi -Surname Johnson -SamAccountName kjohnson -UserPrincipalName kjohnson@zenithcreative.com -Path \"OU=Finance,OU=Staff,OU=Zenith,DC=zenithcreative,DC=com\" -AccountPassword (Read-Host -AsSecureString \"Temporary password\") -ChangePasswordAtLogon $true -Enabled $true\n  # creates the account in the Finance OU\nAdd-ADGroupMember -Identity \"Finance Staff\" -Members kjohnson\n  # grants the same access as Funmi through the group",
-          },
           { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > Staff > Finance > kjohnson > Member Of" },
           {
             type: "img",
@@ -492,6 +528,12 @@ export const posts: BlogPost[] = [
           {
             type: "aside",
             content: "Access is on the group, not the individual. Matching Funmi's groups gives Kemi the correct permissions in a single addition. There are no individual permission entries to audit or miss.",
+          },
+          { type: "label", content: "PowerShell equivalent:" },
+          {
+            type: "code",
+            content:
+              "Get-ADPrincipalGroupMembership -Identity fadebayo | Select-Object Name\n  # checks Funmi's groups to know which ones to copy\nNew-ADUser -Name \"Kemi Johnson\" -GivenName Kemi -Surname Johnson -SamAccountName kjohnson -UserPrincipalName kjohnson@zenithcreative.com -Path \"OU=Finance,OU=Staff,OU=Zenith,DC=zenithcreative,DC=com\" -AccountPassword (Read-Host -AsSecureString \"Temporary password\") -ChangePasswordAtLogon $true -Enabled $true\n  # creates the account in the Finance OU\nAdd-ADGroupMember -Identity \"Finance Staff\" -Members kjohnson\n  # grants the same access as Funmi through the group",
           },
 
         ],
@@ -560,12 +602,6 @@ export const posts: BlogPost[] = [
             content:
               "I opened System Properties on the Windows 11 VM, clicked Change next to the computer name, selected Domain, and entered zenithcreative.com. I authenticated with the adm.abiola domain admin account. Windows prompted for a restart and after the reboot the machine was visible in the Computers container in ADUC. I then moved it to the Zenith > Devices > Workstations OU so GPOs scoped to that OU would apply to it. The name ZCPC01 follows the same convention as the server: ZC for Zenith Creative, PC for workstation, 01 for the first unit.",
           },
-          { type: "label", content: "PowerShell equivalent:" },
-          {
-            type: "code",
-            content:
-              "Add-Computer -DomainName zenithcreative.com -Credential (Get-Credential) -Restart\n  # joins the machine to the domain and restarts immediately\nMove-ADObject -Identity \"CN=ZCPC01,CN=Computers,DC=zenithcreative,DC=com\" -TargetPath \"OU=Workstations,OU=Devices,OU=Zenith,DC=zenithcreative,DC=com\"\n  # moves the computer object from the default Computers container to the correct OU",
-          },
           { type: "navpath", content: "ZCPC01 > System Properties > Computer Name > Change" },
           {
             type: "img",
@@ -583,6 +619,12 @@ export const posts: BlogPost[] = [
           {
             type: "aside",
             content: "Moving the computer to the Workstations OU immediately matters. Any GPO linked to Workstations will not apply until the computer object sits in that OU. Leaving it in the default Computers container means those policies never reach it.",
+          },
+          { type: "label", content: "PowerShell equivalent:" },
+          {
+            type: "code",
+            content:
+              "Add-Computer -DomainName zenithcreative.com -Credential (Get-Credential) -Restart\n  # joins the machine to the domain and restarts immediately\nMove-ADObject -Identity \"CN=ZCPC01,CN=Computers,DC=zenithcreative,DC=com\" -TargetPath \"OU=Workstations,OU=Devices,OU=Zenith,DC=zenithcreative,DC=com\"\n  # moves the computer object from the default Computers container to the correct OU",
           },
 
           { type: "h3", content: "Task 2: Create New Hire Accounts via PowerShell" },
@@ -648,12 +690,6 @@ export const posts: BlogPost[] = [
             content:
               "I opened Tunde Bakare's account properties in ADUC, went to the Account tab, and set the account expiry to December 2, 2026. On that date Windows automatically blocks all logins without any manual action from IT.",
           },
-          { type: "label", content: "PowerShell equivalent:" },
-          {
-            type: "code",
-            content:
-              "Set-ADAccountExpiration -Identity tunde.bakare -DateTime \"2026-12-02\"\n  # sets the account to expire at the start of that date\nGet-ADUser -Identity tunde.bakare -Properties AccountExpirationDate | Select-Object Name,AccountExpirationDate\n  # confirms the expiry was set",
-          },
           { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > Staff > Finance > tunde.bakare > Account" },
           {
             type: "img",
@@ -664,6 +700,12 @@ export const posts: BlogPost[] = [
           {
             type: "aside",
             content: "Account expiry is a safety net. If the offboarding request never arrives when the contractor finishes, the account still closes on schedule. Setting it at account creation means no future action is required.",
+          },
+          { type: "label", content: "PowerShell equivalent:" },
+          {
+            type: "code",
+            content:
+              "Set-ADAccountExpiration -Identity tunde.bakare -DateTime \"2026-12-02\"\n  # sets the account to expire at the start of that date\nGet-ADUser -Identity tunde.bakare -Properties AccountExpirationDate | Select-Object Name,AccountExpirationDate\n  # confirms the expiry was set",
           },
 
           { type: "h3", content: "Task 4: Offboard a Resigned Staff Member" },
@@ -760,12 +802,6 @@ export const posts: BlogPost[] = [
             content:
               "I created ZC Password Policy and linked it to the domain root so it applies to every user in zenithcreative.com. In the GPME I configured both Password Policy and Account Lockout Policy. Minimum password length 12 characters, complexity required, maximum age 90 days, lockout threshold 5 invalid attempts, lockout duration 15 minutes.",
           },
-          { type: "label", content: "PowerShell equivalent:" },
-          {
-            type: "code",
-            content:
-              "Set-ADDefaultDomainPasswordPolicy -Identity zenithcreative.com -MinPasswordLength 12 -PasswordHistoryCount 24 -MaxPasswordAge (New-TimeSpan -Days 90) -ComplexityEnabled $true -LockoutThreshold 5 -LockoutDuration (New-TimeSpan -Minutes 15) -LockoutObservationWindow (New-TimeSpan -Minutes 15)\n  # sets the default domain password and lockout policy in one command\nGet-ADDefaultDomainPasswordPolicy\n  # confirms all values are correct",
-          },
           { type: "navpath", content: "GPM > zenithcreative.com > Linked Group Policy Objects" },
           {
             type: "img",
@@ -791,6 +827,12 @@ export const posts: BlogPost[] = [
             type: "aside",
             content: "Creating a separate ZC Password Policy GPO rather than editing the Default Domain Policy is deliberate. If something breaks, reverting a custom GPO is clean. Rolling back changes to the Default Domain Policy can have unpredictable side effects on other domain-wide settings it controls.",
           },
+          { type: "label", content: "PowerShell equivalent:" },
+          {
+            type: "code",
+            content:
+              "Set-ADDefaultDomainPasswordPolicy -Identity zenithcreative.com -MinPasswordLength 12 -PasswordHistoryCount 24 -MaxPasswordAge (New-TimeSpan -Days 90) -ComplexityEnabled $true -LockoutThreshold 5 -LockoutDuration (New-TimeSpan -Minutes 15) -LockoutObservationWindow (New-TimeSpan -Minutes 15)\n  # sets the default domain password and lockout policy in one command\nGet-ADDefaultDomainPasswordPolicy\n  # confirms all values are correct",
+          },
 
           { type: "h3", content: "Task 9: Fine-Grained Password Policy" },
           { type: "note", content: "Create a stricter password settings object for privileged accounts: 16-character minimum, lockout after 5 attempts, 90-day maximum age. Apply it to Domain Admins and Helpdesk." },
@@ -798,12 +840,6 @@ export const posts: BlogPost[] = [
             type: "p",
             content:
               "I opened Active Directory Administrative Center and created PSO_Privileged with a precedence of 10. I set the minimum password length to 16 characters and applied the PSO directly to Domain Admins and Helpdesk.",
-          },
-          { type: "label", content: "PowerShell equivalent:" },
-          {
-            type: "code",
-            content:
-              "New-ADFineGrainedPasswordPolicy -Name PSO_Privileged -Precedence 10 -MinPasswordLength 16 -PasswordHistoryCount 24 -MaxPasswordAge (New-TimeSpan -Days 90) -ComplexityEnabled $true -LockoutThreshold 5 -LockoutDuration (New-TimeSpan -Minutes 15) -LockoutObservationWindow (New-TimeSpan -Minutes 15) -ProtectedFromAccidentalDeletion $true\nAdd-ADFineGrainedPasswordPolicySubject -Identity PSO_Privileged -Subjects \"Domain Admins\",\"Helpdesk\"\n  # creates the PSO and applies it to both groups in two commands",
           },
           { type: "navpath", content: "ADAC > zenithcreative.com (local) > System > Password Settings Container > Create PSO_Privileged" },
           {
@@ -822,6 +858,12 @@ export const posts: BlogPost[] = [
           {
             type: "aside",
             content: "Lower precedence numbers win when multiple PSOs apply to the same account. A precedence of 10 ensures this policy overrides the domain-wide one for privileged accounts.",
+          },
+          { type: "label", content: "PowerShell equivalent:" },
+          {
+            type: "code",
+            content:
+              "New-ADFineGrainedPasswordPolicy -Name PSO_Privileged -Precedence 10 -MinPasswordLength 16 -PasswordHistoryCount 24 -MaxPasswordAge (New-TimeSpan -Days 90) -ComplexityEnabled $true -LockoutThreshold 5 -LockoutDuration (New-TimeSpan -Minutes 15) -LockoutObservationWindow (New-TimeSpan -Minutes 15) -ProtectedFromAccidentalDeletion $true\nAdd-ADFineGrainedPasswordPolicySubject -Identity PSO_Privileged -Subjects \"Domain Admins\",\"Helpdesk\"\n  # creates the PSO and applies it to both groups in two commands",
           },
 
         ],
@@ -1482,12 +1524,6 @@ export const posts: BlogPost[] = [
             content:
               "I opened Settings on ZCPC01 and clicked Select users that can remotely access this PC. I added Chide Eze's account from zenithcreative.com. This adds the account to the local Remote Desktop Users group on that specific machine.",
           },
-          { type: "label", content: "PowerShell equivalent:" },
-          {
-            type: "code",
-            content:
-              "Add-LocalGroupMember -Group \"Remote Desktop Users\" -Member \"ZENITH\\chide.eze\"\n  # run on ZCPC01, adds the user to the local Remote Desktop Users group\nGet-LocalGroupMember -Group \"Remote Desktop Users\"\n  # lists who currently has RDP access to this machine",
-          },
           { type: "navpath", content: "ZCPC01 > Settings > System > Remote Desktop" },
           {
             type: "img",
@@ -1498,6 +1534,12 @@ export const posts: BlogPost[] = [
           {
             type: "aside",
             content: "Domain Admins can RDP to any domain computer by default. This grants the same access to a standard user on one specific workstation.",
+          },
+          { type: "label", content: "PowerShell equivalent:" },
+          {
+            type: "code",
+            content:
+              "Add-LocalGroupMember -Group \"Remote Desktop Users\" -Member \"ZENITH\\chide.eze\"\n  # run on ZCPC01, adds the user to the local Remote Desktop Users group\nGet-LocalGroupMember -Group \"Remote Desktop Users\"\n  # lists who currently has RDP access to this machine",
           },
 
         ],
