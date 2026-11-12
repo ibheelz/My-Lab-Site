@@ -841,10 +841,6 @@ export const posts: BlogPost[] = [
             content:
               "I created ZC Staff Screen Lock and linked it to the Staff OU. I enabled the screen saver, set the timeout, and enabled password-protection on the screen saver.",
           },
-          {
-            type: "aside",
-            content: "Because the policy is under User Configuration, it follows the user. It applies to any machine a staff member logs into, not just machines in the Workstations OU.",
-          },
           { type: "navpath", content: "GPM > zenithcreative.com > Staff > Linked Group Policy Objects" },
           {
             type: "img",
@@ -858,6 +854,10 @@ export const posts: BlogPost[] = [
             content: "/images/blog/zcdc02/11b-screen-saver-settings.png",
             alt: "Group Policy Management Editor showing Personalization settings with Enable screen saver set to Enabled",
             caption: "11b. Screen saver enabled via Personalization policy under User Configuration.",
+          },
+          {
+            type: "aside",
+            content: "Because the policy is under User Configuration, it follows the user. It applies to any machine a staff member logs into, not just machines in the Workstations OU.",
           },
 
           { type: "h3", content: "Tasks 12 and 13: GPO — Control Panel Restriction" },
@@ -889,10 +889,6 @@ export const posts: BlogPost[] = [
             content:
               "I created ZC Block USB Storage Connection and linked it to the Workstations OU rather than the Staff OU. I enabled All Removable Storage Classes: Deny All Access. This single setting blocks all classes of removable storage without needing a rule per device type.",
           },
-          {
-            type: "aside",
-            content: "The policy is under Computer Configuration so it follows the machine, not the user. Linking it to Workstations OU means it applies to every machine in that OU regardless of who is logged in.",
-          },
           { type: "navpath", content: "GPM > zenithcreative.com > Workstations > Linked Group Policy Objects" },
           {
             type: "img",
@@ -909,7 +905,7 @@ export const posts: BlogPost[] = [
           },
           {
             type: "aside",
-            content: "If a domain admin logs into a workstation, the USB block still applies because the machine is in the Workstations OU. User-scoped policies follow the user. Computer-scoped policies follow the machine. Getting the distinction right determines whether the policy does what you intend.",
+            content: "The policy is under Computer Configuration so it follows the machine, not the user. Linking it to Workstations OU means it applies to every machine in that OU regardless of who is logged in. If a domain admin logs into a workstation, the USB block still applies because the machine is in the Workstations OU. User-scoped policies follow the user. Computer-scoped policies follow the machine. Getting the distinction right determines whether the policy does what you intend.",
           },
 
         ],
@@ -928,10 +924,6 @@ export const posts: BlogPost[] = [
             type: "p",
             content:
               "I created ZC Branding Assets and linked it to the Workstations OU. I placed zenith_wallpaper.jpg in a branding subfolder inside NETLOGON so the path is \\\\zenithcreative.com\\NETLOGON\\Branding\\zenith_wallpaper.jpg. I added an action to copy the image to C:\\Windows\\Web\\Wallpaper\\Zenith\\zenith_wallpaper.jpg on each workstation.",
-          },
-          {
-            type: "aside",
-            content: "NETLOGON is reachable by every domain-joined machine without additional share configuration, which makes it the standard place for files that workstations need to pull at startup.",
           },
           { type: "navpath", content: "GPM > zenithcreative.com > Workstations > Linked Group Policy Objects" },
           {
@@ -975,6 +967,10 @@ export const posts: BlogPost[] = [
             alt: "Group Policy Management Editor showing ZC Branding Assets with zenith_wallpaper.jpg file action copying from NETLOGON Branding to C Windows Web Wallpaper Zenith",
             caption: "14f. File copy action now listed. Source and destination confirmed.",
           },
+          {
+            type: "aside",
+            content: "NETLOGON is reachable by every domain-joined machine without additional share configuration, which makes it the standard place for files that workstations need to pull at startup.",
+          },
 
           { type: "h3", content: "Tasks 18 and 19: GPO — Desktop Wallpaper" },
           { type: "note", content: "Set the company wallpaper on all workstations using Group Policy. Users should not be able to change it." },
@@ -982,10 +978,6 @@ export const posts: BlogPost[] = [
             type: "p",
             content:
               "I created a separate GPO called ZC Wallpaper and linked it to the Staff OU. I enabled Desktop Wallpaper and set the path to C:\\Windows\\Web\\Wallpaper\\Zenith\\zenith_wallpaper.jpg, the local path the Branding Assets GPO copies the file to.",
-          },
-          {
-            type: "aside",
-            content: "Keeping this as a separate GPO from ZC Branding Assets makes the purpose of each GPO clear and allows the file deployment and the display policy to be managed independently.",
           },
           { type: "navpath", content: "GPM > zenithcreative.com > Staff > Linked Group Policy Objects" },
           {
@@ -1014,6 +1006,10 @@ export const posts: BlogPost[] = [
             content: "/images/blog/zcdc02/15d-wallpaper-applied.png",
             alt: "Windows 11 desktop on ZCPC01 showing the Zenith Creative branded wallpaper applied after Group Policy refresh",
             caption: "15d. Wallpaper applied on ZCPC01 after gpupdate. Policy working as expected.",
+          },
+          {
+            type: "aside",
+            content: "Keeping this as a separate GPO from ZC Branding Assets makes the purpose of each GPO clear and allows the file deployment and the display policy to be managed independently.",
           },
 
         ],
@@ -1486,10 +1482,6 @@ export const posts: BlogPost[] = [
             content:
               "I opened Settings on ZCPC01 and clicked Select users that can remotely access this PC. I added Chide Eze's account from zenithcreative.com. This adds the account to the local Remote Desktop Users group on that specific machine.",
           },
-          {
-            type: "aside",
-            content: "Domain Admins can RDP to any domain computer by default. This grants the same access to a standard user on one specific workstation.",
-          },
           { type: "label", content: "PowerShell equivalent:" },
           {
             type: "code",
@@ -1502,6 +1494,10 @@ export const posts: BlogPost[] = [
             content: "/images/blog/zcdc02/24-remote-desktop.png",
             alt: "Windows 11 System Remote Desktop settings on ZCPC01 showing Select Users dialog with Chide Eze being added from zenithcreative.com",
             caption: "24. Chide Eze added to Remote Desktop Users on ZCPC01.",
+          },
+          {
+            type: "aside",
+            content: "Domain Admins can RDP to any domain computer by default. This grants the same access to a standard user on one specific workstation.",
           },
 
         ],
