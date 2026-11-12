@@ -38,7 +38,7 @@ export default function CodeTypewriter({ content }: { content: string }) {
             key={j}
             style={{
               display: isLast ? "inline" : "block",
-              color: isComment ? "rgb(255, 255, 255)" : NEON,
+              color: isComment ? "rgb(100, 110, 120)" : NEON,
               marginTop: addSpacing ? "12px" : undefined,
             }}
           >

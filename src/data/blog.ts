@@ -37,9 +37,9 @@ export const posts: BlogPost[] = [
     tags: ["IT Support", "Active Directory", "Windows Server", "PowerShell", "Home Lab", "Setup"],
     sections: [
       { type: "h2", content: "Overview" },
-      { type: "p", content: "I built a Windows Active Directory domain from scratch on a Windows Server 2022 VM running in VirtualBox on my ROG Ally X, managed remotely from my MacBook over Remote Desktop." },
+      { type: "p", content: "I built a Windows Active Directory domain from scratch on a Windows Server 2025 VM running in VirtualBox on my ROG Ally X, managed remotely from my MacBook over Remote Desktop." },
       { type: "p", content: "Zenith Creative is a fictional 15-person design studio in Lagos that just bought their first server and needed a domain live before staff started Monday. I was the IT technician." },
-      { type: "p", content: "I provisioned the VM, installed Server 2022, promoted it to a domain controller, configured DNS and DHCP, designed a structured OU hierarchy, created user accounts with the right permissions, and locked down remote access." },
+      { type: "p", content: "I provisioned the VM, installed Server 2025, promoted it to a domain controller, configured DNS and DHCP, designed a structured OU hierarchy, created user accounts with the right permissions, and locked down remote access." },
       { type: "p", content: "Everything in this post comes from that build." },
 
       // ── Group: Infrastructure Setup ────────────────────────────────────────
@@ -49,26 +49,26 @@ export const posts: BlogPost[] = [
         title: "Infrastructure Setup",
         children: [
 
-          { type: "h3", content: "Tasks 1 to 3: Create the VM and Install Windows Server 2022" },
+          { type: "h3", content: "Tasks 1 to 3: Create the VM and Install Windows Server 2025" },
           {
             type: "note",
             content:
-              "Create a Windows Server 2022 virtual machine with 4 GB RAM, 2 CPUs, a 60 GB disk, EFI firmware, and a bridged network adapter. Install Windows Server 2022 Standard with Desktop Experience.",
+              "Create a Windows Server 2025 virtual machine with 4 GB RAM, 2 CPUs, a 60 GB disk, EFI firmware, and a bridged network adapter. Install Windows Server 2025 Standard with Desktop Experience.",
           },
           {
             type: "p",
             content:
-              "I created the VM in VirtualBox with 4 GB RAM, 2 CPUs, a 60 GB dynamically allocated disk, and EFI firmware enabled. I set the network adapter to bridged mode. I attached the Windows Server 2022 ISO, booted the VM, selected Windows Server 2022 Standard Evaluation with Desktop Experience, accepted the licence, and chose the custom installation path. The installer completed without issues.",
-          },
-          {
-            type: "aside",
-            content: "Bridged networking places the server on the same physical network segment as my MacBook, so it receives a real IP address on the office subnet and can be managed remotely from any machine on that network. A NAT adapter would isolate it behind VirtualBox and make remote management impossible without extra port-forwarding rules.",
+              "I created the VM in VirtualBox, named it ZCDC01, and configured it with 4 GB RAM, 2 CPUs, a 60 GB dynamically allocated disk, and EFI firmware enabled. I set the network adapter to bridged mode. I attached the Windows Server 2025 ISO, booted the VM, selected Windows Server 2025 Standard Evaluation with Desktop Experience, accepted the licence, and chose the custom installation path. The installer completed without issues.",
           },
           {
             type: "img",
             content: "/images/blog/zcdc01/00-vm-details.png",
-            alt: "VirtualBox VM details for ZCDC01 showing Windows Server 2022 64-bit, 4 GB RAM, 2 CPUs, 60 GB disk, and bridged network adapter",
-            caption: "00. VirtualBox VM details — ZCDC01 running Windows Server 2022, 4 GB RAM, 60 GB disk, bridged adapter.",
+            alt: "VirtualBox VM details for ZCDC01 showing Windows Server 2025 64-bit, 4 GB RAM, 2 CPUs, 60 GB disk, and bridged network adapter",
+            caption: "00. VirtualBox VM details — ZCDC01 running Windows Server 2025, 4 GB RAM, 60 GB disk, bridged adapter.",
+          },
+          {
+            type: "aside",
+            content: "Bridged networking places the server on the same physical network segment as my MacBook, so it receives a real IP address on the office subnet and can be managed remotely from any machine on that network. A NAT adapter would isolate it behind VirtualBox and make remote management impossible without extra port-forwarding rules.",
           },
 
           { type: "h3", content: "Task 4: Name the Server ZCDC01" },
@@ -129,10 +129,6 @@ export const posts: BlogPost[] = [
             content:
               "I opened the IPv4 properties for the Ethernet adapter and set the IP address to 192.168.1.200 with a 255.255.255.0 subnet mask and 192.168.1.1 as the default gateway. For the preferred DNS I entered 127.0.0.1, pointing to the loopback address.",
           },
-          {
-            type: "aside",
-            content: "After the Active Directory promotion, the DNS service on this machine takes over and reconfigures the NIC to use itself as the resolver. Setting loopback at this stage avoids a chicken-and-egg problem during promotion.",
-          },
           { type: "label", content: "PowerShell equivalent:" },
           {
             type: "code",
@@ -149,7 +145,7 @@ export const posts: BlogPost[] = [
           },
           {
             type: "aside",
-            content: "Every machine on the network will use this server as its DNS resolver and Kerberos authentication endpoint. If the server's IP changed, clients could no longer find it and logins, domain joins, and name lookups would all fail. A static address makes its location fixed and predictable.",
+            content: "After the Active Directory promotion, the DNS service on this machine takes over and reconfigures the NIC to use itself as the resolver. Setting loopback at this stage avoids a chicken-and-egg problem during promotion. Every machine on the network will use this server as its DNS resolver and Kerberos authentication endpoint — if the server's IP changed, clients could no longer find it and logins, domain joins, and name lookups would all fail. A static address makes its location fixed and predictable.",
           },
 
           { type: "h3", content: "Task 7: Create the Forest zenithcreative.com" },
@@ -180,10 +176,6 @@ export const posts: BlogPost[] = [
             content:
               "After the restart I opened PowerShell and tested both DNS paths. I pinged zenithcreative.com to confirm the domain controller answered for its own domain, and pinged google.com to confirm the forwarder was passing unknown names out through the router. Both resolved cleanly.",
           },
-          {
-            type: "aside",
-            content: "The domain controller holds the authoritative DNS zone for zenithcreative.com and answers those queries itself. For any name it does not hold a record for, it forwards the query to 192.168.1.1. Without that forwarder every computer on the network would use this server as its only DNS resolver, meaning staff could authenticate and reach company resources but could not load any website or reach any external service.",
-          },
           { type: "label", content: "Commands I ran:" },
           {
             type: "code",
@@ -206,7 +198,7 @@ export const posts: BlogPost[] = [
           },
           {
             type: "aside",
-            content: "When the domain controller answers zenithcreative.com, the response is authoritative — it holds the record and answered directly from its own zone. When it answered google.com, the response was non-authoritative — it did not hold that record and forwarded the query upstream to get the answer.",
+            content: "The domain controller holds the authoritative DNS zone for zenithcreative.com and answers those queries itself. For any name it does not hold a record for, it forwards the query to 192.168.1.1. Without that forwarder every computer on the network would use this server as its only DNS resolver, meaning staff could authenticate and reach company resources but could not load any website or reach any external service. When it answers zenithcreative.com the response is authoritative — it holds the record directly. When it answered google.com the response was non-authoritative — it forwarded the query upstream to get the answer.",
           },
 
           { type: "h3", content: "Tasks 9 and 10: Enable Remote Desktop and Confirm Connectivity" },
@@ -220,15 +212,18 @@ export const posts: BlogPost[] = [
             content:
               "I enabled Remote Desktop early in the build so I could switch to managing the server from my Mac as quickly as possible. When I first tested network connectivity, the ping attempt failed but RDP on port 3389 was already working. I enabled the built-in ICMPv4 Echo Request inbound rule and ping came back clean. I then ran all remaining tasks from the Mac through the RDP session.",
           },
-          {
-            type: "aside",
-            content: "RDP connecting while ping fails is a useful diagnostic combination — it confirms the server is up and the network path is open. Ping failing alone just means the Windows firewall is blocking ICMP, which is the default on Windows Server. It is not a server problem or a network problem.",
-          },
           { type: "label", content: "Command I ran:" },
           {
             type: "code",
             content:
               "ping 192.168.1.200\n  # confirms the server replies to ICMP after the firewall rule was enabled",
+          },
+          { type: "navpath", content: "MacBook Terminal > ping 192.168.1.200 (before firewall rule)" },
+          {
+            type: "img",
+            content: "/images/blog/zcdc01/05a-ping-fail.png",
+            alt: "MacBook terminal showing ping to 192.168.1.200 timing out with 100% packet loss before the ICMPv4 firewall rule was enabled",
+            caption: "05a. Ping failing before the rule — 100% packet loss. The server is up; ICMP is just blocked by default.",
           },
           { type: "label", content: "PowerShell equivalent:" },
           {
@@ -236,13 +231,12 @@ export const posts: BlogPost[] = [
             content:
               "Enable-NetFirewallRule -Name FPS-ICMP4-ERQ-In\n  # switches on the built-in rule allowing incoming ping, ICMPv4 Echo Request\nSet-ItemProperty -Path 'HKLM:\\System\\CurrentControlSet\\Control\\Terminal Server' -Name \"fDenyTSConnections\" -Value 0\n  # turns Remote Desktop on via the registry\nEnable-NetFirewallRule -DisplayGroup \"Remote Desktop\"\n  # opens the Windows firewall for RDP connections",
           },
-          { type: "navpath", content: "ZCDC01 > Windows PowerShell" },
+          { type: "navpath", content: "MacBook Terminal > ping 192.168.1.200 (after firewall rule)" },
           {
             type: "img",
             content: "/images/blog/zcdc01/05-ping.png",
-            alt: "Windows PowerShell on ZCDC01 showing successful ping to 192.168.1.200 with four replies and zero packet loss",
-            caption:
-              "05. Ping succeeds after enabling the ICMPv4 Echo Request inbound firewall rule.",
+            alt: "MacBook terminal showing successful ping to 192.168.1.200 with replies after enabling the ICMPv4 Echo Request inbound firewall rule",
+            caption: "05b. Ping succeeds after enabling the ICMPv4 Echo Request inbound firewall rule.",
           },
           { type: "navpath", content: "MacBook > Microsoft Remote Desktop > ZCDC01" },
           {
@@ -251,6 +245,10 @@ export const posts: BlogPost[] = [
             alt: "Microsoft Remote Desktop on macOS with ZCDC01 Server Manager open inside an RDP session connected to 192.168.1.200",
             caption:
               "06. Server Manager open inside an RDP session from the MacBook. All remaining build work was done from here.",
+          },
+          {
+            type: "aside",
+            content: "RDP connecting while ping fails is a useful diagnostic combination — it confirms the server is up and the network path is open. Ping failing alone just means the Windows firewall is blocking ICMP, which is the default on Windows Server. It is not a server problem or a network problem.",
           },
 
         ],
@@ -278,10 +276,6 @@ export const posts: BlogPost[] = [
             type: "code",
             content:
               "zenithcreative.com\n └── Zenith\n      ├── Staff\n      │    ├── Design\n      │    └── Finance\n      └── IT Admins",
-          },
-          {
-            type: "aside",
-            content: "Users live in OUs rather than the default Users container because only OUs can receive Group Policy Objects and delegated control. The default container cannot.",
           },
           { type: "label", content: "PowerShell equivalent:" },
           {
@@ -319,7 +313,7 @@ export const posts: BlogPost[] = [
           },
           {
             type: "aside",
-            content: "A distinguished name is the full path to an object in the directory, read right to left: DC=com is the top-level component, DC=zenithcreative is the domain, OU=Zenith is the first OU, and so on. IT Admins sits beside Staff rather than inside it because any Group Policy linked to the Staff OU must never apply to admin accounts. Structural separation makes that guarantee permanent — if IT Admins were inside Staff, every staff policy would apply to admin accounts by default.",
+            content: "Users live in OUs rather than the default Users container because only OUs can receive Group Policy Objects and delegated control. IT Admins sits beside Staff rather than inside it because any Group Policy linked to the Staff OU must never apply to admin accounts — structural separation makes that guarantee permanent.",
           },
 
           { type: "h3", content: "Tasks 12 to 15: User Accounts and Personal Admin Account" },
@@ -355,10 +349,6 @@ export const posts: BlogPost[] = [
             content:
               "I created a Design Staff security group inside the Design OU and added ceze. I created a Finance Staff security group inside the Finance OU and added fadebayo.",
           },
-          {
-            type: "aside",
-            content: "Permissions are assigned to the groups, not to individual user accounts. Adding or removing someone from a group is the only action needed to grant or revoke access — onboarding and offboarding both become a single operation.",
-          },
           { type: "label", content: "PowerShell equivalent:" },
           {
             type: "code",
@@ -385,6 +375,10 @@ export const posts: BlogPost[] = [
             content: "/images/blog/zcdc01/13-admin-group-memberships.png",
             alt: "adm.abiola user Properties Member Of tab showing Domain Admins and Domain Users group memberships",
             caption: "13. adm.abiola is a member of Domain Admins. A named personal account, not the shared built-in Administrator.",
+          },
+          {
+            type: "aside",
+            content: "Permissions are assigned to the groups, not to individual user accounts. Adding or removing someone from a group is the only action needed to grant or revoke access — onboarding and offboarding both become a single operation.",
           },
 
         ],
@@ -516,11 +510,6 @@ export const posts: BlogPost[] = [
           {
             type: "code",
             content: "whoami\n  # shows the currently logged-in account and its domain",
-          },
-          { type: "label", content: "PowerShell equivalent:" },
-          {
-            type: "code",
-            content: "whoami /groups\n  # lists every group the current account belongs to",
           },
           { type: "navpath", content: "ZCDC01 > Windows PowerShell" },
           {
@@ -737,16 +726,16 @@ export const posts: BlogPost[] = [
             content:
               "I created All Staff in the Staff OU and added Design Staff and Finance Staff as members.",
           },
-          {
-            type: "aside",
-            content: "Any permission or policy applied to All Staff automatically covers every member of both departments. When a new department is added, nesting its security group into All Staff is the only change needed.",
-          },
           { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > Staff > All Staff > Members" },
           {
             type: "img",
             content: "/images/blog/zcdc02/08-all-staff-members.png",
             alt: "All Staff security group Properties Members tab showing Design Staff and Finance Staff as nested member groups",
             caption: "08. All Staff group: Design Staff and Finance Staff nested inside it.",
+          },
+          {
+            type: "aside",
+            content: "Any permission or policy applied to All Staff automatically covers every member of both departments. When a new department is added, nesting its security group into All Staff is the only change needed.",
           },
 
         ],
@@ -805,10 +794,6 @@ export const posts: BlogPost[] = [
             content:
               "I opened Active Directory Administrative Center and created PSO_Privileged with a precedence of 10. I set the minimum password length to 16 characters and applied the PSO directly to Domain Admins and Helpdesk.",
           },
-          {
-            type: "aside",
-            content: "Lower precedence numbers win when multiple PSOs apply to the same account. A precedence of 10 ensures this policy overrides the domain-wide one for privileged accounts.",
-          },
           { type: "label", content: "PowerShell equivalent:" },
           {
             type: "code",
@@ -828,6 +813,10 @@ export const posts: BlogPost[] = [
             content: "/images/blog/zcdc02/10b-pso-applied.png",
             alt: "Active Directory Administrative Center showing PSO_Privileged with Domain Admins and Helpdesk in the Directly Applies To section",
             caption: "10b. PSO_Privileged: 16-character minimum applied to Domain Admins and Helpdesk.",
+          },
+          {
+            type: "aside",
+            content: "Lower precedence numbers win when multiple PSOs apply to the same account. A precedence of 10 ensures this policy overrides the domain-wide one for privileged accounts.",
           },
 
         ],

@@ -59,7 +59,7 @@ const KEYWORD_GROUPS: Array<{ bg: string; terms: string[] }> = [
     // Windows & OS
     bg: "rgba(52, 211, 153, 1)",
     terms: [
-      "Windows Server 2022 Standard Evaluation", "Windows Server 2022",
+      "Windows Server 2025 Standard Evaluation", "Windows Server 2025",
       "Windows Server", "Windows 11", "Server Manager", "Desktop Experience",
     ],
   },
@@ -302,7 +302,7 @@ function SectionContent({ section, isFirst, noHighlight }: { section: BlogSectio
       return (
         <p
           style={{
-            color: NEON,
+            color: "rgb(249, 115, 22)",
             fontSize: "11px",
             fontWeight: 500,
             margin: "4px 0 0",
