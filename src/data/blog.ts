@@ -12,7 +12,7 @@ export interface BlogPost {
 }
 
 export interface BlogSection {
-  type: "h2" | "h3" | "p" | "code" | "ul" | "note" | "img" | "label" | "qa" | "tasklist" | "group" | "navpath";
+  type: "h2" | "h3" | "p" | "code" | "ul" | "note" | "img" | "label" | "qa" | "tasklist" | "group" | "navpath" | "aside";
   content: string | string[];
   alt?: string;
   caption?: string;
@@ -37,9 +37,9 @@ export const posts: BlogPost[] = [
     tags: ["IT Support", "Active Directory", "Windows Server", "PowerShell", "Home Lab", "Setup"],
     sections: [
       { type: "h2", content: "Overview" },
-      { type: "p", content: "I built a Windows Active Directory domain from scratch on a Windows Server 2025 VM running in VirtualBox on my ROG Ally X, managed remotely from my MacBook over Remote Desktop." },
+      { type: "p", content: "I built a Windows Active Directory domain from scratch on a Windows Server 2022 VM running in VirtualBox on my ROG Ally X, managed remotely from my MacBook over Remote Desktop." },
       { type: "p", content: "Zenith Creative is a fictional 15-person design studio in Lagos that just bought their first server and needed a domain live before staff started Monday. I was the IT technician." },
-      { type: "p", content: "I provisioned the VM, installed Server 2025, promoted it to a domain controller, configured DNS and DHCP, designed a structured OU hierarchy, created user accounts with the right permissions, and locked down remote access." },
+      { type: "p", content: "I provisioned the VM, installed Server 2022, promoted it to a domain controller, configured DNS and DHCP, designed a structured OU hierarchy, created user accounts with the right permissions, and locked down remote access." },
       { type: "p", content: "Everything in this post comes from that build." },
 
       // ── Group: Infrastructure Setup ────────────────────────────────────────
@@ -49,16 +49,26 @@ export const posts: BlogPost[] = [
         title: "Infrastructure Setup",
         children: [
 
-          { type: "h3", content: "Tasks 1 to 3: Create the VM and Install Windows Server 2025" },
+          { type: "h3", content: "Tasks 1 to 3: Create the VM and Install Windows Server 2022" },
           {
             type: "note",
             content:
-              "Create a Windows Server 2025 virtual machine with 4 GB RAM, 2 CPUs, a 60 GB disk, EFI firmware, and a bridged network adapter. Install Windows Server 2025 Standard with Desktop Experience.",
+              "Create a Windows Server 2022 virtual machine with 4 GB RAM, 2 CPUs, a 60 GB disk, EFI firmware, and a bridged network adapter. Install Windows Server 2022 Standard with Desktop Experience.",
           },
           {
             type: "p",
             content:
-              "I created the VM in VirtualBox with 4 GB RAM, 2 CPUs, a 60 GB dynamically allocated disk, and EFI firmware enabled. I set the network adapter to bridged mode. Bridged networking places the server on the same physical network segment as my MacBook, so it receives a real IP address on the office subnet and can be managed remotely from any machine on that network. A NAT adapter would isolate it behind VirtualBox and make remote management impossible without extra port-forwarding rules. I attached the Windows Server 2025 ISO, booted the VM, selected Windows Server 2025 Standard Evaluation with Desktop Experience, accepted the licence, and chose the custom installation path. The installer completed without issues.",
+              "I created the VM in VirtualBox with 4 GB RAM, 2 CPUs, a 60 GB dynamically allocated disk, and EFI firmware enabled. I set the network adapter to bridged mode. I attached the Windows Server 2022 ISO, booted the VM, selected Windows Server 2022 Standard Evaluation with Desktop Experience, accepted the licence, and chose the custom installation path. The installer completed without issues.",
+          },
+          {
+            type: "aside",
+            content: "Bridged networking places the server on the same physical network segment as my MacBook, so it receives a real IP address on the office subnet and can be managed remotely from any machine on that network. A NAT adapter would isolate it behind VirtualBox and make remote management impossible without extra port-forwarding rules.",
+          },
+          {
+            type: "img",
+            content: "/images/blog/zcdc01/00-vm-details.png",
+            alt: "VirtualBox VM details for ZCDC01 showing Windows Server 2022 64-bit, 4 GB RAM, 2 CPUs, 60 GB disk, and bridged network adapter",
+            caption: "00. VirtualBox VM details — ZCDC01 running Windows Server 2022, 4 GB RAM, 60 GB disk, bridged adapter.",
           },
 
           { type: "h3", content: "Task 4: Name the Server ZCDC01" },
@@ -83,9 +93,8 @@ export const posts: BlogPost[] = [
               "01. Server Manager confirming ZCDC01 as the computer name and zenithcreative.com as the domain.",
           },
           {
-            type: "p",
-            content:
-              "A clear, consistent naming convention makes the server identifiable at a glance in any tool, from ADUC to network scanners. A generic name like WIN-A1B2C3 gives no useful information when reading logs.",
+            type: "aside",
+            content: "A clear, consistent naming convention makes the server identifiable at a glance in any tool, from ADUC to network scanners. A generic name like WIN-A1B2C3 gives no useful information when reading logs.",
           },
 
           { type: "h3", content: "Task 5: Set the Lagos Time Zone" },
@@ -109,9 +118,8 @@ export const posts: BlogPost[] = [
             caption: "02. Time zone set to UTC+01:00 West Central Africa.",
           },
           {
-            type: "p",
-            content:
-              "Kerberos, the authentication protocol Active Directory relies on, rejects logins when the clock on a client differs from the domain controller by more than five minutes. Setting the correct time zone before promotion prevents that failure from affecting anyone on day one.",
+            type: "aside",
+            content: "Kerberos, the authentication protocol Active Directory relies on, rejects logins when the clock on a client differs from the domain controller by more than five minutes. Setting the correct time zone before promotion prevents that failure from affecting anyone on day one.",
           },
 
           { type: "h3", content: "Task 6: Assign a Static IP Address" },
@@ -119,7 +127,11 @@ export const posts: BlogPost[] = [
           {
             type: "p",
             content:
-              "I opened the IPv4 properties for the Ethernet adapter and set the IP address to 192.168.1.200 with a 255.255.255.0 subnet mask and 192.168.1.1 as the default gateway. For the preferred DNS I entered 127.0.0.1, pointing to the loopback address. After the Active Directory promotion, the DNS service on this machine takes over and reconfigures the NIC to use itself as the resolver. Setting loopback at this stage avoids a chicken-and-egg problem during promotion.",
+              "I opened the IPv4 properties for the Ethernet adapter and set the IP address to 192.168.1.200 with a 255.255.255.0 subnet mask and 192.168.1.1 as the default gateway. For the preferred DNS I entered 127.0.0.1, pointing to the loopback address.",
+          },
+          {
+            type: "aside",
+            content: "After the Active Directory promotion, the DNS service on this machine takes over and reconfigures the NIC to use itself as the resolver. Setting loopback at this stage avoids a chicken-and-egg problem during promotion.",
           },
           { type: "label", content: "PowerShell equivalent:" },
           {
@@ -136,9 +148,8 @@ export const posts: BlogPost[] = [
               "03. Static IP 192.168.1.200 set on the Ethernet adapter. Preferred DNS is loopback, ready for the AD promotion.",
           },
           {
-            type: "p",
-            content:
-              "Every machine on the network will use this server as its DNS resolver and Kerberos authentication endpoint. If the server's IP changed, clients could no longer find it and logins, domain joins, and name lookups would all fail. A static address makes its location fixed and predictable.",
+            type: "aside",
+            content: "Every machine on the network will use this server as its DNS resolver and Kerberos authentication endpoint. If the server's IP changed, clients could no longer find it and logins, domain joins, and name lookups would all fail. A static address makes its location fixed and predictable.",
           },
 
           { type: "h3", content: "Task 7: Create the Forest zenithcreative.com" },
@@ -154,9 +165,8 @@ export const posts: BlogPost[] = [
               "Install-WindowsFeature AD-Domain-Services -IncludeManagementTools\n  # installs the Active Directory role and its admin tools onto the server\nInstall-ADDSForest -DomainName \"zenithcreative.com\" -DomainNetbiosName \"ZENITH\" -InstallDns\n  # promotes the server: creates the forest, domain, AD database and DNS zone\nGet-ADDomain\n  # prints domain details to confirm promotion succeeded",
           },
           {
-            type: "p",
-            content:
-              "Installing the role and promoting the server are two distinct steps. Installing copies the AD DS binaries onto the machine. It adds the capability but changes nothing else. Promotion runs the actual configuration: it creates the AD database and SYSVOL folders, builds the DNS zone for zenithcreative.com, sets up Kerberos, and turns the server from a standalone Windows machine into a domain controller that can issue Kerberos tickets and authenticate users. A server with the role installed but not promoted cannot do any of that. The two-step design exists so administrators can stage the software before committing to the promotion.",
+            type: "aside",
+            content: "Installing the role and promoting the server are two distinct steps. Installing copies the AD DS binaries onto the machine — it adds the capability but changes nothing else. Promotion runs the actual configuration: it creates the AD database and SYSVOL folders, builds the DNS zone for zenithcreative.com, sets up Kerberos, and turns the server from a standalone Windows machine into a domain controller. A server with the role installed but not promoted cannot do any of that.",
           },
 
           { type: "h3", content: "Task 8: Resolve Internal and Internet Names" },
@@ -168,7 +178,11 @@ export const posts: BlogPost[] = [
           {
             type: "p",
             content:
-              "After the restart I opened PowerShell and tested both DNS paths. I pinged zenithcreative.com to confirm the domain controller answered for its own domain, and pinged google.com to confirm the forwarder was passing unknown names out through the router. Both resolved cleanly. The domain controller holds the authoritative DNS zone for zenithcreative.com and answers those queries itself. For any name it does not hold a record for, it forwards the query to 192.168.1.1. Without that forwarder every computer on the network would use this server as its only DNS resolver, meaning staff could authenticate and reach company resources but could not load any website or reach any external service.",
+              "After the restart I opened PowerShell and tested both DNS paths. I pinged zenithcreative.com to confirm the domain controller answered for its own domain, and pinged google.com to confirm the forwarder was passing unknown names out through the router. Both resolved cleanly.",
+          },
+          {
+            type: "aside",
+            content: "The domain controller holds the authoritative DNS zone for zenithcreative.com and answers those queries itself. For any name it does not hold a record for, it forwards the query to 192.168.1.1. Without that forwarder every computer on the network would use this server as its only DNS resolver, meaning staff could authenticate and reach company resources but could not load any website or reach any external service.",
           },
           { type: "label", content: "Commands I ran:" },
           {
@@ -191,9 +205,8 @@ export const posts: BlogPost[] = [
               "04. Internal name resolves to 192.168.1.200. External names forward through the router to the internet.",
           },
           {
-            type: "p",
-            content:
-              "When the domain controller answers zenithcreative.com, the response is authoritative: it holds the record and answered directly from its own zone. When it answered google.com, the response was non-authoritative: it did not hold that record and forwarded the query upstream to get the answer.",
+            type: "aside",
+            content: "When the domain controller answers zenithcreative.com, the response is authoritative — it holds the record and answered directly from its own zone. When it answered google.com, the response was non-authoritative — it did not hold that record and forwarded the query upstream to get the answer.",
           },
 
           { type: "h3", content: "Tasks 9 and 10: Enable Remote Desktop and Confirm Connectivity" },
@@ -205,7 +218,11 @@ export const posts: BlogPost[] = [
           {
             type: "p",
             content:
-              "I enabled Remote Desktop early in the build so I could switch to managing the server from my Mac as quickly as possible. When I first tested network connectivity, the ping attempt failed. RDP on port 3389 was already working. That combination is useful diagnostic information: if RDP connects, the server is up and the network path is open. Ping failing alone means the Windows firewall is blocking ICMP, which is the default on Windows Server. It is not a server problem or a network problem. I enabled the built-in ICMPv4 Echo Request inbound rule and ping came back clean. I then ran all remaining tasks from the Mac through the RDP session.",
+              "I enabled Remote Desktop early in the build so I could switch to managing the server from my Mac as quickly as possible. When I first tested network connectivity, the ping attempt failed but RDP on port 3389 was already working. I enabled the built-in ICMPv4 Echo Request inbound rule and ping came back clean. I then ran all remaining tasks from the Mac through the RDP session.",
+          },
+          {
+            type: "aside",
+            content: "RDP connecting while ping fails is a useful diagnostic combination — it confirms the server is up and the network path is open. Ping failing alone just means the Windows firewall is blocking ICMP, which is the default on Windows Server. It is not a server problem or a network problem.",
           },
           { type: "label", content: "Command I ran:" },
           {
@@ -255,12 +272,16 @@ export const posts: BlogPost[] = [
           {
             type: "p",
             content:
-              "I opened Active Directory Users and Computers and created the following structure under the domain root. Users live in OUs rather than the default Users container because only OUs can receive Group Policy Objects and delegated control. The default container cannot.",
+              "I opened Active Directory Users and Computers and created the following structure under the domain root.",
           },
           {
             type: "code",
             content:
               "zenithcreative.com\n └── Zenith\n      ├── Staff\n      │    ├── Design\n      │    └── Finance\n      └── IT Admins",
+          },
+          {
+            type: "aside",
+            content: "Users live in OUs rather than the default Users container because only OUs can receive Group Policy Objects and delegated control. The default container cannot.",
           },
           { type: "label", content: "PowerShell equivalent:" },
           {
@@ -297,9 +318,8 @@ export const posts: BlogPost[] = [
             caption: "10. IT Admins OU: the personal admin account sits here, separate from all staff OUs.",
           },
           {
-            type: "p",
-            content:
-              "A distinguished name is the full path to an object in the directory. It reads right to left: DC=com is the top-level domain component, DC=zenithcreative is the domain name, OU=Zenith is the first organisational unit, and so on down to the object. IT Admins sits beside Staff rather than inside it because any Group Policy linked to the Staff OU, such as desktop restrictions or software deployment rules, must never apply to admin accounts. Structural separation makes that guarantee permanent. If IT Admins were inside Staff, every staff policy would apply to admin accounts by default and would have to be blocked with exceptions, which is fragile.",
+            type: "aside",
+            content: "A distinguished name is the full path to an object in the directory, read right to left: DC=com is the top-level component, DC=zenithcreative is the domain, OU=Zenith is the first OU, and so on. IT Admins sits beside Staff rather than inside it because any Group Policy linked to the Staff OU must never apply to admin accounts. Structural separation makes that guarantee permanent — if IT Admins were inside Staff, every staff policy would apply to admin accounts by default.",
           },
 
           { type: "h3", content: "Tasks 12 to 15: User Accounts and Personal Admin Account" },
@@ -333,7 +353,11 @@ export const posts: BlogPost[] = [
           {
             type: "p",
             content:
-              "I created a Design Staff security group inside the Design OU and added ceze. I created a Finance Staff security group inside the Finance OU and added fadebayo. Permissions are assigned to the groups, not to individual user accounts. Adding or removing someone from a group is the only action needed to grant or revoke access. Onboarding and offboarding both become a single operation.",
+              "I created a Design Staff security group inside the Design OU and added ceze. I created a Finance Staff security group inside the Finance OU and added fadebayo.",
+          },
+          {
+            type: "aside",
+            content: "Permissions are assigned to the groups, not to individual user accounts. Adding or removing someone from a group is the only action needed to grant or revoke access — onboarding and offboarding both become a single operation.",
           },
           { type: "label", content: "PowerShell equivalent:" },
           {
@@ -396,11 +420,9 @@ export const posts: BlogPost[] = [
             alt: "Reset Password dialog for a user in the Design OU with empty new password fields and User must change password at next logon checked",
             caption: "14. Ticket 1042: password reset with forced change at next logon.",
           },
-          { type: "label", content: "Why this approach:" },
           {
-            type: "p",
-            content:
-              "Admins can reset passwords but can never read them. Windows stores only a hash of each password, not the value itself. There is no way to retrieve the original, only to replace it. The forced change at next logon means the admin never knows the user's actual working password.",
+            type: "aside",
+            content: "Admins can reset passwords but can never read them. Windows stores only a hash of each password, not the value itself. The forced change at next logon means the admin never knows the user's actual working password.",
           },
 
           { type: "h3", content: "Ticket 1043" },
@@ -434,11 +456,9 @@ export const posts: BlogPost[] = [
             caption:
               "15. Ticket 1043: Funmi's account disabled. Enable Account in the context menu confirms it is currently off.",
           },
-          { type: "label", content: "Why this approach:" },
           {
-            type: "p",
-            content:
-              "Deleting the account destroys its Security Identifier. A recreated account gets a new SID, which means every group membership and every file permission that referenced the original SID is permanently gone. IT would have to rebuild her access by hand when she returns. Disabling preserves everything. One click re-enables the account and she continues exactly where she left off.",
+            type: "aside",
+            content: "Deleting the account destroys its Security Identifier. A recreated account gets a new SID, which means every group membership and every file permission that referenced the original SID is permanently gone. Disabling preserves everything — one click re-enables the account and she continues exactly where she left off.",
           },
 
           { type: "h3", content: "Ticket 1044" },
@@ -472,11 +492,9 @@ export const posts: BlogPost[] = [
             caption:
               "16. Ticket 1044: Kemi Johnson added to Finance Staff. Group membership grants her identical access to Funmi's in one step.",
           },
-          { type: "label", content: "Why this approach:" },
           {
-            type: "p",
-            content:
-              "Access is on the group, not the individual. Matching Funmi's groups gives Kemi the correct permissions in a single addition. There are no individual permission entries to audit or miss.",
+            type: "aside",
+            content: "Access is on the group, not the individual. Matching Funmi's groups gives Kemi the correct permissions in a single addition — there are no individual permission entries to audit or miss.",
           },
 
         ],
@@ -512,9 +530,8 @@ export const posts: BlogPost[] = [
             caption: "17. All admin work done as zenith\\adm.abiola, confirmed with whoami.",
           },
           {
-            type: "p",
-            content:
-              "Using adm.abiola rather than the built-in Administrator account matters for two reasons. Every action in the domain event log is attributed to a specific person, not to a shared account that anyone with the password could be. The built-in Administrator is also a known target: it exists in every domain by default, its name is predictable, and attackers probe it first. A named personal admin account provides accountability and reduces that surface.",
+            type: "aside",
+            content: "Using adm.abiola rather than the built-in Administrator account matters for two reasons. Every action in the domain event log is attributed to a specific person, not a shared account anyone with the password could be. The built-in Administrator is also a known target — it exists in every domain by default, its name is predictable, and attackers probe it first.",
           },
 
         ],
@@ -571,9 +588,8 @@ export const posts: BlogPost[] = [
             caption: "01b. ZCPC01 appears in the Workstations OU in ADUC confirming the domain join succeeded.",
           },
           {
-            type: "p",
-            content:
-              "Moving the computer to the Workstations OU immediately matters. Any GPO linked to Workstations will not apply until the computer object sits in that OU. Leaving it in the default Computers container means those policies never reach it.",
+            type: "aside",
+            content: "Moving the computer to the Workstations OU immediately matters. Any GPO linked to Workstations will not apply until the computer object sits in that OU — leaving it in the default Computers container means those policies never reach it.",
           },
 
           { type: "h3", content: "Task 2: Create New Hire Accounts via PowerShell" },
@@ -653,9 +669,8 @@ export const posts: BlogPost[] = [
             caption: "05. Tunde Bakare's account set to expire automatically on December 2, 2026.",
           },
           {
-            type: "p",
-            content:
-              "Account expiry is a safety net. If the offboarding request never arrives when the contractor finishes, the account still closes on schedule. Setting it at account creation means no future action is required.",
+            type: "aside",
+            content: "Account expiry is a safety net. If the offboarding request never arrives when the contractor finishes, the account still closes on schedule — setting it at account creation means no future action is required.",
           },
 
           { type: "h3", content: "Task 4: Offboard a Resigned Staff Member" },
@@ -711,9 +726,8 @@ export const posts: BlogPost[] = [
             caption: "07. Delegation of Control on the Staff OU. Helpdesk gets password reset rights only.",
           },
           {
-            type: "p",
-            content:
-              "Giving a team domain admin rights to handle password resets is unnecessary access that expands the blast radius if that account is compromised. Delegated control scopes exactly what is needed to exactly the OU where it is needed.",
+            type: "aside",
+            content: "Giving a team domain admin rights to handle password resets is unnecessary access that expands the blast radius if that account is compromised. Delegated control scopes exactly what is needed to exactly the OU where it is needed.",
           },
 
           { type: "h3", content: "Task 6: Create the All Staff Security Group" },
@@ -721,7 +735,11 @@ export const posts: BlogPost[] = [
           {
             type: "p",
             content:
-              "I created All Staff in the Staff OU and added Design Staff and Finance Staff as members. Any permission or policy applied to All Staff now automatically covers every member of both departments. When a new department is added, nesting its security group into All Staff is the only change needed.",
+              "I created All Staff in the Staff OU and added Design Staff and Finance Staff as members.",
+          },
+          {
+            type: "aside",
+            content: "Any permission or policy applied to All Staff automatically covers every member of both departments. When a new department is added, nesting its security group into All Staff is the only change needed.",
           },
           { type: "navpath", content: "ADUC > zenithcreative.com > Zenith > Staff > All Staff > Members" },
           {
@@ -776,9 +794,8 @@ export const posts: BlogPost[] = [
             caption: "09c. Account Lockout Policy: 5 failed attempts triggers a 15-minute lockout.",
           },
           {
-            type: "p",
-            content:
-              "Creating a separate ZC Password Policy GPO rather than editing the Default Domain Policy is deliberate. If something breaks, reverting a custom GPO is clean. Rolling back changes to the Default Domain Policy can have unpredictable side effects on other domain-wide settings it controls.",
+            type: "aside",
+            content: "Creating a separate ZC Password Policy GPO rather than editing the Default Domain Policy is deliberate. If something breaks, reverting a custom GPO is clean. Rolling back changes to the Default Domain Policy can have unpredictable side effects on other domain-wide settings it controls.",
           },
 
           { type: "h3", content: "Task 9: Fine-Grained Password Policy" },
@@ -786,7 +803,11 @@ export const posts: BlogPost[] = [
           {
             type: "p",
             content:
-              "I opened Active Directory Administrative Center and created PSO_Privileged with a precedence of 10. Lower precedence numbers win when multiple PSOs apply to the same account. I set the minimum password length to 16 characters and applied the PSO directly to Domain Admins and Helpdesk.",
+              "I opened Active Directory Administrative Center and created PSO_Privileged with a precedence of 10. I set the minimum password length to 16 characters and applied the PSO directly to Domain Admins and Helpdesk.",
+          },
+          {
+            type: "aside",
+            content: "Lower precedence numbers win when multiple PSOs apply to the same account. A precedence of 10 ensures this policy overrides the domain-wide one for privileged accounts.",
           },
           { type: "label", content: "PowerShell equivalent:" },
           {
@@ -824,7 +845,11 @@ export const posts: BlogPost[] = [
           {
             type: "p",
             content:
-              "I created ZC Staff Screen Lock and linked it to the Staff OU. I enabled the screen saver, set the timeout, and enabled password-protection on the screen saver. Because the policy is under User Configuration, it follows the user — it applies to any machine a staff member logs into, not just machines in the Workstations OU.",
+              "I created ZC Staff Screen Lock and linked it to the Staff OU. I enabled the screen saver, set the timeout, and enabled password-protection on the screen saver.",
+          },
+          {
+            type: "aside",
+            content: "Because the policy is under User Configuration, it follows the user — it applies to any machine a staff member logs into, not just machines in the Workstations OU.",
           },
           { type: "navpath", content: "GPM > zenithcreative.com > Staff > Linked Group Policy Objects" },
           {
@@ -868,7 +893,11 @@ export const posts: BlogPost[] = [
           {
             type: "p",
             content:
-              "I created ZC Block USB Storage Connection and linked it to the Workstations OU rather than the Staff OU. The policy is under Computer Configuration so it follows the machine, not the user. I enabled All Removable Storage Classes: Deny All Access. This single setting blocks all classes of removable storage without needing a rule per device type.",
+              "I created ZC Block USB Storage Connection and linked it to the Workstations OU rather than the Staff OU. I enabled All Removable Storage Classes: Deny All Access. This single setting blocks all classes of removable storage without needing a rule per device type.",
+          },
+          {
+            type: "aside",
+            content: "The policy is under Computer Configuration so it follows the machine, not the user. Linking it to Workstations OU means it applies to every machine in that OU regardless of who is logged in.",
           },
           { type: "navpath", content: "GPM > zenithcreative.com > Workstations > Linked Group Policy Objects" },
           {
@@ -885,9 +914,8 @@ export const posts: BlogPost[] = [
             caption: "13b. All Removable Storage classes: Deny all access — Enabled.",
           },
           {
-            type: "p",
-            content:
-              "If a domain admin logs into a workstation, the USB block still applies because the machine is in the Workstations OU. User-scoped policies follow the user. Computer-scoped policies follow the machine. Getting the distinction right determines whether the policy does what you intend.",
+            type: "aside",
+            content: "If a domain admin logs into a workstation, the USB block still applies because the machine is in the Workstations OU. User-scoped policies follow the user. Computer-scoped policies follow the machine. Getting the distinction right determines whether the policy does what you intend.",
           },
 
         ],
@@ -905,7 +933,11 @@ export const posts: BlogPost[] = [
           {
             type: "p",
             content:
-              "I created ZC Branding Assets and linked it to the Workstations OU. I placed zenith_wallpaper.jpg in a branding subfolder inside NETLOGON so the path is \\\\zenithcreative.com\\NETLOGON\\Branding\\zenith_wallpaper.jpg. I added an action to copy the image to C:\\Windows\\Web\\Wallpaper\\Zenith\\zenith_wallpaper.jpg on each workstation. NETLOGON is reachable by every domain-joined machine without additional share configuration.",
+              "I created ZC Branding Assets and linked it to the Workstations OU. I placed zenith_wallpaper.jpg in a branding subfolder inside NETLOGON so the path is \\\\zenithcreative.com\\NETLOGON\\Branding\\zenith_wallpaper.jpg. I added an action to copy the image to C:\\Windows\\Web\\Wallpaper\\Zenith\\zenith_wallpaper.jpg on each workstation.",
+          },
+          {
+            type: "aside",
+            content: "NETLOGON is reachable by every domain-joined machine without additional share configuration, which makes it the standard place for files that workstations need to pull at startup.",
           },
           { type: "navpath", content: "GPM > zenithcreative.com > Workstations > Linked Group Policy Objects" },
           {
@@ -955,7 +987,11 @@ export const posts: BlogPost[] = [
           {
             type: "p",
             content:
-              "I created a separate GPO called ZC Wallpaper and linked it to the Staff OU. I enabled Desktop Wallpaper and set the path to C:\\Windows\\Web\\Wallpaper\\Zenith\\zenith_wallpaper.jpg, the local path the Branding Assets GPO copies the file to. Keeping this as a separate GPO from ZC Branding Assets makes the purpose of each GPO clear and allows the file deployment and the display policy to be managed independently.",
+              "I created a separate GPO called ZC Wallpaper and linked it to the Staff OU. I enabled Desktop Wallpaper and set the path to C:\\Windows\\Web\\Wallpaper\\Zenith\\zenith_wallpaper.jpg, the local path the Branding Assets GPO copies the file to.",
+          },
+          {
+            type: "aside",
+            content: "Keeping this as a separate GPO from ZC Branding Assets makes the purpose of each GPO clear and allows the file deployment and the display policy to be managed independently.",
           },
           { type: "navpath", content: "GPM > zenithcreative.com > Staff > Linked Group Policy Objects" },
           {
@@ -1340,9 +1376,8 @@ export const posts: BlogPost[] = [
             caption: "21b. Access denied on FinanceFiles when logged in as a Design Staff user. NTFS permissions are working correctly.",
           },
           {
-            type: "p",
-            content:
-              "This is the AGdLP pattern: Accounts in Global groups, Global groups nested in Domain Local groups, Domain Local groups assigned Permissions. Adding a new Design user to Design Staff automatically grants them Modify access to DesignFiles without touching the share or its NTFS ACL.",
+            type: "aside",
+            content: "This is the AGdLP pattern: Accounts in Global groups, Global groups nested in Domain Local groups, Domain Local groups assigned Permissions. Adding a new Design user to Design Staff automatically grants them Modify access to DesignFiles without touching the share or its NTFS ACL.",
           },
 
         ],
@@ -1455,7 +1490,11 @@ export const posts: BlogPost[] = [
           {
             type: "p",
             content:
-              "I opened Settings on ZCPC01 and clicked Select users that can remotely access this PC. I added Chide Eze's account from zenithcreative.com. This adds the account to the local Remote Desktop Users group on that specific machine. Domain Admins can RDP to any domain computer by default. This grants the same access to a standard user on one specific workstation.",
+              "I opened Settings on ZCPC01 and clicked Select users that can remotely access this PC. I added Chide Eze's account from zenithcreative.com. This adds the account to the local Remote Desktop Users group on that specific machine.",
+          },
+          {
+            type: "aside",
+            content: "Domain Admins can RDP to any domain computer by default. This grants the same access to a standard user on one specific workstation.",
           },
           { type: "label", content: "PowerShell equivalent:" },
           {
