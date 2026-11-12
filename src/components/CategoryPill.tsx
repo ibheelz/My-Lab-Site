@@ -15,12 +15,12 @@ export default function CategoryPill({
     <span
       style={{
         display: "inline-block",
-        backgroundColor: toRgba(color, 0.2),
-        color,
+        backgroundColor: color,
+        color: "#000",
         padding: "2px 10px",
         borderRadius: "0px",
         fontSize: "12px",
-        fontWeight: 300,
+        fontWeight: 700,
       }}
     >
       {label}

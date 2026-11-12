@@ -24,9 +24,10 @@ interface BlogCardProps {
   readTime: number;
   thumbnail?: string;
   categoryColor?: string;
+  cardTags?: string[];
 }
 
-export default function BlogCard({ slug, title, description, category, readTime, thumbnail, categoryColor }: BlogCardProps) {
+export default function BlogCard({ slug, title, description, category, readTime, thumbnail, categoryColor, cardTags }: BlogCardProps) {
   const color = categoryColor ?? pillColor(category);
 
   return (
@@ -44,20 +45,28 @@ export default function BlogCard({ slug, title, description, category, readTime,
         backgroundColor: "rgb(0, 0, 0)",
       }}
     >
-      {/* Top: category pill + read time */}
+      {/* Top: tags (or category) + read time */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <span
-          style={{
-            backgroundColor: toRgba(color, 0.2),
-            color,
-            padding: "2px 10px",
-            borderRadius: "0px",
-            fontSize: "12px",
-            fontWeight: 300,
-          }}
-        >
-          {category}
-        </span>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+          {(cardTags && cardTags.length > 0 ? cardTags : [category]).map((tag) => {
+            const tagCol = cardTags ? pillColor(tag) : color;
+            return (
+              <span
+                key={tag}
+                style={{
+                  backgroundColor: tagCol,
+                  color: "#000",
+                  padding: "2px 10px",
+                  borderRadius: "0px",
+                  fontSize: "12px",
+                  fontWeight: 700,
+                }}
+              >
+                {tag}
+              </span>
+            );
+          })}
+        </div>
         <span style={{ color: "rgb(168, 215, 231)", fontSize: "12px", fontWeight: 300, display: "inline-flex", alignItems: "center", gap: "4px" }}>
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="12" cy="12" r="10" />

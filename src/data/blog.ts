@@ -8,6 +8,7 @@ export interface BlogPost {
   date: string;
   thumbnail?: string;
   tags?: string[];
+  cardTags?: string[];
   sections?: BlogSection[];
 }
 
@@ -28,13 +29,14 @@ export const posts: BlogPost[] = [
   {
     slug: "zcdc01-windows-domain-from-scratch",
     title: "Setting up a Windows Active Directory Domain Services — Part 1",
-    description: "",
+    description: "Built a Windows Server 2025 Active Directory domain from scratch. VM setup, DNS, DHCP, OU structure, user accounts, and remote access. Managed the whole build from a MacBook over RDP.",
     category: "Windows Lab",
     color: "rgb(192, 132, 252)",
     readTime: 14,
     date: "2026-10-10",
     thumbnail: "/images/blog/active-directory-cover.png",
-    tags: ["IT Support", "Active Directory", "Windows Server", "PowerShell", "Home Lab", "Setup"],
+    tags: ["Active Directory", "Windows Server", "PowerShell", "Setup", "Troubleshoot"],
+    cardTags: ["Setup", "Troubleshoot"],
     sections: [
       { type: "h2", content: "Overview" },
       { type: "p", content: "I built a Windows Active Directory domain from scratch on a Windows Server 2025 VM running in VirtualBox on my ROG Ally X, managed remotely from my MacBook over Remote Desktop." },
@@ -533,13 +535,14 @@ export const posts: BlogPost[] = [
   {
     slug: "zcdc02-gpo-file-shares-and-automation",
     title: "Active Directory: Group Policy, File Shares and Automation — Part 2",
-    description: "Part 2 of the AD build. I joined a Windows 11 workstation to the domain, automated bulk user creation with PowerShell, locked down workstations with GPOs, configured file shares with NTFS permissions, and set up automatic drive mapping.",
+    description: "I joined a Windows 11 workstation to the domain, automated bulk user creation with PowerShell, locked down workstations with GPOs, configured file shares with NTFS permissions, and set up automatic drive mapping.",
     category: "Windows Lab",
     color: "rgb(192, 132, 252)",
     readTime: 24,
     date: "2026-11-04",
     thumbnail: "/images/blog/active-directory-2-cover.png",
-    tags: ["IT Support", "Active Directory", "Windows Server", "PowerShell", "Group Policy", "Home Lab", "Setup"],
+    tags: ["Active Directory", "Windows Server", "PowerShell", "Group Policy", "Setup", "Troubleshoot"],
+    cardTags: ["Setup", "Troubleshoot"],
     sections: [
 
       // ── Group: Domain Operations ───────────────────────────────────────────

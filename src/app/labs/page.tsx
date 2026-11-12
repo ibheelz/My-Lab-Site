@@ -51,6 +51,7 @@ export default function Blog() {
                 readTime={post.readTime}
                 thumbnail={post.thumbnail}
                 categoryColor={post.color ?? TAG_COLORS[i % TAG_COLORS.length]}
+                cardTags={post.cardTags}
               />
             </ScrollReveal>
           ))}
