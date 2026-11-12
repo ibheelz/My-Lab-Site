@@ -17,14 +17,14 @@ function slugify(text: string): string {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
-function SectionContent({ section }: { section: BlogSection }) {
+function SectionContent({ section, isFirst }: { section: BlogSection; isFirst?: boolean }) {
   switch (section.type) {
     case "h2":
       return (
         <h2
           id={slugify(section.content as string)}
           className="text-base tablet:text-lg"
-          style={{ color: CYAN, margin: "16px 0 0", fontWeight: 500 }}
+          style={{ color: CYAN, margin: isFirst ? "0" : "16px 0 0", fontWeight: 500 }}
         >
           {section.content as string}
         </h2>
@@ -222,7 +222,7 @@ export default function AccordionArticle({ sections }: { sections: BlogSection[]
         if (section.type !== "group") {
           return (
             <ScrollReveal key={i} delay={Math.min(i * 50, 150)}>
-              <SectionContent section={section} />
+              <SectionContent section={section} isFirst={i === 0} />
             </ScrollReveal>
           );
         }

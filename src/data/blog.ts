@@ -28,30 +28,19 @@ export const posts: BlogPost[] = [
   {
     slug: "zcdc01-windows-domain-from-scratch",
     title: "Setting up a Windows Active Directory Domain Services — Part 1",
-    description: "Zenith Creative is a 15 person design studio in Lagos. They have just bought their first server and need a domain set up before staff start on Monday. You are the IT technician. Build it.",
+    description: "",
     category: "Windows Lab",
     color: "rgb(192, 132, 252)",
     readTime: 14,
     date: "2026-10-10",
     thumbnail: "/images/blog/active-directory-cover.png",
-    tags: ["IT Support", "Active Directory", "Windows Server", "PowerShell", "Home Lab"],
+    tags: ["IT Support", "Active Directory", "Windows Server", "PowerShell", "Home Lab", "Setup"],
     sections: [
-
-      // ── Assessment Overview (flat) ─────────────────────────────────────────
-      { type: "h2", content: "Assessment Overview" },
-      {
-        type: "ul",
-        content: [
-          "Role: IT Support Technician (Windows Infrastructure)",
-          "Format: Hands-on build, support tickets, evidence, verbal questions",
-          "Lab: Windows Server 2025 VM in VirtualBox on a ROG Ally X, managed from a MacBook over Remote Desktop",
-        ],
-      },
-      {
-        type: "p",
-        content:
-          "Zenith Creative is a fictional 15-person design studio in Lagos that needs its first domain before staff start Monday. I am the IT technician.",
-      },
+      { type: "h2", content: "Overview" },
+      { type: "p", content: "I built a Windows Active Directory domain from scratch on a Windows Server 2025 VM running in VirtualBox on my ROG Ally X, managed remotely from my MacBook over Remote Desktop." },
+      { type: "p", content: "Zenith Creative is a fictional 15-person design studio in Lagos that just bought their first server and needed a domain live before staff started Monday. I was the IT technician." },
+      { type: "p", content: "I provisioned the VM, installed Server 2025, promoted it to a domain controller, configured DNS and DHCP, designed a structured OU hierarchy, created user accounts with the right permissions, and locked down remote access." },
+      { type: "p", content: "Everything in this post comes from that build." },
 
       // ── Group: Infrastructure Setup ────────────────────────────────────────
       {
@@ -538,30 +527,14 @@ export const posts: BlogPost[] = [
   {
     slug: "zcdc02-gpo-file-shares-and-automation",
     title: "Active Directory: Group Policy, File Shares and Automation — Part 2",
-    description: "The domain is live and staff start Monday. Automate bulk user creation and offboarding with PowerShell, lock down workstations with Group Policy, deploy software and printers, and wire up file shares with drive maps.",
+    description: "Part 2 of the AD build. I joined a Windows 11 workstation to the domain, automated bulk user creation with PowerShell, locked down workstations with GPOs, configured file shares with NTFS permissions, and set up automatic drive mapping.",
     category: "Windows Lab",
     color: "rgb(192, 132, 252)",
     readTime: 24,
     date: "2026-11-04",
     thumbnail: "/images/blog/active-directory-2-cover.png",
-    tags: ["IT Support", "Active Directory", "Windows Server", "PowerShell", "Group Policy", "Home Lab"],
+    tags: ["IT Support", "Active Directory", "Windows Server", "PowerShell", "Group Policy", "Home Lab", "Setup"],
     sections: [
-
-      // ── Assessment Overview (flat) ─────────────────────────────────────────
-      { type: "h2", content: "Assessment Overview" },
-      {
-        type: "ul",
-        content: [
-          "Role: IT Support Technician (Windows Infrastructure)",
-          "Format: Hands-on build, support tickets, evidence, verbal questions",
-          "Lab: Windows Server 2025 VM managed from a MacBook over Remote Desktop, Windows 11 client VM for GPO verification",
-        ],
-      },
-      {
-        type: "p",
-        content:
-          "Part 2 builds directly on the domain created in Part 1. The domain controller ZCDC01 is already live. This assessment covers everything that happens next: joining a client workstation, automating user management with PowerShell, locking down machines with Group Policy, setting up file shares with correct NTFS permissions, and mapping drives so staff can access them without manual configuration.",
-      },
 
       // ── Group: Domain Operations ───────────────────────────────────────────
       {

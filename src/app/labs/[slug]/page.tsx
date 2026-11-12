@@ -105,14 +105,8 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
           </ScrollReveal>
         </div>
 
-        {/* Divider */}
-        <div style={{ height: "1px", backgroundColor: BORDER }} />
-
         {/* Article body */}
         <AccordionArticle sections={post.sections ?? []} />
-
-        {/* Divider */}
-        <div style={{ height: "1px", backgroundColor: BORDER }} />
 
         {/* Back link */}
         <Link
